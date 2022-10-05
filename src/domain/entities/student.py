@@ -17,7 +17,6 @@ class Student(abc.ABC):
 
         if('@' not in email or '.' not in email):
             raise EntityError('email')
-          
         self.email = email
         
     

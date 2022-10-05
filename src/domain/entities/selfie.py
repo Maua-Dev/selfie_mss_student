@@ -24,7 +24,6 @@ class Selfie(abc.ABC):
 
     if (situation == None):
       raise EntityError('situation')
-    
     self.situation = situation
       
 
