@@ -1,6 +1,5 @@
 import abc
-
-from helpers.errors.domain_errors import EntityError
+from src.helpers.errors.domain_errors import EntityError
 
 class Student(abc.ABC):
     ra: str
@@ -16,7 +15,7 @@ class Student(abc.ABC):
             raise EntityError('name')
         self.name = name
 
-        if(self.email.get('@') or self.email.get('.')):
+        if('@' not in email or '.' not in email):
             raise EntityError('email')
           
         self.email = email
