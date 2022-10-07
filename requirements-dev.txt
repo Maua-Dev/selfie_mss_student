@@ -1,2 +1,3 @@
 pytest
+pytest-cov==2.12.1
 boto3
