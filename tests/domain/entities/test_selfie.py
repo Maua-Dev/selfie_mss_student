@@ -8,7 +8,7 @@ class Test_Selfie():
     def test_selfie(self):
         selfie = Selfie(
             ra= "21014442",
-            dtUpload= datetime.date.today,
+            dateUpload= datetime.date.today,
             url= "www.maua.br",
             situation= SITUATION.APPROVED,
 
@@ -20,7 +20,7 @@ class Test_Selfie():
       with pytest.raises(EntityError):
         selfie = Selfie(
                 ra= "21.014442",
-                dtUpload= '',
+                dateUpload= '',
                 url= "",
                 situation= '',
             )
