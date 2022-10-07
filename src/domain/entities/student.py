@@ -7,7 +7,7 @@ class Student(abc.ABC):
     email: str
     
     def __init__(self, ra:str, name:str, email:str):
-        if (ra == None or len(ra) != 8):
+        if (ra == None or len(ra) != 8 or not ra.isdecimal()):
             raise EntityError('ra')
         self.ra = ra
         
