@@ -1,5 +1,6 @@
 from dataclasses import replace
 from src.domain.entities.student import Student
+from src.helpers.errors.domain_errors import EntityError
 from src.helpers.errors.usecase_errors import NoItemsFound
 from src.helpers.errors.controller_errors import MissingParameters
 from src.helpers.http.http_models import OK, BadRequest, HttpRequest, HttpResponse, InternalServerError, NotFound
@@ -26,6 +27,9 @@ class GetStudentController:
             return NotFound(body=err.message)
 
         except MissingParameters as err:
+            return BadRequest(body=err.message)
+
+        except EntityError as err:
             return BadRequest(body=err.message)
 
         except Exception as err:

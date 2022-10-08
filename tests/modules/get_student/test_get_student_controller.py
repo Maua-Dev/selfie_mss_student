@@ -43,3 +43,32 @@ class Test_GetStudentController:
         response = controller(request=request)
 
         assert response.status_code == 400
+        assert response.body == "Field ra is missing."
+
+    def test_get_student_controller_bad_request_int(self):
+        repo = StudentRepositoryMock()
+        usecase = GetStudentUsecase(repo=repo)
+        controller = GetStudentController(usecase=usecase)
+
+        request = HttpRequest(query_params={
+            "ra": 21014440,
+        })
+
+        response = controller(request=request)
+
+        assert response.status_code == 400
+        assert response.body == "ra must be a string"
+
+    def test_get_student_controller_bad_request_invalid_ra(self):
+        repo = StudentRepositoryMock()
+        usecase = GetStudentUsecase(repo=repo)
+        controller = GetStudentController(usecase=usecase)
+
+        request = HttpRequest(query_params={
+            "ra": "2101444",
+        })
+
+        response = controller(request=request)
+
+        assert response.status_code == 400
+        assert response.body == "Field ra is not valid."

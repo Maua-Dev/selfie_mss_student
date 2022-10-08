@@ -1,5 +1,5 @@
 import pytest
-from src.helpers.errors.domain_errors import EntityError
+from src.helpers.errors.domain_errors import EntityError, EntityParameterTypeError
 from src.domain.entities.student import Student
 
 
@@ -15,7 +15,7 @@ class Test_Student():
             Student(ra='', name='', email='')
 
     def test_student_ra_not_number(self):
-        with pytest.raises(EntityError):
+        with pytest.raises(EntityError) as err:
             Student(ra="21.010757", name="PyTest...",
                     email="euodeiopytest@terra.com")
 
@@ -40,6 +40,6 @@ class Test_Student():
         assert Student.validate_ra(ra=ra_test) == False
 
     def test_student_method_validate_ra_int(self):
-        with pytest.raises(EntityError):
+        with pytest.raises(EntityParameterTypeError) as err:
             ra_test = 21014442
             Student.validate_ra(ra=ra_test)
