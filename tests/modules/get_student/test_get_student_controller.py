@@ -43,7 +43,7 @@ class Test_GetStudentController:
         response = controller(request=request)
 
         assert response.status_code == 400
-        assert response.body == "Field ra is missing."
+        assert response.body == "Field ra is missing"
 
     def test_get_student_controller_bad_request_int(self):
         repo = StudentRepositoryMock()
@@ -71,4 +71,4 @@ class Test_GetStudentController:
         response = controller(request=request)
 
         assert response.status_code == 400
-        assert response.body == "Field ra is not valid."
+        assert response.body == "Field ra is not valid"
