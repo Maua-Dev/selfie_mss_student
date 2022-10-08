@@ -56,7 +56,7 @@ class Test_GetStudentPresenter:
           "isBase64Encoded": None,
           "stageVariables": None
         }
-        result = {
+        expected = {
             "ra":"21014440",
             "name":"Eh o Vilas do Mockas",
             "email":"eusouoawsboy@amazon.com" 
@@ -64,7 +64,7 @@ class Test_GetStudentPresenter:
       
         response = lambda_handler(event, None)
         assert response["statusCode"] == 200
-        assert response["body"] == result
+        assert response["body"] == expected
 
     def test_get_student_non_existent(self):
         event = {
