@@ -182,4 +182,4 @@ class Test_GetStudentPresenter:
 
         response = lambda_handler(event, None)
         assert response["statusCode"] == 400
-        assert response["body"] == "No items found for Student"
+        assert response["body"] == "Field ra is not valid"
