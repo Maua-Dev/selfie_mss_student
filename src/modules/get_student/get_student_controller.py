@@ -13,12 +13,9 @@ class GetStudentController:
         try:
             if request.query_params.get('ra') is None:
                 raise MissingParameters('ra')
-            if request.query_params.get('email') is None:
-                raise MissingParameters('email')
 
             student = self.getStudentUsecase(
                 ra=request.query_params["ra"],
-                email=request.query_params["email"]
             )
             viewmodel = GetStudentViewModel(student)
             return OK(viewmodel.to_dict())

@@ -9,7 +9,6 @@ class Test_GetStudentUsecase():
        
        student = usecase(
           ra="21014442",
-          email="eutambemsousoler@outlook.com"   
        )
        
        assert student == repo.students[1]
@@ -22,20 +21,5 @@ class Test_GetStudentUsecase():
         with pytest.raises(NoItemsFound):
           usecase(
             ra="21014441",
-            email="eutambemsousoler@outlook.com"  
           )
-        
-    
-    
-    def test_get_student_usecase_not_found_email(self):
-       repo = StudentRepositoryMock()
-       usecase = GetStudentUsecase(repo=repo)
-       
-       with pytest.raises(NoItemsFound):
-            usecase(
-                ra="21014442", 
-                email="eunaosouosoller@outlook.com"   
-            )
-       
-       
         

@@ -35,8 +35,8 @@ class StudentRepositoryMock(IStudentRepository):
             )
         ]
         
-    def get_student(self, ra:str, email:str) -> Student:
+    def get_student(self, ra:str) -> Student:
         for student in self.students:
-            if(student.ra == ra and student.email == email):
+            if(student.ra == ra):
                 return student
         return None
