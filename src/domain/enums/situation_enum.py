@@ -2,7 +2,7 @@ from enum import Enum
 
 
 class SITUATION(Enum):
-    APPROVED = "Aprovado"
-    DECLINED = "Reprovado"
-    IN_REVIEW = "Em análise"
-    NOTSENT = "Não enviado"
+    APPROVED = "APPROVED"
+    DECLINED = "DECLINED"
+    IN_REVIEW = "IN_REVIEW"
+    NOT_SENT = "NOT_SENT"
