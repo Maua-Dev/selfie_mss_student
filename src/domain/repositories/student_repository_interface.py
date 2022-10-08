@@ -8,5 +8,5 @@ class IStudentRepository(ABC):
     def get_student(self, ra: str, email: str) -> Student:
         pass
 
-    def update_student(self, ra: str = None, name: str = None, email: str = None):
+    def update_student(self, ra: str, new_name: str = None, new_email: str = None) -> None:
         pass
