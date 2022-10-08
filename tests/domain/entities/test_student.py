@@ -10,9 +10,17 @@ class Test_Student():
 
         assert type(student) == Student
 
-    def test_student_error(self):
+    def test_student_error_ra(self):
         with pytest.raises(EntityError):
-            Student(ra='', name='', email='')
+            Student(ra='', name='EhSobreIsso', email='palavrao@nao.com')
+            
+    def test_student_error_name(self):
+        with pytest.raises(EntityError):
+            Student(ra='19003315', name='', email='aws@boy.com')
+            
+    def test_student_error_email(self):
+        with pytest.raises(EntityError):
+            Student(ra='19003315', name='Bruno Vilardi Bueno', email='aws.com')
 
     def test_student_ra_not_number(self):
         with pytest.raises(EntityError) as err:
@@ -43,3 +51,16 @@ class Test_Student():
         with pytest.raises(EntityParameterTypeError) as err:
             ra_test = 21014442
             Student.validate_ra(ra=ra_test)
+    
+    def test_student_method_validate_email(self):
+        email_test = "awsboi@aws.com"
+        assert Student.validate_email(email=email_test) == True
+
+    def test_student_method_validate_email_without_atmark(self):
+        email_test = "awsboiaws.com"
+        assert Student.validate_email(email=email_test) == False
+
+    def test_student_method_validate_email_without_final_dot(self):
+        email_test = "awsboi@awscom"
+        assert Student.validate_email(email=email_test) == False
+        
