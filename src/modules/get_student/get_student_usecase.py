@@ -15,7 +15,7 @@ class GetStudentUsecase:
         student = self.repo.get_student(ra=ra)
         
         if student == None:
-            raise NoItemsFound("get_student")
+            raise NoItemsFound("Student")
         
         return student
         
