@@ -27,7 +27,7 @@ class HttpResponse:
 
 
 class OK(HttpResponse):
-    def __init__(self, body: Any) -> None:
+    def __init__(self, body: Any = None) -> None:
         super().__init__(HttpStatusCodeEnum.OK.value, body)
 
 class Created(HttpResponse):

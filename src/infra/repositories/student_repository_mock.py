@@ -55,7 +55,7 @@ class StudentRepositoryMock(IStudentRepository):
                 break
 
         if idxStudent == -1:
-            raise NoItemsFound(ra)
+            raise NoItemsFound("ra")
 
         if new_name != None:
             student.name = new_name

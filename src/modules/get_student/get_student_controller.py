@@ -1,4 +1,3 @@
-from dataclasses import replace
 from src.domain.entities.student import Student
 from src.helpers.errors.domain_errors import EntityError
 from src.helpers.errors.usecase_errors import NoItemsFound
@@ -33,4 +32,4 @@ class GetStudentController:
             return BadRequest(body=err.message)
 
         except Exception as err:
-            return InternalServerError(body=err.args[0].message)
+            return InternalServerError(body=err.args[0])
