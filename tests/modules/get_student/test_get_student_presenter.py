@@ -3,7 +3,7 @@ from src.modules.get_student.get_student_presenter import lambda_handler
 
 class Test_GetStudentPresenter:
 
-    def test_get_subject(self):
+    def test_get_student(self):
         event = {
           "version": "2.0",
           "routeKey": "$default",
@@ -19,7 +19,6 @@ class Test_GetStudentPresenter:
           },
           "queryStringParameters": {
             "ra":"21014440",
-            "email":"eusouoawsboy@amazon.com",
             "parameter2": "value"
           },
           "requestContext": {
