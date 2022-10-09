@@ -64,3 +64,10 @@ class StudentRepositoryMock(IStudentRepository):
             student.email = new_email
 
         self.students[idxStudent] = student
+
+    def delete_student(self, ra: str) -> None:
+        for idx in range(len(self.students)):
+            if(self.students[idx].ra == ra):
+                self.students.pop(idx)
+                return None
+        raise NoItemsFound("ra")

@@ -10,3 +10,6 @@ class IStudentRepository(ABC):
 
     def update_student(self, ra: str, new_name: str = None, new_email: str = None) -> None:
         pass
+
+    def delete_student(self, ra: str) -> None:
+        pass
