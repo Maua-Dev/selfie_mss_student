@@ -16,5 +16,3 @@ def lambda_handler(event, context):
 
     return httpResponse.toDict()
 
-
-
