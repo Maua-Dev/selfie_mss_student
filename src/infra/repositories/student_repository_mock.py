@@ -67,7 +67,6 @@ class StudentRepositoryMock(IStudentRepository):
 
     def create_student(self, ra: str, name: str, email: str) -> None:
 
-
         for student in self.students:
             if(student.ra == ra and student.email == email):
                 raise DuplicatedItem("ra and email")
