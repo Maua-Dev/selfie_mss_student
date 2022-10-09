@@ -1,5 +1,5 @@
-from itertools import count
 from typing import List
+
 from src.helpers.errors.usecase_errors import DuplicatedItem, NoItemsFound
 from src.domain.entities.student import Student
 from src.domain.repositories.student_repository_interface import IStudentRepository
@@ -67,13 +67,22 @@ class StudentRepositoryMock(IStudentRepository):
 
     def create_student(self, ra: str, name: str, email: str) -> None:
 
+        duplicatedRa = False
+        duplicatedEmail = False
+
         for student in self.students:
-            if(student.ra == ra and student.email == email):
-                raise DuplicatedItem("ra and email")
-            elif(student.email == email):
-                raise DuplicatedItem("email")
-            elif(student.ra == ra):
-                raise DuplicatedItem("ra")
+            if not duplicatedEmail and student.email == email:
+                duplicatedEmail = not duplicatedEmail
+
+            if not duplicatedRa and student.ra == ra:
+                duplicatedRa = not duplicatedRa
+
+        if duplicatedEmail and duplicatedRa:
+            raise DuplicatedItem("ra and email")
+        elif duplicatedEmail:
+            raise DuplicatedItem("email")
+        elif duplicatedRa:
+            raise DuplicatedItem("ra")
 
         student = Student(
             ra=ra,
