@@ -11,35 +11,38 @@ class Test_CreateStudentUsecase:
         repo = StudentRepositoryMock()
         usecase = CreateStudentUsecase(repo=repo)
 
-        student = Student(
+        studentTest = Student(
             ra="20006110", name="Ai Rubio", email="aii@rubio.com"
         )
 
-        usecase(student)
+        lenBefore = len(repo.students)
 
-        assert len(repo.students) == 6
+        student = usecase(studentTest)
+
+        assert len(repo.students) == lenBefore + 1
         assert repo.students[5].ra == "20006110"
         assert repo.students[5].name == "Ai Rubio"
         assert repo.students[5].email == "aii@rubio.com"
+        assert student == studentTest
 
     def test_create_student_usecase_duplicated_ra(self):
         repo = StudentRepositoryMock()
         usecase = CreateStudentUsecase(repo=repo)
 
-        student = Student(
+        studentTest = Student(
             ra="21014442", name="Ai Rubio", email="aii@rubio.com"
         )
 
         with pytest.raises(DuplicatedItem):
-            usecase(student)
+            usecase(studentTest)
 
     def test_create_student_usecase_duplicated_email(self):
         repo = StudentRepositoryMock()
         usecase = CreateStudentUsecase(repo=repo)
 
-        student = Student(
+        studentTest = Student(
             ra="20006110", name="Ai Rubio", email="uuaa@floresta.com"
         )
 
         with pytest.raises(DuplicatedItem):
-            usecase(student)
+            usecase(studentTest)

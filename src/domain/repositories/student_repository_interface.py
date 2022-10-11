@@ -13,3 +13,6 @@ class IStudentRepository(ABC):
 
     def create_student(self, student: Student) -> Student:
         pass
+
+    def get_students_by_ra_or_email(self, ra: str = None, email: str = None) -> List[Student]:
+        pass
