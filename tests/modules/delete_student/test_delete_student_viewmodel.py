@@ -10,7 +10,8 @@ class Test_DeleteStudentViewModel:
         result = {
             "ra":"21010757",
             "name":"Victor",
-            "email":"eusousoller@gmail.com"
+            "email":"eusousoller@gmail.com",
+            "message":"User was deleted successfully"
         }
         
         studentViewModel = DeleteStudentViewModel(student).to_dict()

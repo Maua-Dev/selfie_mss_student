@@ -61,7 +61,8 @@ class Test_DeleteStudentPresenter:
         expected = {
             "ra":"21014440",
             "name":"Eh o Vilas do Mockas",
-            "email":"eusouoawsboy@amazon.com" 
+            "email":"eusouoawsboy@amazon.com",
+            "message":"User was deleted successfully"
         }
 
         response = lambda_handler(event, None)

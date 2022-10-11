@@ -15,7 +15,8 @@ class DeleteStudentViewModel():
         return {
             "ra":self.ra,
             "email":self.email,
-            "name":self.name
+            "name":self.name,
+            "message":"User was deleted successfully"
         }    
         
     

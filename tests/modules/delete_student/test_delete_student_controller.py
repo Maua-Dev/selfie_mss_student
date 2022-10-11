@@ -18,7 +18,8 @@ class Test_DeleteStudentController:
         expected = {
             "ra":"21014443",
             "name":"Guirão",
-            "email":"acreditaquesousollertambem@yahoo.com"
+            "email":"acreditaquesousollertambem@yahoo.com",
+            "message":"User was deleted successfully"
         } 
         
         assert response.status_code == 200
