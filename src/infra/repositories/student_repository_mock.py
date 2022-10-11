@@ -1,4 +1,5 @@
 from typing import List
+from src.helpers.errors.controller_errors import MissingParameters
 
 from src.helpers.errors.usecase_errors import DuplicatedItem, NoItemsFound
 from src.domain.entities.student import Student
@@ -67,6 +68,10 @@ class StudentRepositoryMock(IStudentRepository):
 
     def get_students_by_ra_or_email(self, ra: str = None, email: str = None) -> List[Student]:
         listStudents = []
+
+        if not ra and not email:
+            raise MissingParameters('ra')
+
         for student in self.students:
             if student.ra == ra or student.email == email:
                 listStudents.append(student)
