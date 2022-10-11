@@ -1,26 +1,24 @@
-from src.domain.entities.student import Student
 from src.helpers.errors.domain_errors import EntityError
 from src.helpers.errors.usecase_errors import NoItemsFound
 from src.helpers.errors.controller_errors import MissingParameters
 from src.helpers.http.http_models import OK, BadRequest, HttpRequest, HttpResponse, InternalServerError, NotFound
-from src.modules.get_student.get_student_usecase import GetStudentUsecase
-from src.modules.get_student.get_student_view_model import GetStudentViewModel
+from src.modules.update_student.update_student_usecase import UpdateStudentUsecase
 
 
-class GetStudentController:
-    def __init__(self, usecase: GetStudentUsecase):
-        self.getStudentUsecase = usecase
+class UpdateStudentController:
+    def __init__(self, usecase: UpdateStudentUsecase):
+        self.updateStudentUsecase = usecase
 
     def __call__(self, request: HttpRequest) -> HttpResponse:
         try:
             if request.query_params.get('ra') is None:
                 raise MissingParameters('ra')
-
-            student = self.getStudentUsecase(
-                ra=request.query_params["ra"]
+            self.updateStudentUsecase(
+                ra=request.query_params.get("ra"),
+                new_name=request.query_params.get("new_name"),
+                new_email=request.query_params.get("new_email")
             )
-            viewmodel = GetStudentViewModel(student)
-            return OK(viewmodel.to_dict())
+            return OK()
 
         except NoItemsFound as err:
             return NotFound(body=err.message)

@@ -1,18 +1,20 @@
-from src.modules.get_student.get_student_usecase import GetStudentUsecase
+from src.modules.update_student.update_student_usecase import UpdateStudentUsecase
 from src.infra.repositories.student_repository_mock import StudentRepositoryMock
-from src.modules.get_student.get_student_controller import GetStudentController
+from src.modules.update_student.update_student_controller import UpdateStudentController
 from src.helpers.http.http_lambda_requests import LambdaHttpRequest, LambdaHttpResponse
 
 
 
 def lambda_handler(event, context):
     repo = StudentRepositoryMock() 
-    usecase = GetStudentUsecase(repo)
-    controller = GetStudentController(usecase)
+    usecase = UpdateStudentUsecase(repo)
+    controller = UpdateStudentController(usecase)
 
     httpRequest = LambdaHttpRequest(data=event)
     response = controller(httpRequest)
     httpResponse = LambdaHttpResponse(status_code=response.status_code, body=response.body, headers=response.headers)
 
     return httpResponse.toDict()
+
+
 

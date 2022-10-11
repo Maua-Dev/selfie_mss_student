@@ -30,6 +30,7 @@ class Test_GetStudentController:
 
         response = controller(request=request)
 
+        assert response.body == "No items found for Student"
         assert response.status_code == 404
 
     def test_get_student_controller_bad_request(self):
