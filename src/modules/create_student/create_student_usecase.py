@@ -6,13 +6,13 @@ class CreateStudentUsecase:
     def __init__(self, repo:IStudentRepository):
         self.repo = repo
         
-    def __call__(self, ra: str, name: str, email: str) -> None:
+    def __call__(self, student: Student) -> None:
 
-        if not Student.validate_ra(ra):
-            raise EntityError('ra')
+        # if not Student.validate_ra(Student.ra):
+        #     raise EntityError('ra')
 
-        if not Student.validate_email(email):
-            raise EntityError('email')
+        # if not Student.validate_email(Student.email):
+        #     raise EntityError('email')
 
-        self.repo.create_student(ra=ra, name=name, email=email)
+        self.repo.create_student(student)
         

@@ -65,16 +65,16 @@ class StudentRepositoryMock(IStudentRepository):
 
         self.students[idxStudent] = student
 
-    def create_student(self, ra: str, name: str, email: str) -> None:
+    def create_student(self, student: Student) -> Student:
 
         duplicatedRa = False
         duplicatedEmail = False
 
-        for student in self.students:
-            if not duplicatedEmail and student.email == email:
+        for studentAux in self.students:
+            if not duplicatedEmail and studentAux.email == student.email:
                 duplicatedEmail = not duplicatedEmail
 
-            if not duplicatedRa and student.ra == ra:
+            if not duplicatedRa and studentAux.ra == student.ra:
                 duplicatedRa = not duplicatedRa
 
         if duplicatedEmail and duplicatedRa:
@@ -83,11 +83,5 @@ class StudentRepositoryMock(IStudentRepository):
             raise DuplicatedItem("email")
         elif duplicatedRa:
             raise DuplicatedItem("ra")
-
-        student = Student(
-            ra=ra,
-            name=name,
-            email=email
-        )
 
         self.students.append(student)

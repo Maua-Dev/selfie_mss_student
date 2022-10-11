@@ -11,5 +11,5 @@ class IStudentRepository(ABC):
     def update_student(self, ra: str, new_name: str = None, new_email: str = None) -> None:
         pass
 
-    def create_student(self, ra: str, name: str, email: str) -> None:
+    def create_student(self, student: Student) -> Student:
         pass
