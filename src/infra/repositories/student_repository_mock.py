@@ -72,7 +72,6 @@ class StudentRepositoryMock(IStudentRepository):
                 listStudents.append(student)
         return listStudents
 
-
     def create_student(self, student: Student) -> Student:
 
         self.students.append(student)

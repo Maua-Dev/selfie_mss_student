@@ -19,10 +19,12 @@ class Test_CreateStudentUsecase:
 
         student = usecase(studentTest)
 
-        assert len(repo.students) == lenBefore + 1
-        assert repo.students[5].ra == "20006110"
-        assert repo.students[5].name == "Ai Rubio"
-        assert repo.students[5].email == "aii@rubio.com"
+        lenAfter = lenBefore + 1
+
+        assert len(repo.students) == lenAfter
+        assert repo.students[lenAfter - 1].ra == studentTest.ra
+        assert repo.students[lenAfter - 1].name == studentTest.name
+        assert repo.students[lenAfter - 1].email == studentTest.email
         assert student == studentTest
 
     def test_create_student_usecase_duplicated_ra(self):

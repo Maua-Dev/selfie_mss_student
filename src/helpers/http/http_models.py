@@ -25,30 +25,35 @@ class HttpResponse:
         self.headers = headers
 
 
-
 class OK(HttpResponse):
     def __init__(self, body: Any = None) -> None:
         super().__init__(HttpStatusCodeEnum.OK.value, body)
 
+
 class Created(HttpResponse):
-    def __init__(self) -> None:
-        super().__init__(HttpStatusCodeEnum.CREATED.value, None)
+    def __init__(self, body: Any = None) -> None:
+        super().__init__(HttpStatusCodeEnum.CREATED.value, body)
+
 
 class NoContent(HttpResponse):
     def __init__(self) -> None:
         super().__init__(HttpStatusCodeEnum.NO_CONTENT.value, None)
 
+
 class BadRequest(HttpResponse):
     def __init__(self, body: Any) -> None:
         super().__init__(HttpStatusCodeEnum.BAD_REQUEST.value, body)
+
 
 class InternalServerError(HttpResponse):
     def __init__(self, body: Any) -> None:
         super().__init__(HttpStatusCodeEnum.INTERNAL_SERVER_ERROR.value, body)
 
+
 class NotFound(HttpResponse):
     def __init__(self, body: Any) -> None:
         super().__init__(HttpStatusCodeEnum.NOT_FOUND.value, body)
+
 
 class RedirectResponse(HttpResponse):
     def __init__(self, body: dict) -> None:
