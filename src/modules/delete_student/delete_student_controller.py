@@ -1,3 +1,4 @@
+from src.modules.delete_student.delete_student_viewmodel import DeleteStudentViewModel
 from src.helpers.errors.domain_errors import EntityError
 from src.helpers.errors.usecase_errors import NoItemsFound
 from src.helpers.errors.controller_errors import MissingParameters
@@ -14,10 +15,10 @@ class DeleteStudentController:
             if request.query_params.get('ra') is None:
                 raise MissingParameters('ra')
             
-            self.deleteStudentUsecase(
+            student = self.deleteStudentUsecase(
                 ra=request.query_params.get("ra"),
             )
-            return OK()
+            return OK(DeleteStudentViewModel(student).to_dict())
 
         except NoItemsFound as err:
             return NotFound(body=err.message)

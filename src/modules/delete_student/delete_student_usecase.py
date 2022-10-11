@@ -12,5 +12,6 @@ class DeleteStudentUsecase:
         if not Student.validate_ra(ra):
             raise EntityError('ra')
 
-        self.repo.delete_student(ra=ra)
+        student = self.repo.delete_student(ra=ra)
+        return student
         

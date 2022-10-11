@@ -1,3 +1,4 @@
+from src.domain.entities.student import Student
 from src.helpers.errors.domain_errors import EntityError
 from src.modules.delete_student.delete_student_usecase import DeleteStudentUsecase
 from src.infra.repositories.student_repository_mock import StudentRepositoryMock
@@ -7,10 +8,19 @@ import pytest
 class Test_DeleteStudentUsecase:
     def test_delete_student_usecase_name(self):
         repo = StudentRepositoryMock()
+        lenghtBefore = len(repo.students)
         usecase = DeleteStudentUsecase(repo=repo)
-        usecase(ra="21010757")
+        student = usecase(ra="21010757")
 
-        assert len(repo.students) == 4
+        expected = Student(
+            ra="21010757",
+            name="Victor",
+            email="eusousoller@gmail.com"   
+        )
+
+        assert len(repo.students) == lenghtBefore - 1
+        assert [student.ra, student.name, student.email] == [expected.ra, expected.name, expected.email]
+        
 
     def test_delete_student_usecase_invalid_ra(self):
         repo = StudentRepositoryMock()

@@ -8,15 +8,22 @@ class Test_DeleteStudentController:
 
     def test_delete_student_controller(self):
         repo = StudentRepositoryMock()
+        lenghtBefore = len(repo.students)
         usecase = DeleteStudentUsecase(repo=repo)
         controller = DeleteStudentController(usecase=usecase)
         request = HttpRequest(query_params={
             "ra": "21014443",
         })
         response = controller(request=request)
-
+        expected = {
+            "ra":"21014443",
+            "name":"Guirão",
+            "email":"acreditaquesousollertambem@yahoo.com"
+        } 
+        
         assert response.status_code == 200
-        assert len(repo.students) == 4
+        assert len(repo.students) == lenghtBefore - 1
+        assert response.body == expected
 
 
 

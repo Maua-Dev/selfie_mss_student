@@ -58,7 +58,11 @@ class Test_DeleteStudentPresenter:
             "stageVariables": None
         }
 
-        expected = {'message': 'No response'}
+        expected = {
+            "ra":"21014440",
+            "name":"Eh o Vilas do Mockas",
+            "email":"eusouoawsboy@amazon.com" 
+        }
 
         response = lambda_handler(event, None)
         assert response["statusCode"] == 200
