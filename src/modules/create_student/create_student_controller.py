@@ -22,13 +22,13 @@ class CreateStudentController:
             if request.query_params.get('email') is None:
                 raise MissingParameters('email')
 
-            studentTest = Student(
+            studentParam= Student(
                 ra=request.query_params["ra"],
                 name=request.query_params["name"],
                 email=request.query_params["email"]
             )
 
-            student = self.createStudentUsecase(studentTest)
+            student = self.createStudentUsecase(studentParam)
             viewmodel = CreateStudentViewModel(student)
 
             return Created(viewmodel.to_dict())
