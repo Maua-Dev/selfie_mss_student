@@ -75,3 +75,8 @@ class Test_Student():
         with pytest.raises(EntityError):
             student = Student(ra=1.2, name="Guardanapo",
                             email="euodeiopytest@terra.com")
+
+    def test_student_float(self):
+            with pytest.raises(EntityError):
+                student = Student(ra=21014442.0, name="Guardanapo",
+                                email="euodeiopytest@terra.com")
