@@ -6,23 +6,6 @@ from src.helpers.errors.usecase_errors import NoItemsFound
 from src.domain.entities.student import Student
 from src.domain.repositories.student_repository_interface import IStudentRepository
 
-"""
-idSelfie: int
-    student: Student
-    dateUpload: datetime.datetime
-    url: str
-    state: STATE
-"""
-
-"""
-    APPROVED = "APPROVED"
-    DECLINED = "DECLINED"
-    IN_REVIEW = "IN_REVIEW"
-    PENDING_REVIEW = "PENDING_REVIEW"
-    NOT_SENT = "NOT_SENT"
-"""
-
-
 class StudentRepositoryMock(IStudentRepository):
 
     students: List[Student]
