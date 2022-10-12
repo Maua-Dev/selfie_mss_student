@@ -14,3 +14,6 @@ archive
 .vscode
 pytest_html_report.html
 .idea/
+venv/
+.venv
+.venv/

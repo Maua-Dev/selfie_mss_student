@@ -23,4 +23,4 @@ jobs:
         run: pytest  --ignore=tests/external/dynamo
       - name: Create coverage report
         run: |
-          pytest  --ignore=tests/external/dynamo --cov=./
+          pytest  --ignore=tests/external/dynamo --cov=./src/
