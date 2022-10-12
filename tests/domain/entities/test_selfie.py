@@ -26,7 +26,7 @@ class Test_Selfie():
         
         assert type(selfie) == Selfie
         assert selfie.student == student
-        assert selfie.dateUpload == dateUpload.isoformat()
+        assert selfie.dateUpload == dateUpload
         assert selfie.state == STATE.APPROVED
 
     def test_selfie_error(self):
