@@ -70,4 +70,8 @@ class Test_Student():
     def test_student_method_validate_email_without_final_dot(self):
         email_test = "awsboi@awscom"
         assert Student.validate_email(email=email_test) == False
-        
+    
+    def test_student_float(self):
+        with pytest.raises(EntityError):
+            student = Student(ra=1.2, name="Guardanapo",
+                            email="euodeiopytest@terra.com")

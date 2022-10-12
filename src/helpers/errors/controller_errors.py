@@ -6,4 +6,4 @@ class MissingParameters(BaseError):
         super().__init__(f'Field {message} is missing')
 class WrongTypeParameter(BaseError):
     def __init__(self, fieldName: str, fieldTypeExpected: str, fieldTypeReceived: str):
-        super().__init__(f'Field {fieldName} isn\'t in the right type.\nReceived: {fieldTypeExpected}\nExpected: {fieldTypeReceived}')
+        super().__init__(f'Field {fieldName} isn\'t in the right type.\nReceived: {fieldTypeReceived}\nExpected: {fieldTypeExpected}')

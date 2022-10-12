@@ -1,8 +1,10 @@
+from dataclasses import field
+from multiprocessing.sharedctypes import Value
 from src.domain.entities.student import Student
 from src.domain.entities.selfie import Selfie
 from src.helpers.errors.domain_errors import EntityError
 from src.helpers.errors.usecase_errors import NoItemsFound
-from src.helpers.errors.controller_errors import MissingParameters
+from src.helpers.errors.controller_errors import MissingParameters, WrongTypeParameter
 from src.helpers.http.http_models import OK, BadRequest, HttpRequest, HttpResponse, InternalServerError, NotFound
 from src.modules.get_selfie.get_selfie_viewmodel import GetSelfieViewModel
 from src.modules.get_selfie.get_selfie_usecase import GetSelfieUsecase
@@ -20,9 +22,20 @@ class GetSelfieController:
             if request.query_params.get('idSelfie') is None:
                 raise MissingParameters('idSelfie')
 
+
+            if type(request.query_params.get('idSelfie')) != str:
+                raise WrongTypeParameter(
+                    fieldName="idSelfie",
+                    fieldTypeExpected="str",
+                    fieldTypeReceived=request.query_params.get('idSelfie').__class__.__name__
+                )
+            if not request.query_params.get('idSelfie').isdecimal():
+                raise EntityError("idSelfie")
+                    
+            
             selfie = self.getSelfieUsecase(
                 ra=request.query_params.get('ra'),
-                idSelfie=request.query_params.get('idSelfie')
+                idSelfie=int(request.query_params.get('idSelfie'))
                 )
             viewmodel = GetSelfieViewModel(selfie)
             return OK(viewmodel.to_dict())
@@ -31,6 +44,9 @@ class GetSelfieController:
             return NotFound(body=err.message)
 
         except MissingParameters as err:
+            return BadRequest(body=err.message)
+
+        except WrongTypeParameter as err:
             return BadRequest(body=err.message)
 
         except EntityError as err:
