@@ -133,3 +133,7 @@ class StudentRepositoryMock(IStudentRepository):
         self.students.append(student)
 
         return student
+    
+    def get_selfies_by_ra(self, ra) -> List[Selfie]:
+        return [selfie for selfie in self.selfies if selfie.student.ra == ra]
+            

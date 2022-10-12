@@ -13,3 +13,4 @@ archive
 .pytest_cache
 .vscode
 pytest_html_report.html
+.idea/

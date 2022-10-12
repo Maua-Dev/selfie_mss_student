@@ -1,7 +1,7 @@
-from abc import ABC, abstractmethod
-from typing import List, Tuple
+from abc import ABC
+from typing import List
 from src.domain.entities.student import Student
-
+from src.domain.entities.selfie import Selfie
 
 class IStudentRepository(ABC):
 
@@ -15,4 +15,7 @@ class IStudentRepository(ABC):
         pass
     
     def create_student(self, student: Student) -> Student:
+        pass
+
+    def get_selfies_by_ra(ra) -> List[Selfie]:
         pass
