@@ -1,6 +1,7 @@
-from itertools import count
 from typing import List
-from src.helpers.errors.usecase_errors import NoItemsFound
+from src.helpers.errors.controller_errors import MissingParameters
+
+from src.helpers.errors.usecase_errors import DuplicatedItem, NoItemsFound
 from src.domain.entities.student import Student
 from src.domain.repositories.student_repository_interface import IStudentRepository
 
@@ -71,3 +72,5 @@ class StudentRepositoryMock(IStudentRepository):
                 student = self.students.pop(idx)
                 return student
         raise NoItemsFound("ra")
+
+
