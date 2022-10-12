@@ -15,12 +15,9 @@ class GetSelfiesByRaUsecase:
 
         if self.repo.get_student(ra=ra) ==  None:
             raise NoItemsFound("ra")
-
+   
         selfies = self.repo.get_selfies_by_ra(ra=ra)
-        
-        if len(selfies) == 0:
-            raise NoItemsFound("Selfie")
-        
+     
         return selfies
         
         
