@@ -1,7 +1,7 @@
 from src.domain.enums.state_enum import STATE
 from src.domain.entities.selfie import Selfie
 
-class SelfieViewModel:
+class GetSelfieViewModel:
     idSelfie: int
     dateUpload: str
     url: str
