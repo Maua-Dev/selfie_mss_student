@@ -74,7 +74,6 @@ class Test_CreateStudentController:
         assert response.status_code == 400
         assert response.body == "Field email is missing"
 
-
     def test_create_student_controller_bad_request_int(self):
         repo = StudentRepositoryMock()
         usecase = CreateStudentUsecase(repo=repo)
