@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Tuple
 from src.helpers.errors.domain_errors import EntityError
 from src.helpers.errors.usecase_errors import NoItemsFound
 from src.domain.entities.student import Student
@@ -8,16 +8,18 @@ class GetSelfiesByRaUsecase:
     def __init__(self, repo:IStudentRepository):
         self.repo = repo
         
-    def __call__(self, ra: str) -> List[Selfie]:
+    def __call__(self, ra: str) -> Tuple[List[Selfie], Student]:
 
         if not Student.validate_ra(ra):
             raise EntityError('ra')
 
-        if self.repo.get_student(ra=ra) ==  None:
+        student = self.repo.get_student(ra=ra)
+        
+        if student ==  None:
             raise NoItemsFound("ra")
    
         selfies = self.repo.get_selfies_by_ra(ra=ra)
      
-        return selfies
+        return selfies, student
         
         
