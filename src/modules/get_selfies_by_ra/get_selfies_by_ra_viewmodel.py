@@ -41,7 +41,7 @@ class SelfieViewModel:
             "state" : self.state.value
         }
 
-class GetSelfieByRaViewModel:
+class GetSelfiesByRaViewModel:
     selfies: List[SelfieViewModel] 
     student: StudentViewModel
 

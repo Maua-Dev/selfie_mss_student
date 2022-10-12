@@ -1,5 +1,5 @@
 import pytest
-from src.modules.get_selfies_by_ra.get_selfies_by_ra_viewmodel import GetSelfieByRaViewModel
+from src.modules.get_selfies_by_ra.get_selfies_by_ra_viewmodel import GetSelfiesByRaViewModel
 from src.domain.entities.student import Student
 from src.infra.repositories.student_repository_mock import StudentRepositoryMock
 
@@ -8,7 +8,7 @@ class Test_GetSelfiesByRaViewModel:
         repo = StudentRepositoryMock()
         selfies = [repo.selfies[0], repo.selfies[1]]
         
-        selfiesViewModel = GetSelfieByRaViewModel(selfies, repo.selfies[0].student).to_dict()
+        selfiesViewModel = GetSelfiesByRaViewModel(selfies, repo.selfies[0].student).to_dict()
 
         expected = {
         'message': 'the selfie has been taken',
@@ -31,7 +31,7 @@ class Test_GetSelfiesByRaViewModel:
         repo = StudentRepositoryMock()
         selfies = []
         
-        selfiesViewModel = GetSelfieByRaViewModel(selfies, 
+        selfiesViewModel = GetSelfiesByRaViewModel(selfies, 
                                                     Student(
                                                             ra="17090212",
                                                             name="Monkey Guy",
