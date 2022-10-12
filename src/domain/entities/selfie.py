@@ -8,11 +8,11 @@ from src.helpers.errors.domain_errors import EntityError
 class Selfie(abc.ABC):
     selfieId: int
     student: Student
-    dateUpload: datetime.datetime
+    dateUpload: str
     url: str
     state: STATE
 
-    def __init__(self, student: Student, dateUpload: datetime.datetime, url: str, state: STATE, selfieId: int):
+    def __init__(self, student: Student, dateUpload: str, url: str, state: STATE, selfieId: int):
         self.student = student
 
         if (dateUpload == None and type(dateUpload) != datetime.datetime):
