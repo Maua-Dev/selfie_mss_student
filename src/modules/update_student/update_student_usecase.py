@@ -1,7 +1,6 @@
+from src.domain.repositories.student_repository_interface import IStudentRepository
 from src.helpers.errors.domain_errors import EntityError
-from src.helpers.errors.usecase_errors import DuplicatedItem, NoItemsFound
 from src.domain.entities.student import Student
-from src.infra.repositories.student_repository_mock import IStudentRepository
 
 class UpdateStudentUsecase:
     def __init__(self, repo:IStudentRepository):
