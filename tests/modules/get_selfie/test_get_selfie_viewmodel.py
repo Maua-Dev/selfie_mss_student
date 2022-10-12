@@ -12,7 +12,9 @@ class Test_GetStudentViewModel:
           'dateUpload': '2022-10-12T16:01:59.149927',
           'idSelfie': 0,
           'state': 'DECLINED',
-          'url': 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'}
+          'url': 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+          'message':"the selfie was retriven"
+          }
         
         studentViewModel = GetSelfieViewModel(selfie).to_dict()
         

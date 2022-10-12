@@ -18,5 +18,6 @@ class GetSelfieViewModel:
             "idSelfie" : self.idSelfie,
             "dateUpload" : self.dateUpload.isoformat(),
             "url" : self.url,
-            "state" : self.state.value
+            "state" : self.state.value,
+            "message": "the selfie was retriven"
         }
