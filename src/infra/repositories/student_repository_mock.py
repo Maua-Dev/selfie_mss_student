@@ -135,6 +135,10 @@ class StudentRepositoryMock(IStudentRepository):
         return student
     
     def get_selfies_by_ra(self, ra) -> Tuple[List[Selfie], Student]:
-        
         return [selfie for selfie in self.selfies if selfie.student.ra == ra]
             
+    def get_selfie(self, ra: str, idSelfie: int) -> Selfie:
+        for selfie in self.selfies:
+            if selfie.student.ra == ra and selfie.selfieId == idSelfie:
+                return selfie
+        return None

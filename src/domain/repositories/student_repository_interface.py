@@ -17,8 +17,8 @@ class IStudentRepository(ABC):
     def create_student(self, student: Student) -> Student:
         pass
 
-    def get_selfies_by_ra(ra: str) -> Tuple[List[Selfie], Student]:
+    def get_selfies_by_ra(self, ra: str) -> Tuple[List[Selfie], Student]:
         pass
     
-    def get_selfie(ra: str, idSelfie: int) -> Selfie:
+    def get_selfie(self, ra: str, idSelfie: int) -> Selfie:
         pass
