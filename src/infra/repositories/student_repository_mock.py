@@ -60,35 +60,35 @@ class StudentRepositoryMock(IStudentRepository):
             Selfie(
                 selfieId=0,
                 student=self.students[0],
-                dateUpload=datetime.datetime.now(),
+                dateUpload=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),
                 url="https://www.youtube.com/watch?v=dQw4w9WgXcQ",
                 state=STATE.DECLINED
             ),
             Selfie(
                 selfieId=1,
                 student=self.students[0],
-                dateUpload=datetime.datetime.now(),
+                dateUpload=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),
                 url="https://www.youtube.com/watch?v=dQw4w9WgXcQ",
                 state=STATE.APPROVED
             ),
             Selfie(
                 selfieId=0,
                 student=self.students[1],
-                dateUpload=datetime.datetime.now(),
+                dateUpload=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),
                 url="https://www.youtube.com/watch?v=dQw4w9WgXcQ",
                 state=STATE.PENDING_REVIEW
             ),
             Selfie(
                 selfieId=0,
                 student=self.students[2],
-                dateUpload=datetime.datetime.now(),
+                dateUpload=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),
                 url="https://www.youtube.com/watch?v=dQw4w9WgXcQ",
                 state=STATE.APPROVED
             ),
             Selfie(
                 selfieId=0,
                 student=self.students[3],
-                dateUpload=datetime.datetime.now(),
+                dateUpload=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),
                 url="https://www.youtube.com/watch?v=dQw4w9WgXcQ",
                 state=STATE.IN_REVIEW
             ),

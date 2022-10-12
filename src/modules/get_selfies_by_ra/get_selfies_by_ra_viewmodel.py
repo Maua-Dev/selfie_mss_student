@@ -1,7 +1,6 @@
 import datetime
 from typing import List
-from unicodedata import name
-from domain.enums.state_enum import STATE
+from src.domain.enums.state_enum import STATE
 from src.domain.entities.selfie import Selfie
 from src.domain.entities.student import Student
 
@@ -22,7 +21,7 @@ class StudentViewModel:
             "email":self.email
         }
 
-class SelfiesViewModel:
+class SelfieViewModel:
     selfieId: int
     dateUpload: str
     url: str
@@ -37,18 +36,19 @@ class SelfiesViewModel:
     def to_dict(self) -> dict:
         return {
             "selfieId" : self.selfieId,
-            "dateUpload" : self.dateUpload,
+            "dateUpload" : self.dateUpload.isoformat(),
             "url" : self.url,
-            "state" : self.state
+            "state" : self.state.value
         }
 
 class GetSelfieByRaViewModel:
-    selfies: List[SelfiesViewModel] 
+    selfies: List[SelfieViewModel] 
     student: StudentViewModel
 
-    def __init__(self, data: List[Selfie]):
-        self.selfies = [SelfiesViewModel(selfie) for selfie in data]
-        self.student = StudentViewModel(data[0].student)
+    def __init__(self, data: List[Selfie], student: Student):
+        self.selfies = [SelfieViewModel(selfie) for selfie in data]
+        self.student = StudentViewModel(student)
+        
 
     def to_dict(self) -> dict:
         return {
@@ -56,8 +56,3 @@ class GetSelfieByRaViewModel:
             "selfies": [selfie.to_dict() for selfie in self.selfies],
             "message": "the selfie has been taken"
         }
-        
-        
-    
-
-        
