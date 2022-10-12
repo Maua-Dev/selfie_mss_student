@@ -1,7 +1,7 @@
 from src.domain.entities.student import Student
 
 
-class GetStudentViewModel():
+class GetStudentViewModel:
     ra:str
     email:str
     name:str

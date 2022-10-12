@@ -9,5 +9,8 @@ class CreateStudentUsecase:
         
     def __call__(self, student: Student) -> Student:
 
+        if self.repo.get_student(ra = student.ra):
+            raise DuplicatedItem("ra")
+
         return self.repo.create_student(student)
          
