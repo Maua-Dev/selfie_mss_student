@@ -17,5 +17,3 @@ class GetStudentUsecase:
             raise NoItemsFound("Student")
         
         return student
-        
-        

@@ -1,5 +1,5 @@
 import datetime
-from typing import List
+from typing import List, Tuple
 from src.domain.entities.selfie import Selfie
 from src.domain.enums.state_enum import STATE
 from src.helpers.errors.usecase_errors import NoItemsFound
@@ -134,6 +134,7 @@ class StudentRepositoryMock(IStudentRepository):
 
         return student
     
-    def get_selfies_by_ra(self, ra) -> List[Selfie]:
+    def get_selfies_by_ra(self, ra) -> Tuple[List[Selfie], Student]:
+        
         return [selfie for selfie in self.selfies if selfie.student.ra == ra]
             

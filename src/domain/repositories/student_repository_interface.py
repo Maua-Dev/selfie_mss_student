@@ -1,5 +1,5 @@
 from abc import ABC
-from typing import List
+from typing import List, Tuple
 from src.domain.entities.student import Student
 from src.domain.entities.selfie import Selfie
 
@@ -17,5 +17,8 @@ class IStudentRepository(ABC):
     def create_student(self, student: Student) -> Student:
         pass
 
-    def get_selfies_by_ra(ra) -> List[Selfie]:
+    def get_selfies_by_ra(ra: str) -> Tuple[List[Selfie], Student]:
+        pass
+    
+    def get_selfie(ra: str, idSelfie: int) -> Selfie:
         pass
