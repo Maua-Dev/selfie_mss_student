@@ -13,11 +13,11 @@ class Test_GetSelfiesByRaViewModel:
         expected = {
         'message': 'the selfie has been taken',
         'selfies': [{'dateUpload': '2022-10-12T16:01:59.149927',
-                    'selfieId': 0,
+                    'idSelfie': 0,
                     'state': 'DECLINED',
                     'url': 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'},
                     {'dateUpload': '2022-10-12T16:01:59.149927',
-                    'selfieId': 1,
+                    'idSelfie': 1,
                     'state': 'APPROVED',
                     'url': 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'}],
         'student': {'email': 'eusousoller@gmail.com',

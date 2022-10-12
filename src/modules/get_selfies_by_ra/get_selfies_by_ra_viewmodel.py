@@ -22,20 +22,20 @@ class StudentViewModel:
         }
 
 class SelfieViewModel:
-    selfieId: int
+    idSelfie: int
     dateUpload: str
     url: str
     state: STATE
 
     def __init__(self, selfie: Selfie):
-        self.selfieId = selfie.selfieId
+        self.idSelfie = selfie.idSelfie
         self.dateUpload = selfie.dateUpload
         self.url = selfie.url
         self.state = selfie.state
 
     def to_dict(self) -> dict:
         return {
-            "selfieId" : self.selfieId,
+            "idSelfie" : self.idSelfie,
             "dateUpload" : self.dateUpload.isoformat(),
             "url" : self.url,
             "state" : self.state.value

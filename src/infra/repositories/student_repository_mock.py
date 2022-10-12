@@ -7,7 +7,7 @@ from src.domain.entities.student import Student
 from src.domain.repositories.student_repository_interface import IStudentRepository
 
 """
-selfieId: int
+idSelfie: int
     student: Student
     dateUpload: datetime.datetime
     url: str
@@ -58,35 +58,35 @@ class StudentRepositoryMock(IStudentRepository):
 
         self.selfies = [
             Selfie(
-                selfieId=0,
+                idSelfie=0,
                 student=self.students[0],
                 dateUpload=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),
                 url="https://www.youtube.com/watch?v=dQw4w9WgXcQ",
                 state=STATE.DECLINED
             ),
             Selfie(
-                selfieId=1,
+                idSelfie=1,
                 student=self.students[0],
                 dateUpload=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),
                 url="https://www.youtube.com/watch?v=dQw4w9WgXcQ",
                 state=STATE.APPROVED
             ),
             Selfie(
-                selfieId=0,
+                idSelfie=0,
                 student=self.students[1],
                 dateUpload=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),
                 url="https://www.youtube.com/watch?v=dQw4w9WgXcQ",
                 state=STATE.PENDING_REVIEW
             ),
             Selfie(
-                selfieId=0,
+                idSelfie=0,
                 student=self.students[2],
                 dateUpload=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),
                 url="https://www.youtube.com/watch?v=dQw4w9WgXcQ",
                 state=STATE.APPROVED
             ),
             Selfie(
-                selfieId=0,
+                idSelfie=0,
                 student=self.students[3],
                 dateUpload=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),
                 url="https://www.youtube.com/watch?v=dQw4w9WgXcQ",
@@ -139,6 +139,6 @@ class StudentRepositoryMock(IStudentRepository):
             
     def get_selfie(self, ra: str, idSelfie: int) -> Selfie:
         for selfie in self.selfies:
-            if selfie.student.ra == ra and selfie.selfieId == idSelfie:
+            if selfie.student.ra == ra and selfie.idSelfie == idSelfie:
                 return selfie
         return None

@@ -21,7 +21,7 @@ class Test_Selfie():
                         dateUpload= dateUpload,
                         url= "www.maua.br",
                         state= STATE.APPROVED,
-                        selfieId= 1
+                        idSelfie= 1
                         )
         
         assert type(selfie) == Selfie
@@ -40,7 +40,7 @@ class Test_Selfie():
                 dateUpload= datetime.datetime.now(),
                 url= "www.maua.br",
                 state= STATE.PENDING_REVIEW,
-                selfieId= 1
+                idSelfie= 1
             )
 
         
@@ -55,7 +55,7 @@ class Test_Selfie():
                 dateUpload= datetime.datetime.now(),
                 url= "www.maua.br",
                 state= STATE.PENDING_REVIEW,
-                selfieId= 1
+                idSelfie= 1
             )
       
     def test_selfie_error_url_invalid(self):
@@ -69,7 +69,7 @@ class Test_Selfie():
                 dateUpload= datetime.datetime.now(),
                 url= None,
                 state= STATE.PENDING_REVIEW,
-                selfieId= 1
+                idSelfie= 1
             )
         
     def test_selfie_error_state_invalid(self):
@@ -83,7 +83,7 @@ class Test_Selfie():
                 dateUpload= datetime.datetime.now(),
                 url= "www.maua.br",
                 state= "PENDING_REVIEW",
-                selfieId= 1
+                idSelfie= 1
             )
       
     def test_selfie_error_id_invalid(self):
@@ -97,7 +97,7 @@ class Test_Selfie():
                 dateUpload= datetime.datetime.now(),
                 url= "www.maua.br",
                 state= STATE.PENDING_REVIEW,
-                selfieId= None
+                idSelfie= None
             )
         
     def test_selfie_error_id_invalid_str(self):
@@ -111,6 +111,6 @@ class Test_Selfie():
                 dateUpload= datetime.datetime.now(),
                 url= "www.maua.br",
                 state= STATE.PENDING_REVIEW,
-                selfieId= "1"
+                idSelfie= "1"
             )
       

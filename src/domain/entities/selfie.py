@@ -6,13 +6,13 @@ from src.helpers.errors.domain_errors import EntityError
 
 
 class Selfie(abc.ABC):
-    selfieId: int
+    idSelfie: int
     student: Student
     dateUpload: datetime.datetime
     url: str
     state: STATE
 
-    def __init__(self, student: Student, dateUpload: datetime.datetime, url: str, state: STATE, selfieId: int):
+    def __init__(self, student: Student, dateUpload: datetime.datetime, url: str, state: STATE, idSelfie: int):
         self.student = student
 
         if (dateUpload == None and type(dateUpload) != datetime.datetime):
@@ -27,6 +27,6 @@ class Selfie(abc.ABC):
             raise EntityError('state')
         self.state = state
 
-        if selfieId == None or type(selfieId) != int:
+        if idSelfie == None or type(idSelfie) != int:
             raise EntityError('id')
-        self.selfieId = selfieId
+        self.idSelfie = idSelfie
