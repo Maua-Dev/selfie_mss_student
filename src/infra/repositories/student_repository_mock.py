@@ -1,8 +1,26 @@
+import datetime
 from typing import List
-from src.helpers.errors.controller_errors import MissingParameters
-from src.helpers.errors.usecase_errors import DuplicatedItem, NoItemsFound
+from src.domain.entities.selfie import Selfie
+from src.domain.enums.state_enum import STATE
+from src.helpers.errors.usecase_errors import NoItemsFound
 from src.domain.entities.student import Student
 from src.domain.repositories.student_repository_interface import IStudentRepository
+
+"""
+selfieId: int
+    student: Student
+    dateUpload: datetime.datetime
+    url: str
+    state: STATE
+"""
+
+"""
+    APPROVED = "APPROVED"
+    DECLINED = "DECLINED"
+    IN_REVIEW = "IN_REVIEW"
+    PENDING_REVIEW = "PENDING_REVIEW"
+    NOT_SENT = "NOT_SENT"
+"""
 
 
 class StudentRepositoryMock(IStudentRepository):
@@ -38,6 +56,43 @@ class StudentRepositoryMock(IStudentRepository):
             )
         ]
 
+        self.selfies = [
+            Selfie(
+                selfieId=0,
+                student=self.students[0],
+                dateUpload=datetime.datetime.now(),
+                url="https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+                state=STATE.DECLINED
+            ),
+            Selfie(
+                selfieId=1,
+                student=self.students[0],
+                dateUpload=datetime.datetime.now(),
+                url="https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+                state=STATE.APPROVED
+            ),
+            Selfie(
+                selfieId=0,
+                student=self.students[1],
+                dateUpload=datetime.datetime.now(),
+                url="https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+                state=STATE.PENDING_REVIEW
+            ),
+            Selfie(
+                selfieId=0,
+                student=self.students[2],
+                dateUpload=datetime.datetime.now(),
+                url="https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+                state=STATE.APPROVED
+            ),
+            Selfie(
+                selfieId=0,
+                student=self.students[3],
+                dateUpload=datetime.datetime.now(),
+                url="https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+                state=STATE.IN_REVIEW
+            ),
+        ]
 
     def get_student(self, ra: str) -> Student:
         for student in self.students:
@@ -45,9 +100,7 @@ class StudentRepositoryMock(IStudentRepository):
                 return student
         return None
 
-
     def update_student(self, ra: str, new_name: str = None, new_email: str = None) -> Student:
-
         idxStudent = -1
 
         for idx, possible_student in enumerate(self.students):
@@ -66,9 +119,8 @@ class StudentRepositoryMock(IStudentRepository):
             student.email = new_email
 
         self.students[idxStudent] = student
-        
-        return self.students[idxStudent]
 
+        return self.students[idxStudent]
 
     def delete_student(self, ra: str) -> Student:
         for idx in range(len(self.students)):
@@ -76,7 +128,6 @@ class StudentRepositoryMock(IStudentRepository):
                 student = self.students.pop(idx)
                 return student
         raise NoItemsFound("ra")
-
 
     def create_student(self, student: Student) -> Student:
         self.students.append(student)

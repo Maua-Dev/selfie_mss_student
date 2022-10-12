@@ -1,28 +1,32 @@
 import abc
 import datetime
-from src.domain.enums.situation_enum import SITUATION
+from src.domain.entities.student import Student
+from src.domain.enums.state_enum import STATE
 from src.helpers.errors.domain_errors import EntityError
 
 
 class Selfie(abc.ABC):
-    ra: str
+    selfieId: int
+    student: Student
     dateUpload: datetime.datetime
     url: str
-    situation: SITUATION
+    state: STATE
 
-    def __init__(self, ra: str, dateUpload: datetime.datetime, url: str, situation: SITUATION):
-        if (ra == None or len(ra) != 8):
-            raise EntityError('ra')
-        self.ra = ra
+    def __init__(self, student: Student, dateUpload: datetime.datetime, url: str, state: STATE, selfieId: int):
+        self.student = student
 
-        if (dateUpload == None):
+        if (dateUpload == None and type(dateUpload) != datetime.datetime):
             raise EntityError('dateUpload')
-        self.dateUpload = dateUpload
+        self.dateUpload = dateUpload.isoformat()
 
-        if (url == None or ' ' in url or "." not in url):
+        if (url == None):
             raise EntityError('url')
         self.url = url
 
-        if (situation == None):
-            raise EntityError('situation')
-        self.situation = situation
+        if (state == None or type(state) != STATE):
+            raise EntityError('state')
+        self.state = state
+
+        if selfieId == None or type(selfieId) != int:
+            raise EntityError('id')
+        self.selfieId = selfieId

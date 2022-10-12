@@ -1,8 +1,8 @@
 from enum import Enum
 
 
-class SITUATION(Enum):
+class STATE(Enum):
     APPROVED = "APPROVED"
     DECLINED = "DECLINED"
     IN_REVIEW = "IN_REVIEW"
-    NOT_SENT = "NOT_SENT"
+    PENDING_REVIEW = "PENDING_REVIEW"
