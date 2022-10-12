@@ -73,4 +73,18 @@ class StudentRepositoryMock(IStudentRepository):
                 return student
         raise NoItemsFound("ra")
 
+    def get_students_by_ra_or_email(self, ra: str = None, email: str = None) -> List[Student]:
+        listStudents = []
 
+        if not ra and not email:
+            raise MissingParameters('ra')
+
+        for student in self.students:
+            if student.ra == ra or student.email == email:
+                listStudents.append(student)
+        return listStudents
+
+    def create_student(self, student: Student) -> Student:
+        self.students.append(student)
+
+        return student
