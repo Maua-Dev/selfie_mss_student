@@ -66,6 +66,13 @@ class StudentRepositoryMock(IStudentRepository):
 
         self.students[idxStudent] = student
 
+    def delete_student(self, ra: str) -> Student:
+        for idx in range(len(self.students)):
+            if(self.students[idx].ra == ra):
+                student = self.students.pop(idx)
+                return student
+        raise NoItemsFound("ra")
+
     def get_students_by_ra_or_email(self, ra: str = None, email: str = None) -> List[Student]:
         listStudents = []
 
@@ -78,7 +85,6 @@ class StudentRepositoryMock(IStudentRepository):
         return listStudents
 
     def create_student(self, student: Student) -> Student:
-
         self.students.append(student)
 
         return student
