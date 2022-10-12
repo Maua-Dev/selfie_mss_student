@@ -125,3 +125,10 @@ class StudentRepositoryMock(IStudentRepository):
             if selfie.student.ra == ra and selfie.idSelfie == idSelfie:
                 return selfie
         return None
+
+    def delete_selfie(self, ra: str, idSelfie: int) -> Tuple[Selfie, Student]:
+        for idx, selfie in enumerate(self.selfies):
+            if selfie.student.ra == ra and selfie.idSelfie == idSelfie:
+                return self.selfies.pop(idx), selfie.student
+        return None
+        

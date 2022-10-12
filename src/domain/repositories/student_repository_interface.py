@@ -8,7 +8,7 @@ class IStudentRepository(ABC):
     @abstractmethod
     def get_student(self, ra: str) -> Student:
         pass
-    
+
     @abstractmethod    
     def update_student(self, ra: str, new_name: str = None, new_email: str = None) -> Student:
         pass
@@ -29,3 +29,6 @@ class IStudentRepository(ABC):
     def get_selfie(self, ra: str, idSelfie: int) -> Selfie:
         pass
     
+    @abstractmethod    
+    def delete_selfie(self, ra: str, idSelfie: int) -> Tuple[Selfie, Student]:
+        pass
