@@ -19,9 +19,9 @@ class Test_GetStudentPresenter:
                 "header2": "value1,value2"
             },
             "queryStringParameters": {
-                "ra": "21014440",
-                "new_name": "Scott Flansburg",
-                "new_email": "calculadorahumana@florestatropical.com.uk",
+                "ra": "21010757",
+                "new_name": "Vitor",
+                "new_email": "maluzinha@teamo.com",
                 "parameter2": "value"
             },
             "requestContext": {
@@ -60,7 +60,12 @@ class Test_GetStudentPresenter:
             "stageVariables": None
         }
 
-        expected = {'message': 'No response'}
+        expected = {
+            "ra": "21010757",
+            "name": "Vitor",
+            "email": "maluzinha@teamo.com",
+            "message": "User was updated successfully"
+        }
 
         response = lambda_handler(event, None)
         assert response["statusCode"] == 200
@@ -181,3 +186,5 @@ class Test_GetStudentPresenter:
         response = lambda_handler(event, None)
         assert response["statusCode"] == 400
         assert response["body"] == "Field ra is not valid"
+
+  

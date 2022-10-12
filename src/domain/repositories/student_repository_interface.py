@@ -8,11 +8,8 @@ class IStudentRepository(ABC):
     def get_student(self, ra: str) -> Student:
         pass
 
-    def update_student(self, ra: str, new_name: str = None, new_email: str = None) -> None:
+    def update_student(self, ra: str, new_name: str = None, new_email: str = None) -> Student:
         pass
 
     def create_student(self, student: Student) -> Student:
-        pass
-
-    def get_students_by_ra_or_email(self, ra: str = None, email: str = None) -> List[Student]:
         pass

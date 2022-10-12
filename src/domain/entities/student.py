@@ -1,6 +1,5 @@
 import abc
 import re
-from attr import validate
 from src.helpers.errors.domain_errors import EntityError, EntityParameterTypeError
 
 
@@ -19,22 +18,27 @@ class Student(abc.ABC):
         self.name = name
 
         if not Student.validate_email(email):
-            raise EntityError('email') 
+            raise EntityError('email')
         self.email = email
-
-
 
     @staticmethod
     def validate_ra(ra: str) -> bool:
+
+        if ra == None:
+            return False
+
         if type(ra) != str:
             raise EntityParameterTypeError('ra must be a string')
 
-        return ra.isdecimal() and len(ra) == 8 and ra != None
-
-
+        return ra.isdecimal() and len(ra) == 8
 
     @staticmethod
     def validate_email(email) -> bool:
-        regex = re.compile(r'([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@[A-Za-z0-9-]+(\.[A-Z|a-z]{2,})+')
+
+        if email == None:
+            return False
+
+        regex = re.compile(
+            r'([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@[A-Za-z0-9-]+(\.[A-Z|a-z]{2,})+')
 
         return bool(re.fullmatch(regex, email))
