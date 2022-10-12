@@ -38,11 +38,13 @@ class StudentRepositoryMock(IStudentRepository):
             )
         ]
 
+
     def get_student(self, ra: str) -> Student:
         for student in self.students:
             if(student.ra == ra):
                 return student
         return None
+
 
     def update_student(self, ra: str, new_name: str = None, new_email: str = None) -> Student:
 
@@ -64,11 +66,19 @@ class StudentRepositoryMock(IStudentRepository):
             student.email = new_email
 
         self.students[idxStudent] = student
-
+        
         return self.students[idxStudent]
 
-    def create_student(self, student: Student) -> Student:
 
+    def delete_student(self, ra: str) -> Student:
+        for idx in range(len(self.students)):
+            if(self.students[idx].ra == ra):
+                student = self.students.pop(idx)
+                return student
+        raise NoItemsFound("ra")
+
+
+    def create_student(self, student: Student) -> Student:
         self.students.append(student)
 
         return student
