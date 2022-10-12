@@ -11,7 +11,7 @@ class Test_GetSelfiesByRaViewModel:
         selfiesViewModel = GetSelfiesByRaViewModel(selfies, repo.selfies[0].student).to_dict()
 
         expected = {
-        'message': 'the selfie has been taken',
+        'message': 'the selfies were retriven',
         'selfies': [{'dateUpload': '2022-10-12T16:01:59.149927',
                     'idSelfie': 0,
                     'state': 'DECLINED',
@@ -40,7 +40,7 @@ class Test_GetSelfiesByRaViewModel:
                                                     ).to_dict()
 
         expected = {
-        'message': 'the selfie has been taken',
+        'message': 'the selfies were retriven',
         'selfies': [],
         'student': {'email': 'uuaa@floresta.com',
                     'name': 'Monkey Guy',

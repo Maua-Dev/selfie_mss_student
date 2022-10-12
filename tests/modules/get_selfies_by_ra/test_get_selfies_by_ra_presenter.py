@@ -63,7 +63,7 @@ class Test_GetSelfiesByRaPresenter:
         assert len(response["body"]["selfies"]) == 2
         assert response["body"]["selfies"][0]["url"] == "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
         assert response["body"]['student']['name'] == "Victor"
-        assert response["body"]['message'] == "the selfie has been taken"
+        assert response["body"]['message'] == "the selfies were retriven"
 
     def test_get_selfies_by_ra_no_selfie_found(self):
         event = {
@@ -125,7 +125,7 @@ class Test_GetSelfiesByRaPresenter:
         assert response["statusCode"] == 200
         assert len(response["body"]["selfies"]) == 0
         assert response["body"]['student']['name'] == "Monkey Guy"
-        assert response["body"]['message'] == "the selfie has been taken"
+        assert response["body"]['message'] == "the selfies were retriven"
   
     def test_get_selfies_by_ra_non_valid_ra_dash(self):
         event = {

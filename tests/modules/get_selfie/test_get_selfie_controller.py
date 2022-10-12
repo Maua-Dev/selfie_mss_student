@@ -36,7 +36,7 @@ class Test_GetSelfieController:
     #     assert response.status_code == 200
     #     assert len(response.body['selfies']) == 0
     #     assert response.body['student']['name'] == repo.students[4].name
-    #     assert response.body['message'] == "the selfie has been taken"
+    #     assert response.body['message'] == "the selfies were retriven"
 
     # def test_get_selfie_controller_invalid_ra_int(self):
     #     repo = StudentRepositoryMock()
