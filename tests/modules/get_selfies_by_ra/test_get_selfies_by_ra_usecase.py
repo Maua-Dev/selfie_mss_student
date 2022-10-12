@@ -25,7 +25,7 @@ class Test_GetSelfieByRaUsecase:
         repo = StudentRepositoryMock()
         usecase = GetSelfiesByRaUsecase(repo=repo)
        
-        assert usecase(ra="17090212") == []
+        assert len(usecase(ra="17090212")) == 0
     
     def test_get_selfies_by_ra_usecase_not_found_ra(self):
         repo = StudentRepositoryMock()
