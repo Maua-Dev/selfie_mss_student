@@ -1,7 +1,7 @@
 from src.helpers.errors.domain_errors import EntityError
 from src.modules.update_student.update_student_usecase import UpdateStudentUsecase
 from src.infra.repositories.student_repository_mock import StudentRepositoryMock
-from src.helpers.errors.usecase_errors import NoItemsFound
+from src.helpers.errors.usecase_errors import DuplicatedItem, NoItemsFound
 import pytest
 
 class Test_UpdateStudentUsecase:
@@ -38,3 +38,6 @@ class Test_UpdateStudentUsecase:
                 ra=21014441,
                 new_email="joaovitor@outlook.com"
             )
+
+ 
+            

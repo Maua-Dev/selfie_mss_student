@@ -10,3 +10,6 @@ pip-delete-this-directory.txt
 output.json
 teste.html
 archive
+.pytest_cache
+.vscode
+pytest_html_report.html

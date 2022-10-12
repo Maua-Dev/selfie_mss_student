@@ -74,34 +74,6 @@ class Test_CreateStudentController:
         assert response.status_code == 400
         assert response.body == "Field email is missing"
 
-    def test_create_student_controller_duplicated_email_ra(self):
-        repo = StudentRepositoryMock()
-        usecase = CreateStudentUsecase(repo=repo)
-        controller = CreateStudentController(usecase=usecase)
-        request = HttpRequest(query_params={
-            "ra": "21014442",
-            "name": "Maria Vernasqui",
-            "email": "eusouoawsboy@amazon.com",
-        })
-        response = controller(request=request)
-
-        assert response.status_code == 400
-        assert response.body == "The item alredy exists for this ra or email"
-
-    def test_create_student_controller_duplicated_email(self):
-        repo = StudentRepositoryMock()
-        usecase = CreateStudentUsecase(repo=repo)
-        controller = CreateStudentController(usecase=usecase)
-        request = HttpRequest(query_params={
-            "ra": "21002088",
-            "name": "Maria Vernasqui",
-            "email": "eusouoawsboy@amazon.com",
-        })
-        response = controller(request=request)
-
-        assert response.status_code == 400
-        assert response.body == "The item alredy exists for this ra or email"
-
     def test_create_student_controller_bad_request_int(self):
         repo = StudentRepositoryMock()
         usecase = CreateStudentUsecase(repo=repo)
@@ -197,3 +169,19 @@ class Test_CreateStudentController:
 
         assert response.status_code == 400
         assert response.body == "Field name is not valid"
+
+    def test_create_student_controller_bad_request_duplicated_ra(self):
+        repo = StudentRepositoryMock()
+        usecase = CreateStudentUsecase(repo=repo)
+        controller = CreateStudentController(usecase=usecase)
+
+        request = HttpRequest(query_params={
+            "ra": "21014442",
+            "name": "Maria Luiza te amo",
+            "email": "maluzinha@teamo.com",
+        })
+
+        response = controller(request=request)
+
+        assert response.status_code == 400
+        assert response.body == "The item alredy exists for this ra"

@@ -4,13 +4,6 @@ from src.infra.repositories.student_repository_mock import StudentRepositoryMock
 from src.modules.update_student.update_student_controller import UpdateStudentController
 from src.helpers.http.http_models import OK, BadRequest, HttpRequest, HttpResponse, InternalServerError, NotFound
 
-# Student(
-#                 ra="21014443",
-#                 name="Guirão",
-#                 email="acreditaquesousollertambem@yahoo.com"
-#             ),
-
-
 class Test_UpdateStudentController:
 
     def test_update_student_controller_ra_only(self):
@@ -151,3 +144,4 @@ class Test_UpdateStudentController:
 
         assert response.status_code == 400
         assert response.body == "Field ra is not valid"
+        

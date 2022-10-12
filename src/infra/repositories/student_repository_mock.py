@@ -1,6 +1,5 @@
 from typing import List
 from src.helpers.errors.controller_errors import MissingParameters
-
 from src.helpers.errors.usecase_errors import DuplicatedItem, NoItemsFound
 from src.domain.entities.student import Student
 from src.domain.repositories.student_repository_interface import IStudentRepository
@@ -39,13 +38,15 @@ class StudentRepositoryMock(IStudentRepository):
             )
         ]
 
+
     def get_student(self, ra: str) -> Student:
         for student in self.students:
             if(student.ra == ra):
                 return student
         return None
 
-    def update_student(self, ra: str, new_name: str = None, new_email: str = None) -> None:
+
+    def update_student(self, ra: str, new_name: str = None, new_email: str = None) -> Student:
 
         idxStudent = -1
 
@@ -65,6 +66,9 @@ class StudentRepositoryMock(IStudentRepository):
             student.email = new_email
 
         self.students[idxStudent] = student
+        
+        return self.students[idxStudent]
+
 
     def delete_student(self, ra: str) -> Student:
         for idx in range(len(self.students)):
@@ -73,16 +77,6 @@ class StudentRepositoryMock(IStudentRepository):
                 return student
         raise NoItemsFound("ra")
 
-    def get_students_by_ra_or_email(self, ra: str = None, email: str = None) -> List[Student]:
-        listStudents = []
-
-        if not ra and not email:
-            raise MissingParameters('ra')
-
-        for student in self.students:
-            if student.ra == ra or student.email == email:
-                listStudents.append(student)
-        return listStudents
 
     def create_student(self, student: Student) -> Student:
         self.students.append(student)

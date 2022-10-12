@@ -1,5 +1,6 @@
+from src.modules.update_student.update_student_view_model import UpdateStudentViewModel
 from src.helpers.errors.domain_errors import EntityError
-from src.helpers.errors.usecase_errors import NoItemsFound
+from src.helpers.errors.usecase_errors import DuplicatedItem, NoItemsFound
 from src.helpers.errors.controller_errors import MissingParameters
 from src.helpers.http.http_models import OK, BadRequest, HttpRequest, HttpResponse, InternalServerError, NotFound
 from src.modules.update_student.update_student_usecase import UpdateStudentUsecase
@@ -13,17 +14,23 @@ class UpdateStudentController:
         try:
             if request.query_params.get('ra') is None:
                 raise MissingParameters('ra')
-            self.updateStudentUsecase(
+            student = self.updateStudentUsecase(
                 ra=request.query_params.get("ra"),
                 new_name=request.query_params.get("new_name"),
                 new_email=request.query_params.get("new_email")
             )
-            return OK()
+
+            viewmodel = UpdateStudentViewModel(student)
+
+            return OK(viewmodel.to_dict())
 
         except NoItemsFound as err:
             return NotFound(body=err.message)
 
         except MissingParameters as err:
+            return BadRequest(body=err.message)
+
+        except DuplicatedItem as err:
             return BadRequest(body=err.message)
 
         except EntityError as err:

@@ -1,8 +1,11 @@
 from src.domain.entities.student import Student
 
 
-class CreateStudentViewModel():
-
+class CreateStudentViewModel:
+    ra:str
+    email:str
+    name:str
+    
     def __init__(self, data:Student):
         self.ra = data.ra
         self.name = data.name
