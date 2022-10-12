@@ -5,10 +5,17 @@ from src.domain.entities.student import Student
 
 class Test_Student():
     def test_student(self):
-        student = Student(ra="21010757", name="PyTest...",
+        student = Student(ra="21010757", name="Guardanapo",
                           email="euodeiopytest@terra.com")
 
         assert type(student) == Student
+
+    def test_student_ra_must_be_decimal(self):
+        with pytest.raises(EntityError):
+            student = Student(ra="Guardana", name="Guardanapo",
+                          email="euodeiopytest@terra.com")
+
+        
 
     def test_student_error_ra(self):
         with pytest.raises(EntityError):
@@ -22,7 +29,7 @@ class Test_Student():
         with pytest.raises(EntityError):
             Student(ra='19003315', name='Bruno Vilardi Bueno', email='aws.com')
 
-    def test_student_ra_not_number(self):
+    def test_student_ra_with_dot(self):
         with pytest.raises(EntityError) as err:
             Student(ra="21.010757", name="PyTest...",
                     email="euodeiopytest@terra.com")
