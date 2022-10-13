@@ -32,3 +32,11 @@ class IStudentRepository(ABC):
     @abstractmethod    
     def delete_selfie(self, ra: str, idSelfie: int) -> Tuple[Selfie, Student]:
         pass
+    
+    @abstractmethod    
+    def delete_selfie(self, ra: str, idSelfie: int) -> Tuple[Selfie, Student]:
+        pass
+    
+    @abstractmethod    
+    def create_selfie(self, ra: str, url: str) -> Tuple[Selfie, Student]:
+        pass
