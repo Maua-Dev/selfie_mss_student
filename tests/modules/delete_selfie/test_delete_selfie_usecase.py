@@ -5,7 +5,7 @@ from src.infra.repositories.student_repository_mock import StudentRepositoryMock
 from src.helpers.errors.usecase_errors import NoItemsFound
 import pytest
 
-class Test_DeleteStudentUsecase:
+class Test_DeleteSelfieUsecase:
     def test_delete_selfie_usecase(self):
         repo = StudentRepositoryMock()
 

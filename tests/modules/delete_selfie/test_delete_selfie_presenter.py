@@ -1,7 +1,7 @@
 import pytest
 from src.modules.delete_selfie.delete_selfie_presenter import lambda_handler
 
-class Test_GetSelfiePresenter:
+class Test_DeleteSelfiePresenter:
 
     def test_delete_selfie(self):
         event = {

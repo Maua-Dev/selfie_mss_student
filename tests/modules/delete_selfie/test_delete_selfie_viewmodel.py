@@ -3,7 +3,7 @@ from src.domain.entities.student import Student
 from src.infra.repositories.student_repository_mock import StudentRepositoryMock
 from src.modules.delete_selfie.delete_selfie_viewmodel import DeleteSelfieViewModel
 
-class Test_GetStudentViewModel:
+class Test_DeleteSelfieViewModel:
     def test_get_selfie_view_model(self):
         repo = StudentRepositoryMock()
         selfie = repo.selfies[0]
@@ -11,11 +11,11 @@ class Test_GetStudentViewModel:
         result = {
             'student':{
             "ra":"21010757",
-   "name":"Victor",
+            "name":"Victor",
             "email":"eusousoller@gmail.com"
         },
             'selfie':{
- 'dateUpload': '2022-10-12T16:01:59.149927',
+            'dateUpload': '2022-10-12T16:01:59.149927',
             'idSelfie': 0,
             'state': 'DECLINED',
             'url': 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
