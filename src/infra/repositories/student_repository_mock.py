@@ -1,4 +1,5 @@
 import datetime
+from turtle import st
 from typing import List, Tuple
 from src.domain.entities.selfie import Selfie
 from src.domain.enums.state_enum import STATE
@@ -132,4 +133,19 @@ class StudentRepositoryMock(IStudentRepository):
             if selfie.student.ra == ra and selfie.idSelfie == idSelfie:
                 return self.selfies.pop(idx), selfie.student
         return None, None
+    
+    def create_selfie(self, ra: str, url: str) -> Selfie:
+        
+        student = self.get_student(ra=ra)
+        
+        return Selfie(
+            student=student,
+            dateUpload=datetime.datetime.now(),
+            idSelfie=len(self.get_selfies_by_ra(ra=ra)),
+            state=STATE.PENDING_REVIEW,
+            url=url
+            )
+        
+        
+                
         

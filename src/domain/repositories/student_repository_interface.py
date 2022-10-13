@@ -38,5 +38,5 @@ class IStudentRepository(ABC):
         pass
     
     @abstractmethod    
-    def create_selfie(self, ra: str, url: str) -> Tuple[Selfie, Student]:
+    def create_selfie(self, ra: str, url: str) -> Selfie:
         pass
