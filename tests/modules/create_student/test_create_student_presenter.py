@@ -2,7 +2,7 @@ import pytest
 from src.modules.create_student.create_student_presenter import lambda_handler
 
 
-class Test_createStudentPresenter:
+class Test_CreateStudentPresenter:
 
     def test_create_student(self):
         event = {
