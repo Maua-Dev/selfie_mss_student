@@ -23,7 +23,7 @@ class StudentViewModel:
 
 class SelfieViewModel:
     idSelfie: int
-    dateUpload: str
+    dateUpload: datetime.datetime
     url: str
     state: STATE
 
