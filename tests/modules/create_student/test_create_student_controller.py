@@ -17,23 +17,13 @@ class Test_CreateStudentController:
             "email": "aii@rubio.com"
         })
 
-        lenBefore = len(repo.students)
 
         response = controller(request=request)
 
-        expected = Student(
-            ra="20006110",
-            name="Ai Rubio",
-            email="aii@rubio.com"
-        )
-
-        lenAfter = lenBefore + 1
-
-        assert len(repo.students) == lenAfter
-        assert repo.students[lenAfter - 1].ra == expected.ra
-        assert repo.students[lenAfter - 1].name == expected.name
-        assert repo.students[lenAfter - 1].email == expected.email
         assert response.status_code == 201
+        assert response.body['ra'] == "20006110"
+        assert response.body['name'] == "Ai Rubio"
+        assert response.body['message'] == "User was created successfully"
 
     def test_create_student_controller_missing_ra(self):
         repo = StudentRepositoryMock()
