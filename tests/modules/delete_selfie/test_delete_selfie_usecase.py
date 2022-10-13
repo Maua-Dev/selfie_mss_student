@@ -6,7 +6,7 @@ from src.helpers.errors.usecase_errors import NoItemsFound
 import pytest
 
 class Test_DeleteStudentUsecase:
-    def test_delete_selfie_usecase_name(self):
+    def test_delete_selfie_usecase(self):
         repo = StudentRepositoryMock()
 
         lenghtBefore = len(repo.selfies)
@@ -39,4 +39,14 @@ class Test_DeleteStudentUsecase:
             usecase(
                 ra=21014441,
                 idSelfie=1
+            )
+
+    def test_delete_selfie_usecase_no_selfie_found(self):
+        repo = StudentRepositoryMock()
+        usecase = DeleteSelfieUsecase(repo=repo)
+
+        with pytest.raises(NoItemsFound):
+            usecase(
+                ra="21014442",
+                idSelfie=10
             )
