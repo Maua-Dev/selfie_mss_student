@@ -17,9 +17,7 @@ class GetSelfieUsecase:
         
         if selfie == None:
             raise NoItemsFound("ra or idSelfie")
-   
-        selfie = self.repo.get_selfie(ra=ra, idSelfie=idSelfie)
-     
+        
         return selfie
         
         
