@@ -1,4 +1,5 @@
 import datetime
+from src.shared.domain.enums.rejection_reason_enum import REJECTION_REASON
 from src.shared.domain.enums.state_enum import STATE
 from src.shared.helpers.errors.domain_errors import EntityError
 from src.shared.helpers.errors.usecase_errors import NoItemsFound
@@ -24,6 +25,8 @@ class CreateSelfieUsecase:
             url=url,
             state=STATE.PENDING_REVIEW,
             idSelfie=len(self.repo.get_selfies_by_ra(ra=ra)),
+            rejectionReason=REJECTION_REASON.NONE,
+            rejectionDescription=None
         )
         
         selfie = self.repo.create_selfie(selfie=selfie)

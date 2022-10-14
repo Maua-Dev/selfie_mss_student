@@ -28,7 +28,7 @@ class Test_CreateSelfieController:
         assert response.status_code == 201
         assert response.body["message"] == "the selfie was created"
         assert response.body["rejectionReason"] == "NONE"
-        assert response.body["rejectionDescription"] == ""
+        assert response.body["rejectionDescription"] == None
 
     def test_create_selfie_controller_missing_ra(self):
         repo = StudentRepositoryMock()
