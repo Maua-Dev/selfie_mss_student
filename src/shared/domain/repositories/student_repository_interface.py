@@ -2,6 +2,8 @@ from abc import ABC, abstractmethod
 from typing import List, Tuple
 from src.shared.domain.entities.student import Student
 from src.shared.domain.entities.selfie import Selfie
+from src.shared.domain.enums.rejection_reason_enum import REJECTION_REASON
+from src.shared.domain.enums.state_enum import STATE
 
 class IStudentRepository(ABC):
 
@@ -40,3 +42,9 @@ class IStudentRepository(ABC):
     @abstractmethod    
     def create_selfie(self, selfie: Selfie) -> Selfie:
         pass
+    
+    @abstractmethod    
+    def update_selfie(self, ra: str, id: int, new_state: STATE, new_rejectionReason: REJECTION_REASON, new_rejectionDescription: str) -> Selfie:
+        pass
+    
+    
