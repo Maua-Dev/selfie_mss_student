@@ -44,7 +44,7 @@ class IStudentRepository(ABC):
         pass
     
     @abstractmethod    
-    def update_selfie(self, ra: str, id: int, new_state: STATE, new_rejectionReason: REJECTION_REASON, new_rejectionDescription: str) -> Selfie:
+    def update_selfie(self, ra: str, idSelfie: int, new_state: STATE = None, new_rejectionReason: REJECTION_REASON = None, new_rejectionDescription: str = None) -> Selfie:
         pass
     
     

@@ -147,14 +147,29 @@ class StudentRepositoryMock(IStudentRepository):
         return None, None
     
     def create_selfie(self, selfie: Selfie) -> Selfie:
-        
-       
-        
         self.selfies.append(selfie)
         
         return selfie
         
+    def update_selfie(self, ra: str, idSelfie: int, new_state: STATE, new_rejectionReason: REJECTION_REASON, new_rejectionDescription: str) -> Selfie:
+        idxSelfie = -1
+        for idx in range(len(self.selfies)):
+            if self.selfies[idx].ra == ra and self.selfies[idx].idSelfie == idSelfie:
+                    idxSelfie = idx
+                    
+        if idxSelfie == -1:
+            return None
         
+        if new_state != None:
+            self.selfies[idxSelfie].state = new_state
+            
+        if new_rejectionReason != None:
+            self.selfies[idxSelfie].rejectionReason = new_rejectionReason
+            
+        if new_rejectionDescription != None:
+            self.selfies[idxSelfie].rejectionDescription = new_rejectionDescription
+            
+        return self.selfies[idxSelfie]        
         
                 
         
