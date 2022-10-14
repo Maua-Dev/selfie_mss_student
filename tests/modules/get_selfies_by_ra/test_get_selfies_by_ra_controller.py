@@ -5,7 +5,7 @@ from src.modules.get_selfies_by_ra.get_selfies_by_ra_controller import GetSelfie
 
 
 
-class Test_GetStudentController:
+class Test_GetSelfiesByRaController:
     def test_get_selfies_by_ra_controller(self):
         repo = StudentRepositoryMock()
         usecase = GetSelfiesByRaUsecase(repo=repo)
@@ -20,6 +20,8 @@ class Test_GetStudentController:
         assert response.status_code == 200
         assert len(response.body['selfies']) == 2
         assert response.body['student']['name'] == repo.students[0].name
+        assert response.body['selfies'][0]['rejectionReason'] == "COVERED_FACE"
+        assert response.body['selfies'][0]['rejectionDescription'] == "Balaclava"
         assert response.body['message'] == "the selfies were retriven"
         
     def test_get_selfies_by_ra_controller_no_selfies(self):
