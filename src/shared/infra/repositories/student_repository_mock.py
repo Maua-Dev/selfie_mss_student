@@ -134,20 +134,7 @@ class StudentRepositoryMock(IStudentRepository):
                 return self.selfies.pop(idx), selfie.student
         return None, None
     
-    def create_selfie(self, ra: str, url: str) -> Selfie:
-        
-        student = self.get_student(ra=ra)
-        if student == None:
-            raise NoItemsFound("ra")
-        
-        selfie = Selfie(
-            student=student,
-            dateUpload=datetime.datetime.now(),
-            idSelfie=len(self.get_selfies_by_ra(ra=ra)),
-            state=STATE.PENDING_REVIEW,
-            url=url
-            )
-        
+    def create_selfie(self, selfie: Selfie) -> Selfie:
         self.selfies.append(selfie)
         
         return selfie

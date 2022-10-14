@@ -38,5 +38,5 @@ class IStudentRepository(ABC):
         pass
     
     @abstractmethod    
-    def create_selfie(self, ra: str, url: str) -> Selfie:
+    def create_selfie(self, selfie: Selfie) -> Selfie:
         pass
