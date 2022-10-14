@@ -154,11 +154,11 @@ class StudentRepositoryMock(IStudentRepository):
     def update_selfie(self, ra: str, idSelfie: int, new_state: STATE, new_rejectionReason: REJECTION_REASON, new_rejectionDescription: str) -> Selfie:
         idxSelfie = -1
         for idx in range(len(self.selfies)):
-            if self.selfies[idx].ra == ra and self.selfies[idx].idSelfie == idSelfie:
+            if self.selfies[idx].student.ra == ra and self.selfies[idx].idSelfie == idSelfie:
                     idxSelfie = idx
                     
         if idxSelfie == -1:
-            return None
+            raise NoItemsFound("ra or idSelfie")
         
         if new_state != None:
             self.selfies[idxSelfie].state = new_state
