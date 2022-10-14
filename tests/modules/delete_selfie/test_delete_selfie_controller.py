@@ -31,7 +31,7 @@ class Test_DeleteSelfieController:
             'state': 'DECLINED',
             'rejectionReason': 'COVERED_FACE',
             'rejectionDescription': 'Balaclava',
-            'url': 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+            'url': 'https://i.imgur.com/0KFBHTB.jpg',
             },
             'message':"the selfie was deleted"
           }

@@ -61,7 +61,7 @@ class Test_GetSelfiePresenter:
         
         response = lambda_handler(event, None)
         assert response["statusCode"] == 200
-        assert response["body"]["url"] == "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+        assert response["body"]["url"] == "https://i.imgur.com/0KFBHTB.jpg"
         assert response["body"]["rejectionReason"] == "COVERED_FACE"
         assert response["body"]["rejectionDescription"] == "Balaclava"
         assert response["body"]['message'] == "the selfie was retriven"
