@@ -1,4 +1,5 @@
 from src.shared.domain.entities.student import Student
+from src.shared.domain.enums.rejection_reason_enum import REJECTION_REASON
 from src.shared.helpers.errors.domain_errors import EntityError
 from src.shared.domain.enums.state_enum import STATE
 from src.shared.domain.entities.selfie import Selfie
@@ -12,6 +13,7 @@ class Test_Selfie():
                 ra="17090212",
                 name="Monkey Guy",
                 email="uuaa@floresta.com"
+                
             )        
         
         dateUpload = datetime.datetime.now()
@@ -20,14 +22,18 @@ class Test_Selfie():
                         student = student,
                         dateUpload= dateUpload,
                         url= "www.maua.br",
-                        state= STATE.APPROVED,
-                        idSelfie= 1
+                        state= STATE.DECLINED,
+                        idSelfie= 1,
+                        rejectionReason = REJECTION_REASON.COVERED_FACE,
+                        rejectionDescription = "Balaclava"
                         )
         
         assert type(selfie) == Selfie
         assert selfie.student == student
         assert selfie.dateUpload == dateUpload
-        assert selfie.state == STATE.APPROVED
+        assert selfie.state == STATE.DECLINED
+        assert selfie.rejectionReason == REJECTION_REASON.COVERED_FACE
+        assert selfie.rejectionDescription == "Balaclava"
 
     def test_selfie_error(self):
       with pytest.raises(EntityError):
@@ -40,7 +46,9 @@ class Test_Selfie():
                 dateUpload= datetime.datetime.now(),
                 url= "www.maua.br",
                 state= STATE.PENDING_REVIEW,
-                idSelfie= 1
+                idSelfie= 1,
+                rejectionReason = REJECTION_REASON.COVERED_FACE,
+                rejectionDescription = "Balaclava"
             )
 
         
@@ -55,7 +63,9 @@ class Test_Selfie():
                 dateUpload= datetime.datetime.now(),
                 url= "www.maua.br",
                 state= STATE.PENDING_REVIEW,
-                idSelfie= 1
+                idSelfie= 1,
+                rejectionReason = REJECTION_REASON.COVERED_FACE,
+                rejectionDescription = "Balaclava"
             )
       
     def test_selfie_error_url_invalid(self):
@@ -69,7 +79,9 @@ class Test_Selfie():
                 dateUpload= datetime.datetime.now(),
                 url= None,
                 state= STATE.PENDING_REVIEW,
-                idSelfie= 1
+                idSelfie= 1,
+                rejectionReason = REJECTION_REASON.COVERED_FACE,
+                rejectionDescription = "Balaclava"
             )
         
     def test_selfie_error_state_invalid(self):
@@ -83,7 +95,9 @@ class Test_Selfie():
                 dateUpload= datetime.datetime.now(),
                 url= "www.maua.br",
                 state= "PENDING_REVIEW",
-                idSelfie= 1
+                idSelfie= 1,
+                rejectionReason = REJECTION_REASON.COVERED_FACE,
+                rejectionDescription = "Balaclava"
             )
       
     def test_selfie_error_id_invalid(self):
@@ -97,7 +111,9 @@ class Test_Selfie():
                 dateUpload= datetime.datetime.now(),
                 url= "www.maua.br",
                 state= STATE.PENDING_REVIEW,
-                idSelfie= None
+                idSelfie= None,
+                rejectionReason = REJECTION_REASON.COVERED_FACE,
+                rejectionDescription = "Balaclava"
             )
         
     def test_selfie_error_id_invalid_str(self):
@@ -111,6 +127,40 @@ class Test_Selfie():
                 dateUpload= datetime.datetime.now(),
                 url= "www.maua.br",
                 state= STATE.PENDING_REVIEW,
-                idSelfie= "1"
+                idSelfie= "1",
+                rejectionReason = REJECTION_REASON.COVERED_FACE,
+                rejectionDescription = "Balaclava"
             )
-      
+
+    def test_selfie_error_rejectionReason_str(self):
+      with pytest.raises(EntityError):
+        selfie = Selfie(
+                student= Student(
+                                ra="17090212",
+                                name="Monkey Guy",
+                                email="uuaa@floresta.com"
+                                ),
+                dateUpload= datetime.datetime.now(),
+                url= "www.maua.br",
+                state= STATE.PENDING_REVIEW,
+                idSelfie= "1",
+                rejectionReason = "REJECTION_REASON.COVERED_FACE",
+                rejectionDescription = "Balaclava"
+            )
+
+    def test_selfie_error_rejectionDescription_int(self):
+        with pytest.raises(EntityError):
+          selfie = Selfie(
+                  student= Student(
+                                  ra="17090212",
+                                  name="Monkey Guy",
+                                  email="uuaa@floresta.com"
+                                  ),
+                  dateUpload= datetime.datetime.now(),
+                  url= "www.maua.br",
+                  state= STATE.PENDING_REVIEW,
+                  idSelfie= "1",
+                  rejectionReason = REJECTION_REASON.COVERED_FACE,
+                  rejectionDescription = 1
+              )
+        

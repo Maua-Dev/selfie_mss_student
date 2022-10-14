@@ -20,6 +20,8 @@ class Test_GetSelfieController:
         assert response.body['url'] == repo.selfies[0].url 
         assert response.body['dateUpload'] == repo.selfies[0].dateUpload.isoformat()  
         assert response.body['state'] == "DECLINED"
+        assert response.body['rejectionReason'] == "COVERED_FACE"
+        assert response.body['rejectionDescription'] == "Balaclava"
         assert response.body['message'] == "the selfie was retriven"
         
     def test_get_selfie_controller_no_selfie(self):

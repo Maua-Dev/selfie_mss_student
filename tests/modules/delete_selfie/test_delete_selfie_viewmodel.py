@@ -18,13 +18,13 @@ class Test_DeleteSelfieViewModel:
             'dateUpload': '2022-10-12T16:01:59.149927',
             'idSelfie': 0,
             'state': 'DECLINED',
-            'url': 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+            'url': 'https://i.imgur.com/0KFBHTB.jpg',
+            'rejectionReason': 'COVERED_FACE',
+            'rejectionDescription': 'Balaclava'
             },
             'message':"the selfie was deleted"
           }
      
-
-
         
         studentViewModel = DeleteSelfieViewModel(data=selfie, student=student).to_dict()
         
