@@ -1,5 +1,5 @@
-from src.infra.repositories.student_repository_mock import StudentRepositoryMock
-from src.helpers.http.http_lambda_requests import LambdaHttpRequest, LambdaHttpResponse
+from src.shared.infra.repositories.student_repository_mock import StudentRepositoryMock
+from src.shared.helpers.http.http_lambda_requests import LambdaHttpRequest, LambdaHttpResponse
 from src.modules.get_selfies_by_ra.get_selfies_by_ra_controller import GetSelfiesByRaController
 from src.modules.get_selfies_by_ra.get_selfies_by_ra_usecase import GetSelfiesByRaUsecase
 

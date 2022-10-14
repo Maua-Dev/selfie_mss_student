@@ -1,7 +1,7 @@
 from src.modules.get_student.get_student_usecase import GetStudentUsecase
-from src.infra.repositories.student_repository_mock import StudentRepositoryMock
+from src.shared.infra.repositories.student_repository_mock import StudentRepositoryMock
 from src.modules.get_student.get_student_controller import GetStudentController
-from src.helpers.http.http_lambda_requests import LambdaHttpRequest, LambdaHttpResponse
+from src.shared.helpers.http.http_lambda_requests import LambdaHttpRequest, LambdaHttpResponse
 
 
 

@@ -1,8 +1,8 @@
-from src.domain.entities.student import Student
-from src.helpers.errors.domain_errors import EntityError
-from src.helpers.errors.usecase_errors import DuplicatedItem, NoItemsFound
-from src.helpers.errors.controller_errors import MissingParameters
-from src.helpers.http.http_models import BadRequest, Created, HttpRequest, HttpResponse, InternalServerError, NotFound
+from src.shared.domain.entities.student import Student
+from src.shared.helpers.errors.domain_errors import EntityError
+from src.shared.helpers.errors.usecase_errors import DuplicatedItem, NoItemsFound
+from src.shared.helpers.errors.controller_errors import MissingParameters
+from src.shared.helpers.http.http_models import BadRequest, Created, HttpRequest, HttpResponse, InternalServerError, NotFound
 from src.modules.create_student.create_student_usecase import CreateStudentUsecase
 from src.modules.create_student.create_student_view_model import CreateStudentViewModel
 

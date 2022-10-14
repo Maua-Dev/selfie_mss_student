@@ -1,7 +1,7 @@
 from src.modules.delete_student.delete_student_usecase import DeleteStudentUsecase
-from src.infra.repositories.student_repository_mock import StudentRepositoryMock
+from src.shared.infra.repositories.student_repository_mock import StudentRepositoryMock
 from src.modules.delete_student.delete_student_controller import DeleteStudentController
-from src.helpers.http.http_lambda_requests import LambdaHttpRequest, LambdaHttpResponse
+from src.shared.helpers.http.http_lambda_requests import LambdaHttpRequest, LambdaHttpResponse
 
 
 

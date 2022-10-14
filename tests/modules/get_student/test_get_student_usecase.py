@@ -1,6 +1,6 @@
 from src.modules.get_student.get_student_usecase import GetStudentUsecase
-from src.infra.repositories.student_repository_mock import StudentRepositoryMock
-from src.helpers.errors.usecase_errors import NoItemsFound
+from src.shared.infra.repositories.student_repository_mock import StudentRepositoryMock
+from src.shared.helpers.errors.usecase_errors import NoItemsFound
 import pytest
 class Test_GetStudentUsecase:
     def test_get_student_usecase(self):

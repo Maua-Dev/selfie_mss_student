@@ -1,6 +1,6 @@
 import abc
 import re
-from src.helpers.errors.domain_errors import EntityError, EntityParameterTypeError
+from src.shared.helpers.errors.domain_errors import EntityError, EntityParameterTypeError
 
 
 class Student(abc.ABC):

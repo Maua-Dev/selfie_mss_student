@@ -1,4 +1,4 @@
-from src.helpers.errors.base_error import BaseError
+from src.shared.helpers.errors.base_error import BaseError
 
 
 class MissingParameters(BaseError):

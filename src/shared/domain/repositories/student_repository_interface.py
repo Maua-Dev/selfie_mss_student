@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import List, Tuple
-from src.domain.entities.student import Student
-from src.domain.entities.selfie import Selfie
+from src.shared.domain.entities.student import Student
+from src.shared.domain.entities.selfie import Selfie
 
 class IStudentRepository(ABC):
 

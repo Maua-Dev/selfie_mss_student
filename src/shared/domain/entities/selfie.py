@@ -1,8 +1,8 @@
 import abc
 import datetime
-from src.domain.entities.student import Student
-from src.domain.enums.state_enum import STATE
-from src.helpers.errors.domain_errors import EntityError
+from src.shared.domain.entities.student import Student
+from src.shared.domain.enums.state_enum import STATE
+from src.shared.helpers.errors.domain_errors import EntityError
 
 
 class Selfie(abc.ABC):

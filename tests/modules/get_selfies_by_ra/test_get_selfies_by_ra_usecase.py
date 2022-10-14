@@ -1,8 +1,8 @@
-from src.domain.entities.student import Student
-from src.helpers.errors.domain_errors import EntityError
+from src.shared.domain.entities.student import Student
+from src.shared.helpers.errors.domain_errors import EntityError
 from src.modules.get_selfies_by_ra.get_selfies_by_ra_usecase import GetSelfiesByRaUsecase
-from src.infra.repositories.student_repository_mock import StudentRepositoryMock
-from src.helpers.errors.usecase_errors import NoItemsFound
+from src.shared.infra.repositories.student_repository_mock import StudentRepositoryMock
+from src.shared.helpers.errors.usecase_errors import NoItemsFound
 import pytest
 
 class Test_GetSelfieByRaUsecase:

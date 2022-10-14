@@ -1,11 +1,11 @@
 import datetime
 from turtle import st
 from typing import List, Tuple
-from src.domain.entities.selfie import Selfie
-from src.domain.enums.state_enum import STATE
-from src.helpers.errors.usecase_errors import NoItemsFound
-from src.domain.entities.student import Student
-from src.domain.repositories.student_repository_interface import IStudentRepository
+from src.shared.domain.entities.selfie import Selfie
+from src.shared.domain.enums.state_enum import STATE
+from src.shared.helpers.errors.usecase_errors import NoItemsFound
+from src.shared.domain.entities.student import Student
+from src.shared.domain.repositories.student_repository_interface import IStudentRepository
 
 class StudentRepositoryMock(IStudentRepository):
 

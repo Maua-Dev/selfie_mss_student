@@ -1,10 +1,10 @@
 import pytest
-from src.domain.entities.student import Student
-from src.helpers.errors.domain_errors import EntityError
+from src.shared.domain.entities.student import Student
+from src.shared.helpers.errors.domain_errors import EntityError
 from src.modules.delete_selfie.delete_selfie_controller import DeleteSelfieController
 from src.modules.delete_selfie.delete_selfie_usecase import DeleteSelfieUsecase
-from src.infra.repositories.student_repository_mock import StudentRepositoryMock
-from src.helpers.http.http_models import OK, BadRequest, HttpRequest, HttpResponse, InternalServerError, NotFound
+from src.shared.infra.repositories.student_repository_mock import StudentRepositoryMock
+from src.shared.helpers.http.http_models import OK, BadRequest, HttpRequest, HttpResponse, InternalServerError, NotFound
 
 class Test_DeleteSelfieController:
 

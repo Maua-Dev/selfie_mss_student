@@ -1,7 +1,7 @@
 
 import json
 
-from src.helpers.http.http_models import HttpRequest, HttpResponse
+from src.shared.helpers.http.http_models import HttpRequest, HttpResponse
 
 
 

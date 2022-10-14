@@ -1,6 +1,6 @@
-from src.domain.repositories.student_repository_interface import IStudentRepository
-from src.helpers.errors.domain_errors import EntityError
-from src.domain.entities.student import Student
+from src.shared.domain.repositories.student_repository_interface import IStudentRepository
+from src.shared.helpers.errors.domain_errors import EntityError
+from src.shared.domain.entities.student import Student
 
 class UpdateStudentUsecase:
     def __init__(self, repo:IStudentRepository):

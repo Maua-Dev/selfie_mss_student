@@ -1,6 +1,6 @@
 from typing import Any
 
-from src.helpers.enum.http_status_code_enum import HttpStatusCodeEnum
+from src.shared.helpers.enum.http_status_code_enum import HttpStatusCodeEnum
 
 
 class HttpRequest:

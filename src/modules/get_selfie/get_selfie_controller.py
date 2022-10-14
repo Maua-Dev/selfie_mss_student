@@ -1,11 +1,11 @@
 from dataclasses import field
 from multiprocessing.sharedctypes import Value
-from src.domain.entities.student import Student
-from src.domain.entities.selfie import Selfie
-from src.helpers.errors.domain_errors import EntityError
-from src.helpers.errors.usecase_errors import NoItemsFound
-from src.helpers.errors.controller_errors import MissingParameters, WrongTypeParameter
-from src.helpers.http.http_models import OK, BadRequest, HttpRequest, HttpResponse, InternalServerError, NotFound
+from src.shared.domain.entities.student import Student
+from src.shared.domain.entities.selfie import Selfie
+from src.shared.helpers.errors.domain_errors import EntityError
+from src.shared.helpers.errors.usecase_errors import NoItemsFound
+from src.shared.helpers.errors.controller_errors import MissingParameters, WrongTypeParameter
+from src.shared.helpers.http.http_models import OK, BadRequest, HttpRequest, HttpResponse, InternalServerError, NotFound
 from src.modules.get_selfie.get_selfie_viewmodel import GetSelfieViewModel
 from src.modules.get_selfie.get_selfie_usecase import GetSelfieUsecase
 

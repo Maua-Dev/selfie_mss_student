@@ -1,8 +1,8 @@
-from src.domain.entities.student import Student
+from src.shared.domain.entities.student import Student
 from src.modules.update_student.update_student_usecase import UpdateStudentUsecase
-from src.infra.repositories.student_repository_mock import StudentRepositoryMock
+from src.shared.infra.repositories.student_repository_mock import StudentRepositoryMock
 from src.modules.update_student.update_student_controller import UpdateStudentController
-from src.helpers.http.http_models import OK, BadRequest, HttpRequest, HttpResponse, InternalServerError, NotFound
+from src.shared.helpers.http.http_models import OK, BadRequest, HttpRequest, HttpResponse, InternalServerError, NotFound
 
 class Test_UpdateStudentController:
 

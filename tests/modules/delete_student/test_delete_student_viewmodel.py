@@ -1,7 +1,7 @@
 import pytest
 from src.modules.delete_student.delete_student_viewmodel import DeleteStudentViewModel
-from src.domain.entities.student import Student
-from src.infra.repositories.student_repository_mock import StudentRepositoryMock
+from src.shared.domain.entities.student import Student
+from src.shared.infra.repositories.student_repository_mock import StudentRepositoryMock
 
 class Test_DeleteStudentViewModel:
     def test_delete_student_view_model(self):

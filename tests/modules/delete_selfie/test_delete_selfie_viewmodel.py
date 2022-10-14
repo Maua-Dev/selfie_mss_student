@@ -1,6 +1,6 @@
 import pytest
-from src.domain.entities.student import Student
-from src.infra.repositories.student_repository_mock import StudentRepositoryMock
+from src.shared.domain.entities.student import Student
+from src.shared.infra.repositories.student_repository_mock import StudentRepositoryMock
 from src.modules.delete_selfie.delete_selfie_viewmodel import DeleteSelfieViewModel
 
 class Test_DeleteSelfieViewModel:

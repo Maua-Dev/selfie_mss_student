@@ -1,6 +1,6 @@
 import pytest
-from src.helpers.errors.domain_errors import EntityError, EntityParameterTypeError
-from src.domain.entities.student import Student
+from src.shared.helpers.errors.domain_errors import EntityError, EntityParameterTypeError
+from src.shared.domain.entities.student import Student
 
 
 class Test_Student():

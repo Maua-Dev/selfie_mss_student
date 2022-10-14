@@ -1,8 +1,8 @@
-from src.domain.entities.student import Student
-from src.helpers.errors.domain_errors import EntityError
+from src.shared.domain.entities.student import Student
+from src.shared.helpers.errors.domain_errors import EntityError
 from src.modules.create_student.create_student_usecase import CreateStudentUsecase
-from src.infra.repositories.student_repository_mock import StudentRepositoryMock
-from src.helpers.errors.usecase_errors import DuplicatedItem, NoItemsFound
+from src.shared.infra.repositories.student_repository_mock import StudentRepositoryMock
+from src.shared.helpers.errors.usecase_errors import DuplicatedItem, NoItemsFound
 import pytest
 
 

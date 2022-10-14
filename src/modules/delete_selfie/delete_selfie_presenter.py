@@ -1,5 +1,5 @@
-from src.infra.repositories.student_repository_mock import StudentRepositoryMock
-from src.helpers.http.http_lambda_requests import LambdaHttpRequest, LambdaHttpResponse
+from src.shared.infra.repositories.student_repository_mock import StudentRepositoryMock
+from src.shared.helpers.http.http_lambda_requests import LambdaHttpRequest, LambdaHttpResponse
 from src.modules.delete_selfie.delete_selfie_controller import DeleteSelfieController
 from src.modules.delete_selfie.delete_selfie_usecase import DeleteSelfieUsecase
 

@@ -1,5 +1,5 @@
-from src.infra.repositories.student_repository_mock import StudentRepositoryMock
-from src.helpers.http.http_models import OK, BadRequest, HttpRequest, HttpResponse, InternalServerError, NotFound
+from src.shared.infra.repositories.student_repository_mock import StudentRepositoryMock
+from src.shared.helpers.http.http_models import OK, BadRequest, HttpRequest, HttpResponse, InternalServerError, NotFound
 from src.modules.get_selfie.get_selfie_usecase import GetSelfieUsecase
 from src.modules.get_selfie.get_selfie_controller import GetSelfieController
 

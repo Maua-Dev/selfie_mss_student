@@ -1,10 +1,10 @@
 import datetime
 import pytest
-from src.domain.enums.state_enum import STATE
+from src.shared.domain.enums.state_enum import STATE
 from src.modules.create_selfie.create_selfie_viewmodel import CreateSelfieViewModel
-from src.domain.entities.student import Student
-from src.domain.entities.selfie import Selfie
-from src.infra.repositories.student_repository_mock import StudentRepositoryMock
+from src.shared.domain.entities.student import Student
+from src.shared.domain.entities.selfie import Selfie
+from src.shared.infra.repositories.student_repository_mock import StudentRepositoryMock
 
 
 class Test_CreateSelfieViewModel:

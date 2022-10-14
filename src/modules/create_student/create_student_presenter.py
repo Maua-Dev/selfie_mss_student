@@ -1,7 +1,7 @@
 from src.modules.create_student.create_student_usecase import CreateStudentUsecase
-from src.infra.repositories.student_repository_mock import StudentRepositoryMock
+from src.shared.infra.repositories.student_repository_mock import StudentRepositoryMock
 from src.modules.create_student.create_student_controller import CreateStudentController
-from src.helpers.http.http_lambda_requests import LambdaHttpRequest, LambdaHttpResponse
+from src.shared.helpers.http.http_lambda_requests import LambdaHttpRequest, LambdaHttpResponse
 
 
 def lambda_handler(event, context):

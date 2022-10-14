@@ -1,5 +1,5 @@
-from src.domain.enums.state_enum import STATE
-from src.domain.entities.selfie import Selfie
+from src.shared.domain.enums.state_enum import STATE
+from src.shared.domain.entities.selfie import Selfie
 
 class GetSelfieViewModel:
     idSelfie: int

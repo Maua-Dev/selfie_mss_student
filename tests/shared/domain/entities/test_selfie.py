@@ -1,7 +1,7 @@
-from src.domain.entities.student import Student
-from src.helpers.errors.domain_errors import EntityError
-from src.domain.enums.state_enum import STATE
-from src.domain.entities.selfie import Selfie
+from src.shared.domain.entities.student import Student
+from src.shared.helpers.errors.domain_errors import EntityError
+from src.shared.domain.enums.state_enum import STATE
+from src.shared.domain.entities.selfie import Selfie
 import datetime
 import pytest
 

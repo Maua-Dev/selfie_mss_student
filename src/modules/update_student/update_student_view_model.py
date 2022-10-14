@@ -1,4 +1,4 @@
-from src.domain.entities.student import Student
+from src.shared.domain.entities.student import Student
 
 
 class UpdateStudentViewModel:

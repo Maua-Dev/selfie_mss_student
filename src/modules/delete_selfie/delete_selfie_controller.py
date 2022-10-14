@@ -1,8 +1,8 @@
 from src.modules.delete_selfie.delete_selfie_viewmodel import DeleteSelfieViewModel
-from src.helpers.errors.domain_errors import EntityError
-from src.helpers.errors.usecase_errors import NoItemsFound
-from src.helpers.errors.controller_errors import MissingParameters, WrongTypeParameter
-from src.helpers.http.http_models import OK, BadRequest, HttpRequest, HttpResponse, InternalServerError, NotFound
+from src.shared.helpers.errors.domain_errors import EntityError
+from src.shared.helpers.errors.usecase_errors import NoItemsFound
+from src.shared.helpers.errors.controller_errors import MissingParameters, WrongTypeParameter
+from src.shared.helpers.http.http_models import OK, BadRequest, HttpRequest, HttpResponse, InternalServerError, NotFound
 from src.modules.delete_selfie.delete_selfie_usecase import DeleteSelfieUsecase
 
 

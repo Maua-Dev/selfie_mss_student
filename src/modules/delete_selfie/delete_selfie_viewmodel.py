@@ -1,8 +1,8 @@
 import datetime
 from typing import List
-from src.domain.enums.state_enum import STATE
-from src.domain.entities.selfie import Selfie
-from src.domain.entities.student import Student
+from src.shared.domain.enums.state_enum import STATE
+from src.shared.domain.entities.selfie import Selfie
+from src.shared.domain.entities.student import Student
 
 class StudentViewModel:
     ra: str

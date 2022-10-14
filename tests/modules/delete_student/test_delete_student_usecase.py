@@ -1,8 +1,8 @@
-from src.domain.entities.student import Student
-from src.helpers.errors.domain_errors import EntityError
+from src.shared.domain.entities.student import Student
+from src.shared.helpers.errors.domain_errors import EntityError
 from src.modules.delete_student.delete_student_usecase import DeleteStudentUsecase
-from src.infra.repositories.student_repository_mock import StudentRepositoryMock
-from src.helpers.errors.usecase_errors import NoItemsFound
+from src.shared.infra.repositories.student_repository_mock import StudentRepositoryMock
+from src.shared.helpers.errors.usecase_errors import NoItemsFound
 import pytest
 
 class Test_DeleteStudentUsecase:
