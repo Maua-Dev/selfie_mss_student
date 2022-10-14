@@ -37,6 +37,6 @@ class Selfie(abc.ABC):
             raise EntityError('rejectionReason')
         self.rejectionReason = rejectionReason
 
-        if (rejectionDescription == None or type(rejectionDescription) != str):
+        if (type(rejectionDescription) != str):
             raise EntityError('rejectionDescription')
         self.rejectionDescription = rejectionDescription
