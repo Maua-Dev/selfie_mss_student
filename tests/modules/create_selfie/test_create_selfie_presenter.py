@@ -62,6 +62,8 @@ class Test_CreateSelfiePresenter:
         response = lambda_handler(event, None)
         assert response["statusCode"] == 201
         assert response["body"]["idSelfie"] == 2
+        assert response["body"]["rejectionReason"] == "NONE"
+        assert response["body"]["rejectionDescription"] == ""
         assert response["body"]["state"] == "PENDING_REVIEW"
         assert response["body"]["student"]["ra"] == "21010757"
 
