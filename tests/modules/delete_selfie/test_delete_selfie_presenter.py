@@ -62,8 +62,10 @@ class Test_DeleteSelfiePresenter:
         response = lambda_handler(event, None)
         assert response["statusCode"] == 200
         assert response["body"]["student"]["name"] == "Victor"
-        assert response["body"]["selfie"]["url"] == "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+        assert response["body"]["selfie"]["url"] == "https://www.youtube.com/watch?v=dQw4w9WgXcQ"        
         assert response["body"]["selfie"]["idSelfie"] == 0
+        assert response["body"]["selfie"]["rejectionReason"] == "COVERED_FACE"
+        assert response["body"]["selfie"]["rejectionDescription"] == "Balaclava"
         assert response["body"]['message'] == "the selfie was deleted"
 
     def test_delete_selfie_found(self):

@@ -13,6 +13,8 @@ class Test_GetStudentViewModel:
           'idSelfie': 0,
           'state': 'DECLINED',
           'url': 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+          'rejectionReason': 'COVERED_FACE',
+          'rejectionDescription': 'Balaclava',
           'message':"the selfie was retriven"
           }
         

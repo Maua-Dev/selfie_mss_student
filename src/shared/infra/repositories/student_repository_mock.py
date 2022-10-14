@@ -3,6 +3,7 @@ from turtle import st
 from typing import List, Tuple
 from src.shared.domain.entities.selfie import Selfie
 from src.shared.domain.enums.state_enum import STATE
+from src.shared.domain.enums.rejection_reason_enum import REJECTION_REASON
 from src.shared.helpers.errors.usecase_errors import NoItemsFound
 from src.shared.domain.entities.student import Student
 from src.shared.domain.repositories.student_repository_interface import IStudentRepository
@@ -46,35 +47,45 @@ class StudentRepositoryMock(IStudentRepository):
                 student=self.students[0],
                 dateUpload=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),
                 url="https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-                state=STATE.DECLINED
+                state=STATE.DECLINED,
+                rejectionReason=REJECTION_REASON.COVERED_FACE,
+                rejectionDescription="Balaclava"
             ),
             Selfie(
                 idSelfie=1,
                 student=self.students[0],
                 dateUpload=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),
                 url="https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-                state=STATE.APPROVED
+                state=STATE.APPROVED,
+                rejectionReason = REJECTION_REASON.NONE,
+                rejectionDescription = ""
             ),
             Selfie(
                 idSelfie=0,
                 student=self.students[1],
                 dateUpload=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),
                 url="https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-                state=STATE.PENDING_REVIEW
+                state=STATE.PENDING_REVIEW,
+                rejectionReason = REJECTION_REASON.NONE,
+                rejectionDescription = ""
             ),
             Selfie(
                 idSelfie=0,
                 student=self.students[2],
                 dateUpload=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),
                 url="https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-                state=STATE.APPROVED
+                state=STATE.APPROVED,
+                rejectionReason = REJECTION_REASON.NONE,
+                rejectionDescription = ""
             ),
             Selfie(
                 idSelfie=0,
                 student=self.students[3],
                 dateUpload=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),
                 url="https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-                state=STATE.IN_REVIEW
+                state=STATE.IN_REVIEW,
+                rejectionReason = REJECTION_REASON.NONE,
+                rejectionDescription = ""
             ),
         ]
 
@@ -145,7 +156,9 @@ class StudentRepositoryMock(IStudentRepository):
             dateUpload=datetime.datetime.now(),
             idSelfie=len(self.get_selfies_by_ra(ra=ra)),
             state=STATE.PENDING_REVIEW,
-            url=url
+            url=url,
+            rejectionReason = REJECTION_REASON.NONE,
+            rejectionDescription = ""
             )
         
         self.selfies.append(selfie)
