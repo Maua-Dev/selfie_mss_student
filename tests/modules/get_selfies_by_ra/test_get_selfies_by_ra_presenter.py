@@ -62,7 +62,7 @@ class Test_GetSelfiesByRaPresenter:
         assert response["statusCode"] == 200
         assert len(response["body"]["selfies"]) == 2
         assert response["body"]["selfies"][0]["rejectionDescription"] == "Balaclava"
-        assert response["body"]["selfies"][0]["url"] == "https://i.imgur.com/0KFBHTB.jpg"
+        assert response["body"]["selfies"][0]["url"] == "https://drive.google.com/uc?id=12ZARnQJpkmm9dxprC8i9O7DkQPeiL0zu"
         assert response["body"]["selfies"][1]["rejectionDescription"] == ""
         assert response["body"]['student']['name'] == "Victor"
         assert response["body"]['message'] == "the selfies were retriven"

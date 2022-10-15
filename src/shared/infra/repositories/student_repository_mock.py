@@ -47,7 +47,7 @@ class StudentRepositoryMock(IStudentRepository):
                 idSelfie=0,
                 student=self.students[0],
                 dateUpload=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),
-                url="https://i.imgur.com/0KFBHTB.jpg",
+                url="https://drive.google.com/uc?id=12ZARnQJpkmm9dxprC8i9O7DkQPeiL0zu",
                 state=STATE.DECLINED,
                 rejectionReason=REJECTION_REASON.COVERED_FACE,
                 rejectionDescription="Balaclava"
@@ -56,7 +56,7 @@ class StudentRepositoryMock(IStudentRepository):
                 idSelfie=1,
                 student=self.students[0],
                 dateUpload=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),
-                url="https://i.imgur.com/b9qFYmb.jpg",
+                url="https://drive.google.com/uc?id=1yu1uqM7L9PAdemuyS26m7QcWzwpkjouC",
                 state=STATE.APPROVED,
                 rejectionReason = REJECTION_REASON.NONE,
                 rejectionDescription = ""
@@ -65,7 +65,7 @@ class StudentRepositoryMock(IStudentRepository):
                 idSelfie=0,
                 student=self.students[1],
                 dateUpload=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),
-                url="https://i.imgur.com/dv7Q5VT.jpg",
+                url="https://drive.google.com/uc?id=13cPAX2N9GikbckZDHogs3yccUGBMAQyb",
                 state=STATE.PENDING_REVIEW,
                 rejectionReason = REJECTION_REASON.NONE,
                 rejectionDescription = ""
@@ -83,7 +83,7 @@ class StudentRepositoryMock(IStudentRepository):
                 idSelfie=0,
                 student=self.students[3],
                 dateUpload=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),
-                url="https://i.imgur.com/4ewA19S.png",
+                url="https://drive.google.com/uc?id=1KpPiKV4NkZO2YiBR-Rdf5syBpaguunsG",
                 state=STATE.IN_REVIEW,
                 rejectionReason = REJECTION_REASON.NONE,
                 rejectionDescription = ""
