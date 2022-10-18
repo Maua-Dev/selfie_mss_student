@@ -13,7 +13,7 @@ class Test_DeleteSelfieController:
         lenghtBefore = len(repo.selfies)
         usecase = DeleteSelfieUsecase(repo=repo)
         controller = DeleteSelfieController(usecase=usecase)
-        request = HttpRequest(query_params={
+        request = HttpRequest(body={
             "ra": "21010757",
             "idSelfie": "0"
         })
@@ -45,7 +45,7 @@ class Test_DeleteSelfieController:
         lenghtBefore = len(repo.selfies)
         usecase = DeleteSelfieUsecase(repo=repo)
         controller = DeleteSelfieController(usecase=usecase)
-        request = HttpRequest(query_params={
+        request = HttpRequest(body={
             "ra": "21010757",
             "idSelfie": "10"
         })
@@ -77,7 +77,7 @@ class Test_DeleteSelfieController:
         usecase = DeleteSelfieUsecase(repo=repo)
         controller = DeleteSelfieController(usecase=usecase)
 
-        request = HttpRequest(query_params={
+        request = HttpRequest(body={
             "ra": "21007586",
             "idSelfie": "10"
         })
@@ -92,7 +92,7 @@ class Test_DeleteSelfieController:
         usecase = DeleteSelfieUsecase(repo=repo)
         controller = DeleteSelfieController(usecase=usecase)
 
-        request = HttpRequest(query_params={
+        request = HttpRequest(body={
             "idSelfie": "10"
         })
 
@@ -107,7 +107,7 @@ class Test_DeleteSelfieController:
         usecase = DeleteSelfieUsecase(repo=repo)
         controller = DeleteSelfieController(usecase=usecase)
 
-        request = HttpRequest(query_params={
+        request = HttpRequest(body={
             "ra": "21007586",
         })
 
@@ -121,7 +121,7 @@ class Test_DeleteSelfieController:
         usecase = DeleteSelfieUsecase(repo=repo)
         controller = DeleteSelfieController(usecase=usecase)
 
-        request = HttpRequest(query_params={
+        request = HttpRequest(body={
             "ra": 21014440,
             "idSelfie": "1"
         })
@@ -136,7 +136,7 @@ class Test_DeleteSelfieController:
         usecase = DeleteSelfieUsecase(repo=repo)
         controller = DeleteSelfieController(usecase=usecase)
 
-        request = HttpRequest(query_params={
+        request = HttpRequest(body={
             "ra": "2101444",
             "idSelfie": "10"
         })
@@ -151,7 +151,7 @@ class Test_DeleteSelfieController:
           usecase = DeleteSelfieUsecase(repo=repo)
           controller = DeleteSelfieController(usecase=usecase)
 
-          request = HttpRequest(query_params={
+          request = HttpRequest(body={
               "ra": "21010757",
               "idSelfie": 1
           })
@@ -166,7 +166,7 @@ class Test_DeleteSelfieController:
         usecase = DeleteSelfieUsecase(repo=repo)
         controller = DeleteSelfieController(usecase=usecase)
 
-        request = HttpRequest(query_params= {
+        request = HttpRequest(body= {
             "ra": "21010757",
             "idSelfie": "MACACOUAUAUAUAUAUAAUAUAU"
         })
