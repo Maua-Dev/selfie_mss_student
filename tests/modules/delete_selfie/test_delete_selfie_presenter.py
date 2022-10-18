@@ -17,11 +17,6 @@ class Test_DeleteSelfiePresenter:
             "header1": "value1",
             "header2": "value1,value2"
           },
-          "queryStringParameters": {
-            "ra":"21010757",
-            "idSelfie":"0",
-            "parameter2": "value"
-          },
           "requestContext": {
             "accountId": "123456789012",
             "apiId": "<urlid>",
@@ -52,7 +47,7 @@ class Test_DeleteSelfiePresenter:
             "time": "12/Mar/2020:19:03:58 +0000",
             "timeEpoch": 1583348638390
           },
-          "body": "Hello from client!",
+          "body": '{"ra":"21010757",  "idSelfie":"0", "parameter2": "value"}',
           "pathParameters": None,
           "isBase64Encoded": None,
           "stageVariables": None
@@ -82,11 +77,6 @@ class Test_DeleteSelfiePresenter:
             "header1": "value1",
             "header2": "value1,value2"
           },
-          "queryStringParameters": {
-            "ra":"21010757",
-            "idSelfie":"4",
-            "parameter2": "value"
-          },
           "requestContext": {
             "accountId": "123456789012",
             "apiId": "<urlid>",
@@ -117,7 +107,7 @@ class Test_DeleteSelfiePresenter:
             "time": "12/Mar/2020:19:03:58 +0000",
             "timeEpoch": 1583348638390
           },
-          "body": "Hello from client!",
+          "body": '{"ra":"21010757",  "idSelfie":"4", "parameter2": "value"}',
           "pathParameters": None,
           "isBase64Encoded": None,
           "stageVariables": None
@@ -143,10 +133,6 @@ class Test_DeleteSelfiePresenter:
             "header1": "value1",
             "header2": "value1,value2"
           },
-          "queryStringParameters": {
-            "ra":"2101444-0",
-            "parameter2": "value"
-          },
           "requestContext": {
             "accountId": "123456789012",
             "apiId": "<urlid>",
@@ -177,7 +163,7 @@ class Test_DeleteSelfiePresenter:
             "time": "12/Mar/2020:19:03:58 +0000",
             "timeEpoch": 1583348638390
           },
-          "body": "Hello from client!",
+          "body": '{"ra":"21010757", "parameter2": "value"}',
           "pathParameters": None,
           "isBase64Encoded": None,
           "stageVariables": None
@@ -237,7 +223,7 @@ class Test_DeleteSelfiePresenter:
             "time": "12/Mar/2020:19:03:58 +0000",
             "timeEpoch": 1583348638390
           },
-          "body": "Hello from client!",
+          "body": '{"ra":"21019302",  "idSelfie":"1", "parameter2": "value"}',
           "pathParameters": None,
           "isBase64Encoded": None,
           "stageVariables": None

@@ -12,12 +12,12 @@ class UpdateStudentController:
 
     def __call__(self, request: HttpRequest) -> HttpResponse:
         try:
-            if request.query_params.get('ra') is None:
+            if request.body.get('ra') is None:
                 raise MissingParameters('ra')
             student = self.updateStudentUsecase(
-                ra=request.query_params.get("ra"),
-                new_name=request.query_params.get("new_name"),
-                new_email=request.query_params.get("new_email")
+                ra=request.body.get("ra"),
+                new_name=request.body.get("new_name"),
+                new_email=request.body.get("new_email")
             )
 
             viewmodel = UpdateStudentViewModel(student)

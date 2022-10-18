@@ -12,24 +12,24 @@ class DeleteSelfieController:
 
     def __call__(self, request: HttpRequest) -> HttpResponse:
         try:
-            if request.query_params.get('ra') is None:
+            if request.body.get('ra') is None:
                 raise MissingParameters('ra')
          
-            if request.query_params.get('idSelfie') is None:
+            if request.body.get('idSelfie') is None:
                 raise MissingParameters('idSelfie')
                 
-            if type(request.query_params.get('idSelfie')) != str:
+            if type(request.body.get('idSelfie')) != str:
                         raise WrongTypeParameter(
                             fieldName="idSelfie",
                             fieldTypeExpected="str",
-                            fieldTypeReceived=request.query_params.get('idSelfie').__class__.__name__
+                            fieldTypeReceived=request.body.get('idSelfie').__class__.__name__
                         )
-            if not request.query_params.get('idSelfie').isdecimal():
+            if not request.body.get('idSelfie').isdecimal():
                 raise EntityError("idSelfie")
          
             selfie, student = self.DeleteSelfieUsecase(
-                ra = request.query_params.get("ra"),
-                idSelfie = int(request.query_params.get("idSelfie")),
+                ra = request.body.get("ra"),
+                idSelfie = int(request.body.get("idSelfie")),
             )
 
             return OK(DeleteSelfieViewModel(data=selfie, student=student).to_dict())

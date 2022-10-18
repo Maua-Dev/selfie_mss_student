@@ -18,12 +18,6 @@ class Test_GetStudentPresenter:
                 "header1": "value1",
                 "header2": "value1,value2"
             },
-            "queryStringParameters": {
-                "ra": "21010757",
-                "new_name": "Vitor",
-                "new_email": "maluzinha@teamo.com",
-                "parameter2": "value"
-            },
             "requestContext": {
                 "accountId": "123456789012",
                 "apiId": "<urlid>",
@@ -54,8 +48,7 @@ class Test_GetStudentPresenter:
                 "time": "12/Mar/2020:19:03:58 +0000",
                 "timeEpoch": 1583348638390
             },
-            "body": "Hello from client!",
-            "pathParameters": None,
+             "body": '{"ra": "21010757","new_name": "Vitor","new_email": "maluzinha@teamo.com","parameter2": "value" }',          "pathParameters": None,
             "isBase64Encoded": None,
             "stageVariables": None
         }
@@ -85,10 +78,6 @@ class Test_GetStudentPresenter:
                 "header1": "value1",
                 "header2": "value1,value2"
             },
-            "queryStringParameters": {
-                "ra": "21019440",
-                "parameter2": "value"
-            },
             "requestContext": {
                 "accountId": "123456789012",
                 "apiId": "<urlid>",
@@ -119,7 +108,8 @@ class Test_GetStudentPresenter:
                 "time": "12/Mar/2020:19:03:58 +0000",
                 "timeEpoch": 1583348638390
             },
-            "body": "Hello from client!",
+            "body": '{"ra": "21019440","new_name": "Vitor","new_email": "maluzinha@teamo.com","parameter2": "value" }',          "pathParameters": None,
+
             "pathParameters": None,
             "isBase64Encoded": None,
             "stageVariables": None
@@ -143,10 +133,6 @@ class Test_GetStudentPresenter:
                 "header1": "value1",
                 "header2": "value1,value2"
             },
-            "queryStringParameters": {
-                "ra": "2101444-0",
-                "parameter2": "value"
-            },
             "requestContext": {
                 "accountId": "123456789012",
                 "apiId": "<urlid>",
@@ -177,7 +163,7 @@ class Test_GetStudentPresenter:
                 "time": "12/Mar/2020:19:03:58 +0000",
                 "timeEpoch": 1583348638390
             },
-            "body": "Hello from client!",
+            "body": '{"ra": "2101444-0","new_name": "Vitor","new_email": "maluzinha@teamo.com","parameter2": "value" }',          "pathParameters": None,
             "pathParameters": None,
             "isBase64Encoded": None,
             "stageVariables": None
