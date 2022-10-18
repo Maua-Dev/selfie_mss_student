@@ -160,7 +160,7 @@ class Test_CreateStudentController:
         assert response.status_code == 400
         assert response.body == "Field name is not valid"
 
-    def test_create_student_controller_bad_request_duplicated_ra(self):
+    def test_create_student_controller_conflict_duplicated_ra(self):
         repo = StudentRepositoryMock()
         usecase = CreateStudentUsecase(repo=repo)
         controller = CreateStudentController(usecase=usecase)
@@ -173,5 +173,5 @@ class Test_CreateStudentController:
 
         response = controller(request=request)
 
-        assert response.status_code == 400
+        assert response.status_code == 409
         assert response.body == "The item alredy exists for this ra"
