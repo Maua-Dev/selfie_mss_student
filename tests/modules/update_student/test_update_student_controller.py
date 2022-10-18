@@ -10,7 +10,7 @@ class Test_UpdateStudentController:
         repo = StudentRepositoryMock()
         usecase = UpdateStudentUsecase(repo=repo)
         controller = UpdateStudentController(usecase=usecase)
-        request = HttpRequest(query_params={
+        request = HttpRequest(body={
             "ra": "21014443",
         })
         response = controller(request=request)
@@ -32,7 +32,7 @@ class Test_UpdateStudentController:
         repo = StudentRepositoryMock()
         usecase = UpdateStudentUsecase(repo=repo)
         controller = UpdateStudentController(usecase=usecase)
-        request = HttpRequest(query_params={
+        request = HttpRequest(body={
             "ra": "21014443",
             "new_name": "Volkswagen",
         })
@@ -54,7 +54,7 @@ class Test_UpdateStudentController:
         repo = StudentRepositoryMock()
         usecase = UpdateStudentUsecase(repo=repo)
         controller = UpdateStudentController(usecase=usecase)
-        request = HttpRequest(query_params={
+        request = HttpRequest(body={
             "ra": "21014443",
             "new_email": "joaj@gmail.com",
         })
@@ -76,7 +76,7 @@ class Test_UpdateStudentController:
         repo = StudentRepositoryMock()
         usecase = UpdateStudentUsecase(repo=repo)
         controller = UpdateStudentController(usecase=usecase)
-        request = HttpRequest(query_params={
+        request = HttpRequest(body={
             "ra": "21014443",
             "new_name": "matuê",
             "new_email": "matue@pandora.com.br"
@@ -100,7 +100,7 @@ class Test_UpdateStudentController:
         usecase = UpdateStudentUsecase(repo=repo)
         controller = UpdateStudentController(usecase=usecase)
 
-        request = HttpRequest(query_params={
+        request = HttpRequest(body={
             "ra": "21014441",
         })
 
@@ -114,7 +114,7 @@ class Test_UpdateStudentController:
         usecase = UpdateStudentUsecase(repo=repo)
         controller = UpdateStudentController(usecase=usecase)
 
-        request = HttpRequest(query_params={
+        request = HttpRequest(body={
         })
 
         response = controller(request=request)
@@ -127,7 +127,7 @@ class Test_UpdateStudentController:
         usecase = UpdateStudentUsecase(repo=repo)
         controller = UpdateStudentController(usecase=usecase)
 
-        request = HttpRequest(query_params={
+        request = HttpRequest(body={
             "ra": 21014440,
         })
 
@@ -141,7 +141,7 @@ class Test_UpdateStudentController:
         usecase = UpdateStudentUsecase(repo=repo)
         controller = UpdateStudentController(usecase=usecase)
 
-        request = HttpRequest(query_params={
+        request = HttpRequest(body={
             "ra": "2101444",
         })
 
