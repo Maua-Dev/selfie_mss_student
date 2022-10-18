@@ -11,7 +11,7 @@ class Test_CreateStudentController:
         repo = StudentRepositoryMock()
         usecase = CreateStudentUsecase(repo=repo)
         controller = CreateStudentController(usecase=usecase)
-        request = HttpRequest(query_params={
+        request = HttpRequest(body={
             "ra": "20006110",
             "name": "Ai Rubio",
             "email": "aii@rubio.com"
@@ -29,7 +29,7 @@ class Test_CreateStudentController:
         repo = StudentRepositoryMock()
         usecase = CreateStudentUsecase(repo=repo)
         controller = CreateStudentController(usecase=usecase)
-        request = HttpRequest(query_params={
+        request = HttpRequest(body={
             "name": "Maria Vernasqui",
             "email": "maluzinha@teamo.com",
         })
@@ -42,7 +42,7 @@ class Test_CreateStudentController:
         repo = StudentRepositoryMock()
         usecase = CreateStudentUsecase(repo=repo)
         controller = CreateStudentController(usecase=usecase)
-        request = HttpRequest(query_params={
+        request = HttpRequest(body={
             "ra": "2100208",
             "email": "maluzinha@teamo.com",
         })
@@ -55,7 +55,7 @@ class Test_CreateStudentController:
         repo = StudentRepositoryMock()
         usecase = CreateStudentUsecase(repo=repo)
         controller = CreateStudentController(usecase=usecase)
-        request = HttpRequest(query_params={
+        request = HttpRequest(body={
             "ra": "2100208",
             "name": "Maria Vernasqui",
         })
@@ -69,7 +69,7 @@ class Test_CreateStudentController:
         usecase = CreateStudentUsecase(repo=repo)
         controller = CreateStudentController(usecase=usecase)
 
-        request = HttpRequest(query_params={
+        request = HttpRequest(body={
             "ra": 21002088,
             "name": "Maria Vernasqui",
             "email": "maluzinha@teamo.com",
@@ -85,7 +85,7 @@ class Test_CreateStudentController:
         usecase = CreateStudentUsecase(repo=repo)
         controller = CreateStudentController(usecase=usecase)
 
-        request = HttpRequest(query_params={
+        request = HttpRequest(body={
             "ra": "2100208-8",
             "name": "Maria Vernasqui",
             "email": "maluzinha@teamo.com",
@@ -101,7 +101,7 @@ class Test_CreateStudentController:
         usecase = CreateStudentUsecase(repo=repo)
         controller = CreateStudentController(usecase=usecase)
 
-        request = HttpRequest(query_params={
+        request = HttpRequest(body={
             "ra": "2100208",
             "name": "Maria Vernasqui",
             "email": "maluzinha@teamo.com",
@@ -117,7 +117,7 @@ class Test_CreateStudentController:
         usecase = CreateStudentUsecase(repo=repo)
         controller = CreateStudentController(usecase=usecase)
 
-        request = HttpRequest(query_params={
+        request = HttpRequest(body={
             "ra": "21002088",
             "name": "Maria Vernasqui",
             "email": "maluzinhateamo.com",
@@ -133,7 +133,7 @@ class Test_CreateStudentController:
         usecase = CreateStudentUsecase(repo=repo)
         controller = CreateStudentController(usecase=usecase)
 
-        request = HttpRequest(query_params={
+        request = HttpRequest(body={
             "ra": "21002088",
             "name": "Maria Vernasqui",
             "email": "maluzinha@teamocom",
@@ -149,7 +149,7 @@ class Test_CreateStudentController:
         usecase = CreateStudentUsecase(repo=repo)
         controller = CreateStudentController(usecase=usecase)
 
-        request = HttpRequest(query_params={
+        request = HttpRequest(body={
             "ra": "21002088",
             "name": "",
             "email": "maluzinha@teamo.com",
@@ -165,7 +165,7 @@ class Test_CreateStudentController:
         usecase = CreateStudentUsecase(repo=repo)
         controller = CreateStudentController(usecase=usecase)
 
-        request = HttpRequest(query_params={
+        request = HttpRequest(body={
             "ra": "21014442",
             "name": "Maria Luiza te amo",
             "email": "maluzinha@teamo.com",

@@ -13,19 +13,19 @@ class CreateStudentController:
 
     def __call__(self, request: HttpRequest) -> HttpResponse:
         try:
-            if request.query_params.get('ra') is None:
+            if request.body.get('ra') is None:
                 raise MissingParameters('ra')
 
-            if request.query_params.get('name') is None:
+            if request.body.get('name') is None:
                 raise MissingParameters('name')
 
-            if request.query_params.get('email') is None:
+            if request.body.get('email') is None:
                 raise MissingParameters('email')
 
             studentParam= Student(
-                ra=request.query_params["ra"],
-                name=request.query_params["name"],
-                email=request.query_params["email"]
+                ra=request.body["ra"],
+                name=request.body["name"],
+                email=request.body["email"]
             )
 
             student = self.createStudentUsecase(studentParam)
