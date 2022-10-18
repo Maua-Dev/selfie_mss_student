@@ -5,6 +5,8 @@ from src.shared.domain.entities.student import Student
 from src.shared.domain.enums.rejection_reason_enum import REJECTION_REASON
 from src.shared.domain.enums.state_enum import STATE
 
+
+
 class UpdateSelfieUsecase:
     def __init__(self, repo:IStudentRepository):
         self.repo = repo
