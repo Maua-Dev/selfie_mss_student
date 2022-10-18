@@ -159,7 +159,7 @@ class Test_DeleteSelfieController:
           response = controller(request=request)
 
           assert response.status_code == 400
-          assert response.body == "Field idSelfie isn\'t in the right type.\nReceived: int\nExpected: str"
+          assert response.body == "Field idSelfie isn\'t in the right type.\n Received: int.\n Expected: str"
 
     def test_delete_selfie_controller_bad_request_Idselfie_word(self):
         repo = StudentRepositoryMock()

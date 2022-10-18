@@ -34,8 +34,8 @@ class UpdateSelfieController:
             selfie = self.updateSelfieUsecase(
                 ra=request.body.get("ra"),
                 idSelfie=int(request.body.get("idSelfie")),
-                new_state=STATE[request.body.get("new_state")],
-                new_rejectionReason=REJECTION_REASON[str(request.body.get("new_rejectionReason")).upper()],
+                new_state=STATE[request.body.get("new_state")] if not request.body.get("new_state") is None else None,
+                new_rejectionReason=REJECTION_REASON[str(request.body.get("new_rejectionReason")).upper()] if not request.body.get("new_rejectionReason") is None else None,
                 new_rejectionDescription=request.body.get("new_rejectionDescription")
             )
 

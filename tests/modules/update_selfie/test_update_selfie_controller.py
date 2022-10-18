@@ -30,7 +30,6 @@ class Test_UpdateSelfieController:
         assert response.body['state'] == expected.state.value
         assert response.body['message'] == "the selfie was updated"
         
-
     def test_update_selfie_controller_state(self):
         repo = StudentRepositoryMock()
         usecase = UpdateSelfieUsecase(repo=repo)
