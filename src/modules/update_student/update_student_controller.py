@@ -2,7 +2,7 @@ from src.modules.update_student.update_student_view_model import UpdateStudentVi
 from src.shared.helpers.errors.domain_errors import EntityError
 from src.shared.helpers.errors.usecase_errors import DuplicatedItem, NoItemsFound
 from src.shared.helpers.errors.controller_errors import MissingParameters
-from src.shared.helpers.http.http_models import OK, BadRequest, HttpRequest, HttpResponse, InternalServerError, NotFound
+from src.shared.helpers.http.http_models import OK, BadRequest, Conflict, HttpRequest, HttpResponse, InternalServerError, NotFound
 from src.modules.update_student.update_student_usecase import UpdateStudentUsecase
 
 
@@ -31,7 +31,7 @@ class UpdateStudentController:
             return BadRequest(body=err.message)
 
         except DuplicatedItem as err:
-            return BadRequest(body=err.message)
+            return Conflict(body=err.message)
 
         except EntityError as err:
             return BadRequest(body=err.message)

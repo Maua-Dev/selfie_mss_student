@@ -54,7 +54,6 @@ class BadRequest(HttpResponse):
     def __init__(self, body: Any) -> None:
         super().__init__(HttpStatusCodeEnum.BAD_REQUEST.value, body)
 
-
 class InternalServerError(HttpResponse):
     def __init__(self, body: Any) -> None:
         super().__init__(HttpStatusCodeEnum.INTERNAL_SERVER_ERROR.value, body)
@@ -64,6 +63,9 @@ class NotFound(HttpResponse):
     def __init__(self, body: Any) -> None:
         super().__init__(HttpStatusCodeEnum.NOT_FOUND.value, body)
 
+class Conflict(HttpResponse):
+    def __init__(self, body: Any) -> None:
+        super().__init__(HttpStatusCodeEnum.CONFLICT.value, body)
 
 class RedirectResponse(HttpResponse):
     def __init__(self, body: dict) -> None:

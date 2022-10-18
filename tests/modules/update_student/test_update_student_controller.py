@@ -22,9 +22,11 @@ class Test_UpdateStudentController:
         )
 
         assert response.status_code == 200
-        assert repo.students[2].ra == expected.ra
-        assert repo.students[2].name == expected.name
-        assert repo.students[2].email == expected.email
+        assert response.body['ra'] == expected.ra
+        assert response.body['name']== expected.name
+        assert response.body['email'] == expected.email
+        assert response.body['message'] == "User was updated successfully"
+        
 
     def test_update_student_controller_ra_name(self):
         repo = StudentRepositoryMock()
@@ -43,9 +45,10 @@ class Test_UpdateStudentController:
         )
 
         assert response.status_code == 200
-        assert repo.students[2].ra == expected.ra
-        assert repo.students[2].name == expected.name
-        assert repo.students[2].email == expected.email
+        assert response.body['ra'] == expected.ra
+        assert response.body['name']== expected.name
+        assert response.body['email'] == expected.email
+        assert response.body['message'] == "User was updated successfully"
 
     def test_update_student_controller_ra_email(self):
         repo = StudentRepositoryMock()
@@ -64,9 +67,10 @@ class Test_UpdateStudentController:
         )
 
         assert response.status_code == 200
-        assert repo.students[2].ra == expected.ra
-        assert repo.students[2].name == expected.name
-        assert repo.students[2].email == expected.email
+        assert response.body['ra'] == expected.ra
+        assert response.body['name']== expected.name
+        assert response.body['email'] == expected.email
+        assert response.body['message'] == "User was updated successfully"
 
     def test_update_student_controller_ra_name_email(self):
         repo = StudentRepositoryMock()
@@ -86,9 +90,10 @@ class Test_UpdateStudentController:
         )
 
         assert response.status_code == 200
-        assert repo.students[2].ra == expected.ra
-        assert repo.students[2].name == expected.name
-        assert repo.students[2].email == expected.email
+        assert response.body['ra'] == expected.ra
+        assert response.body['name']== expected.name
+        assert response.body['email'] == expected.email
+        assert response.body['message'] == "User was updated successfully"
 
     def test_update_student_controller_no_items_found(self):
         repo = StudentRepositoryMock()
@@ -144,4 +149,3 @@ class Test_UpdateStudentController:
 
         assert response.status_code == 400
         assert response.body == "Field ra is not valid"
-        
