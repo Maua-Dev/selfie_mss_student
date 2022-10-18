@@ -30,10 +30,6 @@ class Test_CreateSelfiePresenter:
                 "header1": "value1",
                 "header2": "value1,value2"
             },
-            "queryStringParameters": {
-                "url": "https://www.youtube.com/watch?v=UnmS-nLL94I",
-                "parameter2": "value"
-            },
             "requestContext": {
                 "accountId": "123456789012",
                 "apiId": "<urlid>",
@@ -64,7 +60,7 @@ class Test_CreateSelfiePresenter:
                 "time": "12/Mar/2020:19:03:58 +0000",
                 "timeEpoch": 1583348638390
             },
-            "body": "Hello from client!",
+            'body': '{\r\n "url": "https://www.youtube.com/watch?v=5IpYOF4Hi6Q"\r\n}',
             "pathParameters": None,
             "isBase64Encoded": None,
             "stageVariables": None
@@ -90,11 +86,6 @@ class Test_CreateSelfiePresenter:
                 "header1": "value1",
                 "header2": "value1,value2"
             },
-            "queryStringParameters": {
-                "ra": 21002088,
-                "url": "https://www.youtube.com/watch?v=ozezG1zpxXQ",
-                "parameter2": "value"
-            },
             "requestContext": {
                 "accountId": "123456789012",
                 "apiId": "<urlid>",
@@ -125,7 +116,7 @@ class Test_CreateSelfiePresenter:
                 "time": "12/Mar/2020:19:03:58 +0000",
                 "timeEpoch": 1583348638390
             },
-            "body": "Hello from client!",
+            'body': '{\r\n    "ra": 21010757,\r\n "url": "https://www.youtube.com/watch?v=5IpYOF4Hi6Q"\r\n}',
             "pathParameters": None,
             "isBase64Encoded": None,
             "stageVariables": None
@@ -151,11 +142,6 @@ class Test_CreateSelfiePresenter:
                 "header1": "value1",
                 "header2": "value1,value2"
             },
-            "queryStringParameters": {
-                "ra": "12345678",
-                "url": "https://www.youtube.com/watch?v=ozezG1zpxXQ",
-                "parameter2": "value"
-            },
             "requestContext": {
                 "accountId": "123456789012",
                 "apiId": "<urlid>",
@@ -186,7 +172,7 @@ class Test_CreateSelfiePresenter:
                 "time": "12/Mar/2020:19:03:58 +0000",
                 "timeEpoch": 1583348638390
             },
-            "body": "Hello from client!",
+            'body': '{\r\n    "ra": "12345678",\r\n "url": "https://www.youtube.com/watch?v=5IpYOF4Hi6Q"\r\n}',
             "pathParameters": None,
             "isBase64Encoded": None,
             "stageVariables": None

@@ -11,7 +11,7 @@ class Test_CreateSelfieController:
         repo = StudentRepositoryMock()
         usecase = CreateSelfieUsecase(repo=repo)
         controller = CreateSelfieController(usecase=usecase)
-        request = HttpRequest(query_params={
+        request = HttpRequest(body={
             "ra": "21010757",
             "url": "https://www.youtube.com/watch?v=5IpYOF4Hi6Q",
         })
@@ -34,7 +34,7 @@ class Test_CreateSelfieController:
         repo = StudentRepositoryMock()
         usecase = CreateSelfieUsecase(repo=repo)
         controller = CreateSelfieController(usecase=usecase)
-        request = HttpRequest(query_params={
+        request = HttpRequest(body={
             "url": "https://www.youtube.com/watch?v=5IpYOF4Hi6Q",
         })
         response = controller(request=request)
@@ -46,7 +46,7 @@ class Test_CreateSelfieController:
         repo = StudentRepositoryMock()
         usecase = CreateSelfieUsecase(repo=repo)
         controller = CreateSelfieController(usecase=usecase)
-        request = HttpRequest(query_params={
+        request = HttpRequest(body={
             "ra": "21002008",
         })
         response = controller(request=request)
@@ -60,7 +60,7 @@ class Test_CreateSelfieController:
         usecase = CreateSelfieUsecase(repo=repo)
         controller = CreateSelfieController(usecase=usecase)
 
-        request = HttpRequest(query_params={
+        request = HttpRequest(body={
             "ra": 21002088,
             "url": "https://www.youtube.com/watch?v=5IpYOF4Hi6Q"
         })
@@ -75,7 +75,7 @@ class Test_CreateSelfieController:
         usecase = CreateSelfieUsecase(repo=repo)
         controller = CreateSelfieController(usecase=usecase)
 
-        request = HttpRequest(query_params={
+        request = HttpRequest(body={
             "ra": "2100208-8",
             "url": "https://www.youtube.com/watch?v=5IpYOF4Hi6Q"
         })
@@ -90,7 +90,7 @@ class Test_CreateSelfieController:
         usecase = CreateSelfieUsecase(repo=repo)
         controller = CreateSelfieController(usecase=usecase)
 
-        request = HttpRequest(query_params={
+        request = HttpRequest(body={
             "ra": "12345678",
             "url": "https://www.youtube.com/watch?v=5IpYOF4Hi6Q"
         })
