@@ -18,10 +18,6 @@ class Test_DeleteStudentPresenter:
                 "header1": "value1",
                 "header2": "value1,value2"
             },
-            "queryStringParameters": {
-                "ra": "21014440",
-                "parameter2": "value"
-            },
             "requestContext": {
                 "accountId": "123456789012",
                 "apiId": "<urlid>",
@@ -52,7 +48,7 @@ class Test_DeleteStudentPresenter:
                 "time": "12/Mar/2020:19:03:58 +0000",
                 "timeEpoch": 1583348638390
             },
-            "body": "Hello from client!",
+            "body": '{\r\n    "ra": "21014440"\r\n}',
             "pathParameters": None,
             "isBase64Encoded": None,
             "stageVariables": None
@@ -83,10 +79,6 @@ class Test_DeleteStudentPresenter:
                 "header1": "value1",
                 "header2": "value1,value2"
             },
-            "queryStringParameters": {
-                "ra": "21019440",
-                "parameter2": "value"
-            },
             "requestContext": {
                 "accountId": "123456789012",
                 "apiId": "<urlid>",
@@ -117,7 +109,7 @@ class Test_DeleteStudentPresenter:
                 "time": "12/Mar/2020:19:03:58 +0000",
                 "timeEpoch": 1583348638390
             },
-            "body": "Hello from client!",
+            "body": '{\r\n    "ra": "21019440"\r\n}',
             "pathParameters": None,
             "isBase64Encoded": None,
             "stageVariables": None
@@ -141,10 +133,6 @@ class Test_DeleteStudentPresenter:
                 "header1": "value1",
                 "header2": "value1,value2"
             },
-            "queryStringParameters": {
-                "ra": "2101444-0",
-                "parameter2": "value"
-            },
             "requestContext": {
                 "accountId": "123456789012",
                 "apiId": "<urlid>",
@@ -175,7 +163,7 @@ class Test_DeleteStudentPresenter:
                 "time": "12/Mar/2020:19:03:58 +0000",
                 "timeEpoch": 1583348638390
             },
-            "body": "Hello from client!",
+            "body": '{"ra":"2101444-0"}',
             "pathParameters": None,
             "isBase64Encoded": None,
             "stageVariables": None
@@ -199,9 +187,6 @@ class Test_DeleteStudentPresenter:
                 "header1": "value1",
                 "header2": "value1,value2"
             },
-            "queryStringParameters": {
-                "parameter2": "value"
-            },
             "requestContext": {
                 "accountId": "123456789012",
                 "apiId": "<urlid>",
@@ -232,7 +217,7 @@ class Test_DeleteStudentPresenter:
                 "time": "12/Mar/2020:19:03:58 +0000",
                 "timeEpoch": 1583348638390
             },
-            "body": "Hello from client!",
+            "body": '{}',
             "pathParameters": None,
             "isBase64Encoded": None,
             "stageVariables": None
@@ -256,10 +241,6 @@ class Test_DeleteStudentPresenter:
                 "header1": "value1",
                 "header2": "value1,value2"
             },
-            "queryStringParameters": {
-                "ra": 21014441,
-                "parameter2": "value"
-            },
             "requestContext": {
                 "accountId": "123456789012",
                 "apiId": "<urlid>",
@@ -290,7 +271,7 @@ class Test_DeleteStudentPresenter:
                 "time": "12/Mar/2020:19:03:58 +0000",
                 "timeEpoch": 1583348638390
             },
-            "body": "Hello from client!",
+            "body": '{"ra":21010757}',
             "pathParameters": None,
             "isBase64Encoded": None,
             "stageVariables": None

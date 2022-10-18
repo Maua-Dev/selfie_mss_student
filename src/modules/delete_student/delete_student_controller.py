@@ -12,11 +12,11 @@ class DeleteStudentController:
 
     def __call__(self, request: HttpRequest) -> HttpResponse:
         try:
-            if request.query_params.get('ra') is None:
+            if request.body.get('ra') is None:
                 raise MissingParameters('ra')
             
             student = self.deleteStudentUsecase(
-                ra=request.query_params.get("ra"),
+                ra=request.body.get("ra"),
             )
             return OK(DeleteStudentViewModel(student).to_dict())
 

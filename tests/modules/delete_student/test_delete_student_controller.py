@@ -11,7 +11,7 @@ class Test_DeleteStudentController:
         lenghtBefore = len(repo.students)
         usecase = DeleteStudentUsecase(repo=repo)
         controller = DeleteStudentController(usecase=usecase)
-        request = HttpRequest(query_params={
+        request = HttpRequest(body={
             "ra": "21014443",
         })
         response = controller(request=request)
@@ -33,7 +33,7 @@ class Test_DeleteStudentController:
         usecase = DeleteStudentUsecase(repo=repo)
         controller = DeleteStudentController(usecase=usecase)
 
-        request = HttpRequest(query_params={
+        request = HttpRequest(body={
             "ra": "21014432",
         })
 
@@ -47,7 +47,7 @@ class Test_DeleteStudentController:
         usecase = DeleteStudentUsecase(repo=repo)
         controller = DeleteStudentController(usecase=usecase)
 
-        request = HttpRequest(query_params={
+        request = HttpRequest(body={
         })
 
         response = controller(request=request)
@@ -60,7 +60,7 @@ class Test_DeleteStudentController:
         usecase = DeleteStudentUsecase(repo=repo)
         controller = DeleteStudentController(usecase=usecase)
 
-        request = HttpRequest(query_params={
+        request = HttpRequest(body={
             "ra": 21014440,
         })
 
@@ -74,7 +74,7 @@ class Test_DeleteStudentController:
         usecase = DeleteStudentUsecase(repo=repo)
         controller = DeleteStudentController(usecase=usecase)
 
-        request = HttpRequest(query_params={
+        request = HttpRequest(body={
             "ra": "2101444",
         })
 
