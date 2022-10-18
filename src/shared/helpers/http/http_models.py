@@ -13,6 +13,11 @@ class HttpRequest:
         self.headers = headers
         self.query_params = query_params
 
+    def __repr__(self):
+        return (
+            f"HttpRequest (body={self.body}, headers={self.headers}, query_params={self.query_params})"
+        )
+
 
 class HttpResponse:
     status_code: int
@@ -23,6 +28,11 @@ class HttpResponse:
         self.status_code = status_code
         self.body = body
         self.headers = headers
+
+    def __repr__(self):
+        return (
+            f"HttpResponse (status_code={self.status_code}, body={self.body}, headers={self.headers})"
+        )
 
 
 class OK(HttpResponse):

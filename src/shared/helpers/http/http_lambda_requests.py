@@ -1,8 +1,6 @@
-
 import json
 
 from src.shared.helpers.http.http_models import HttpRequest, HttpResponse
-
 
 
 class LambdaHttpResponse(HttpResponse):
@@ -78,9 +76,6 @@ class LambdaDefaultHTTP:
             return False
         return self.method == other.method and self.path == other.path and self.protocol == other.protocol and self.source_ip == other.source_ip and self.user_agent == other.user_agent
 
-    def __repr__(self):
-        return f"LambdaHttp (method={self.method}, path={self.path}, protocol={self.protocol}, source_ip={self.source_ip}, user_agent={self.user_agent})"
-
 
 class LambdaHttpRequest(HttpRequest):
     """
@@ -102,19 +97,22 @@ class LambdaHttpRequest(HttpRequest):
         """
         _headers = data.get("headers")
         _query_string_parameters = data.get("queryStringParameters")
-        _body = json.loads(f'"{data.get("body")}"') if data.get("body") else None
+        _body = None
+
+        if "body" in data:
+            try:
+                _body = json.loads(data.get("body"))
+            except:
+                _body = data.get("body")
+
         super().__init__(body=_body, headers=_headers, query_params=_query_string_parameters)
 
         self.version = data.get("version")
         self.raw_path = data.get("rawPath")
         self.raw_query_string = data.get("rawQueryString")
+        self.query_string_parameters = data.get("queryStringParameters")
         self.request_context = data.get("requestContext")
         self.http = LambdaDefaultHTTP(self.request_context.get("http") if self.request_context else None)
-
-
-    def __repr__(self):
-        return f"HttpRequest (version={self.version}, raw_path={self.raw_path}, raw_query_string={self.raw_query_string}, headers={self.headers}, query_string_parameters={self.query_string_parameters}, request_context={self.request_context}, http={self.http}, body={self.body})"
-
 
 class HttpResponseRedirect(HttpResponse):
 

@@ -13,13 +13,13 @@ class CreateSelfieController:
 
     def __call__(self, request: HttpRequest) -> HttpResponse:
         try:
-            if request.query_params.get('ra') is None:
+            if request.body.get('ra') is None:
                 raise MissingParameters('ra')
 
-            if request.query_params.get('url') is None:
+            if request.body.get('url') is None:
                 raise MissingParameters('url')
 
-            student = self.createSelfieUsecase(ra=request.query_params.get('ra'), url=request.query_params.get('url'))
+            student = self.createSelfieUsecase(ra=request.body.get('ra'), url=request.body.get('url'))
             viewmodel = CreateSelfieViewModel(student)
 
             return Created(viewmodel.to_dict())
