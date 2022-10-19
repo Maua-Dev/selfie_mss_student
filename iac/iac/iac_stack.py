@@ -1,7 +1,7 @@
 from aws_cdk import (
     Stack,
 )
-from aws_cdk.aws_apigateway import RestApi
+from aws_cdk.aws_apigateway import RestApi, Cors
 from constructs import Construct
 from .lambda_stack import LambdaStack
 
@@ -16,12 +16,18 @@ class IacStack(Stack):
                                 description="This is the Selfie RestApi",
                                 default_cors_preflight_options=
                                 {
-                                    "allow_origins": ["*"],
+                                    "allow_origins": Cors.ALL_ORIGINS,
                                     "allow_methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
                                     "allow_headers": ["*"]
-                                }
+                                },
                                 )
 
-        mss_student_api_resource = self.rest_api.root.add_resource("mss-student")
+        mss_student_api_resource = self.rest_api.root.add_resource("mss-student", default_cors_preflight_options=
+        {
+            "allow_origins": Cors.ALL_ORIGINS,
+            "allow_methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+            "allow_headers": Cors.DEFAULT_HEADERS
+        }
+                                                                   )
 
         self.lambda_stack = LambdaStack(self, mss_student_api_resource=mss_student_api_resource)
