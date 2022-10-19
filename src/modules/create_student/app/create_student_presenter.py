@@ -1,4 +1,4 @@
-from src.modules.create_student.app.create_student_usecase import CreateStudentUsecase
+from .create_student_usecase import CreateStudentUsecase
 from src.shared.infra.repositories.student_repository_mock import StudentRepositoryMock
 from .create_student_controller import CreateStudentController
 from src.shared.helpers.http.http_lambda_requests import LambdaHttpRequest, LambdaHttpResponse

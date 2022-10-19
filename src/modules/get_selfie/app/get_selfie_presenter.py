@@ -1,7 +1,7 @@
 from src.shared.infra.repositories.student_repository_mock import StudentRepositoryMock
 from src.shared.helpers.http.http_lambda_requests import LambdaHttpRequest, LambdaHttpResponse
-from src.modules.get_selfie.app.get_selfie_controller import GetSelfieController
-from src.modules.get_selfie.app.get_selfie_usecase import GetSelfieUsecase
+from .get_selfie_controller import GetSelfieController
+from .get_selfie_usecase import GetSelfieUsecase
 
 
 
