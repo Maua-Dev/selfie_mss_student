@@ -39,7 +39,7 @@ class LambdaHttpResponse(HttpResponse):
         """
         return {
             "statusCode": self.status_code,
-            "body": self.body,
+            "body": json.dumps(self.body),
             "headers": self.headers,
             "isBase64Encoded": False
         }
