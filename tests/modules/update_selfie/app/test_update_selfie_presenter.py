@@ -1,5 +1,5 @@
 import pytest
-from src.modules.update_selfie.update_selfie_presenter import lambda_handler
+from src.modules.update_selfie.app.update_selfie_presenter import lambda_handler
 
 
 class Test_GetSelfiePresenter:

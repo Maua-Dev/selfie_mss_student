@@ -1,5 +1,5 @@
 import pytest
-from src.modules.update_student.update_student_presenter import lambda_handler
+from src.modules.update_student.app.update_student_presenter import lambda_handler
 
 
 class Test_GetStudentPresenter:

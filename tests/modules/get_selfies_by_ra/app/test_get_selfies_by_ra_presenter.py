@@ -1,5 +1,5 @@
 import pytest
-from src.modules.get_selfies_by_ra.get_selfies_by_ra_presenter import lambda_handler
+from src.modules.get_selfies_by_ra.app.get_selfies_by_ra_presenter import lambda_handler
 
 class Test_GetSelfiesByRaPresenter:
 

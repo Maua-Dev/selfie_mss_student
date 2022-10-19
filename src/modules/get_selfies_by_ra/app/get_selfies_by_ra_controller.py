@@ -4,8 +4,8 @@ from src.shared.helpers.errors.domain_errors import EntityError
 from src.shared.helpers.errors.usecase_errors import NoItemsFound
 from src.shared.helpers.errors.controller_errors import MissingParameters
 from src.shared.helpers.http.http_models import OK, BadRequest, HttpRequest, HttpResponse, InternalServerError, NotFound
-from src.modules.get_selfies_by_ra.get_selfies_by_ra_viewmodel import GetSelfiesByRaViewModel
-from src.modules.get_selfies_by_ra.get_selfies_by_ra_usecase import GetSelfiesByRaUsecase
+from .get_selfies_by_ra_viewmodel import GetSelfiesByRaViewModel
+from .get_selfies_by_ra_usecase import GetSelfiesByRaUsecase
 
 
 class GetSelfiesByRaController:

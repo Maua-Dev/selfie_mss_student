@@ -1,5 +1,5 @@
 import pytest
-from src.modules.update_student.update_student_view_model import UpdateStudentViewModel
+from src.modules.update_student.app.update_student_view_model import UpdateStudentViewModel
 from src.shared.domain.entities.student import Student
 from src.shared.infra.repositories.student_repository_mock import StudentRepositoryMock
 

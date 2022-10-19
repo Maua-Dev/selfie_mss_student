@@ -1,9 +1,9 @@
 import datetime
 from src.shared.domain.entities.selfie import Selfie
-from src.modules.update_selfie.update_selfie_usecase import UpdateSelfieUsecase
+from src.modules.update_selfie.app.update_selfie_usecase import UpdateSelfieUsecase
 from src.shared.domain.enums.state_enum import STATE
 from src.shared.infra.repositories.student_repository_mock import StudentRepositoryMock
-from src.modules.update_selfie.update_selfie_controller import UpdateSelfieController
+from src.modules.update_selfie.app.update_selfie_controller import UpdateSelfieController
 from src.shared.helpers.http.http_models import OK, BadRequest, HttpRequest, HttpResponse, InternalServerError, NotFound
 from src.shared.domain.enums.rejection_reason_enum import REJECTION_REASON
 

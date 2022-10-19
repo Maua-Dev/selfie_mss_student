@@ -2,7 +2,7 @@ import datetime
 from src.shared.domain.enums.rejection_reason_enum import REJECTION_REASON
 from src.shared.domain.enums.state_enum import STATE
 from src.shared.helpers.errors.domain_errors import EntityError
-from src.modules.update_selfie.update_selfie_usecase import UpdateSelfieUsecase
+from src.modules.update_selfie.app.update_selfie_usecase import UpdateSelfieUsecase
 from src.shared.infra.repositories.student_repository_mock import StudentRepositoryMock
 from src.shared.helpers.errors.usecase_errors import NoItemsFound
 from src.shared.domain.entities.selfie import Selfie
