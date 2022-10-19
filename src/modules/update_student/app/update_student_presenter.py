@@ -1,14 +1,14 @@
-from src.modules.update_selfie.update_selfie_usecase import UpdateSelfieUsecase
+from .update_student_usecase import UpdateStudentUsecase
 from src.shared.infra.repositories.student_repository_mock import StudentRepositoryMock
-from src.modules.update_selfie.update_selfie_controller import UpdateSelfieController
+from .update_student_controller import UpdateStudentController
 from src.shared.helpers.http.http_lambda_requests import LambdaHttpRequest, LambdaHttpResponse
 
 
 
 def lambda_handler(event, context):
     repo = StudentRepositoryMock() 
-    usecase = UpdateSelfieUsecase(repo)
-    controller = UpdateSelfieController(usecase)
+    usecase = UpdateStudentUsecase(repo)
+    controller = UpdateStudentController(usecase)
 
     httpRequest = LambdaHttpRequest(data=event)
     response = controller(httpRequest)

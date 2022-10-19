@@ -1,5 +1,5 @@
 import pytest
-from src.modules.get_selfies_by_ra.get_selfies_by_ra_viewmodel import GetSelfiesByRaViewModel
+from src.modules.get_selfies_by_ra.app.get_selfies_by_ra_viewmodel import GetSelfiesByRaViewModel
 from src.shared.domain.entities.student import Student
 from src.shared.infra.repositories.student_repository_mock import StudentRepositoryMock
 

@@ -1,5 +1,5 @@
 from src.shared.helpers.errors.domain_errors import EntityError
-from src.modules.update_student.update_student_usecase import UpdateStudentUsecase
+from src.modules.update_student.app.update_student_usecase import UpdateStudentUsecase
 from src.shared.infra.repositories.student_repository_mock import StudentRepositoryMock
 from src.shared.helpers.errors.usecase_errors import DuplicatedItem, NoItemsFound
 import pytest
