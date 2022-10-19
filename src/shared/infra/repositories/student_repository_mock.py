@@ -1,5 +1,4 @@
 import datetime
-from turtle import st
 from typing import List, Tuple
 from src.shared.domain.entities.selfie import Selfie
 from src.shared.domain.enums.state_enum import STATE

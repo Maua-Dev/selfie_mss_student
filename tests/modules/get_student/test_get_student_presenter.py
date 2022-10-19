@@ -1,5 +1,5 @@
-import pytest
-from src.modules.get_student.get_student_presenter import lambda_handler
+from src.modules.get_student.app.get_student_presenter import lambda_handler
+
 
 class Test_GetStudentPresenter:
 
@@ -59,9 +59,9 @@ class Test_GetStudentPresenter:
         expected = {
             "ra":"21014440",
             "name":"Eh o Vilas do Mockas",
-            "email":"eusouoawsboy@amazon.com" 
+            "email":"eusouoawsboy@amazon.com"
         }
-      
+
         response = lambda_handler(event, None)
         assert response["statusCode"] == 200
         assert response["body"] == expected
@@ -124,7 +124,7 @@ class Test_GetStudentPresenter:
         response = lambda_handler(event, None)
         assert response["statusCode"] == 404
         assert response["body"] == "No items found for Student"
-  
+
     def test_get_student_non_valid_ra_dash(self):
         event = {
           "version": "2.0",

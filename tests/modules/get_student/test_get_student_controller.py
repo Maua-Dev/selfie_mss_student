@@ -1,7 +1,8 @@
-from src.modules.get_student.get_student_usecase import GetStudentUsecase
+from src.modules.get_student.app.get_student_controller import GetStudentController
+from src.modules.get_student.app.get_student_usecase import GetStudentUsecase
 from src.shared.infra.repositories.student_repository_mock import StudentRepositoryMock
-from src.modules.get_student.get_student_controller import GetStudentController
-from src.shared.helpers.http.http_models import OK, BadRequest, HttpRequest, HttpResponse, InternalServerError, NotFound
+
+from src.shared.helpers.http.http_models import HttpRequest
 
 
 class Test_GetStudentController:

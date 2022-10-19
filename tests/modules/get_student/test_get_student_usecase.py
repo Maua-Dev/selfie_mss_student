@@ -1,4 +1,4 @@
-from src.modules.get_student.get_student_usecase import GetStudentUsecase
+from src.modules.get_student.app.get_student_usecase import GetStudentUsecase
 from src.shared.infra.repositories.student_repository_mock import StudentRepositoryMock
 from src.shared.helpers.errors.usecase_errors import NoItemsFound
 import pytest
