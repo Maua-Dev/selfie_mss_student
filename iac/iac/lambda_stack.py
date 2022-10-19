@@ -17,7 +17,7 @@ class LambdaStack(NestedStack):
             layers=[self.lambda_layer]
         )
 
-        mss_student_api_resource.add_resource(module_name.replace("_", "-")).add_method("GET",
+        mss_student_api_resource.add_resource(module_name.replace("_", "-")).add_method(method,
                                                                                         integration=LambdaIntegration(
                                                                                             function))
 
