@@ -58,7 +58,7 @@ class Test_DeleteSelfiePresenter:
         response = lambda_handler(event, None)
         assert response["statusCode"] == 200
         assert json.loads(response["body"])["student"]["name"] == "Victor"
-        assert json.loads(response["body"])["selfie"]["url"] == "https://drive.google.com/uc?id=12ZARnQJpkmm9dxprC8i9O7DkQPeiL0zu"
+        assert json.loads(response["body"])["selfie"]["url"] == "https://i.imgur.com/0KFBHTB.jpg"
         assert json.loads(response["body"])["selfie"]["idSelfie"] == 0
         assert json.loads(response["body"])["selfie"]["rejectionReason"] == "COVERED_FACE"
         assert json.loads(response["body"])["selfie"]["rejectionDescription"] == "Balaclava"

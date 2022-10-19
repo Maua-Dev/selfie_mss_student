@@ -7,7 +7,7 @@ Selfie(
                 idSelfie=0,
                 student=self.students[0],
                 dateUpload=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),
-                url="https://drive.google.com/uc?id=12ZARnQJpkmm9dxprC8i9O7DkQPeiL0zu",
+                url="https://i.imgur.com/0KFBHTB.jpg",
                 state=STATE.DECLINED,
                 rejectionReason=REJECTION_REASON.COVERED_FACE,
                 rejectionDescription="Balaclava"
@@ -24,7 +24,7 @@ class Test_UpdateSelfieViewModel:
         result = {
             "idSelfie" : 0,
             "dateUpload" : "2022-10-12T16:01:59.149927",
-            "url" : "https://drive.google.com/uc?id=12ZARnQJpkmm9dxprC8i9O7DkQPeiL0zu",
+            "url" : "https://i.imgur.com/0KFBHTB.jpg",
             "state" : "DECLINED",
             "rejectionReason": "COVERED_FACE",
             "rejectionDescription": "Balaclava",

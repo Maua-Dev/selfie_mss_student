@@ -22,7 +22,7 @@ class Test_UpdateSelfieController:
         })
         response = controller(request=request)
 
-        expected = Selfie(student=repo.students[0], idSelfie=0, state=STATE.DECLINED, rejectionReason=REJECTION_REASON.NO_PERSON_RECOGNIZED, rejectionDescription="Please appear more", dateUpload=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),url="https://drive.google.com/uc?id=12ZARnQJpkmm9dxprC8i9O7DkQPeiL0zu")
+        expected = Selfie(student=repo.students[0], idSelfie=0, state=STATE.DECLINED, rejectionReason=REJECTION_REASON.NO_PERSON_RECOGNIZED, rejectionDescription="Please appear more", dateUpload=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),url="https://i.imgur.com/0KFBHTB.jpg")
 
 
         assert response.status_code == 200
