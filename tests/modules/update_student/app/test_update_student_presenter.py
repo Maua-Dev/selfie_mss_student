@@ -1,3 +1,4 @@
+import json
 import pytest
 from src.modules.update_student.app.update_student_presenter import lambda_handler
 
@@ -62,7 +63,7 @@ class Test_GetStudentPresenter:
 
         response = lambda_handler(event, None)
         assert response["statusCode"] == 200
-        assert response["body"] == expected
+        assert json.loads(response["body"]) == expected
 
     def test_update_ra_non_existent(self):
         event = {
@@ -117,7 +118,7 @@ class Test_GetStudentPresenter:
 
         response = lambda_handler(event, None)
         assert response["statusCode"] == 404
-        assert response["body"] == "No items found for ra"
+        assert json.loads(response["body"]) == "No items found for ra"
 
     def test_update_student_non_valid_ra_dash(self):
         event = {
@@ -171,6 +172,6 @@ class Test_GetStudentPresenter:
 
         response = lambda_handler(event, None)
         assert response["statusCode"] == 400
-        assert response["body"] == "Field ra is not valid"
+        assert json.loads(response["body"]) == "Field ra is not valid"
 
   

@@ -1,3 +1,4 @@
+import json
 from src.modules.get_student.app.get_student_presenter import lambda_handler
 
 
@@ -64,7 +65,7 @@ class Test_GetStudentPresenter:
 
         response = lambda_handler(event, None)
         assert response["statusCode"] == 200
-        assert response["body"] == expected
+        assert json.loads(response["body"]) == expected
 
     def test_get_student_non_existent(self):
         event = {
@@ -123,7 +124,7 @@ class Test_GetStudentPresenter:
 
         response = lambda_handler(event, None)
         assert response["statusCode"] == 404
-        assert response["body"] == "No items found for Student"
+        assert json.loads(response["body"]) == "No items found for Student"
 
     def test_get_student_non_valid_ra_dash(self):
         event = {
@@ -182,4 +183,4 @@ class Test_GetStudentPresenter:
 
         response = lambda_handler(event, None)
         assert response["statusCode"] == 400
-        assert response["body"] == "Field ra is not valid"
+        assert json.loads(response["body"]) == "Field ra is not valid"

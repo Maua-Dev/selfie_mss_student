@@ -1,3 +1,4 @@
+import json
 import pytest
 from src.modules.get_selfies_by_ra.app.get_selfies_by_ra_presenter import lambda_handler
 
@@ -60,12 +61,12 @@ class Test_GetSelfiesByRaPresenter:
         
         response = lambda_handler(event, None)
         assert response["statusCode"] == 200
-        assert len(response["body"]["selfies"]) == 2
-        assert response["body"]["selfies"][0]["rejectionDescription"] == "Balaclava"
-        assert response["body"]["selfies"][0]["url"] == "https://drive.google.com/uc?id=12ZARnQJpkmm9dxprC8i9O7DkQPeiL0zu"
-        assert response["body"]["selfies"][1]["rejectionDescription"] == ""
-        assert response["body"]['student']['name'] == "Victor"
-        assert response["body"]['message'] == "the selfies were retriven"
+        assert len(json.loads(response["body"])["selfies"]) == 2
+        assert json.loads(response["body"])["selfies"][0]["rejectionDescription"] == "Balaclava"
+        assert json.loads(response["body"])["selfies"][0]["url"] == "https://drive.google.com/uc?id=12ZARnQJpkmm9dxprC8i9O7DkQPeiL0zu"
+        assert json.loads(response["body"])["selfies"][1]["rejectionDescription"] == ""
+        assert json.loads(response["body"])['student']['name'] == "Victor"
+        assert json.loads(response["body"])['message'] == "the selfies were retriven"
 
     def test_get_selfies_by_ra_no_selfie_found(self):
         event = {
@@ -125,9 +126,9 @@ class Test_GetSelfiesByRaPresenter:
         
         response = lambda_handler(event, None)
         assert response["statusCode"] == 200
-        assert len(response["body"]["selfies"]) == 0
-        assert response["body"]['student']['name'] == "Monkey Guy"
-        assert response["body"]['message'] == "the selfies were retriven"
+        assert len(json.loads(response["body"])["selfies"]) == 0
+        assert json.loads(response["body"])['student']['name'] == "Monkey Guy"
+        assert json.loads(response["body"])['message'] == "the selfies were retriven"
   
     def test_get_selfies_by_ra_non_valid_ra_dash(self):
         event = {
@@ -186,4 +187,4 @@ class Test_GetSelfiesByRaPresenter:
 
         response = lambda_handler(event, None)
         assert response["statusCode"] == 400
-        assert response["body"] == "Field ra is not valid"
+        assert json.loads(response["body"]) == "Field ra is not valid"
