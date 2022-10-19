@@ -8,6 +8,19 @@ from aws_cdk.aws_apigateway import Resource, LambdaIntegration
 
 class LambdaStack(NestedStack):
 
+    def createLambdaApiGatewayIntegration(self, module_name: str, mss_student_api_resource: Resource):
+        function = lambda_.Function(
+            self, module_name.title(),
+            code=lambda_.Code.from_asset(f"../src/modules/{module_name}"),
+            handler=f"app.{module_name}_presenter.lambda_handler",
+            runtime=lambda_.Runtime.PYTHON_3_9,
+            layers=[self.lambda_layer]
+        )
+
+        mss_student_api_resource.add_resource(module_name.replace("_", "-")).add_method("GET",
+                                                                                        integration=LambdaIntegration(
+                                                                                            function))
+
     def __init__(self, scope: Construct, mss_student_api_resource: Resource) -> None:
         super().__init__(scope, "Selfie_Lambdas")
 
@@ -16,18 +29,4 @@ class LambdaStack(NestedStack):
                                                  compatible_runtimes=[lambda_.Runtime.PYTHON_3_9]
                                                  )
 
-        self.get_student = lambda_.Function(
-            self, "Get_Student",
-            code=lambda_.Code.from_asset("../src/modules/get_student"),
-            handler="app.get_student_presenter.lambda_handler",
-            runtime=lambda_.Runtime.PYTHON_3_9,
-            layers=[self.lambda_layer]
-        )
-
-        mss_student_api_resource.add_resource("get-student").add_method("GET", integration=LambdaIntegration(self.get_student))
-
-
-
-
-
-
+        self.createLambdaApiGatewayIntegration(module_name="get_student", mss_student_api_resource=mss_student_api_resource)
