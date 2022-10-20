@@ -1,0 +1,46 @@
+
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+
+  workflow_dispatch:
+
+jobs:
+
+  DeployToAWS:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+      
+      
+    steps:
+        - uses: actions/checkout@v2
+
+        - name: Setup AWS Credentials
+          uses: aws-actions/configure-aws-credentials@v1
+          with:
+            role-to-assume: arn:aws:iam::${{ env.AWS_ACCOUNT_ID }}:role/GithubActionsRole
+            role-session-name: github-action
+            aws-region: ${{ env.AWS_REGION }}
+
+        - name: Installing Dependencies
+          run: |
+            npm install -g aws-cdk
+            cd iac
+            pip install -r requirements.txt
+                
+        - name: DeployWithCDK
+          run: |
+            cdk build
+            cdk deploy
+
+
+
+
+
+
+
