@@ -38,3 +38,10 @@ class Test_CreateSelfieUsecase:
         with pytest.raises(EntityError):
             usecase(ra="123456782", url="https://www.youtube.com/watch?v=k85mRPqvMbE")
             
+    def test_create_student_usecase_invalid_url(self):
+        repo = StudentRepositoryMock()
+        usecase = CreateSelfieUsecase(repo=repo)
+
+        with pytest.raises(EntityError):
+            usecase(ra="21010757", url="www.mamaco.com")
+            

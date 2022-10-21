@@ -1,4 +1,5 @@
 import datetime
+import re
 from src.shared.domain.enums.rejection_reason_enum import REJECTION_REASON
 from src.shared.domain.enums.state_enum import STATE
 from src.shared.helpers.errors.domain_errors import EntityError
@@ -18,6 +19,12 @@ class CreateSelfieUsecase:
         student = self.repo.get_student(ra=ra)
         if student == None:
             raise NoItemsFound("ra")
+        
+        
+        regex = re.compile(r'https:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)')
+
+        if(not bool(re.fullmatch(regex, url))):
+            raise EntityError("url")
         
         selfie = Selfie(
             student=student,
