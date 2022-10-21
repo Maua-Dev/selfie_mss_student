@@ -17,3 +17,5 @@ pytest_html_report.html
 venv/
 .venv
 .venv/
+.coveragerc
+.coverage
