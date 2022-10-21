@@ -28,7 +28,7 @@ class CreateSelfieUsecase:
         
         selfie = Selfie(
             student=student,
-            dateUpload=datetime.datetime.now(),
+            dateCreated=datetime.datetime.now(),
             url=url,
             state=STATE.PENDING_REVIEW,
             idSelfie=len(self.repo.get_selfies_by_ra(ra=ra)),

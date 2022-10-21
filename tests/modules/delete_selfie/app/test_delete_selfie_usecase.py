@@ -16,7 +16,7 @@ class Test_DeleteSelfieUsecase:
 
 
         assert len(repo.selfies) == lenghtBefore - 1
-        assert [selfie.url, selfie.dateUpload, selfie.idSelfie, selfie.state, selfie.student] == [expected.url, expected.dateUpload, expected.idSelfie, expected.state, expected.student]
+        assert [selfie.url, selfie.dateCreated, selfie.idSelfie, selfie.state, selfie.student] == [expected.url, expected.dateCreated, expected.idSelfie, expected.state, expected.student]
         assert student == repo.students[0]
         
 

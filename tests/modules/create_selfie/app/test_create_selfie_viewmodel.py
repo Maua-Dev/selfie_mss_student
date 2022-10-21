@@ -19,7 +19,7 @@ class Test_CreateSelfieViewModel:
             url="https://www.youtube.com/watch?v=X5oh7Gc3kG4",
             idSelfie=0,
             state=STATE.APPROVED,
-            dateUpload=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),
+            dateCreated=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),
             rejectionReason = REJECTION_REASON.NONE,
             rejectionDescription = ""
         )
@@ -32,7 +32,7 @@ class Test_CreateSelfieViewModel:
                 },
             "idSelfie": 0,
             "url": "https://www.youtube.com/watch?v=X5oh7Gc3kG4",
-            "dateUpload": "2022-10-12T16:01:59.149927",
+            "dateCreated": "2022-10-12T16:01:59.149927",
             "state": "APPROVED",
             "rejectionReason": "NONE",
             "rejectionDescription": "",

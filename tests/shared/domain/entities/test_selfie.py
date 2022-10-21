@@ -16,11 +16,11 @@ class Test_Selfie():
                 
             )        
         
-        dateUpload = datetime.datetime.now()
+        dateCreated = datetime.datetime.now()
         
         selfie = Selfie (
                         student = student,
-                        dateUpload= dateUpload,
+                        dateCreated= dateCreated,
                         url= "www.maua.br",
                         state= STATE.DECLINED,
                         idSelfie= 1,
@@ -30,7 +30,7 @@ class Test_Selfie():
         
         assert type(selfie) == Selfie
         assert selfie.student == student
-        assert selfie.dateUpload == dateUpload
+        assert selfie.dateCreated == dateCreated
         assert selfie.state == STATE.DECLINED
         assert selfie.rejectionReason == REJECTION_REASON.COVERED_FACE
         assert selfie.rejectionDescription == "Balaclava"
@@ -43,7 +43,7 @@ class Test_Selfie():
                                 name="Monkey Guy",
                                 email="uuaa@floresta.com"
                                 )  ,
-                dateUpload= datetime.datetime.now(),
+                dateCreated= datetime.datetime.now(),
                 url= "www.maua.br",
                 state= STATE.PENDING_REVIEW,
                 idSelfie= 1,
@@ -60,7 +60,7 @@ class Test_Selfie():
                                 name="Monkey Guy",
                                 email="uuaa@floresta.com"
                                 )  ,
-                dateUpload= datetime.datetime.now(),
+                dateCreated= datetime.datetime.now(),
                 url= "www.maua.br",
                 state= STATE.PENDING_REVIEW,
                 idSelfie= 1,
@@ -76,7 +76,7 @@ class Test_Selfie():
                                 name="Monkey Guy",
                                 email="uuaa@floresta.com"
                                 )  ,
-                dateUpload= datetime.datetime.now(),
+                dateCreated= datetime.datetime.now(),
                 url= None,
                 state= STATE.PENDING_REVIEW,
                 idSelfie= 1,
@@ -92,7 +92,7 @@ class Test_Selfie():
                                 name="Monkey Guy",
                                 email="uuaa@floresta.com"
                                 ),
-                dateUpload= datetime.datetime.now(),
+                dateCreated= datetime.datetime.now(),
                 url= "www.maua.br",
                 state= "PENDING_REVIEW",
                 idSelfie= 1,
@@ -108,7 +108,7 @@ class Test_Selfie():
                                 name="Monkey Guy",
                                 email="uuaa@floresta.com"
                                 ),
-                dateUpload= datetime.datetime.now(),
+                dateCreated= datetime.datetime.now(),
                 url= "www.maua.br",
                 state= STATE.PENDING_REVIEW,
                 idSelfie= None,
@@ -124,7 +124,7 @@ class Test_Selfie():
                                 name="Monkey Guy",
                                 email="uuaa@floresta.com"
                                 ),
-                dateUpload= datetime.datetime.now(),
+                dateCreated= datetime.datetime.now(),
                 url= "www.maua.br",
                 state= STATE.PENDING_REVIEW,
                 idSelfie= "1",
@@ -140,7 +140,7 @@ class Test_Selfie():
                                 name="Monkey Guy",
                                 email="uuaa@floresta.com"
                                 ),
-                dateUpload= datetime.datetime.now(),
+                dateCreated= datetime.datetime.now(),
                 url= "www.maua.br",
                 state= STATE.PENDING_REVIEW,
                 idSelfie= "1",
@@ -156,7 +156,7 @@ class Test_Selfie():
                                   name="Monkey Guy",
                                   email="uuaa@floresta.com"
                                   ),
-                  dateUpload= datetime.datetime.now(),
+                  dateCreated= datetime.datetime.now(),
                   url= "www.maua.br",
                   state= STATE.PENDING_REVIEW,
                   idSelfie= "1",

@@ -24,7 +24,7 @@ class StudentViewModel:
 
 class SelfieViewModel:
     idSelfie: int
-    dateUpload: str
+    dateCreated: str
     url: str
     state: STATE
     rejectionReason: REJECTION_REASON
@@ -32,7 +32,7 @@ class SelfieViewModel:
 
     def __init__(self, selfie: Selfie):
         self.idSelfie = selfie.idSelfie
-        self.dateUpload = selfie.dateUpload
+        self.dateCreated = selfie.dateCreated
         self.url = selfie.url
         self.state = selfie.state
         self.rejectionReason = selfie.rejectionReason
@@ -41,7 +41,7 @@ class SelfieViewModel:
     def to_dict(self) -> dict:
         return {
             "idSelfie" : self.idSelfie,
-            "dateUpload" : self.dateUpload.isoformat(),
+            "dateCreated" : self.dateCreated.isoformat(),
             "url" : self.url,
             "state" : self.state.value,
             "rejectionReason": self.rejectionReason.value,

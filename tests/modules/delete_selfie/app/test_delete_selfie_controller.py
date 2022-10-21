@@ -24,7 +24,7 @@ class Test_DeleteSelfieController:
             "email":"eusousoller@gmail.com"
         },
             'selfie':{
- 'dateUpload': '2022-10-12T16:01:59.149927',
+ 'dateCreated': '2022-10-12T16:01:59.149927',
             'idSelfie': 0,
             'state': 'DECLINED',
             'rejectionReason': 'COVERED_FACE',
@@ -56,7 +56,7 @@ class Test_DeleteSelfieController:
             "email":"eusousoller@gmail.com"
         },
             'selfie':{
- 'dateUpload': '2022-10-12T16:01:59.149927',
+ 'dateCreated': '2022-10-12T16:01:59.149927',
             'idSelfie': 0,
             'state': 'DECLINED',
             'rejectionReason': 'COVERED_FACE',

@@ -18,7 +18,7 @@ class Test_GetSelfieController:
 
         assert response.status_code == 200
         assert response.body['url'] == repo.selfies[0].url 
-        assert response.body['dateUpload'] == repo.selfies[0].dateUpload.isoformat()  
+        assert response.body['dateCreated'] == repo.selfies[0].dateCreated.isoformat()  
         assert response.body['state'] == "DECLINED"
         assert response.body['rejectionReason'] == "COVERED_FACE"
         assert response.body['rejectionDescription'] == "Balaclava"

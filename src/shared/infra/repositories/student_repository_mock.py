@@ -45,7 +45,7 @@ class StudentRepositoryMock(IStudentRepository):
             Selfie(
                 idSelfie=0,
                 student=self.students[0],
-                dateUpload=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),
+                dateCreated=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),
                 url="https://i.imgur.com/0KFBHTB.jpg",
                 state=STATE.DECLINED,
                 rejectionReason=REJECTION_REASON.COVERED_FACE,
@@ -54,7 +54,7 @@ class StudentRepositoryMock(IStudentRepository):
             Selfie(
                 idSelfie=1,
                 student=self.students[0],
-                dateUpload=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),
+                dateCreated=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),
                 url="https://i.imgur.com/b9qFYmb.jpg",
                 state=STATE.APPROVED,
                 rejectionReason = REJECTION_REASON.NONE,
@@ -63,7 +63,7 @@ class StudentRepositoryMock(IStudentRepository):
             Selfie(
                 idSelfie=0,
                 student=self.students[1],
-                dateUpload=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),
+                dateCreated=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),
                 url="https://i.imgur.com/dv7Q5VT.jpg",
                 state=STATE.PENDING_REVIEW,
                 rejectionReason = REJECTION_REASON.NONE,
@@ -72,7 +72,7 @@ class StudentRepositoryMock(IStudentRepository):
             Selfie(
                 idSelfie=0,
                 student=self.students[2],
-                dateUpload=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),
+                dateCreated=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),
                 url="https://pps.whatsapp.net/v/t61.24694-24/56153869_1240493612792530_7354067850044112896_n.jpg?ccb=11-4&oh=01_AVydS_LW2WM2tLLKeEKbZIAlVJCbgJlfZ96y3yQnXAFBEA&oe=635822E5",
                 state=STATE.APPROVED,
                 rejectionReason = REJECTION_REASON.NONE,
@@ -81,7 +81,7 @@ class StudentRepositoryMock(IStudentRepository):
             Selfie(
                 idSelfie=0,
                 student=self.students[3],
-                dateUpload=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),
+                dateCreated=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),
                 url="https://i.imgur.com/4ewA19S.png",
                 state=STATE.IN_REVIEW,
                 rejectionReason = REJECTION_REASON.NONE,

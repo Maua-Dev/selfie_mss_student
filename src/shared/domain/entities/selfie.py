@@ -8,18 +8,18 @@ from src.shared.helpers.errors.domain_errors import EntityError
 class Selfie(abc.ABC):
     idSelfie: int
     student: Student
-    dateUpload: datetime.datetime
+    dateCreated: datetime.datetime
     url: str
     state: STATE
     rejectionReason: REJECTION_REASON
     rejectionDescription: str
 
-    def __init__(self, student: Student, dateUpload: datetime.datetime, url: str, state: STATE, idSelfie: int, rejectionReason: REJECTION_REASON, rejectionDescription: str):
+    def __init__(self, student: Student, dateCreated: datetime.datetime, url: str, state: STATE, idSelfie: int, rejectionReason: REJECTION_REASON, rejectionDescription: str):
         self.student = student
 
-        if (dateUpload == None and type(dateUpload) != datetime.datetime):
-            raise EntityError('dateUpload')
-        self.dateUpload = dateUpload
+        if (dateCreated == None and type(dateCreated) != datetime.datetime):
+            raise EntityError('dateCreated')
+        self.dateCreated = dateCreated
 
         if (url == None):
             raise EntityError('url')

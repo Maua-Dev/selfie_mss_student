@@ -12,13 +12,13 @@ class Test_GetSelfiesByRaViewModel:
 
         expected = {
         'message': 'the selfies were retriven',
-        'selfies': [{'dateUpload': '2022-10-12T16:01:59.149927',
+        'selfies': [{'dateCreated': '2022-10-12T16:01:59.149927',
                     'idSelfie': 0,
                     'state': 'DECLINED',
                     'rejectionReason': 'COVERED_FACE',
                     'rejectionDescription': 'Balaclava',
                     'url': 'https://i.imgur.com/0KFBHTB.jpg'},
-                    {'dateUpload': '2022-10-12T16:01:59.149927',
+                    {'dateCreated': '2022-10-12T16:01:59.149927',
                     'idSelfie': 1,
                     'state': 'APPROVED',
                     'rejectionReason': 'NONE',
