@@ -33,6 +33,10 @@ class IStudentRepository(ABC):
     
     @abstractmethod    
     def delete_selfie(self, ra: str, idSelfie: int) -> Tuple[Selfie, Student]:
+        """
+        If selfie does not exist, then return None, None
+        """
+
         pass
     
     @abstractmethod    
