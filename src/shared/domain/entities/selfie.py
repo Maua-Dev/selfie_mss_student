@@ -31,6 +31,10 @@ class Selfie(abc.ABC):
 
         if idSelfie == None or type(idSelfie) != int:
             raise EntityError('id')
+
+        if idSelfie < 0:
+            raise EntityError('id')
+        
         self.idSelfie = idSelfie
 
         if (rejectionReason == None or type(rejectionReason) != REJECTION_REASON):

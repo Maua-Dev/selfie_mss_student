@@ -143,7 +143,7 @@ class Test_Selfie():
                 dateCreated= datetime.datetime.now(),
                 url= "www.maua.br",
                 state= STATE.PENDING_REVIEW,
-                idSelfie= "1",
+                idSelfie= 1,
                 rejectionReason = "REJECTION_REASON.COVERED_FACE",
                 rejectionDescription = "Balaclava"
             )
@@ -159,8 +159,24 @@ class Test_Selfie():
                   dateCreated= datetime.datetime.now(),
                   url= "www.maua.br",
                   state= STATE.PENDING_REVIEW,
-                  idSelfie= "1",
+                  idSelfie= 1,
                   rejectionReason = REJECTION_REASON.COVERED_FACE,
                   rejectionDescription = 1
               )
+        
+    def test_selfie_error_id_invalid_negative(self):
+      with pytest.raises(EntityError):
+        selfie = Selfie(
+                student= Student(
+                                ra="17090212",
+                                name="Monkey Guy",
+                                email="uuaa@floresta.com"
+                                ),
+                dateCreated= datetime.datetime.now(),
+                url= "www.maua.br",
+                state= STATE.PENDING_REVIEW,
+                idSelfie= -1,
+                rejectionReason = REJECTION_REASON.COVERED_FACE,
+                rejectionDescription = "Balaclava"
+            )
         
