@@ -20,12 +20,6 @@ class CreateSelfieUsecase:
         if student == None:
             raise NoItemsFound("ra")
         
-        
-        regex = re.compile(r'https:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)')
-
-        if(not bool(re.fullmatch(regex, url))):
-            raise EntityError("url")
-        
         selfie = Selfie(
             student=student,
             dateCreated=datetime.datetime.now(),

@@ -1,5 +1,6 @@
 import abc
 import datetime
+import re
 from src.shared.domain.entities.student import Student
 from src.shared.domain.enums.rejection_reason_enum import REJECTION_REASON
 from src.shared.domain.enums.state_enum import STATE
@@ -21,7 +22,7 @@ class Selfie(abc.ABC):
             raise EntityError('dateCreated')
         self.dateCreated = dateCreated
 
-        if (url == None):
+        if not Selfie.validate_url(url=url):
             raise EntityError('url')
         self.url = url
 
@@ -44,3 +45,15 @@ class Selfie(abc.ABC):
         if (type(rejectionDescription) != str and rejectionDescription != None):
             raise EntityError('rejectionDescription')
         self.rejectionDescription = rejectionDescription
+
+    @staticmethod
+    def validate_url(url:str) -> bool:
+
+        if url is None:
+            return False
+        regex = re.compile(r'https:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)')
+
+        if(not bool(re.fullmatch(regex, url))):
+            return False
+        
+        return True

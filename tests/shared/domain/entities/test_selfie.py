@@ -21,7 +21,7 @@ class Test_Selfie():
         selfie = Selfie (
                         student = student,
                         dateCreated= dateCreated,
-                        url= "www.maua.br",
+                        url= "https://www.maua.br",
                         state= STATE.DECLINED,
                         idSelfie= 1,
                         rejectionReason = REJECTION_REASON.COVERED_FACE,
