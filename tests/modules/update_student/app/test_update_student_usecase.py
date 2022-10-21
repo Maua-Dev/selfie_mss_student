@@ -39,5 +39,24 @@ class Test_UpdateStudentUsecase:
                 new_email="joaovitor@outlook.com"
             )
 
+    def test_update_student_usecase_invalid_name(self):
+        repo = StudentRepositoryMock()
+        usecase = UpdateStudentUsecase(repo=repo)
+
+        with pytest.raises(EntityError):
+            usecase(
+                ra=21014441,
+                new_name=""
+            )
+ 
+    def test_update_student_usecase_invalid_email(self):
+        repo = StudentRepositoryMock()
+        usecase = UpdateStudentUsecase(repo=repo)
+
+        with pytest.raises(EntityError):
+            usecase(
+                ra=21014441,
+                new_email="nome_sem_ponto_e_arroba"
+            )
  
             

@@ -27,7 +27,6 @@ class Test_UpdateStudentController:
         assert response.body['email'] == expected.email
         assert response.body['message'] == "User was updated successfully"
         
-
     def test_update_student_controller_ra_name(self):
         repo = StudentRepositoryMock()
         usecase = UpdateStudentUsecase(repo=repo)
@@ -149,3 +148,18 @@ class Test_UpdateStudentController:
 
         assert response.status_code == 400
         assert response.body == "Field ra is not valid"
+
+    def test_update_student_controller_bad_request_invalid_name(self):
+        repo = StudentRepositoryMock()
+        usecase = UpdateStudentUsecase(repo=repo)
+        controller = UpdateStudentController(usecase=usecase)
+
+        request = HttpRequest(body={
+            "ra": "12345678",
+            "new_name": "b"
+        })
+
+        response = controller(request=request)
+
+        assert response.status_code == 400
+        assert response.body == f"name length must be bigger than {Student.MIN_NAME_LENGTH}"
