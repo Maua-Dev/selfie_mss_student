@@ -13,3 +13,9 @@ archive
 .pytest_cache
 .vscode
 pytest_html_report.html
+.idea/
+venv/
+.venv
+.venv/
+.coveragerc
+.coverage
