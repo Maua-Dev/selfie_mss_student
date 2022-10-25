@@ -171,7 +171,11 @@ class StudentRepositoryMock(IStudentRepository):
         if new_rejectionDescription != None:
             self.selfies[idxSelfie].rejectionDescription = new_rejectionDescription
             
-        return self.selfies[idxSelfie]        
+        return self.selfies[idxSelfie]   
+
+
+    def get_all_selfies(self) -> List[Selfie]:
+        return self.selfies    
         
                 
         

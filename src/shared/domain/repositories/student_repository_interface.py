@@ -50,5 +50,12 @@ class IStudentRepository(ABC):
     @abstractmethod    
     def update_selfie(self, ra: str, idSelfie: int, new_state: STATE = None, new_rejectionReason: REJECTION_REASON = None, new_rejectionDescription: str = None) -> Selfie:
         pass
+
+       
+    @abstractmethod    
+    def get_all_selfies() -> List[Selfie]:
+        pass
+    
+    
     
     
