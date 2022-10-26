@@ -230,7 +230,6 @@ class StudentRepositoryMock(IStudentRepository):
 
     def get_all_selfies(self) -> List[Selfie]:
         return self.selfies    
-        return self.selfies[idxSelfie]
     
     def check_student_has_approved_selfie(self, ra: str) -> bool:
         selfies = self.get_selfies_by_ra(ra=ra)
