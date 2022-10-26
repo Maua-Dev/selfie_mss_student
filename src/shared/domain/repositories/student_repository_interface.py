@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import List, Tuple
+from typing import Dict, List, Tuple
 from src.shared.domain.entities.student import Student
 from src.shared.domain.entities.selfie import Selfie
 from src.shared.domain.enums.rejection_reason_enum import REJECTION_REASON
@@ -62,3 +62,6 @@ class IStudentRepository(ABC):
     def check_student_has_approved_selfie(self, ra: str) -> bool:
         pass
     
+    @abstractmethod    
+    def get_all_students() -> List[Dict]:
+        pass
