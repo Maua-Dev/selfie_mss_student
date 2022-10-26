@@ -1,4 +1,4 @@
-from src.modules.get_all_selfies.app.get_all_selfies_controller import GetAllSefiesController
+from src.modules.get_all_selfies.app.get_all_selfies_controller import GetAllSelfiesController
 from src.modules.get_all_selfies.app.get_all_selfies_usecase import GetAllSelfiesUsecase
 from src.shared.infra.repositories.student_repository_mock import StudentRepositoryMock
 from src.shared.helpers.http.http_models import HttpRequest
@@ -9,7 +9,7 @@ class Test_GetAllSelfiesController:
     def test_get_all_selfies_controller(self):
         repo = StudentRepositoryMock()
         usecase = GetAllSelfiesUsecase(repo=repo)
-        controller = GetAllSefiesController(usecase=usecase)
+        controller = GetAllSelfiesController(usecase=usecase)
 
         request = HttpRequest()
 

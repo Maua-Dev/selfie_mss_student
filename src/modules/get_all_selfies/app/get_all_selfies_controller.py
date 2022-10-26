@@ -3,7 +3,7 @@ from src.shared.helpers.http.http_models import OK, HttpRequest, HttpResponse
 from src.modules.get_all_selfies.app.get_all_selfies_viewmodel import GetAllSelfieViewModel
 
 
-class GetAllSefiesController:
+class GetAllSelfiesController:
     def __init__(self, usecase: GetAllSelfiesUsecase):
         self.getAllSelfiesUsecase = usecase
 
