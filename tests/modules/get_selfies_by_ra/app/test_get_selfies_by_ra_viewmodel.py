@@ -12,7 +12,7 @@ class Test_GetSelfiesByRaViewModel:
 
         expected = {
         'message': 'the selfies were retriven',
-        'selfies': [{'dateCreated': '2022-10-12T16:01:59.149927',
+        'selfies': [{'dateCreated': '2022-10-01T16:01:59.149927',
                     'idSelfie': 0,
                     'state': 'DECLINED',
                     'rejectionReason': 'COVERED_FACE',
