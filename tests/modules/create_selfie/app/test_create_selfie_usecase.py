@@ -1,7 +1,7 @@
 from src.shared.helpers.errors.domain_errors import EntityError
 from src.modules.create_selfie.app.create_selfie_usecase import CreateSelfieUsecase
 from src.shared.infra.repositories.student_repository_mock import StudentRepositoryMock
-from src.shared.helpers.errors.usecase_errors import NoItemsFound
+from src.shared.helpers.errors.usecase_errors import ForbiddenAction, NoItemsFound
 import pytest
 
 
@@ -45,3 +45,9 @@ class Test_CreateSelfieUsecase:
         with pytest.raises(EntityError):
             usecase(ra="21010757", url="www.mamaco.com")
             
+    def test_create_student_usecase_student_have_approved_selfie(self):
+        repo = StudentRepositoryMock()
+        usecase = CreateSelfieUsecase(repo=repo)
+
+        with pytest.raises(ForbiddenAction):
+            usecase(ra="15013103", url="www.mamaco.com")

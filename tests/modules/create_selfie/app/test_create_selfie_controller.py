@@ -113,3 +113,18 @@ class Test_CreateSelfieController:
 
         assert response.status_code == 400
         assert response.body == 'Field url is not valid'
+        
+    def test_create_selfie_controller_student_have_approved_selfie(self):
+        repo = StudentRepositoryMock()
+        usecase = CreateSelfieUsecase(repo=repo)
+        controller = CreateSelfieController(usecase=usecase)
+
+        request = HttpRequest(body={
+            "ra": "15013103",
+            "url": "http://www.macaco.br"
+        })
+
+        response = controller(request=request)
+
+        assert response.status_code == 403
+        assert response.body == 'That action is forbidden for this Student'
