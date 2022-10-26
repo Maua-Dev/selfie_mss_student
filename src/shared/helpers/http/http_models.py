@@ -71,3 +71,7 @@ class RedirectResponse(HttpResponse):
     def __init__(self, body: dict) -> None:
         super().__init__(HttpStatusCodeEnum.REDIRECT.value, None)
         self.location = body
+        
+class Forbidden(HttpResponse):
+    def __init__(self, body: dict) -> None:
+        super().__init__(HttpStatusCodeEnum.FORBIDDEN.value, body)

@@ -3,7 +3,7 @@ import re
 from src.shared.domain.enums.rejection_reason_enum import REJECTION_REASON
 from src.shared.domain.enums.state_enum import STATE
 from src.shared.helpers.errors.domain_errors import EntityError
-from src.shared.helpers.errors.usecase_errors import NoItemsFound
+from src.shared.helpers.errors.usecase_errors import NoItemsFound, ForbiddenAction
 from src.shared.domain.entities.student import Student
 from src.shared.domain.entities.selfie import Selfie
 from src.shared.domain.repositories.student_repository_interface import IStudentRepository
@@ -20,6 +20,9 @@ class CreateSelfieUsecase:
         if student == None:
             raise NoItemsFound("ra")
         
+        if self.repo.check_student_has_approved_selfie(ra=ra):       
+            raise ForbiddenAction("Student")
+             
         selfie = Selfie(
             student=student,
             dateCreated=datetime.datetime.now(),

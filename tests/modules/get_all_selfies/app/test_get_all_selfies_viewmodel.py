@@ -7,8 +7,8 @@ class Test_GetAllSelfiesViewModel:
         all_selfies = repo.selfies
 
         result = {
-          'all_selfies': [
-            {'dateCreated': '2022-10-12T16:01:59.149927',
+        'all_selfies': [
+          {'dateCreated': '2022-10-01T16:01:59.149927',
                    'idSelfie': 0,
                    'message': 'the selfie was retriven',
                    'rejectionDescription': 'Balaclava',
@@ -57,11 +57,41 @@ class Test_GetAllSelfiesViewModel:
                    'student': {'email': 'eusouoawsboy@amazon.com',
                                'name': 'Eh o Vilas do Mockas',
                                'ra': '21014440'},
-                   'url': 'https://i.imgur.com/4ewA19S.png'}
-                   ],
-           }  
+                   'url': 'https://i.imgur.com/4ewA19S.png'},
+                  {'dateCreated': '2022-10-01T16:01:59.149927',
+                   'idSelfie': 0,
+                   'message': 'the selfie was retriven',
+                   'rejectionDescription': 'Usou chapéu de mexicano que cobriu '
+                                           'a cara',
+                   'rejectionReason': 'COVERED_FACE',
+                   'state': 'DECLINED',
+                   'student': {'email': 'iamronald@mageofprogramming.com.br',
+                               'name': 'Little Ronald',
+                               'ra': '15013103'},
+                   'url': 'https://i.imgur.com/4ewA19S.png'},
+                  {'dateCreated': '2022-10-02T16:01:59.149927',
+                   'idSelfie': 1,
+                   'message': 'the selfie was retriven',
+                   'rejectionDescription': 'Tirou foto no meio da Rave, '
+                                           'enquanto aparecia um brilho forte',
+                   'rejectionReason': 'BRIGHT_BACKGROUND',
+                   'state': 'DECLINED',
+                   'student': {'email': 'iamronald@mageofprogramming.com.br',
+                               'name': 'Little Ronald',
+                               'ra': '15013103'},
+                   'url': 'https://i.imgur.com/4ewA19S.png'},
+                  {'dateCreated': '2022-10-12T16:01:59.149927',
+                   'idSelfie': 2,
+                   'message': 'the selfie was retriven',
+                   'rejectionDescription': '',
+                   'rejectionReason': 'NONE',
+                   'state': 'APPROVED',
+                   'student': {'email': 'iamronald@mageofprogramming.com.br',
+                               'name': 'Little Ronald',
+                               'ra': '15013103'},
+                   'url': 'https://i.imgur.com/4ewA19S.png'}],
+        }
         
         allSelfiesViewModel = GetAllSelfieViewModel(all_selfies).to_dict()
         
         assert allSelfiesViewModel == result
-        

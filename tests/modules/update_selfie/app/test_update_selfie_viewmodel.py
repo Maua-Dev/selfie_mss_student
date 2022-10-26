@@ -23,7 +23,7 @@ class Test_UpdateSelfieViewModel:
 
         result = {
             "idSelfie" : 0,
-            "dateCreated" : "2022-10-12T16:01:59.149927",
+            "dateCreated" : "2022-10-01T16:01:59.149927",
             "url" : "https://i.imgur.com/0KFBHTB.jpg",
             "state" : "DECLINED",
             "rejectionReason": "COVERED_FACE",

@@ -11,7 +11,7 @@ class Test_CreateSelfieController:
         usecase = CreateSelfieUsecase(repo=repo)
         controller = CreateSelfieController(usecase=usecase)
         request = HttpRequest(body={
-            "ra": "21010757",
+            "ra": "21014442",
             "url": "https://www.youtube.com/watch?v=5IpYOF4Hi6Q",
         })
         
@@ -22,8 +22,8 @@ class Test_CreateSelfieController:
 
         assert len(repo.selfies) == lenAfter
         assert response.body["url"] == "https://www.youtube.com/watch?v=5IpYOF4Hi6Q"
-        assert response.body["idSelfie"] == 2
-        assert response.body["student"]["ra"] == "21010757"
+        assert response.body["idSelfie"] == 1
+        assert response.body["student"]["ra"] == "21014442"
         assert response.status_code == 201
         assert response.body["message"] == "the selfie was created"
         assert response.body["rejectionReason"] == "NONE"
@@ -105,7 +105,7 @@ class Test_CreateSelfieController:
         controller = CreateSelfieController(usecase=usecase)
 
         request = HttpRequest(body={
-            "ra": "21010757",
+            "ra": "21014442",
             "url": "http://www.macaco.br"
         })
 
@@ -113,3 +113,18 @@ class Test_CreateSelfieController:
 
         assert response.status_code == 400
         assert response.body == 'Field url is not valid'
+        
+    def test_create_selfie_controller_student_have_approved_selfie(self):
+        repo = StudentRepositoryMock()
+        usecase = CreateSelfieUsecase(repo=repo)
+        controller = CreateSelfieController(usecase=usecase)
+
+        request = HttpRequest(body={
+            "ra": "15013103",
+            "url": "http://www.macaco.br"
+        })
+
+        response = controller(request=request)
+
+        assert response.status_code == 403
+        assert response.body == 'That action is forbidden for this Student'

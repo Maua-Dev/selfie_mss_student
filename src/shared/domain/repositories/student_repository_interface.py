@@ -58,4 +58,7 @@ class IStudentRepository(ABC):
     
     
     
+    @abstractmethod    
+    def check_student_has_approved_selfie(self, ra: str) -> bool:
+        pass
     
