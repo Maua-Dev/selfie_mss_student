@@ -43,6 +43,11 @@ class StudentRepositoryMock(IStudentRepository):
                 ra="15013103",
                 name="Little Ronald",
                 email="iamronald@mageofprogramming.com.br"
+            ),
+            Student(
+                ra="21002088",
+                name="Maluzinha",
+                email="mvergani.enactusmaua@gmail.com"
             )
         ]
 
@@ -118,6 +123,24 @@ class StudentRepositoryMock(IStudentRepository):
                 state=STATE.APPROVED,
                 rejectionReason = REJECTION_REASON.NONE,
                 rejectionDescription = ""
+            ),
+            Selfie(
+                idSelfie=2,
+                student=self.students[5],
+                dateCreated=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),
+                url="https://i.imgur.com/4ewA19S.png",
+                state=STATE.APPROVED,
+                rejectionReason = REJECTION_REASON.NONE,
+                rejectionDescription = ""
+            ),
+            Selfie(
+                idSelfie=0,
+                student=self.students[6],
+                dateCreated=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),
+                url="https://i.imgur.com/4ewA19S.png",
+                state=STATE.DECLINED,
+                rejectionReason = REJECTION_REASON.BRIGHT_BACKGROUND,
+                rejectionDescription = "O brilho dos olhos dela é senscaional"
             ),
         ]
 
