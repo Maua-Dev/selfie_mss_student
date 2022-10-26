@@ -12,26 +12,22 @@ class Test_DeleteSelfieController:
         usecase = DeleteSelfieUsecase(repo=repo)
         controller = DeleteSelfieController(usecase=usecase)
         request = HttpRequest(body={
-            "ra": "21010757",
+            "ra": "21014442",
             "idSelfie": "0"
         })
         response = controller(request=request)
 
         expected = {
-            'student':{
-            "ra":"21010757",
-   "name":"Victor",
-            "email":"eusousoller@gmail.com"
-        },
-            'selfie':{
- 'dateCreated': '2022-10-01T16:01:59.149927',
-            'idSelfie': 0,
-            'state': 'DECLINED',
-            'rejectionReason': 'COVERED_FACE',
-            'rejectionDescription': 'Balaclava',
-            'url': 'https://i.imgur.com/0KFBHTB.jpg',
-            },
-            'message':"the selfie was deleted"
+          'message': 'the selfie was deleted',
+          'selfie': {'dateCreated': '2022-10-12T16:01:59.149927',
+                     'idSelfie': 0,
+                     'rejectionDescription': '',
+                     'rejectionReason': 'NONE',
+                     'state': 'PENDING_REVIEW',
+                     'url': 'https://i.imgur.com/dv7Q5VT.jpg'},
+          'student': {'email': 'eutambemsousoler@outlook.com',
+                      'name': 'Soller',
+                      'ra': '21014442'},
           }
         
         assert response.status_code == 200
@@ -44,27 +40,11 @@ class Test_DeleteSelfieController:
         usecase = DeleteSelfieUsecase(repo=repo)
         controller = DeleteSelfieController(usecase=usecase)
         request = HttpRequest(body={
-            "ra": "21010757",
+            "ra": "21014442",
             "idSelfie": "10"
         })
         response = controller(request=request)
 
-        expected = {
-            'student':{
-            "ra":"21010757",
-   "name":"Victor",
-            "email":"eusousoller@gmail.com"
-        },
-            'selfie':{
- 'dateCreated': '2022-10-12T16:01:59.149927',
-            'idSelfie': 0,
-            'state': 'DECLINED',
-            'rejectionReason': 'COVERED_FACE',
-            'rejectionDescription': 'Balaclava',
-            'url': 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
-            },
-            'message':"the selfie was deleted"
-          }
         
         assert response.body == "No items found for ra or idSelfie"
         assert response.status_code == 404
@@ -172,6 +152,22 @@ class Test_DeleteSelfieController:
         response = controller(request=request)
         assert response.status_code == 400
         assert response.body == "Field idSelfie is not valid"
+
+
+      
+    def test_delete_selfie_controller_forbidden_item(self):
+        repo = StudentRepositoryMock()
+        usecase = DeleteSelfieUsecase(repo=repo)
+        controller = DeleteSelfieController(usecase=usecase)
+
+        request = HttpRequest(body= {
+            "ra": "21010757",
+            "idSelfie": "1"
+        })
+
+        response = controller(request=request)
+        assert response.status_code == 403
+        assert response.body == "That action is forbidden for this Selfie"
 
 
       

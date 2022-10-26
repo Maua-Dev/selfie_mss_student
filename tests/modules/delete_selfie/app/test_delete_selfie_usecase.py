@@ -1,7 +1,7 @@
 from src.shared.helpers.errors.domain_errors import EntityError
 from src.modules.delete_selfie.app.delete_selfie_usecase import DeleteSelfieUsecase
 from src.shared.infra.repositories.student_repository_mock import StudentRepositoryMock
-from src.shared.helpers.errors.usecase_errors import NoItemsFound
+from src.shared.helpers.errors.usecase_errors import ForbiddenAction, NoItemsFound
 import pytest
 
 class Test_DeleteSelfieUsecase:
@@ -9,15 +9,15 @@ class Test_DeleteSelfieUsecase:
         repo = StudentRepositoryMock()
 
         lenghtBefore = len(repo.selfies)
-        expected = repo.selfies[0]
+        expected = repo.selfies[2]
 
         usecase = DeleteSelfieUsecase(repo=repo)
-        selfie, student = usecase(ra=repo.students[0].ra, idSelfie = repo.selfies[0].idSelfie)
+        selfie, student = usecase(ra=repo.students[1].ra, idSelfie = repo.selfies[2].idSelfie)
 
 
         assert len(repo.selfies) == lenghtBefore - 1
         assert [selfie.url, selfie.dateCreated, selfie.idSelfie, selfie.state, selfie.student] == [expected.url, expected.dateCreated, expected.idSelfie, expected.state, expected.student]
-        assert student == repo.students[0]
+        assert student == repo.students[1]
         
 
     def test_delete_selfie_usecase_not_found_ra(self):
@@ -48,4 +48,14 @@ class Test_DeleteSelfieUsecase:
             usecase(
                 ra="21014442",
                 idSelfie=10
+            )
+
+    def test_delete_selfie_forbidden_Action(self):
+        repo = StudentRepositoryMock()
+        usecase = DeleteSelfieUsecase(repo=repo)
+
+        with pytest.raises(ForbiddenAction):
+            usecase(
+                ra="21010757",
+                idSelfie=1
             )
