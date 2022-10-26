@@ -91,7 +91,6 @@ class StudentRepositoryMock(IStudentRepository):
 
 
 
-
     def get_student(self, ra: str) -> Student:
         for student in self.students:
             if(student.ra == ra):
