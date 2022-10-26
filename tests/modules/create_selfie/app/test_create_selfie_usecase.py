@@ -12,16 +12,16 @@ class Test_CreateSelfieUsecase:
 
         lenBefore = len(repo.selfies)
 
-        selfie = usecase(ra="21010757", url="https://www.youtube.com/watch?v=k85mRPqvMbE")
+        selfie = usecase(ra="21014442", url="https://www.youtube.com/watch?v=k85mRPqvMbE")
 
         lenAfter = lenBefore + 1
 
         assert len(repo.selfies) == lenAfter
         assert repo.selfies[lenAfter - 1].url == "https://www.youtube.com/watch?v=k85mRPqvMbE"
-        assert repo.selfies[lenAfter - 1].student.ra == "21010757"
-        assert repo.selfies[lenAfter - 1].student.name == repo.students[0].name
-        assert repo.selfies[lenAfter - 1].student.email == repo.students[0].email
-        assert selfie.idSelfie == 2
+        assert repo.selfies[lenAfter - 1].student.ra == "21014442"
+        assert repo.selfies[lenAfter - 1].student.name == repo.students[1].name
+        assert repo.selfies[lenAfter - 1].student.email == repo.students[1].email
+        assert selfie.idSelfie == 1
 
 
     def test_create_student_usecase_ra_not_found(self):
@@ -43,7 +43,7 @@ class Test_CreateSelfieUsecase:
         usecase = CreateSelfieUsecase(repo=repo)
 
         with pytest.raises(EntityError):
-            usecase(ra="21010757", url="www.mamaco.com")
+            usecase(ra="21014442", url="www.mamaco.com")
             
     def test_create_student_usecase_student_have_approved_selfie(self):
         repo = StudentRepositoryMock()

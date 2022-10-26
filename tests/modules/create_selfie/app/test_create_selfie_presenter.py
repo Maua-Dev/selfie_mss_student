@@ -26,16 +26,16 @@ class Test_CreateSelfiePresenter:
         'accept-encoding': 'gzip, deflate, br',
         'user-agent': 'PostmanRuntime/7.29.2'},
         'requestContext':
-        {'accountId': 'anonymous', 'apiId': 'd2w3ehxv3vp45jbnpflej2oxue0kbsny', 'domainName': 'd2w3ehxv3vp45jbnpflej2oxue0kbsny.lambda-url.us-east-1.on.aws', 'domainPrefix': 'd2w3ehxv3vp45jbnpflej2oxue0kbsny', 'http': {'method': 'POST', 'path': '/', 'protocol': 'HTTP/1.1', 'sourceIp': '191.193.227.175', 'userAgent': 'PostmanRuntime/7.29.2'}, 'requestId': 'f7ef0445-f100-4362-bb4a-13772177292b', 'routeKey': '$default', 'stage': '$default', 'time': '18/Oct/2022:00:05:03 +0000', 'timeEpoch': 1666051503383}, 'body': '{\r\n    "ra": "21010757",\r\n    "url": "https://www.youtube.com/watch?v=5IpYOF4Hi6Q"\r\n}', 'isBase64Encoded': False}
+        {'accountId': 'anonymous', 'apiId': 'd2w3ehxv3vp45jbnpflej2oxue0kbsny', 'domainName': 'd2w3ehxv3vp45jbnpflej2oxue0kbsny.lambda-url.us-east-1.on.aws', 'domainPrefix': 'd2w3ehxv3vp45jbnpflej2oxue0kbsny', 'http': {'method': 'POST', 'path': '/', 'protocol': 'HTTP/1.1', 'sourceIp': '191.193.227.175', 'userAgent': 'PostmanRuntime/7.29.2'}, 'requestId': 'f7ef0445-f100-4362-bb4a-13772177292b', 'routeKey': '$default', 'stage': '$default', 'time': '18/Oct/2022:00:05:03 +0000', 'timeEpoch': 1666051503383}, 'body': '{\r\n    "ra": "21014442",\r\n    "url": "https://www.youtube.com/watch?v=5IpYOF4Hi6Q"\r\n}', 'isBase64Encoded': False}
 
 
         response = lambda_handler(event, None)
         assert response["statusCode"] == 201
-        assert json.loads(response["body"])["idSelfie"] == 2
+        assert json.loads(response["body"])["idSelfie"] == 1
         assert json.loads(response["body"])["rejectionReason"] == "NONE"
         assert json.loads(response["body"])["rejectionDescription"] == None
         assert json.loads(response["body"])["state"] == "PENDING_REVIEW"
-        assert json.loads(response["body"])["student"]["ra"] == "21010757"
+        assert json.loads(response["body"])["student"]["ra"] == "21014442"
 
     def test_create_selfie_missing_ra(self):
         event = {
