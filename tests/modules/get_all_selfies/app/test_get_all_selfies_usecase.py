@@ -3,7 +3,7 @@ from src.shared.infra.repositories.student_repository_mock import StudentReposit
 import pytest
 
 class Test_GetAllSelfiesUsecase:
-    def test_get_selfie(self):
+    def test_get_all_selfies(self):
         repo = StudentRepositoryMock()
         usecase = GetAllSelfiesUsecase(repo=repo)
        

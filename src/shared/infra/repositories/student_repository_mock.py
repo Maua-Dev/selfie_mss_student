@@ -1,5 +1,5 @@
 import datetime
-from typing import List, Tuple
+from typing import Dict, List, Tuple
 from src.shared.domain.entities.selfie import Selfie
 from src.shared.domain.enums.state_enum import STATE
 from src.shared.domain.enums.rejection_reason_enum import REJECTION_REASON
@@ -238,6 +238,10 @@ class StudentRepositoryMock(IStudentRepository):
                 return True
             
         return False 
+    
+    def get_all_students(self) -> List[Student]:
+        return self.students
+            
         
                 
-        
+       

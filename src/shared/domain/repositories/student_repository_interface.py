@@ -50,18 +50,15 @@ class IStudentRepository(ABC):
     @abstractmethod    
     def update_selfie(self, ra: str, idSelfie: int, new_state: STATE = None, new_rejectionReason: REJECTION_REASON = None, new_rejectionDescription: str = None) -> Selfie:
         pass
-
        
     @abstractmethod    
-    def get_all_selfies() -> List[Selfie]:
+    def get_all_selfies(self) -> List[Selfie]:
         pass
-    
-    
     
     @abstractmethod    
     def check_student_has_approved_selfie(self, ra: str) -> bool:
         pass
     
     @abstractmethod    
-    def get_all_students() -> List[Dict]:
+    def get_all_students(self) -> List[Student]:
         pass
