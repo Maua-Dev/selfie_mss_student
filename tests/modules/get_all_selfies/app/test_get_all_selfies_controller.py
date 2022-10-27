@@ -19,5 +19,5 @@ class Test_GetAllSelfiesController:
         assert response.body['all_selfies'][0]['url'] == repo.selfies[0].url
         assert len(response.body['all_selfies']) ==  len(repo.selfies)
         assert response.body['all_selfies'][0]['student']['ra'] == repo.selfies[0].student.ra
-
+        assert response.body['message'] == 'all selfies were retriven'
        

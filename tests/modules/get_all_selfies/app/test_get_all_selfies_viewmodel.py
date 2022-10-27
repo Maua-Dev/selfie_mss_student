@@ -109,6 +109,7 @@ class Test_GetAllSelfiesViewModel:
                                      'name': 'Maluzinha',
                                      'ra': '21002088'},
                          'url': 'https://i.imgur.com/4ewA19S.png'}],
+            "message": "all selfies were retriven"
         }
         
         allSelfiesViewModel = GetAllSelfieViewModel(all_selfies).to_dict()

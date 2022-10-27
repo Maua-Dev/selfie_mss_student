@@ -62,5 +62,6 @@ class GetAllSelfieViewModel:
 
     def to_dict(self) -> dict:
         return {
-            "all_selfies": [GetSelfieViewModel(selfie).to_dict() for selfie in self.selfies]
+            "all_selfies": [GetSelfieViewModel(selfie).to_dict() for selfie in self.selfies],
+            "message": "all selfies were retriven"
         }
