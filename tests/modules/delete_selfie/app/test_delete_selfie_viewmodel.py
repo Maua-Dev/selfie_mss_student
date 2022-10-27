@@ -13,7 +13,7 @@ class Test_DeleteSelfieViewModel:
             "email":"eusousoller@gmail.com"
         },
             'selfie':{
-            'dateCreated': '2022-10-12T16:01:59.149927',
+            'dateCreated': '2022-10-01T16:01:59.149927',
             'idSelfie': 0,
             'state': 'DECLINED',
             'url': 'https://i.imgur.com/0KFBHTB.jpg',

@@ -26,16 +26,16 @@ class Test_CreateSelfiePresenter:
         'accept-encoding': 'gzip, deflate, br',
         'user-agent': 'PostmanRuntime/7.29.2'},
         'requestContext':
-        {'accountId': 'anonymous', 'apiId': 'd2w3ehxv3vp45jbnpflej2oxue0kbsny', 'domainName': 'd2w3ehxv3vp45jbnpflej2oxue0kbsny.lambda-url.us-east-1.on.aws', 'domainPrefix': 'd2w3ehxv3vp45jbnpflej2oxue0kbsny', 'http': {'method': 'POST', 'path': '/', 'protocol': 'HTTP/1.1', 'sourceIp': '191.193.227.175', 'userAgent': 'PostmanRuntime/7.29.2'}, 'requestId': 'f7ef0445-f100-4362-bb4a-13772177292b', 'routeKey': '$default', 'stage': '$default', 'time': '18/Oct/2022:00:05:03 +0000', 'timeEpoch': 1666051503383}, 'body': '{\r\n    "ra": "21010757",\r\n    "url": "https://www.youtube.com/watch?v=5IpYOF4Hi6Q"\r\n}', 'isBase64Encoded': False}
+        {'accountId': 'anonymous', 'apiId': 'd2w3ehxv3vp45jbnpflej2oxue0kbsny', 'domainName': 'd2w3ehxv3vp45jbnpflej2oxue0kbsny.lambda-url.us-east-1.on.aws', 'domainPrefix': 'd2w3ehxv3vp45jbnpflej2oxue0kbsny', 'http': {'method': 'POST', 'path': '/', 'protocol': 'HTTP/1.1', 'sourceIp': '191.193.227.175', 'userAgent': 'PostmanRuntime/7.29.2'}, 'requestId': 'f7ef0445-f100-4362-bb4a-13772177292b', 'routeKey': '$default', 'stage': '$default', 'time': '18/Oct/2022:00:05:03 +0000', 'timeEpoch': 1666051503383}, 'body': '{\r\n    "ra": "21014442",\r\n    "url": "https://www.youtube.com/watch?v=5IpYOF4Hi6Q"\r\n}', 'isBase64Encoded': False}
 
 
         response = lambda_handler(event, None)
         assert response["statusCode"] == 201
-        assert json.loads(response["body"])["idSelfie"] == 2
+        assert json.loads(response["body"])["idSelfie"] == 1
         assert json.loads(response["body"])["rejectionReason"] == "NONE"
         assert json.loads(response["body"])["rejectionDescription"] == None
         assert json.loads(response["body"])["state"] == "PENDING_REVIEW"
-        assert json.loads(response["body"])["student"]["ra"] == "21010757"
+        assert json.loads(response["body"])["student"]["ra"] == "21014442"
 
     def test_create_selfie_missing_ra(self):
         event = {
@@ -262,5 +262,60 @@ class Test_CreateSelfiePresenter:
             assert response["statusCode"] == 400
             assert json.loads(response["body"]) == expected
 
-        
+    def test_create_selfie_student_have_approved_selfie(self):
+            event = {
+                "version": "2.0",
+                "routeKey": "$default",
+                "rawPath": "/my/path",
+                "rawQueryString": "parameter1=value1&parameter1=value2&parameter2=value",
+                "cookies": [
+                    "cookie1",
+                    "cookie2"
+                ],
+                "headers": {
+                    "header1": "value1",
+                    "header2": "value1,value2"
+                },
+                "requestContext": {
+                    "accountId": "123456789012",
+                    "apiId": "<urlid>",
+                    "authentication": None,
+                    "authorizer": {
+                        "iam": {
+                            "accessKey": "AKIA...",
+                            "accountId": "111122223333",
+                            "callerId": "AIDA...",
+                            "cognitoIdentity": None,
+                            "principalOrgId": None,
+                            "userArn": "arn:aws:iam::111122223333:user/example-user",
+                            "userId": "AIDA..."
+                        }
+                    },
+                    "domainName": "<url-id>.lambda-url.us-west-2.on.aws",
+                    "domainPrefix": "<url-id>",
+                    "http": {
+                        "method": "POST",
+                        "path": "/my/path",
+                        "protocol": "HTTP/1.1",
+                        "sourceIp": "123.123.123.123",
+                        "userAgent": "agent"
+                    },
+                    "requestId": "id",
+                    "routeKey": "$default",
+                    "stage": "$default",
+                    "time": "12/Mar/2020:19:03:58 +0000",
+                    "timeEpoch": 1583348638390
+                },
+                'body': '{\r\n    "ra": "15013103",\r\n "url": "http:/vitinhodohype.com.br"\r\n}',
+                "pathParameters": None,
+                "isBase64Encoded": None,
+                "stageVariables": None
+            }
+
+            expected = 'That action is forbidden for this Student'
+
+            response = lambda_handler(event, None)
+            assert response["statusCode"] == 403
+            assert json.loads(response["body"]) == expected
+   
     
