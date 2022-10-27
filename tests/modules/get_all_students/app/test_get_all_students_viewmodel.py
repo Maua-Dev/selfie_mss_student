@@ -7,7 +7,7 @@ class Test_GetAllStudentsViewModel:
         usecase = GetAllStudentsUsecase(repo=repo)
         all_students = usecase()
 
-        result = {
+        expected = {
          
            'all_students': {'15013103': {'email': 'iamronald@mageofprogramming.com.br',
                                          'name': 'Little Ronald',
@@ -112,4 +112,4 @@ class Test_GetAllStudentsViewModel:
         
         allStudentsViewModel = GetAllStudentsViewModel(all_students).to_dict()
         
-        assert allStudentsViewModel == result
+        assert allStudentsViewModel == expected
