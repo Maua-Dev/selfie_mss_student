@@ -54,7 +54,7 @@ class GetSelfieViewModel:
         }
 
 
-class GetAllSelfieViewModel:
+class GetAllSelfiesViewModel:
     all_selfies: List[GetSelfieViewModel]
 
     def __init__(self, all_selfies: List[Selfie]):

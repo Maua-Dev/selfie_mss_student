@@ -1,4 +1,4 @@
-from src.modules.get_all_selfies.app.get_all_selfies_viewmodel import GetAllSelfieViewModel
+from src.modules.get_all_selfies.app.get_all_selfies_viewmodel import GetAllSelfiesViewModel
 from src.shared.infra.repositories.student_repository_mock import StudentRepositoryMock
 
 class Test_GetAllSelfiesViewModel:
@@ -112,6 +112,6 @@ class Test_GetAllSelfiesViewModel:
             "message": "all selfies were retriven"
         }
         
-        allSelfiesViewModel = GetAllSelfieViewModel(all_selfies).to_dict()
+        allSelfiesViewModel = GetAllSelfiesViewModel(all_selfies).to_dict()
         
         assert allSelfiesViewModel == result
