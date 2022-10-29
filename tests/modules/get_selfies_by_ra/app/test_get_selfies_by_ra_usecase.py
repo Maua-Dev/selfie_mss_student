@@ -40,7 +40,7 @@ class Test_GetSelfieByRaUsecase:
         usecase = GetSelfiesByRaUsecase(repo=repo)
           
         with pytest.raises(NoItemsFound):
-            selfies = usecase(ra="21002088")
+            selfies = usecase(ra="21003068")
           
     def test_get_selfies_by_ra_usecase_invalid_ra(self):
         repo = StudentRepositoryMock()

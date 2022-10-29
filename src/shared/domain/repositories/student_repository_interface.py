@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import List, Tuple
+from typing import Dict, List, Tuple
 from src.shared.domain.entities.student import Student
 from src.shared.domain.entities.selfie import Selfie
 from src.shared.domain.enums.rejection_reason_enum import REJECTION_REASON
@@ -50,8 +50,15 @@ class IStudentRepository(ABC):
     @abstractmethod    
     def update_selfie(self, ra: str, idSelfie: int, new_state: STATE = None, new_rejectionReason: REJECTION_REASON = None, new_rejectionDescription: str = None) -> Selfie:
         pass
+       
+    @abstractmethod    
+    def get_all_selfies(self) -> List[Selfie]:
+        pass
     
     @abstractmethod    
     def check_student_has_approved_selfie(self, ra: str) -> bool:
         pass
     
+    @abstractmethod    
+    def get_all_students(self) -> List[Student]:
+        pass

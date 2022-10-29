@@ -1,5 +1,5 @@
 import datetime
-from typing import List, Tuple
+from typing import Dict, List, Tuple
 from src.shared.domain.entities.selfie import Selfie
 from src.shared.domain.enums.state_enum import STATE
 from src.shared.domain.enums.rejection_reason_enum import REJECTION_REASON
@@ -43,6 +43,11 @@ class StudentRepositoryMock(IStudentRepository):
                 ra="15013103",
                 name="Little Ronald",
                 email="iamronald@mageofprogramming.com.br"
+            ),
+            Student(
+                ra="21002088",
+                name="Maluzinha",
+                email="mvergani.enactusmaua@gmail.com"
             )
         ]
 
@@ -119,8 +124,25 @@ class StudentRepositoryMock(IStudentRepository):
                 rejectionReason = REJECTION_REASON.NONE,
                 rejectionDescription = ""
             ),
+            Selfie(
+                idSelfie=2,
+                student=self.students[5],
+                dateCreated=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),
+                url="https://i.imgur.com/4ewA19S.png",
+                state=STATE.APPROVED,
+                rejectionReason = REJECTION_REASON.NONE,
+                rejectionDescription = ""
+            ),
+            Selfie(
+                idSelfie=0,
+                student=self.students[6],
+                dateCreated=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),
+                url="https://i.imgur.com/4ewA19S.png",
+                state=STATE.DECLINED,
+                rejectionReason = REJECTION_REASON.BRIGHT_BACKGROUND,
+                rejectionDescription = "O brilho dos olhos dela é senscaional"
+            ),
         ]
-
 
 
 
@@ -203,7 +225,11 @@ class StudentRepositoryMock(IStudentRepository):
         if new_rejectionDescription != None:
             self.selfies[idxSelfie].rejectionDescription = new_rejectionDescription
             
-        return self.selfies[idxSelfie]
+        return self.selfies[idxSelfie]   
+
+
+    def get_all_selfies(self) -> List[Selfie]:
+        return self.selfies    
     
     def check_student_has_approved_selfie(self, ra: str) -> bool:
         selfies = self.get_selfies_by_ra(ra=ra)
@@ -212,6 +238,10 @@ class StudentRepositoryMock(IStudentRepository):
                 return True
             
         return False 
+    
+    def get_all_students(self) -> List[Student]:
+        return self.students
+            
         
                 
-        
+       

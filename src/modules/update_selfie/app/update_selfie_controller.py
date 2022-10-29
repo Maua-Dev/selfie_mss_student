@@ -1,9 +1,9 @@
 from .update_selfie_viewmodel import UpdateSelfieViewModel
 from src.shared.domain.enums.state_enum import STATE
 from src.shared.helpers.errors.domain_errors import EntityError
-from src.shared.helpers.errors.usecase_errors import DuplicatedItem, NoItemsFound
+from src.shared.helpers.errors.usecase_errors import DuplicatedItem, ForbiddenAction, NoItemsFound
 from src.shared.helpers.errors.controller_errors import MissingParameters, WrongTypeParameter
-from src.shared.helpers.http.http_models import OK, BadRequest, Conflict, HttpRequest, HttpResponse, InternalServerError, NotFound
+from src.shared.helpers.http.http_models import OK, BadRequest, Conflict, Forbidden, HttpRequest, HttpResponse, InternalServerError, NotFound
 from .update_selfie_usecase import UpdateSelfieUsecase
 from src.shared.domain.enums.rejection_reason_enum import REJECTION_REASON
 
@@ -48,6 +48,9 @@ class UpdateSelfieController:
 
         except MissingParameters as err:
             return BadRequest(body=err.message)
+
+        except ForbiddenAction as err:
+            return Forbidden(body=err.message)
 
         except DuplicatedItem as err:
             return Conflict(body=err.message)

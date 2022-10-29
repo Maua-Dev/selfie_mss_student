@@ -1,7 +1,7 @@
 from typing import Tuple
 from src.shared.domain.entities.selfie import Selfie
 from src.shared.helpers.errors.domain_errors import EntityError
-from src.shared.helpers.errors.usecase_errors import NoItemsFound
+from src.shared.helpers.errors.usecase_errors import ForbiddenAction, NoItemsFound
 from src.shared.domain.entities.student import Student
 from src.shared.infra.repositories.student_repository_mock import IStudentRepository
 
@@ -13,6 +13,9 @@ class DeleteSelfieUsecase:
         
         if not Student.validate_ra(ra):
             raise EntityError('ra')
+    
+        if self.repo.check_student_has_approved_selfie(ra=ra):       
+            raise ForbiddenAction("Selfie")
 
         selfie, student = self.repo.delete_selfie(ra=ra, idSelfie=idSelfie)
 

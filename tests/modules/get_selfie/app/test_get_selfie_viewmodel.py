@@ -1,6 +1,9 @@
 from src.shared.infra.repositories.student_repository_mock import StudentRepositoryMock
 from src.modules.get_selfie.app.get_selfie_viewmodel import GetSelfieViewModel
 
+from src.shared.domain.entities.student import Student
+
+
 class Test_GetStudentViewModel:
     def test_get_selfie_view_model(self):
         repo = StudentRepositoryMock()
@@ -19,5 +22,4 @@ class Test_GetStudentViewModel:
         studentViewModel = GetSelfieViewModel(selfie).to_dict()
         
         assert studentViewModel == result
-        
         

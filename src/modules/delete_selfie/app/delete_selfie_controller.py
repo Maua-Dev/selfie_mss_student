@@ -1,8 +1,8 @@
 from .delete_selfie_viewmodel import DeleteSelfieViewModel
 from src.shared.helpers.errors.domain_errors import EntityError
-from src.shared.helpers.errors.usecase_errors import NoItemsFound
+from src.shared.helpers.errors.usecase_errors import ForbiddenAction, NoItemsFound
 from src.shared.helpers.errors.controller_errors import MissingParameters, WrongTypeParameter
-from src.shared.helpers.http.http_models import OK, BadRequest, HttpRequest, HttpResponse, InternalServerError, NotFound
+from src.shared.helpers.http.http_models import OK, BadRequest, Forbidden, HttpRequest, HttpResponse, InternalServerError, NotFound
 from .delete_selfie_usecase import DeleteSelfieUsecase
 
 
@@ -39,6 +39,9 @@ class DeleteSelfieController:
 
         except MissingParameters as err:
             return BadRequest(body=err.message)
+
+        except ForbiddenAction as err:
+            return Forbidden(body=err.message)
 
         except WrongTypeParameter as err:
             return BadRequest(body=err.message)
