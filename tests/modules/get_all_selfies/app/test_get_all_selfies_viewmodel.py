@@ -73,7 +73,7 @@ class Test_GetAllSelfiesViewModel:
                          'message': 'the selfie was retriven',
                          'rejectionDescription': 'Tirou foto no meio da Rave, '
                                                  'enquanto aparecia um brilho forte',        
-                         'rejectionReason': 'BRIGHT_BACKGROUND',
+                         'rejectionReason': 'NOT_ALLOWED_BACKGROUND',
                          'state': 'DECLINED',
                          'student': {'email': 'iamronald@mageofprogramming.com.br',
                                      'name': 'Little Ronald',
@@ -103,7 +103,7 @@ class Test_GetAllSelfiesViewModel:
                          'idSelfie': 0,
                          'message': 'the selfie was retriven',
                          'rejectionDescription': 'O brilho dos olhos dela é senscaional',
-                         'rejectionReason': 'BRIGHT_BACKGROUND',
+                         'rejectionReason': 'NOT_ALLOWED_BACKGROUND',
                          'state': 'DECLINED',
                          'student': {'email': 'mvergani.enactusmaua@gmail.com',
                                      'name': 'Maluzinha',

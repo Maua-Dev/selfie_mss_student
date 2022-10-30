@@ -40,7 +40,7 @@ class Test_GetAllStudentsController:
                                                                               'aparecia '
                                                                               'um brilho '
                                                                               'forte',
-                                                      'rejectionReason': 'BRIGHT_BACKGROUND',
+                                                      'rejectionReason': 'NOT_ALLOWED_BACKGROUND',
                                                       'state': 'DECLINED',
                                                       'url': 'https://i.imgur.com/4ewA19S.png'},
                                                      {'dateCreated': '2022-10-12T16:01:59.149927',
@@ -68,7 +68,7 @@ class Test_GetAllStudentsController:
                                                                               'dos olhos '
                                                                               'dela é '
                                                                               'senscaional',
-                                                      'rejectionReason': 'BRIGHT_BACKGROUND',
+                                                      'rejectionReason': 'NOT_ALLOWED_BACKGROUND',
                                                       'state': 'DECLINED',
                                                       'url': 'https://i.imgur.com/4ewA19S.png'}],
                                          'status': 'SELFIE_REJECTED'},

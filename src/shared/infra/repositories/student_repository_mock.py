@@ -112,7 +112,7 @@ class StudentRepositoryMock(IStudentRepository):
                 dateCreated=datetime.datetime(2022, 10, 2, 16, 1, 59, 149927),
                 url="https://i.imgur.com/4ewA19S.png",
                 state=STATE.DECLINED,
-                rejectionReason = REJECTION_REASON.BRIGHT_BACKGROUND,
+                rejectionReason = REJECTION_REASON.NOT_ALLOWED_BACKGROUND,
                 rejectionDescription = "Tirou foto no meio da Rave, enquanto aparecia um brilho forte"
             ),
             Selfie(
@@ -139,7 +139,7 @@ class StudentRepositoryMock(IStudentRepository):
                 dateCreated=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),
                 url="https://i.imgur.com/4ewA19S.png",
                 state=STATE.DECLINED,
-                rejectionReason = REJECTION_REASON.BRIGHT_BACKGROUND,
+                rejectionReason = REJECTION_REASON.NOT_ALLOWED_BACKGROUND,
                 rejectionDescription = "O brilho dos olhos dela é senscaional"
             ),
         ]
