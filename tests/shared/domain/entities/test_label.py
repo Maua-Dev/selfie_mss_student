@@ -107,15 +107,6 @@ class Test_Label():
           confidence=None,
           parents="",
         )
-    
-    def test_Label_error_none_coords(self):
-      with pytest.raises(EntityError):
-        label = Label(
-          name="Person",
-          coords=None,
-          confidence=98.54370880126953,
-          parents="",
-        )
 
     def test_lable_error_min_confidance(self):
       with pytest.raises(EntityError):
@@ -131,3 +122,14 @@ class Test_Label():
           parents="",
         )
     
+    def test_lable_error_none_coords_parents(self):
+        label = Label(
+          name="Person",
+          coords=None,
+          confidence=98.54370880126953,
+          parents=None,
+        )
+        assert label.name == "Person"
+        assert label.coords == None
+        assert label.confidence == 98.54370880126953
+        assert label.parents == None
