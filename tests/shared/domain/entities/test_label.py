@@ -14,7 +14,7 @@ class Test_Label():
                     "Top": 0.11108686774969101
                   },
           confidence=98.54370880126953,
-          parents="",
+          parents=[],
         )
         
         
@@ -26,7 +26,7 @@ class Test_Label():
                     "Top": 0.11108686774969101
                   }
         assert label.confidence == 98.54370880126953
-        assert label.parents == ""
+        assert label.parents == []
 
     def test_Label_error_int_name(self):
       with pytest.raises(EntityError):
@@ -39,7 +39,7 @@ class Test_Label():
                     "Top": 0.11108686774969101
                   },
           confidence=98.54370880126953,
-          parents="",
+          parents=[],
         )
 
         
@@ -54,7 +54,7 @@ class Test_Label():
                     "Top": 0.11108686774969101
                   },
           confidence="98.54370880126953",
-          parents="",
+          parents=[],
         )
       
     def test_Label_error_int_parent(self):
@@ -77,7 +77,7 @@ class Test_Label():
           name="Person",
           coords=1,
           confidence=98.54370880126953,
-          parents="",
+          parents=[],
         )
     
     def test_Label_error_none_name(self):
@@ -91,7 +91,7 @@ class Test_Label():
                     "Top": 0.11108686774969101
                   },
           confidence=98.54370880126953,
-          parents="",
+          parents=[],
         )
 
     def test_Label_error_none_confidance(self):
@@ -105,7 +105,7 @@ class Test_Label():
                     "Top": 0.11108686774969101
                   },
           confidence=None,
-          parents="",
+          parents=[],
         )
 
     def test_lable_error_min_confidance(self):
@@ -119,17 +119,17 @@ class Test_Label():
                     "Top": 0.11108686774969101
                   },
           confidence=89.54370880126953,
-          parents="",
+          parents=[],
         )
     
     def test_lable_error_none_coords_parents(self):
         label = Label(
           name="Person",
-          coords=None,
+          coords={},
           confidence=98.54370880126953,
-          parents=None,
+          parents=[],
         )
         assert label.name == "Person"
-        assert label.coords == None
+        assert label.coords == {}
         assert label.confidence == 98.54370880126953
-        assert label.parents == None
+        assert label.parents == []

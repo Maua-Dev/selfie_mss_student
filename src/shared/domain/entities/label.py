@@ -5,23 +5,23 @@ class Label(abc.ABC):
     name: str 
     coords: dict[str, float]
     confidence: float 
-    parents: str 
+    parents: list[str] 
     MIN_CONFIDENCE = 90.0
 
-    def __init__(self, name: str, coords: dict, confidence: float, parents: str):
+    def __init__(self, name: str, coords: dict, confidence: float, parents: list[str]):
 
-        if (name == None or type(name) != str):
+        if (type(name) != str):
           raise EntityError('name') 
         self.name = name
 
-        if (coords != None and type(coords) != dict):
+        if (type(coords) != dict):
           raise EntityError('coords')
         self.coords = coords
 
-        if (confidence == None or type(confidence) != float or confidence <= self.MIN_CONFIDENCE):
+        if (type(confidence) != float or confidence <= self.MIN_CONFIDENCE):
           raise EntityError('confidence')
         self.confidence = confidence
 
-        if (parents != None and type(parents) != str):
+        if (type(parents) != list):
           raise EntityError('parents')
         self.parents = parents
