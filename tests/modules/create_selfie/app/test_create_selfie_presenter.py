@@ -40,6 +40,7 @@ class Test_CreateSelfiePresenter:
         assert json.loads(response["body"])["rejectionDescription"] == None
         assert json.loads(response["body"])["state"] == "PENDING_REVIEW"
         assert json.loads(response["body"])["student"]["ra"] == "21014442"
+        assert json.loads(response["body"])["automaticReview"]["automaticallyRejected"] == True
 
     def test_create_selfie_missing_ra(self):
         event = {
