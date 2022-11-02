@@ -22,12 +22,9 @@ class Test_UpdateSelfieController:
         })
         response = controller(request=request)
 
-        expected = Selfie(student=repo.students[3], idSelfie=0, state=STATE.DECLINED, rejectionReason=REJECTION_REASON.NO_PERSON_RECOGNIZED, rejectionDescription="Please appear more", dateCreated=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),url="https://i.imgur.com/0KFBHTB.jpg")
-
-
         assert response.status_code == 200
-        assert response.body["student"]['ra'] == expected.student.ra
-        assert response.body['state'] == expected.state.value
+        assert response.body["student"]['ra'] == repo.students[3].ra
+        assert response.body['state'] == "DECLINED"
         assert response.body['message'] == "the selfie was updated"
         
     def test_update_selfie_controller_state_approved(self):

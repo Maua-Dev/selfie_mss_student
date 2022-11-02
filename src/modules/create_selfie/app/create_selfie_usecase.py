@@ -7,22 +7,26 @@ from src.shared.helpers.errors.usecase_errors import NoItemsFound, ForbiddenActi
 from src.shared.domain.entities.student import Student
 from src.shared.domain.entities.selfie import Selfie
 from src.shared.domain.repositories.student_repository_interface import IStudentRepository
+from src.shared.helpers.functions.read_automatic_review import read_automatic_review
 class CreateSelfieUsecase:
     def __init__(self, repo:IStudentRepository):
         self.repo = repo
         
-    def __call__(self, ra: str, url: str) -> Selfie:
+    def __call__(self, ra: str, url: str, automaticReview: dict) -> Selfie:
         
         if not Student.validate_ra(ra):
             raise EntityError('ra')
         
+        if type(automaticReview) != dict:
+            raise EntityError("automaticReview")
+        
         student = self.repo.get_student(ra=ra)
         if student == None:
             raise NoItemsFound("ra")
-        
+    
         if self.repo.check_student_has_approved_selfie(ra=ra):       
             raise ForbiddenAction("Student")
-             
+
         selfie = Selfie(
             student=student,
             dateCreated=datetime.datetime.now(),
@@ -30,9 +34,13 @@ class CreateSelfieUsecase:
             state=STATE.PENDING_REVIEW,
             idSelfie=len(self.repo.get_selfies_by_ra(ra=ra)),
             rejectionReason=REJECTION_REASON.NONE,
-            rejectionDescription=None
+            rejectionDescription=None,
+            automaticReview=read_automatic_review(automaticReview)
         )
         
         selfie = self.repo.create_selfie(selfie=selfie)
         
         return selfie
+
+
+

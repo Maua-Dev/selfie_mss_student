@@ -5,6 +5,7 @@ from src.shared.domain.entities.student import Student
 from src.shared.domain.enums.rejection_reason_enum import REJECTION_REASON
 from src.shared.domain.enums.state_enum import STATE
 from src.shared.helpers.errors.domain_errors import EntityError
+from src.shared.domain.entities.automatic_review import AutomaticReview
 
 class Selfie(abc.ABC):
     idSelfie: int
@@ -14,8 +15,9 @@ class Selfie(abc.ABC):
     state: STATE
     rejectionReason: REJECTION_REASON
     rejectionDescription: str
+    automaticReview: AutomaticReview
 
-    def __init__(self, student: Student, dateCreated: datetime.datetime, url: str, state: STATE, idSelfie: int, rejectionReason: REJECTION_REASON, rejectionDescription: str):
+    def __init__(self, student: Student, dateCreated: datetime.datetime, url: str, state: STATE, idSelfie: int, rejectionReason: REJECTION_REASON, rejectionDescription: str, automaticReview: AutomaticReview):
         self.student = student
 
         if (dateCreated == None and type(dateCreated) != datetime.datetime):
@@ -45,6 +47,10 @@ class Selfie(abc.ABC):
         if (type(rejectionDescription) != str and rejectionDescription != None):
             raise EntityError('rejectionDescription')
         self.rejectionDescription = rejectionDescription
+        
+        if (type(automaticReview) != AutomaticReview):
+            raise EntityError('automaticReview')
+        self.automaticReview = automaticReview
 
     @staticmethod
     def validate_url(url:str) -> bool:

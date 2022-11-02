@@ -112,7 +112,7 @@ class Test_GetAllStudentsController:
                                                       'rejectionDescription': '',
                                                       'rejectionReason': 'NONE',
                                                       'state': 'APPROVED',
-                                                      'url': 'https://pps.whatsapp.net/v/t61.24694-24/56153869_1240493612792530_7354067850044112896_n.jpg?ccb=11-4&oh=01_AVydS_LW2WM2tLLKeEKbZIAlVJCbgJlfZ96y3yQnXAFBEA&oe=635822E5'}],
+                                                      'url': 'https://i.imgur.com/6a7qqRg.jpg'}],
                                          'status': 'APPROVED'}},
            'message': 'the students were retriven',
           }

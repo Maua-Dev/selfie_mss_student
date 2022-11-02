@@ -1,5 +1,8 @@
 import datetime
+from re import A
 from typing import Dict, List, Tuple
+from src.shared.domain.entities.automatic_review import AutomaticReview
+from src.shared.domain.entities.label import Label
 from src.shared.domain.entities.selfie import Selfie
 from src.shared.domain.enums.state_enum import STATE
 from src.shared.domain.enums.rejection_reason_enum import REJECTION_REASON
@@ -59,7 +62,46 @@ class StudentRepositoryMock(IStudentRepository):
                 url="https://i.imgur.com/0KFBHTB.jpg",
                 state=STATE.DECLINED,
                 rejectionReason=REJECTION_REASON.COVERED_FACE,
-                rejectionDescription="Balaclava"
+                rejectionDescription="Balaclava",
+                automaticReview=AutomaticReview(
+                    automaticallyRejected=True,
+                    rejectionReason=REJECTION_REASON.COVERED_FACE,
+                    labels=[
+                        Label(
+                            name="Person",
+                            coords={
+                                        "Width": 0.9711952805519104,
+                                        "Height": 0.8659809827804565,
+                                        "Left": 0.012313545681536198,
+                                        "Top": 0.11108686774969101
+                                    },
+                            confidence=98.54370880126953,
+                            parents=[],
+                        ),
+                        Label(
+                            name="Hat",
+                            coords={
+                                        "Width": 0.9711952805519104,
+                                        "Height": 0.8659809827804565,
+                                        "Left": 0.012313545681536198,
+                                        "Top": 0.11108686774969101
+                                    },
+                            confidence=98.54370880126953,
+                            parents=[],
+                        ),
+                        Label(
+                            name="Face",
+                            coords={
+                                        "Width": 0.9711952805519104,
+                                        "Height": 0.8659809827804565,
+                                        "Left": 0.012313545681536198,
+                                        "Top": 0.11108686774969101
+                                    },
+                            confidence=98.54370880126953,
+                            parents=[],
+                        ),
+                    ]
+                )
             ),
             Selfie(
                 idSelfie=1,
@@ -68,7 +110,35 @@ class StudentRepositoryMock(IStudentRepository):
                 url="https://i.imgur.com/b9qFYmb.jpg",
                 state=STATE.APPROVED,
                 rejectionReason = REJECTION_REASON.NONE,
-                rejectionDescription = ""
+                rejectionDescription = "",
+                automaticReview=AutomaticReview(
+                    automaticallyRejected=False,
+                    rejectionReason=REJECTION_REASON.NONE,
+                    labels=[
+                        Label(
+                            name="Person",
+                            coords={
+                                        "Width": 0.9711952805519104,
+                                        "Height": 0.8659809827804565,
+                                        "Left": 0.012313545681536198,
+                                        "Top": 0.11108686774969101
+                                    },
+                            confidence=98.54370880126953,
+                            parents=[],
+                        ),
+                        Label(
+                            name="Face",
+                            coords={
+                                        "Width": 0.9711952805519104,
+                                        "Height": 0.8659809827804565,
+                                        "Left": 0.012313545681536198,
+                                        "Top": 0.11108686774969101
+                                    },
+                            confidence=98.54370880126953,
+                            parents=[],
+                        ),
+                    ]
+                )
             ),
             Selfie(
                 idSelfie=0,
@@ -77,16 +147,67 @@ class StudentRepositoryMock(IStudentRepository):
                 url="https://i.imgur.com/dv7Q5VT.jpg",
                 state=STATE.PENDING_REVIEW,
                 rejectionReason = REJECTION_REASON.NONE,
-                rejectionDescription = ""
+                rejectionDescription = "",
+                automaticReview=AutomaticReview(
+                    automaticallyRejected=False,
+                    rejectionReason=REJECTION_REASON.NONE,
+                    labels=[
+                        Label(
+                            name="Person",
+                            coords={
+                                        "Width": 0.9711952805519104,
+                                        "Height": 0.8659809827804565,
+                                        "Left": 0.012313545681536198,
+                                        "Top": 0.11108686774969101
+                                    },
+                            confidence=98.54370880126953,
+                            parents=[],
+                        ),
+                        Label(
+                            name="Face",
+                            coords={
+                                        "Width": 0.9711952805519104,
+                                        "Height": 0.8659809827804565,
+                                        "Left": 0.012313545681536198,
+                                        "Top": 0.11108686774969101
+                                    },
+                            confidence=98.54370880126953,
+                            parents=[],
+                        ),
+                    ]
+                )
             ),
             Selfie(
                 idSelfie=0,
                 student=self.students[2],
                 dateCreated=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),
-                url="https://pps.whatsapp.net/v/t61.24694-24/56153869_1240493612792530_7354067850044112896_n.jpg?ccb=11-4&oh=01_AVydS_LW2WM2tLLKeEKbZIAlVJCbgJlfZ96y3yQnXAFBEA&oe=635822E5",
+                url="https://i.imgur.com/6a7qqRg.jpg",
                 state=STATE.APPROVED,
                 rejectionReason = REJECTION_REASON.NONE,
-                rejectionDescription = ""
+                rejectionDescription = "",
+                automaticReview=AutomaticReview(
+                    automaticallyRejected=False,
+                    rejectionReason=REJECTION_REASON.NONE,
+                    labels=[
+                        Label(
+                            name="Person",
+                            coords={
+                                        "Width": 0.9711952805519104,
+                                        "Height": 0.8659809827804565,
+                                        "Left": 0.012313545681536198,
+                                        "Top": 0.11108686774969101
+                                    },
+                            confidence=98.54370880126953,
+                            parents=[],
+                        ),
+                        Label(
+                            name="Face",
+                            coords={},
+                            confidence=98.54370880126953,
+                            parents=[],
+                        ),
+                    ]
+                )
             ),
             Selfie(
                 idSelfie=0,
@@ -95,7 +216,35 @@ class StudentRepositoryMock(IStudentRepository):
                 url="https://i.imgur.com/4ewA19S.png",
                 state=STATE.IN_REVIEW,
                 rejectionReason = REJECTION_REASON.NONE,
-                rejectionDescription = ""
+                rejectionDescription = "",
+                automaticReview=AutomaticReview(
+                    automaticallyRejected=False,
+                    rejectionReason=REJECTION_REASON.NONE,
+                    labels=[
+                        Label(
+                            name="Person",
+                            coords={
+                                        "Width": 0.9711952805519104,
+                                        "Height": 0.8659809827804565,
+                                        "Left": 0.012313545681536198,
+                                        "Top": 0.11108686774969101
+                                    },
+                            confidence=98.54370880126953,
+                            parents=[],
+                        ),
+                        Label(
+                            name="Face",
+                            coords={
+                                        "Width": 0.9711952805519104,
+                                        "Height": 0.8659809827804565,
+                                        "Left": 0.012313545681536198,
+                                        "Top": 0.11108686774969101
+                                    },
+                            confidence=99.12312312,
+                            parents=[],
+                        ),
+                    ]
+                )
             ),
             Selfie(
                 idSelfie=0,
@@ -104,7 +253,46 @@ class StudentRepositoryMock(IStudentRepository):
                 url="https://i.imgur.com/4ewA19S.png",
                 state=STATE.DECLINED,
                 rejectionReason = REJECTION_REASON.COVERED_FACE,
-                rejectionDescription = "Usou chapéu de mexicano que cobriu a cara"
+                rejectionDescription = "Usou chapéu de mexicano que cobriu a cara",
+                automaticReview=AutomaticReview(
+                    automaticallyRejected=True,
+                    rejectionReason=REJECTION_REASON.COVERED_FACE,
+                    labels=[
+                        Label(
+                            name="Portrait",
+                            coords={
+                                        "Width": 0.9711952805519104,
+                                        "Height": 0.8659809827804565,
+                                        "Left": 0.012313545681536198,
+                                        "Top": 0.11108686774969101
+                                    },
+                            confidence=100.00,
+                            parents=["Face", "Head", "Person", "Photography"],
+                            ),
+                        Label(
+                            name="Hat",
+                            coords={
+                                        "Width": 0.9711952805519104,
+                                        "Height": 0.8659809827804565,
+                                        "Left": 0.012313545681536198,
+                                        "Top": 0.11108686774969101
+                                    },
+                            confidence=98.54370880126953,
+                            parents=[],
+                        ),
+                        Label(
+                            name="Human",
+                            coords={
+                                        "Width": 0.9711952805519104,
+                                        "Height": 0.8659809827804565,
+                                        "Left": 0.012313545681536198,
+                                        "Top": 0.11108686774969101
+                                    },
+                            confidence=98.54370880126953,
+                            parents=[],
+                        ),
+                    ]
+                )
             ),
             Selfie(
                 idSelfie=1,
@@ -113,7 +301,46 @@ class StudentRepositoryMock(IStudentRepository):
                 url="https://i.imgur.com/4ewA19S.png",
                 state=STATE.DECLINED,
                 rejectionReason = REJECTION_REASON.NOT_ALLOWED_BACKGROUND,
-                rejectionDescription = "Tirou foto no meio da Rave, enquanto aparecia um brilho forte"
+                rejectionDescription = "Tirou foto no meio da Rave, enquanto aparecia um brilho forte",
+                automaticReview=AutomaticReview(
+                    automaticallyRejected=True,
+                    rejectionReason=REJECTION_REASON.NOT_ALLOWED_BACKGROUND,
+                    labels=[
+                        Label(
+                            name="Building",
+                            coords={
+                                        "Width": 0.9711952805519104,
+                                        "Height": 0.8659809827804565,
+                                        "Left": 0.012313545681536198,
+                                        "Top": 0.11108686774969101
+                                    },
+                            confidence=98.13214,
+                            parents=["Architecture"],
+                            ),
+                        Label(
+                            name="Face",
+                            coords={
+                                        "Width": 0.9711952805519104,
+                                        "Height": 0.8659809827804565,
+                                        "Left": 0.012313545681536198,
+                                        "Top": 0.11108686774969101
+                                    },
+                            confidence=98.54370880126953,
+                            parents=[],
+                        ),
+                        Label(
+                            name="Person",
+                            coords={
+                                        "Width": 0.9711952805519104,
+                                        "Height": 0.8659809827804565,
+                                        "Left": 0.012313545681536198,
+                                        "Top": 0.11108686774969101
+                                    },
+                            confidence=98.54370880126953,
+                            parents=[],
+                        ),
+                    ]
+                )
             ),
             Selfie(
                 idSelfie=2,
@@ -122,7 +349,37 @@ class StudentRepositoryMock(IStudentRepository):
                 url="https://i.imgur.com/4ewA19S.png",
                 state=STATE.APPROVED,
                 rejectionReason = REJECTION_REASON.NONE,
-                rejectionDescription = ""
+                rejectionDescription = "",
+                automaticReview=AutomaticReview(
+                    automaticallyRejected=False,
+                    rejectionReason=REJECTION_REASON.NONE,
+                    labels=[
+                        Label(
+                            name="Face",
+                            coords={
+                                        "Width": 0.9711952805519104,
+                                        "Height": 0.8659809827804565,
+                                        "Left": 0.012313545681536198,
+                                        "Top": 0.11108686774969101
+                                    },
+                            confidence=98.54370880126953,
+                            parents=[],
+                        ),
+                        Label(
+                            name="Person",
+                            coords={
+                                        "Width": 0.9711952805519104,
+                                        "Height": 0.8659809827804565,
+                                        "Left": 0.012313545681536198,
+                                        "Top": 0.11108686774969101
+                                    },
+                            confidence=98.54370880126953,
+                            parents=[],
+                        ),
+                    ]
+                )
+                
+                
             ),
             Selfie(
                 idSelfie=2,
@@ -131,7 +388,61 @@ class StudentRepositoryMock(IStudentRepository):
                 url="https://i.imgur.com/4ewA19S.png",
                 state=STATE.APPROVED,
                 rejectionReason = REJECTION_REASON.NONE,
-                rejectionDescription = ""
+                rejectionDescription = "",
+                automaticReview=AutomaticReview(
+                    automaticallyRejected= False,
+                    rejectionReason= REJECTION_REASON.NONE,
+                    labels=[
+                        Label(
+                            name="Photography",
+                            coords={},
+                            confidence=100.00,
+                            parents=[],
+                            ),
+                        Label(
+                            name="Portrait",
+                            coords={
+                                        "Width": 0.9711952805519104,
+                                        "Height": 0.8659809827804565,
+                                        "Left": 0.012313545681536198,
+                                        "Top": 0.11108686774969101
+                                    },
+                            confidence=100.00,
+                            parents=["Face", "Head", "Person", "Photography"],
+                            ),
+                        Label(
+                            name="Head",
+                            coords={},
+                            confidence=100.00,
+                            parents=["Person"],
+                            ),
+                        Label(
+                            name="Face",
+                            coords={
+                                        "Width": 0.9711952805519104,
+                                        "Height": 0.8659809827804565,
+                                        "Left": 0.012313545681536198,
+                                        "Top": 0.11108686774969101
+                                    },
+                            confidence=100.00,
+                            parents=["Person", "Head"],
+                            ),
+                        Label(
+                            name="Person",
+                            coords={
+                                        "Width": 0.9972279071807861,
+                                        "Height": 0.88490229845047,
+                                        "Left": 0.0026419830974191427,
+                                        "Top": 0.11343356966972351
+                                    },
+                            confidence=99.62065124511719,
+                            parents=[],
+                            )
+                    ]
+            ),
+                
+                
+                
             ),
             Selfie(
                 idSelfie=0,
@@ -140,8 +451,59 @@ class StudentRepositoryMock(IStudentRepository):
                 url="https://i.imgur.com/4ewA19S.png",
                 state=STATE.DECLINED,
                 rejectionReason = REJECTION_REASON.NOT_ALLOWED_BACKGROUND,
-                rejectionDescription = "O brilho dos olhos dela é senscaional"
-            ),
+                rejectionDescription = "O brilho dos olhos dela é senscaional",
+                automaticReview=AutomaticReview(
+                    automaticallyRejected= False,
+                    rejectionReason= REJECTION_REASON.NONE,
+                    labels=[
+                        Label(
+                            name="Photography",
+                            coords={},
+                            confidence=100.00,
+                            parents=[],
+                            ),
+                        Label(
+                            name="Portrait",
+                            coords={
+                                        "Width": 0.9711952805519104,
+                                        "Height": 0.8659809827804565,
+                                        "Left": 0.012313545681536198,
+                                        "Top": 0.11108686774969101
+                                    },
+                            confidence=100.00,
+                            parents=["Face", "Head", "Person", "Photography"],
+                            ),
+                        Label(
+                            name="Head",
+                            coords={},
+                            confidence=100.00,
+                            parents=["Person"],
+                            ),
+                        Label(
+                            name="Face",
+                            coords={
+                                        "Width": 0.9711952805519104,
+                                        "Height": 0.8659809827804565,
+                                        "Left": 0.012313545681536198,
+                                        "Top": 0.11108686774969101
+                                    },
+                            confidence=100.00,
+                            parents=["Person", "Head"],
+                            ),
+                        Label(
+                            name="Person",
+                            coords={
+                                        "Width": 0.9972279071807861,
+                                        "Height": 0.88490229845047,
+                                        "Left": 0.0026419830974191427,
+                                        "Top": 0.11343356966972351
+                                    },
+                            confidence=99.62065124511719,
+                            parents=[],
+                            )
+                    ]
+               )
+            )
         ]
 
 

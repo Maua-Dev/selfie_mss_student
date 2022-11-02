@@ -18,7 +18,7 @@ class Label(abc.ABC):
           raise EntityError('coords')
         self.coords = coords
 
-        if (type(confidence) != float or confidence <= self.MIN_CONFIDENCE):
+        if (type(confidence) != float or confidence < self.MIN_CONFIDENCE):
           raise EntityError('confidence')
         self.confidence = confidence
 

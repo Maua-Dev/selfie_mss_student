@@ -3,6 +3,32 @@ from src.shared.infra.repositories.student_repository_mock import StudentReposit
 from src.modules.create_selfie.app.create_selfie_controller import CreateSelfieController
 from src.shared.helpers.http.http_models import HttpRequest
 
+AUTOMATIC_REVIEW_DICT = {
+            "automaticallyRejected": "True",
+            "rejectionReason": "COVERED_FACE",
+            "labels": [{
+                            "name": "Glasses",
+                            "coords": {
+                                    "Width": "0.6591288447380066",
+                                    "Height": "0.17444363236427307",
+                                    "Left": "0.19148917496204376",
+                                    "Top": "0.3813813030719757"
+                            },
+                            "confidence": "94.5357666015625",
+                            "parents": ["Accessories"],
+                        },
+                        {
+                            "name": "Blalblas",
+                            "coords": {
+                                    "Width": "0.6591288480066",
+                                    "Height": "0.1744236427307",
+                                    "Left": "0.19148916204376",
+                                    "Top": "0.3813813719757"
+                            },
+                            "confidence": "95.5366015625",
+                            "parents": ["ASODnoasdsa", "nmdokasnkndkasnkd"],
+                        }]
+                  }
 
 class Test_CreateSelfieController:
 
@@ -13,6 +39,7 @@ class Test_CreateSelfieController:
         request = HttpRequest(body={
             "ra": "21014442",
             "url": "https://www.youtube.com/watch?v=5IpYOF4Hi6Q",
+            "automaticReview": AUTOMATIC_REVIEW_DICT
         })
         
         lenBefore = len(repo.selfies)
@@ -61,7 +88,8 @@ class Test_CreateSelfieController:
 
         request = HttpRequest(body={
             "ra": 21002088,
-            "url": "https://www.youtube.com/watch?v=5IpYOF4Hi6Q"
+            "url": "https://www.youtube.com/watch?v=5IpYOF4Hi6Q",
+            "automaticReview": AUTOMATIC_REVIEW_DICT
         })
 
         response = controller(request=request)
@@ -76,7 +104,8 @@ class Test_CreateSelfieController:
 
         request = HttpRequest(body={
             "ra": "2100208-8",
-            "url": "https://www.youtube.com/watch?v=5IpYOF4Hi6Q"
+            "url": "https://www.youtube.com/watch?v=5IpYOF4Hi6Q",
+            "automaticReview": AUTOMATIC_REVIEW_DICT
         })
 
         response = controller(request=request)
@@ -91,7 +120,8 @@ class Test_CreateSelfieController:
 
         request = HttpRequest(body={
             "ra": "12345678",
-            "url": "https://www.youtube.com/watch?v=5IpYOF4Hi6Q"
+            "url": "https://www.youtube.com/watch?v=5IpYOF4Hi6Q",
+            "automaticReview": AUTOMATIC_REVIEW_DICT
         })
 
         response = controller(request=request)
@@ -106,7 +136,8 @@ class Test_CreateSelfieController:
 
         request = HttpRequest(body={
             "ra": "21014442",
-            "url": "http://www.macaco.br"
+            "url": "http://www.macaco.br",
+            "automaticReview": AUTOMATIC_REVIEW_DICT
         })
 
         response = controller(request=request)
@@ -121,10 +152,27 @@ class Test_CreateSelfieController:
 
         request = HttpRequest(body={
             "ra": "15013103",
-            "url": "http://www.macaco.br"
+            "url": "http://www.macaco.br",
+            "automaticReview": AUTOMATIC_REVIEW_DICT
         })
 
         response = controller(request=request)
 
         assert response.status_code == 403
         assert response.body == 'That action is forbidden for this Student'
+        
+    def test_create_selfie_controller_automatic_review_must_be_dict(self):
+        repo = StudentRepositoryMock()
+        usecase = CreateSelfieUsecase(repo=repo)
+        controller = CreateSelfieController(usecase=usecase)
+
+        request = HttpRequest(body={
+            "ra": "15013103",
+            "url": "http://www.macaco.br",
+            "automaticReview": 1
+        })
+
+        response = controller(request=request)
+
+        assert response.status_code == 400
+        assert response.body == 'Field automaticReview is not valid'

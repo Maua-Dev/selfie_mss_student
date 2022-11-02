@@ -46,7 +46,7 @@ class Test_GetAllSelfiesViewModel:
                          'student': {'email': 'acreditaquesousollertambem@yahoo.com',        
                                      'name': 'Guirão',
                                      'ra': '21014443'},
-                         'url': 'https://pps.whatsapp.net/v/t61.24694-24/56153869_1240493612792530_7354067850044112896_n.jpg?ccb=11-4&oh=01_AVydS_LW2WM2tLLKeEKbZIAlVJCbgJlfZ96y3yQnXAFBEA&oe=635822E5'},
+                         'url': 'https://i.imgur.com/6a7qqRg.jpg'},
                         {'dateCreated': '2022-10-12T16:01:59.149927',
                          'idSelfie': 0,
                          'message': 'the selfie was retriven',
