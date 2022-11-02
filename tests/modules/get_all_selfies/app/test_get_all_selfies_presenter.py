@@ -64,4 +64,5 @@ class Test_GetAllSelfiesPresenter:
         assert response["statusCode"] == 200
         assert json.loads(response['body'])['all_selfies'][0]['url'] == 'https://i.imgur.com/0KFBHTB.jpg'
         assert json.loads(response['body'])['all_selfies'][7]['student']['email'] == 'iamronald@mageofprogramming.com.br'
+        assert json.loads(response['body'])['all_selfies'][7]['automaticReview']['rejectionReason'] == 'NONE'
         assert json.loads(response['body'])['message'] == 'all selfies were retriven'
