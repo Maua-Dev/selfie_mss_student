@@ -26,6 +26,7 @@ class Test_UpdateSelfieController:
         assert response.body["student"]['ra'] == repo.students[3].ra
         assert response.body['state'] == "DECLINED"
         assert response.body['message'] == "the selfie was updated"
+        assert len(response.body["automaticReview"]["labels"]) == 2
         
     def test_update_selfie_controller_state_approved(self):
         repo = StudentRepositoryMock()
