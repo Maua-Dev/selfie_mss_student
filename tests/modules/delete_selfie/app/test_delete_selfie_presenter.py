@@ -63,6 +63,7 @@ class Test_DeleteSelfiePresenter:
         assert json.loads(response["body"])["selfie"]["rejectionReason"] == "NONE"
         assert json.loads(response["body"])["selfie"]["state"] == "PENDING_REVIEW"
         assert json.loads(response["body"])['message'] == "the selfie was deleted"
+        assert json.loads(response["body"])['selfie']['automaticReview']['automaticallyRejected'] == False
 
     def test_delete_selfie_found(self):
         event = {
