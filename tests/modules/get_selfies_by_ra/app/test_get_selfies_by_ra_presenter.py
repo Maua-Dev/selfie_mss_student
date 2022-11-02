@@ -67,6 +67,7 @@ class Test_GetSelfiesByRaPresenter:
         assert json.loads(response["body"])["selfies"][1]["rejectionDescription"] == ""
         assert json.loads(response["body"])['student']['name'] == "Victor"
         assert json.loads(response["body"])['message'] == "the selfies were retriven"
+        assert json.loads(response["body"])["selfies"][1]["automaticReview"]["automaticallyRejected"] ==  False
 
     def test_get_selfies_by_ra_no_selfie_found(self):
         event = {

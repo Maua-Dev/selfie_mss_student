@@ -22,6 +22,7 @@ class Test_GetSelfiesByRaController:
         assert response.body['student']['name'] == repo.students[0].name
         assert response.body['selfies'][0]['rejectionReason'] == "COVERED_FACE"
         assert response.body['selfies'][0]['rejectionDescription'] == "Balaclava"
+        assert response.body['selfies'][1]["automaticReview"]["automaticallyRejected"] ==  False
         assert response.body['message'] == "the selfies were retriven"
         
     def test_get_selfies_by_ra_controller_no_selfies(self):
