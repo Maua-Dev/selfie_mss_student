@@ -61,11 +61,11 @@ class StudentRepositoryMock(IStudentRepository):
                 dateCreated=datetime.datetime(2022, 10, 1, 16, 1, 59, 149927),
                 url="https://i.imgur.com/0KFBHTB.jpg",
                 state=STATE.DECLINED,
-                rejectionReason=REJECTION_REASON.COVERED_FACE,
+                rejectionReasons=[REJECTION_REASON.COVERED_FACE],
                 rejectionDescription="Balaclava",
                 automaticReview=AutomaticReview(
                     automaticallyRejected=True,
-                    rejectionReason=REJECTION_REASON.COVERED_FACE,
+                    rejectionReasons=[REJECTION_REASON.COVERED_FACE],
                     labels=[
                         Label(
                             name="Person",
@@ -109,11 +109,11 @@ class StudentRepositoryMock(IStudentRepository):
                 dateCreated=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),
                 url="https://i.imgur.com/b9qFYmb.jpg",
                 state=STATE.APPROVED,
-                rejectionReason = REJECTION_REASON.NONE,
+                rejectionReasons = [REJECTION_REASON.NONE],
                 rejectionDescription = "",
                 automaticReview=AutomaticReview(
                     automaticallyRejected=False,
-                    rejectionReason=REJECTION_REASON.NONE,
+                    rejectionReasons=[REJECTION_REASON.NONE],
                     labels=[
                         Label(
                             name="Person",
@@ -146,11 +146,11 @@ class StudentRepositoryMock(IStudentRepository):
                 dateCreated=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),
                 url="https://i.imgur.com/dv7Q5VT.jpg",
                 state=STATE.PENDING_REVIEW,
-                rejectionReason = REJECTION_REASON.NONE,
+                rejectionReasons = [REJECTION_REASON.NONE],
                 rejectionDescription = "",
                 automaticReview=AutomaticReview(
                     automaticallyRejected=False,
-                    rejectionReason=REJECTION_REASON.NONE,
+                    rejectionReasons=[REJECTION_REASON.NONE],
                     labels=[
                         Label(
                             name="Person",
@@ -183,11 +183,11 @@ class StudentRepositoryMock(IStudentRepository):
                 dateCreated=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),
                 url="https://i.imgur.com/6a7qqRg.jpg",
                 state=STATE.APPROVED,
-                rejectionReason = REJECTION_REASON.NONE,
+                rejectionReasons = [REJECTION_REASON.NONE],
                 rejectionDescription = "",
                 automaticReview=AutomaticReview(
                     automaticallyRejected=False,
-                    rejectionReason=REJECTION_REASON.NONE,
+                    rejectionReasons=[REJECTION_REASON.NONE],
                     labels=[
                         Label(
                             name="Person",
@@ -215,11 +215,11 @@ class StudentRepositoryMock(IStudentRepository):
                 dateCreated=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),
                 url="https://i.imgur.com/4ewA19S.png",
                 state=STATE.IN_REVIEW,
-                rejectionReason = REJECTION_REASON.NONE,
+                rejectionReasons = [REJECTION_REASON.NONE],
                 rejectionDescription = "",
                 automaticReview=AutomaticReview(
                     automaticallyRejected=False,
-                    rejectionReason=REJECTION_REASON.NONE,
+                    rejectionReasons=[REJECTION_REASON.NONE],
                     labels=[
                         Label(
                             name="Person",
@@ -252,11 +252,11 @@ class StudentRepositoryMock(IStudentRepository):
                 dateCreated=datetime.datetime(2022, 10, 1, 16, 1, 59, 149927),
                 url="https://i.imgur.com/4ewA19S.png",
                 state=STATE.DECLINED,
-                rejectionReason = REJECTION_REASON.COVERED_FACE,
+                rejectionReasons = [REJECTION_REASON.COVERED_FACE],
                 rejectionDescription = "Usou chapéu de mexicano que cobriu a cara",
                 automaticReview=AutomaticReview(
                     automaticallyRejected=True,
-                    rejectionReason=REJECTION_REASON.COVERED_FACE,
+                    rejectionReasons=[REJECTION_REASON.COVERED_FACE],
                     labels=[
                         Label(
                             name="Portrait",
@@ -300,11 +300,11 @@ class StudentRepositoryMock(IStudentRepository):
                 dateCreated=datetime.datetime(2022, 10, 2, 16, 1, 59, 149927),
                 url="https://i.imgur.com/4ewA19S.png",
                 state=STATE.DECLINED,
-                rejectionReason = REJECTION_REASON.NOT_ALLOWED_BACKGROUND,
+                rejectionReasons = [REJECTION_REASON.NOT_ALLOWED_BACKGROUND],
                 rejectionDescription = "Tirou foto no meio da Rave, enquanto aparecia um brilho forte",
                 automaticReview=AutomaticReview(
                     automaticallyRejected=True,
-                    rejectionReason=REJECTION_REASON.NOT_ALLOWED_BACKGROUND,
+                    rejectionReasons=[REJECTION_REASON.NOT_ALLOWED_BACKGROUND],
                     labels=[
                         Label(
                             name="Building",
@@ -348,11 +348,11 @@ class StudentRepositoryMock(IStudentRepository):
                 dateCreated=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),
                 url="https://i.imgur.com/4ewA19S.png",
                 state=STATE.APPROVED,
-                rejectionReason = REJECTION_REASON.NONE,
+                rejectionReasons = [REJECTION_REASON.NONE],
                 rejectionDescription = "",
                 automaticReview=AutomaticReview(
                     automaticallyRejected=False,
-                    rejectionReason=REJECTION_REASON.NONE,
+                    rejectionReasons=[REJECTION_REASON.NONE],
                     labels=[
                         Label(
                             name="Face",
@@ -387,11 +387,11 @@ class StudentRepositoryMock(IStudentRepository):
                 dateCreated=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),
                 url="https://i.imgur.com/4ewA19S.png",
                 state=STATE.APPROVED,
-                rejectionReason = REJECTION_REASON.NONE,
+                rejectionReasons = [REJECTION_REASON.NONE],
                 rejectionDescription = "",
                 automaticReview=AutomaticReview(
                     automaticallyRejected= False,
-                    rejectionReason= REJECTION_REASON.NONE,
+                    rejectionReasons= [REJECTION_REASON.NONE],
                     labels=[
                         Label(
                             name="Photography",
@@ -450,11 +450,11 @@ class StudentRepositoryMock(IStudentRepository):
                 dateCreated=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),
                 url="https://i.imgur.com/4ewA19S.png",
                 state=STATE.DECLINED,
-                rejectionReason = REJECTION_REASON.NOT_ALLOWED_BACKGROUND,
+                rejectionReasons = [REJECTION_REASON.NOT_ALLOWED_BACKGROUND],
                 rejectionDescription = "O brilho dos olhos dela é senscaional",
                 automaticReview=AutomaticReview(
                     automaticallyRejected= False,
-                    rejectionReason= REJECTION_REASON.NONE,
+                    rejectionReasons= [REJECTION_REASON.NONE],
                     labels=[
                         Label(
                             name="Photography",
@@ -569,7 +569,7 @@ class StudentRepositoryMock(IStudentRepository):
         
         return selfie
         
-    def update_selfie(self, ra: str, idSelfie: int, new_state: STATE, new_rejectionReason: REJECTION_REASON, new_rejectionDescription: str) -> Selfie:
+    def update_selfie(self, ra: str, idSelfie: int, new_state: STATE = None, new_rejectionReasons: list[REJECTION_REASON] = None, new_rejectionDescription: str = None) -> Selfie:
         idxSelfie = -1
         for idx in range(len(self.selfies)):
             if self.selfies[idx].student.ra == ra and self.selfies[idx].idSelfie == idSelfie:
@@ -581,8 +581,8 @@ class StudentRepositoryMock(IStudentRepository):
         if new_state != None:
             self.selfies[idxSelfie].state = new_state
             
-        if new_rejectionReason != None:
-            self.selfies[idxSelfie].rejectionReason = new_rejectionReason
+        if new_rejectionReasons != None:
+            self.selfies[idxSelfie].rejectionReasons = new_rejectionReasons
             
         if new_rejectionDescription != None:
             self.selfies[idxSelfie].rejectionDescription = new_rejectionDescription

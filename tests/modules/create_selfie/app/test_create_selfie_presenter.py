@@ -27,7 +27,7 @@ class Test_CreateSelfiePresenter:
         'user-agent': 'PostmanRuntime/7.29.2'},
         'requestContext':
         {'accountId': 'anonymous', 'apiId': 'd2w3ehxv3vp45jbnpflej2oxue0kbsny', 'domainName': 'd2w3ehxv3vp45jbnpflej2oxue0kbsny.lambda-url.us-east-1.on.aws', 'domainPrefix': 'd2w3ehxv3vp45jbnpflej2oxue0kbsny', 'http': {'method': 'POST', 'path': '/', 'protocol': 'HTTP/1.1', 'sourceIp': '191.193.227.175', 'userAgent': 'PostmanRuntime/7.29.2'}, 'requestId': 'f7ef0445-f100-4362-bb4a-13772177292b', 'routeKey': '$default', 'stage': '$default', 'time': '18/Oct/2022:00:05:03 +0000', 'timeEpoch': 1666051503383}, 
-        'body': '{"ra": "21014442", "url": "https://www.youtube.com/watch?v=5IpYOF4Hi6Q", "automaticReview": {"automaticallyRejected": "True", "rejectionReason": "COVERED_FACE", "labels": [{"name": "Glasses", "coords": {"Width": "0.6591288447380066", "Height": "0.17444363236427307", "Left": "0.19148917496204376", "Top": "0.3813813030719757"}, "confidence": "94.5357666015625", "parents": ["Accessories"]}, {"name": "Blalblas", "coords": {"Width": "0.6591288480066", "Height": "0.1744236427307", "Left": "0.19148916204376", "Top": "0.3813813719757"}, "confidence": "95.5366015625", "parents": ["ASODnoasdsa", "nmdokasnkndkasnkd"]}]}}', 'isBase64Encoded': False}
+        'body': '{"ra": "21014442", "url": "https://www.youtube.com/watch?v=5IpYOF4Hi6Q", "automaticReview": {"automaticallyRejected": "True", "rejectionReasons": ["COVERED_FACE"], "labels": [{"name": "Glasses", "coords": {"Width": "0.6591288447380066", "Height": "0.17444363236427307", "Left": "0.19148917496204376", "Top": "0.3813813030719757"}, "confidence": "94.5357666015625", "parents": ["Accessories"]}, {"name": "Blalblas", "coords": {"Width": "0.6591288480066", "Height": "0.1744236427307", "Left": "0.19148916204376", "Top": "0.3813813719757"}, "confidence": "95.5366015625", "parents": ["ASODnoasdsa", "nmdokasnkndkasnkd"]}]}}', 'isBase64Encoded': False}
 
 
 
@@ -36,7 +36,7 @@ class Test_CreateSelfiePresenter:
         assert response["statusCode"] == 201
         assert json.loads(response["body"])["message"] == "the selfie was created"
         assert json.loads(response["body"])["idSelfie"] == 1
-        assert json.loads(response["body"])["rejectionReason"] == "NONE"
+        assert json.loads(response["body"])["rejectionReasons"] == ["NONE"]
         assert json.loads(response["body"])["rejectionDescription"] == None
         assert json.loads(response["body"])["state"] == "PENDING_REVIEW"
         assert json.loads(response["body"])["student"]["ra"] == "21014442"
@@ -142,7 +142,7 @@ class Test_CreateSelfiePresenter:
                 "time": "12/Mar/2020:19:03:58 +0000",
                 "timeEpoch": 1583348638390
             },
-            'body': '{"ra": 21014442, "url": "https://www.youtube.com/watch?v=5IpYOF4Hi6Q", "automaticReview": {"automaticallyRejected": "True", "rejectionReason": "COVERED_FACE", "labels": [{"name": "Glasses", "coords": {"Width": "0.6591288447380066", "Height": "0.17444363236427307", "Left": "0.19148917496204376", "Top": "0.3813813030719757"}, "confidence": "94.5357666015625", "parents": ["Accessories"]}, {"name": "Blalblas", "coords": {"Width": "0.6591288480066", "Height": "0.1744236427307", "Left": "0.19148916204376", "Top": "0.3813813719757"}, "confidence": "95.5366015625", "parents": ["ASODnoasdsa", "nmdokasnkndkasnkd"]}]}}',
+            'body': '{"ra": 21014442, "url": "https://www.youtube.com/watch?v=5IpYOF4Hi6Q", "automaticReview": {"automaticallyRejected": "True", "rejectionReasons": ["COVERED_FACE"], "labels": [{"name": "Glasses", "coords": {"Width": "0.6591288447380066", "Height": "0.17444363236427307", "Left": "0.19148917496204376", "Top": "0.3813813030719757"}, "confidence": "94.5357666015625", "parents": ["Accessories"]}, {"name": "Blalblas", "coords": {"Width": "0.6591288480066", "Height": "0.1744236427307", "Left": "0.19148916204376", "Top": "0.3813813719757"}, "confidence": "95.5366015625", "parents": ["ASODnoasdsa", "nmdokasnkndkasnkd"]}]}}',
             "pathParameters": None,
             "isBase64Encoded": None,
             "stageVariables": None
@@ -198,7 +198,7 @@ class Test_CreateSelfiePresenter:
                 "time": "12/Mar/2020:19:03:58 +0000",
                 "timeEpoch": 1583348638390
             },
-            'body': '{"ra": "12345678", "url": "https://www.youtube.com/watch?v=5IpYOF4Hi6Q", "automaticReview": {"automaticallyRejected": "True", "rejectionReason": "COVERED_FACE", "labels": [{"name": "Glasses", "coords": {"Width": "0.6591288447380066", "Height": "0.17444363236427307", "Left": "0.19148917496204376", "Top": "0.3813813030719757"}, "confidence": "94.5357666015625", "parents": ["Accessories"]}, {"name": "Blalblas", "coords": {"Width": "0.6591288480066", "Height": "0.1744236427307", "Left": "0.19148916204376", "Top": "0.3813813719757"}, "confidence": "95.5366015625", "parents": ["ASODnoasdsa", "nmdokasnkndkasnkd"]}]}}',
+            'body': '{"ra": "12345678", "url": "https://www.youtube.com/watch?v=5IpYOF4Hi6Q", "automaticReview": {"automaticallyRejected": "True", "rejectionReasons": ["COVERED_FACE"], "labels": [{"name": "Glasses", "coords": {"Width": "0.6591288447380066", "Height": "0.17444363236427307", "Left": "0.19148917496204376", "Top": "0.3813813030719757"}, "confidence": "94.5357666015625", "parents": ["Accessories"]}, {"name": "Blalblas", "coords": {"Width": "0.6591288480066", "Height": "0.1744236427307", "Left": "0.19148916204376", "Top": "0.3813813719757"}, "confidence": "95.5366015625", "parents": ["ASODnoasdsa", "nmdokasnkndkasnkd"]}]}}',
             "pathParameters": None,
             "isBase64Encoded": None,
             "stageVariables": None
@@ -255,7 +255,7 @@ class Test_CreateSelfiePresenter:
                     "time": "12/Mar/2020:19:03:58 +0000",
                     "timeEpoch": 1583348638390
                 },
-                'body': '{"ra": "21014442", "url": "http://www.youtube.com/watch?v=5IpYOF4Hi6Q", "automaticReview": {"automaticallyRejected": "True", "rejectionReason": "COVERED_FACE", "labels": [{"name": "Glasses", "coords": {"Width": "0.6591288447380066", "Height": "0.17444363236427307", "Left": "0.19148917496204376", "Top": "0.3813813030719757"}, "confidence": "94.5357666015625", "parents": ["Accessories"]}, {"name": "Blalblas", "coords": {"Width": "0.6591288480066", "Height": "0.1744236427307", "Left": "0.19148916204376", "Top": "0.3813813719757"}, "confidence": "95.5366015625", "parents": ["ASODnoasdsa", "nmdokasnkndkasnkd"]}]}}',
+                'body': '{"ra": "21014442", "url": "http://www.youtube.com/watch?v=5IpYOF4Hi6Q", "automaticReview": {"automaticallyRejected": "True", "rejectionReasons": ["COVERED_FACE"], "labels": [{"name": "Glasses", "coords": {"Width": "0.6591288447380066", "Height": "0.17444363236427307", "Left": "0.19148917496204376", "Top": "0.3813813030719757"}, "confidence": "94.5357666015625", "parents": ["Accessories"]}, {"name": "Blalblas", "coords": {"Width": "0.6591288480066", "Height": "0.1744236427307", "Left": "0.19148916204376", "Top": "0.3813813719757"}, "confidence": "95.5366015625", "parents": ["ASODnoasdsa", "nmdokasnkndkasnkd"]}]}}',
                 "pathParameters": None,
                 "isBase64Encoded": None,
                 "stageVariables": None
@@ -311,7 +311,7 @@ class Test_CreateSelfiePresenter:
                     "time": "12/Mar/2020:19:03:58 +0000",
                     "timeEpoch": 1583348638390
                 },
-                'body': '{"ra": "15013103", "url": "https://www.youtube.com/watch?v=5IpYOF4Hi6Q", "automaticReview": {"automaticallyRejected": "True", "rejectionReason": "COVERED_FACE", "labels": [{"name": "Glasses", "coords": {"Width": "0.6591288447380066", "Height": "0.17444363236427307", "Left": "0.19148917496204376", "Top": "0.3813813030719757"}, "confidence": "94.5357666015625", "parents": ["Accessories"]}, {"name": "Blalblas", "coords": {"Width": "0.6591288480066", "Height": "0.1744236427307", "Left": "0.19148916204376", "Top": "0.3813813719757"}, "confidence": "95.5366015625", "parents": ["ASODnoasdsa", "nmdokasnkndkasnkd"]}]}}',
+                'body': '{"ra": "15013103", "url": "https://www.youtube.com/watch?v=5IpYOF4Hi6Q", "automaticReview": {"automaticallyRejected": "True", "rejectionReasons": ["COVERED_FACE"], "labels": [{"name": "Glasses", "coords": {"Width": "0.6591288447380066", "Height": "0.17444363236427307", "Left": "0.19148917496204376", "Top": "0.3813813030719757"}, "confidence": "94.5357666015625", "parents": ["Accessories"]}, {"name": "Blalblas", "coords": {"Width": "0.6591288480066", "Height": "0.1744236427307", "Left": "0.19148916204376", "Top": "0.3813813719757"}, "confidence": "95.5366015625", "parents": ["ASODnoasdsa", "nmdokasnkndkasnkd"]}]}}',
                 "pathParameters": None,
                 "isBase64Encoded": None,
                 "stageVariables": None

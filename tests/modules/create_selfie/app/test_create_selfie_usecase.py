@@ -1,3 +1,4 @@
+from src.shared.domain.enums.rejection_reason_enum import REJECTION_REASON
 from src.shared.helpers.errors.controller_errors import MissingParameters
 from src.shared.helpers.errors.domain_errors import EntityError
 from src.modules.create_selfie.app.create_selfie_usecase import CreateSelfieUsecase
@@ -8,7 +9,7 @@ import pytest
 
 AUTOMATIC_REVIEW_DICT = {
             "automaticallyRejected": "True",
-            "rejectionReason": "COVERED_FACE",
+            "rejectionReasons": ["COVERED_FACE"],
             "labels": [{
                             "name": "Glasses",
                             "coords": {
@@ -47,6 +48,7 @@ class Test_CreateSelfieUsecase:
 
         assert len(repo.selfies) == lenAfter
         assert repo.selfies[lenAfter - 1].url == "https://www.youtube.com/watch?v=k85mRPqvMbE"
+        assert repo.selfies[lenAfter - 1].rejectionReasons == [REJECTION_REASON.NONE]
         assert repo.selfies[lenAfter - 1].student.ra == "21014442"
         assert repo.selfies[lenAfter - 1].student.name == repo.students[1].name
         assert repo.selfies[lenAfter - 1].student.email == repo.students[1].email
@@ -88,7 +90,7 @@ class Test_CreateSelfieUsecase:
         
         automatic_review = {
             "automaticallyRejected": "True",
-            "rejectionReason": "COVERED_FACE",
+            "rejectionReasons": "COVERED_FACE",
             "labels": [{
                             "name": "Glasses",
                             "coords": {

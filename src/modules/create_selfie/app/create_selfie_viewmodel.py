@@ -30,19 +30,19 @@ class LabelViewModel:
 
 class AutomaticReviewViewModel:
     automaticallyRejected: bool
-    rejectionReason: REJECTION_REASON
+    rejectionReasons: list[REJECTION_REASON]
     labels: list[LabelViewModel]
     
     def __init__(self, automaticReview:AutomaticReview):
             self.automaticallyRejected = automaticReview.automaticallyRejected
-            self.rejectionReason = automaticReview.rejectionReason
+            self.rejectionReasons = automaticReview.rejectionReasons
             self.labels = [LabelViewModel(label) for label in automaticReview.labels]
 
     
     def to_dict(self):
         return {
             "automaticallyRejected": self.automaticallyRejected,    
-            "rejectionReason": self.rejectionReason.value,
+            "rejectionReasons": [reason.value for reason in self.rejectionReasons],
             "labels": [label.to_dict() for label in self.labels]
         }
 
@@ -69,7 +69,7 @@ class CreateSelfieViewModel:
     dateCreated: datetime.datetime
     state: STATE
     student: StudentViewModel
-    rejectionReason: REJECTION_REASON
+    rejectionReasons: list[REJECTION_REASON]
     rejectionDescription: str
     automaticReview: AutomaticReviewViewModel
 
@@ -79,7 +79,7 @@ class CreateSelfieViewModel:
         self.dateCreated = data.dateCreated
         self.state = data.state
         self.student = StudentViewModel(data.student)
-        self.rejectionReason = data.rejectionReason
+        self.rejectionReasons = data.rejectionReasons
         self.rejectionDescription = data.rejectionDescription
         self.automaticReview = AutomaticReviewViewModel(data.automaticReview)
        
@@ -91,7 +91,7 @@ class CreateSelfieViewModel:
             "url": self.url,
             "dateCreated": self.dateCreated.isoformat(),
             "state": self.state.value,
-            "rejectionReason": self.rejectionReason.value,
+            "rejectionReasons": [reason.value for reason in self.rejectionReasons],
             "rejectionDescription": self.rejectionDescription,
             "automaticReview": self.automaticReview.to_dict(),
             "message": "the selfie was created"

@@ -33,7 +33,7 @@ class CreateSelfieUsecase:
             url=url,
             state=STATE.PENDING_REVIEW,
             idSelfie=len(self.repo.get_selfies_by_ra(ra=ra)),
-            rejectionReason=REJECTION_REASON.NONE,
+            rejectionReasons=[REJECTION_REASON.NONE],
             rejectionDescription=None,
             automaticReview=read_automatic_review(automaticReview)
         )

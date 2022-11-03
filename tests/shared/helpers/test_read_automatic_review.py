@@ -9,7 +9,7 @@ class Test_read_automatic_review:
     def test_read_automatic_review(self):
         automatic_review_dict = {
             "automaticallyRejected": "True",
-            "rejectionReason": "COVERED_FACE",
+            "rejectionReasons": ["COVERED_FACE", "NO_PERSON_RECOGNIZED"],
             "labels": [{
                             "name": "Glasses",
                             "coords": {
@@ -38,7 +38,7 @@ class Test_read_automatic_review:
         
         expected = AutomaticReview(
             automaticallyRejected = True,
-            rejectionReason = REJECTION_REASON.COVERED_FACE,
+            rejectionReasons = [REJECTION_REASON.COVERED_FACE, REJECTION_REASON.NO_PERSON_RECOGNIZED],
             labels = [
                 Label(
                     name="Glasses",
@@ -66,7 +66,7 @@ class Test_read_automatic_review:
         )
         
         assert result.automaticallyRejected  == expected.automaticallyRejected
-        assert result.rejectionReason  == expected.rejectionReason
+        assert result.rejectionReasons  == expected.rejectionReasons
         
         assert result.labels[0].name  == expected.labels[0].name
         assert result.labels[0].coords  == expected.labels[0].coords
@@ -81,7 +81,7 @@ class Test_read_automatic_review:
     def test_read_automatic_review_missing_parameters(self):
             automatic_review_dict = {
             "automaticallyRejected": "True",
-            "rejectionReason": "COVERED_FACE",
+            "rejectionReasons": "COVERED_FACE;NO_PERSON_RECOGNIZED",
             "labels": [{
                             "name": "Glasses",
                             "coords": {

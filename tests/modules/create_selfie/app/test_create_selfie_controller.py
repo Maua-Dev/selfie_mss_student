@@ -5,7 +5,7 @@ from src.shared.helpers.http.http_models import HttpRequest
 
 AUTOMATIC_REVIEW_DICT = {
             "automaticallyRejected": "True",
-            "rejectionReason": "COVERED_FACE",
+            "rejectionReasons": ["COVERED_FACE"],
             "labels": [{
                             "name": "Glasses",
                             "coords": {
@@ -53,9 +53,9 @@ class Test_CreateSelfieController:
         assert response.body["student"]["ra"] == "21014442"
         assert response.status_code == 201
         assert response.body["message"] == "the selfie was created"
-        assert response.body["rejectionReason"] == "NONE"
+        assert response.body["rejectionReasons"] == ["NONE"]
         assert response.body["rejectionDescription"] == None
-        assert response.body["automaticReview"]["rejectionReason"] == "COVERED_FACE"
+        assert response.body["automaticReview"]["rejectionReasons"] == ["COVERED_FACE"]
 
     def test_create_selfie_controller_missing_ra(self):
         repo = StudentRepositoryMock()
