@@ -9,7 +9,7 @@ from cdk_pipeline_stack import PipelineStack
 print("Starting the CDK")
 
 print("Adjusting the layer directory")
-# adjust_layer_directory(shared_dir_name="shared", destination="lambda_layer_out_temp")
+adjust_layer_directory(shared_dir_name="shared", destination="lambda_layer_out_temp")
 print("Finished adjusting the layer directory")
 
 
