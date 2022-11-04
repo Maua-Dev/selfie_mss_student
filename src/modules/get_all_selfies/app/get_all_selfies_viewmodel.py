@@ -1,6 +1,5 @@
 from typing import List
 from src.shared.domain.entities.student import Student
-from src.modules.get_selfie.app.get_selfie_viewmodel import GetSelfieViewModel
 from src.shared.domain.enums.rejection_reason_enum import REJECTION_REASON
 from src.shared.domain.enums.state_enum import STATE
 from src.shared.domain.entities.selfie import Selfie

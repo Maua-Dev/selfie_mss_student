@@ -1,5 +1,5 @@
-from src.modules.get_all_selfies.app.get_all_selfies_controller import GetAllSelfiesController
-from src.modules.get_all_selfies.app.get_all_selfies_usecase import GetAllSelfiesUsecase
+from .get_all_selfies_controller import GetAllSelfiesController
+from .get_all_selfies_usecase import GetAllSelfiesUsecase
 from src.shared.infra.repositories.student_repository_mock import StudentRepositoryMock
 from src.shared.helpers.http.http_lambda_requests import LambdaHttpRequest, LambdaHttpResponse
 
