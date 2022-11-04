@@ -10,19 +10,13 @@ LAMBDA_LAYER_PREFIX = os.path.join("python", "src")
 
 def adjust_layer_directory(shared_dir_name: str, destination: str):
     # Get the root directory of the source directory
-    root_dir = Path(__file__).parent.parent
-    print(f"Root directory: {root_dir}")
-    print(f"Root direcotry files: {os.listdir(root_dir)}")
-    print(f"IaC directory: {os.path.join(root_dir, IAC_DIRECTORY_NAME)}")
-    print(f"IaC directory files: {os.listdir(os.path.join(root_dir, IAC_DIRECTORY_NAME))}")
-
-
-    # os_path_index_to_root = os.getcwd().split(os.sep).index("selfie_mss_student")
-    os_path_index_to_root = os.path.abspath(os.path.join(os.getcwd(), os.pardir)).split(os.sep).index("selfie_mss_student")
-    root_directory = os.sep.join(os.getcwd().split(os.sep)[:os_path_index_to_root + 1])
-
+    root_directory = Path(__file__).parent.parent
     iac_directory = os.path.join(root_directory, IAC_DIRECTORY_NAME)
 
+    print(f"Root directory: {root_directory}")
+    print(f"Root direcotry files: {os.listdir(root_directory)}")
+    print(f"IaC directory: {iac_directory}")
+    print(f"IaC directory files: {os.listdir(iac_directory)}")
 
 
     # Get the destination and source directory
