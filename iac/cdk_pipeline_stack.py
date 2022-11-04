@@ -33,7 +33,7 @@ class PipelineStack(Stack):
                                                                         )
                                               )
 
-        codePipeline.add_stage(IacStack(self, 'Dev'), stage='Dev')
+        codePipeline.add_stage(IacStack(self, 'Dev'))
 
         # pre_prod_app = IacStack(self, 'Pre-Prod', env={
         #     'account': '264055331071',
