@@ -9,6 +9,7 @@ LAMBDA_LAYER_PREFIX = os.path.join("python", "src")
 
 def adjust_layer_directory(shared_dir_name: str, destination: str):
     # Get the root directory of the source directory
+    print(f"os.getcwd().split(os.sep): {os.getcwd().split(os.sep)}")
     os_path_index_to_root = os.getcwd().split(os.sep).index("selfie_mss_student")
     root_directory = os.sep.join(os.getcwd().split(os.sep)[:os_path_index_to_root + 1])
 
