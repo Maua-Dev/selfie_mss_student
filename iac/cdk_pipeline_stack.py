@@ -1,17 +1,9 @@
 from aws_cdk import (
-    aws_s3 as aws_s3,
-    aws_ecr,
-    aws_codebuild,
-    aws_codepipeline as codepipeline,
-    aws_codepipeline_actions as cpactions,
     pipelines,
-    aws_secretsmanager as secretsmanager,
-    aws_ssm,
-    App, Aws, CfnOutput, Duration, RemovalPolicy, Stack
+    App, Stack
 )
 
-from iac.iac_stack import IacStack
-
+from iac.pipeline_stage import PipelineStage
 
 class PipelineStack(Stack):
     def __init__(self, app: App, id: str, **kwargs) -> None:
@@ -33,7 +25,7 @@ class PipelineStack(Stack):
                                                                         )
                                               )
 
-        codePipeline.add_stage(IacStack(self, 'Dev'))
+        codePipeline.add_stage(PipelineStage(self, 'Dev'))
 
         # pre_prod_app = IacStack(self, 'Pre-Prod', env={
         #     'account': '264055331071',
