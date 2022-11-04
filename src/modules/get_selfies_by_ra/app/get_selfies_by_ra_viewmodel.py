@@ -61,5 +61,5 @@ class GetSelfiesByRaViewModel:
         return {
             "student": self.student.to_dict(),
             "selfies": [selfie.to_dict() for selfie in self.selfies],
-            "message": "the selfies were retriven"
+            "message": "the selfies were retrieven!"
         }
