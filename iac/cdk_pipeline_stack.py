@@ -27,8 +27,11 @@ class PipelineStack(Stack):
                                                                         commands=[
                                                                             'cd iac',
                                                                             'python -m pip install -r requirements.txt',
-                                                                            'npx cdk synth'
-                                                                        ]))
+                                                                            'npx cdk synth',
+                                                                        ],
+                                                                        primary_output_directory='iac/cdk.out'
+                                                                        )
+                                              )
 
         # pre_prod_app = IacStack(self, 'Pre-Prod', env={
         #     'account': '264055331071',
