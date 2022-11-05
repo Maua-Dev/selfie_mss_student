@@ -12,11 +12,11 @@ class Test_UpdateSelfieUsecase:
     def test_update_selfie_usecase_state_declined(self):
         repo = StudentRepositoryMock()
         usecase = UpdateSelfieUsecase(repo=repo)
-        usecase(ra="21014440", idSelfie=0, new_state=STATE.DECLINED, new_rejectionReason=REJECTION_REASON.NO_PERSON_RECOGNIZED, new_rejectionDescription="Please appear more")
+        usecase(ra="21014440", idSelfie=0, new_state=STATE.DECLINED, new_rejectionReasons=[REJECTION_REASON.NO_PERSON_RECOGNIZED], new_rejectionDescription="Please appear more")
         
         assert repo.selfies[4].student.ra == repo.students[3].ra 
         assert repo.selfies[4].rejectionDescription == "Please appear more"
-        assert repo.selfies[4].rejectionReason == REJECTION_REASON.NO_PERSON_RECOGNIZED
+        assert repo.selfies[4].rejectionReasons == [REJECTION_REASON.NO_PERSON_RECOGNIZED]
         assert repo.selfies[4].state == STATE.DECLINED
 
     def test_update_selfie_usecase_state_approved(self):

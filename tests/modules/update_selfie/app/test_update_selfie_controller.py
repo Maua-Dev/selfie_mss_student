@@ -17,7 +17,7 @@ class Test_UpdateSelfieController:
             "ra":"21014440", 
             "idSelfie":'0',
             "new_state":"DECLINED",
-            "new_rejectionReason":"NO_PERSON_RECOGNIZED",
+            "new_rejectionReasons":["NO_PERSON_RECOGNIZED"],
             "new_rejectionDescription":"Aparece mais parça por favor"
         })
         response = controller(request=request)
@@ -143,14 +143,14 @@ class Test_UpdateSelfieController:
         request = HttpRequest(body={
             "ra": "21010757",
             "idSelfie": '0',
-            "new_rejectionReason":"Vilas"
+            "new_rejectionReasons":"Vilas"
 
         })
 
         response = controller(request=request)
 
         assert response.status_code == 400
-        assert response.body == "Field new_rejectionReason is not valid"
+        assert response.body == "Field new_rejectionReasons is not valid"
 
 
     def test_update_selfie_controller_already_approved(self):
@@ -162,7 +162,7 @@ class Test_UpdateSelfieController:
             "ra": "21010757",
             "idSelfie": '0',
             "new_state":"DECLINED",
-            "new_rejectionReason":"NO_PERSON_RECOGNIZED"
+            "new_rejectionReasons":["NO_PERSON_RECOGNIZED"]
         })
 
         response = controller(request=request)

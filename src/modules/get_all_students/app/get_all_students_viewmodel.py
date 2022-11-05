@@ -30,19 +30,19 @@ class LabelViewModel:
 
 class AutomaticReviewViewModel:
     automaticallyRejected: bool
-    rejectionReason: REJECTION_REASON
+    rejectionReasons: list[REJECTION_REASON]
     labels: list[LabelViewModel]
     
     def __init__(self, automaticReview:AutomaticReview):
             self.automaticallyRejected = automaticReview.automaticallyRejected
-            self.rejectionReason = automaticReview.rejectionReason
+            self.rejectionReasons = automaticReview.rejectionReasons
             self.labels = [LabelViewModel(label) for label in automaticReview.labels]
 
     
     def to_dict(self):
         return {
             "automaticallyRejected": self.automaticallyRejected,    
-            "rejectionReason": self.rejectionReason.value,
+            "rejectionReasons": [reason.value for reason in self.rejectionReasons],
             "labels": [label.to_dict() for label in self.labels]
         }
         
@@ -51,7 +51,7 @@ class SelfieViewModel:
     dateCreated: str
     url: str
     state: STATE
-    rejectionReason: REJECTION_REASON
+    rejectionReasons: list[REJECTION_REASON]
     rejectionDescription: str
     automaticReview: AutomaticReviewViewModel
 
@@ -60,7 +60,7 @@ class SelfieViewModel:
         self.dateCreated = selfie.dateCreated
         self.url = selfie.url
         self.state = selfie.state
-        self.rejectionReason =  selfie.rejectionReason
+        self.rejectionReasons =  selfie.rejectionReasons
         self.rejectionDescription = selfie.rejectionDescription
         self.automaticReview = AutomaticReviewViewModel(selfie.automaticReview)
 
@@ -70,7 +70,7 @@ class SelfieViewModel:
             "dateCreated" : self.dateCreated.isoformat(),
             "url" : self.url,
             "state" : self.state.value,
-            "rejectionReason": self.rejectionReason.value,
+            "rejectionReasons": [reason.value for reason in self.rejectionReasons],
             "automaticReview": self.automaticReview.to_dict(),
             "rejectionDescription": self.rejectionDescription,
         }

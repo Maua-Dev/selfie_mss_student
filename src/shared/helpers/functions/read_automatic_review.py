@@ -24,7 +24,7 @@ def read_automatic_review(automaticReview: dict) -> AutomaticReview:
 
         result = AutomaticReview(
             automaticallyRejected=automaticReview['automaticallyRejected'] == "True",
-            rejectionReason=REJECTION_REASON[automaticReview["rejectionReason"]],
+            rejectionReasons=[REJECTION_REASON[reason] for reason in automaticReview["rejectionReasons"]],
             labels=labels,
         )
         

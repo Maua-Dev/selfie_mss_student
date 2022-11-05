@@ -60,7 +60,7 @@ class Test_DeleteSelfiePresenter:
         assert json.loads(response["body"])["student"]["name"] == "Soller"
         assert json.loads(response["body"])["selfie"]["url"] == "https://i.imgur.com/dv7Q5VT.jpg"
         assert json.loads(response["body"])["selfie"]["idSelfie"] == 0
-        assert json.loads(response["body"])["selfie"]["rejectionReason"] == "NONE"
+        assert json.loads(response["body"])["selfie"]["rejectionReasons"] == ["NONE"]
         assert json.loads(response["body"])["selfie"]["state"] == "PENDING_REVIEW"
         assert json.loads(response["body"])['message'] == "the selfie was deleted"
         assert json.loads(response["body"])['selfie']['automaticReview']['automaticallyRejected'] == False

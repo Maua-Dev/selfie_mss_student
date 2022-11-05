@@ -13,11 +13,11 @@ class Selfie(abc.ABC):
     dateCreated: datetime.datetime
     url: str
     state: STATE
-    rejectionReason: REJECTION_REASON
+    rejectionReasons: list[REJECTION_REASON]
     rejectionDescription: str
     automaticReview: AutomaticReview
 
-    def __init__(self, student: Student, dateCreated: datetime.datetime, url: str, state: STATE, idSelfie: int, rejectionReason: REJECTION_REASON, rejectionDescription: str, automaticReview: AutomaticReview):
+    def __init__(self, student: Student, dateCreated: datetime.datetime, url: str, state: STATE, idSelfie: int, rejectionReasons: list[REJECTION_REASON], rejectionDescription: str, automaticReview: AutomaticReview):
         self.student = student
 
         if (dateCreated == None and type(dateCreated) != datetime.datetime):
@@ -40,9 +40,12 @@ class Selfie(abc.ABC):
         
         self.idSelfie = idSelfie
 
-        if (rejectionReason == None or type(rejectionReason) != REJECTION_REASON):
-            raise EntityError('rejectionReason')
-        self.rejectionReason = rejectionReason
+        if (rejectionReasons == None or type(rejectionReasons) != list):
+            raise EntityError('rejectionReasons')
+        elif not all(isinstance(reason, REJECTION_REASON) for reason in rejectionReasons):
+            raise EntityError('rejectionReasons')
+
+        self.rejectionReasons = rejectionReasons
 
         if (type(rejectionDescription) != str and rejectionDescription != None):
             raise EntityError('rejectionDescription')

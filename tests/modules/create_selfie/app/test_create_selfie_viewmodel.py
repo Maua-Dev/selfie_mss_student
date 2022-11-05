@@ -22,11 +22,11 @@ class Test_CreateSelfieViewModel:
             idSelfie=0,
             state=STATE.APPROVED,
             dateCreated=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),
-            rejectionReason = REJECTION_REASON.NONE,
+            rejectionReasons = [REJECTION_REASON.NONE],
             rejectionDescription = "",
             automaticReview=AutomaticReview(
                     automaticallyRejected=True,
-                    rejectionReason=REJECTION_REASON.NOT_ALLOWED_BACKGROUND,
+                    rejectionReasons=[REJECTION_REASON.NOT_ALLOWED_BACKGROUND, REJECTION_REASON.NO_PERSON_RECOGNIZED],
                     labels=[
                         Label(
                             name="Building",
@@ -69,7 +69,7 @@ class Test_CreateSelfieViewModel:
           'idSelfie': 0,
           'message': 'the selfie was created',
           'rejectionDescription': '',
-          'rejectionReason': 'NONE',
+          'rejectionReasons': ["NONE"],
           'state': 'APPROVED',
           'student': {'email': 'gui@cleme.com',
                       'name': 'Guilherme Clementino',
@@ -97,7 +97,7 @@ class Test_CreateSelfieViewModel:
                                                      'Width': 0.9711952805519104},
                                           'name': 'Person',
                                           'parents': []}],
-                              'rejectionReason': 'NOT_ALLOWED_BACKGROUND'}}
+                              'rejectionReasons': ["NOT_ALLOWED_BACKGROUND", "NO_PERSON_RECOGNIZED"]}}
         
         selfieViewModel = CreateSelfieViewModel(selfie).to_dict()
 
