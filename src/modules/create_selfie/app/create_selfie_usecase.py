@@ -1,5 +1,4 @@
 import datetime
-import re
 from src.shared.domain.enums.rejection_reason_enum import REJECTION_REASON
 from src.shared.domain.enums.state_enum import STATE
 from src.shared.helpers.errors.domain_errors import EntityError
@@ -27,15 +26,17 @@ class CreateSelfieUsecase:
         if self.repo.check_student_has_approved_selfie(ra=ra):       
             raise ForbiddenAction("Student")
 
+        automaticReviewInstance = read_automatic_review(automaticReview)
+
         selfie = Selfie(
             student=student,
             dateCreated=datetime.datetime.now(),
             url=url,
-            state=STATE.PENDING_REVIEW,
+            state=STATE.PENDING_REVIEW if not automaticReviewInstance.automaticallyRejected else STATE.DECLINED,
             idSelfie=len(self.repo.get_selfies_by_ra(ra=ra)),
-            rejectionReasons=[REJECTION_REASON.NONE],
-            rejectionDescription=None,
-            automaticReview=read_automatic_review(automaticReview)
+            rejectionReasons=[REJECTION_REASON.NONE] if not automaticReviewInstance.automaticallyRejected else automaticReviewInstance.rejectionReasons,
+            rejectionDescription=None if not automaticReviewInstance.automaticallyRejected else "auto-rejected by AI",
+            automaticReview=automaticReviewInstance
         )
         
         selfie = self.repo.create_selfie(selfie=selfie)
