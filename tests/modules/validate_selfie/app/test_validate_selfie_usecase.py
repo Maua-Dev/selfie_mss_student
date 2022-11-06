@@ -1790,8 +1790,14 @@ class Test_ValidateSelfieUsecase:
     "LabelModelVersion": "3.0"
 }
         automaticRekognitionDict = usecase(ra="21014442", url="https://google.com", rekognitionResult=rekognitionResult)
-        assert automaticRekognitionDict == {'automaticallyRejected': True, 'rejectionReasons': ['NO_PERSON_RECOGNIZED', 'NOT_ALLOWED_BACKGROUND'], 'labels': [{'name': 'Strap', 'confidence': 99.99072265625, 'coords': [], 'parents': ['Accessories']}, {'name': 'Accessories', 'confidence': 99.99072265625, 'coords': [], 'parents': []}, {'name': 'Dog', 'confidence': 98.91767883300781, 'coords': {'Width': 0.4189898669719696, 'Height': 0.5533494353294373, 'Left': 0.29500433802604675, 'Top': 0.1943594515323639}, 'parents': ['Animal', 'Canine', 'Mammal', 'Pet']}, {'name': 'Canine', 'confidence': 98.91767883300781, 'coords': [], 'parents': ['Animal', 'Mammal']}, {'name': 'Pet', 'confidence': 98.91767883300781, 'coords': [], 'parents': ['Animal']}, {'name': 'Mammal', 'confidence': 98.91767883300781, 'coords': [], 'parents': ['Animal']}, {'name': 'Animal', 'confidence': 98.91767883300781, 'coords': [], 'parents': []}]}
+        
+        expected = {'automaticallyRejected': True, 'rejectionReasons': ['NO_PERSON_RECOGNIZED', 'NOT_ALLOWED_BACKGROUND'], 'labels': [{'name': 'Strap', 'confidence': 99.99072265625, 'coords': [], 'parents': ['Accessories']}, {'name': 'Accessories', 'confidence': 99.99072265625, 'coords': [], 'parents': []}, {'name': 'Dog', 'confidence': 98.91767883300781, 'coords': {'Width': 0.4189898669719696, 'Height': 0.5533494353294373, 'Left': 0.29500433802604675, 'Top': 0.1943594515323639}, 'parents': ['Animal', 'Canine', 'Mammal', 'Pet']}, {'name': 'Canine', 'confidence': 98.91767883300781, 'coords': [], 'parents': ['Animal', 'Mammal']}, {'name': 'Pet', 'confidence': 98.91767883300781, 'coords': [], 'parents': ['Animal']}, {'name': 'Mammal', 'confidence': 98.91767883300781, 'coords': [], 'parents': ['Animal']}, {'name': 'Animal', 'confidence': 98.91767883300781, 'coords': [], 'parents': []}]}
     
+        assert automaticRekognitionDict['automaticallyRejected'] == expected['automaticallyRejected']
+        assert automaticRekognitionDict['rejectionReasons'].sort() == expected['rejectionReasons'].sort()
+        assert automaticRekognitionDict['labels'] == expected['labels']
+
+
     def test_validate_selfie_usecase_auto_rejected_4(self):
         repo = StudentRepositoryMock()
         usecase = ValidateSelfieUsecase(repo=repo)
@@ -1897,4 +1903,11 @@ class Test_ValidateSelfieUsecase:
     }
         
         automaticRekognitionDict = usecase(ra="21014442", url="https://google.com", rekognitionResult=rekognitionResult)
-        assert automaticRekognitionDict == {'automaticallyRejected': True, 'rejectionReasons': ['NO_PERSON_RECOGNIZED', 'COVERED_FACE'], 'labels': [{'name': 'Hair', 'confidence': 99.82501220703125, 'coords': [], 'parents': ['Person']}, {'name': 'Person', 'confidence': 99.82501220703125, 'coords': {'Width': 0.9560412168502808, 'Height': 0.9275450706481934, 'Left': 0.03678623214364052, 'Top': 0.07245491445064545}, 'parents': []}, {'name': 'Mobile Phone', 'confidence': 94.71910858154297, 'coords': {'Width': 0.36574506759643555, 'Height': 0.17807289958000183, 'Left': 0.5576263666152954, 'Top': 0.36066752672195435}, 'parents': ['Electronics', 'Phone']}, {'name': 'Phone', 'confidence': 94.71910858154297, 'coords': [], 'parents': ['Electronics']}]}
+
+        expected =  {'automaticallyRejected': True, 'rejectionReasons': ['NO_PERSON_RECOGNIZED', 'COVERED_FACE'], 'labels': [{'name': 'Hair', 'confidence': 99.82501220703125, 'coords': [], 'parents': ['Person']}, {'name': 'Person', 'confidence': 99.82501220703125, 'coords': {'Width': 0.9560412168502808, 'Height': 0.9275450706481934, 'Left': 0.03678623214364052, 'Top': 0.07245491445064545}, 'parents': []}, {'name': 'Mobile Phone', 'confidence': 94.71910858154297, 'coords': {'Width': 0.36574506759643555, 'Height': 0.17807289958000183, 'Left': 0.5576263666152954, 'Top': 0.36066752672195435}, 'parents': ['Electronics', 'Phone']}, {'name': 'Phone', 'confidence': 94.71910858154297, 'coords': [], 'parents': ['Electronics']}]}
+            
+        assert automaticRekognitionDict['automaticallyRejected'] == expected['automaticallyRejected']
+        assert automaticRekognitionDict['rejectionReasons'].sort() == expected['rejectionReasons'].sort()
+        assert automaticRekognitionDict['labels'] == expected['labels']
+
+
