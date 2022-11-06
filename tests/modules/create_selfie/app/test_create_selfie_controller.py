@@ -36,11 +36,11 @@ class Test_CreateSelfieController:
         repo = StudentRepositoryMock()
         usecase = CreateSelfieUsecase(repo=repo)
         controller = CreateSelfieController(usecase=usecase)
-        request = HttpRequest(body={
+        request = {
             "ra": "21014442",
             "url": "https://www.youtube.com/watch?v=5IpYOF4Hi6Q",
             "automaticReview": AUTOMATIC_REVIEW_DICT
-        })
+        }
         
         lenBefore = len(repo.selfies)
         response = controller(request=request)
@@ -61,9 +61,9 @@ class Test_CreateSelfieController:
         repo = StudentRepositoryMock()
         usecase = CreateSelfieUsecase(repo=repo)
         controller = CreateSelfieController(usecase=usecase)
-        request = HttpRequest(body={
+        request = {
             "url": "https://www.youtube.com/watch?v=5IpYOF4Hi6Q",
-        })
+        }
         response = controller(request=request)
 
         assert response.status_code == 400
@@ -73,9 +73,9 @@ class Test_CreateSelfieController:
         repo = StudentRepositoryMock()
         usecase = CreateSelfieUsecase(repo=repo)
         controller = CreateSelfieController(usecase=usecase)
-        request = HttpRequest(body={
+        request = {
             "ra": "21002008",
-        })
+        }
         response = controller(request=request)
 
         assert response.status_code == 400
@@ -87,11 +87,11 @@ class Test_CreateSelfieController:
         usecase = CreateSelfieUsecase(repo=repo)
         controller = CreateSelfieController(usecase=usecase)
 
-        request = HttpRequest(body={
+        request = {
             "ra": 21002088,
             "url": "https://www.youtube.com/watch?v=5IpYOF4Hi6Q",
             "automaticReview": AUTOMATIC_REVIEW_DICT
-        })
+        }
 
         response = controller(request=request)
 
@@ -103,12 +103,12 @@ class Test_CreateSelfieController:
         usecase = CreateSelfieUsecase(repo=repo)
         controller = CreateSelfieController(usecase=usecase)
 
-        request = HttpRequest(body={
+        request = {
             "ra": "2100208-8",
             "url": "https://www.youtube.com/watch?v=5IpYOF4Hi6Q",
             "automaticReview": AUTOMATIC_REVIEW_DICT
-        })
-
+        }
+        
         response = controller(request=request)
 
         assert response.status_code == 400
@@ -119,12 +119,12 @@ class Test_CreateSelfieController:
         usecase = CreateSelfieUsecase(repo=repo)
         controller = CreateSelfieController(usecase=usecase)
 
-        request = HttpRequest(body={
+        request = {
             "ra": "12345678",
             "url": "https://www.youtube.com/watch?v=5IpYOF4Hi6Q",
             "automaticReview": AUTOMATIC_REVIEW_DICT
-        })
-
+        }
+        
         response = controller(request=request)
 
         assert response.status_code == 404
@@ -135,11 +135,11 @@ class Test_CreateSelfieController:
         usecase = CreateSelfieUsecase(repo=repo)
         controller = CreateSelfieController(usecase=usecase)
 
-        request = HttpRequest(body={
+        request = {
             "ra": "21014442",
             "url": "http://www.macaco.br",
             "automaticReview": AUTOMATIC_REVIEW_DICT
-        })
+        }
 
         response = controller(request=request)
 
@@ -151,11 +151,11 @@ class Test_CreateSelfieController:
         usecase = CreateSelfieUsecase(repo=repo)
         controller = CreateSelfieController(usecase=usecase)
 
-        request = HttpRequest(body={
+        request = {
             "ra": "15013103",
             "url": "http://www.macaco.br",
             "automaticReview": AUTOMATIC_REVIEW_DICT
-        })
+        }
 
         response = controller(request=request)
 
@@ -167,11 +167,11 @@ class Test_CreateSelfieController:
         usecase = CreateSelfieUsecase(repo=repo)
         controller = CreateSelfieController(usecase=usecase)
 
-        request = HttpRequest(body={
+        request = {
             "ra": "15013103",
             "url": "http://www.macaco.br",
             "automaticReview": 1
-        })
+        }
 
         response = controller(request=request)
 
