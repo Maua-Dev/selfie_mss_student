@@ -1,6 +1,6 @@
-from src.modules.get_all_students.app.get_all_students_usecase import GetAllStudentsUsecase
+from .get_all_students_usecase import GetAllStudentsUsecase
 from src.shared.helpers.http.http_models import OK, HttpRequest, HttpResponse
-from src.modules.get_all_students.app.get_all_students_viewmodel import GetAllStudentsViewModel
+from .get_all_students_viewmodel import GetAllStudentsViewModel
 
 
 class GetAllStudentsController:
