@@ -1,21 +1,50 @@
+from src.shared.domain.enums.rejection_reason_enum import REJECTION_REASON
+
 
 
 
 class ValidationLists:
-    OBJECTS_NOT_ALLOWED: list = [
-        "Hat", "Cap", "Glasses", "Scarf", "Finger", "Thophy", "Sunglasses", "Shorts", "Pool", "Electronics", "Nature", "Vegetation", "Restaurant", "Furniture", "Library", "Bag", "Airplane"
-    ]
+    OBJECTS_NOT_ALLOWED: dict = {
+        "Hat": REJECTION_REASON.COVERED_FACE,
+        "Cap": REJECTION_REASON.COVERED_FACE,
+        "Glasses": REJECTION_REASON.COVERED_FACE,
+        "Scarf": REJECTION_REASON.COVERED_FACE,
+        "Electronics": REJECTION_REASON.COVERED_FACE, 
+        "Sunglasses": REJECTION_REASON.COVERED_FACE,
+        "Finger": REJECTION_REASON.COVERED_FACE, 
+        "Pool":REJECTION_REASON.NOT_ALLOWED_BACKGROUND, 
+        "Nature":REJECTION_REASON.NOT_ALLOWED_BACKGROUND, 
+        "Vegetation":REJECTION_REASON.NOT_ALLOWED_BACKGROUND, 
+        "Restaurand":REJECTION_REASON.NOT_ALLOWED_BACKGROUND, 
+        "Furniture":REJECTION_REASON.NOT_ALLOWED_BACKGROUND, 
+        "Library":REJECTION_REASON.NOT_ALLOWED_BACKGROUND, 
+        "Airplane": REJECTION_REASON.NOT_ALLOWED_BACKGROUND,
+        "Thophy":REJECTION_REASON.NOT_ALLOWED_BACKGROUND,
+        "Bag":REJECTION_REASON.NOT_ALLOWED_BACKGROUND,
+        "Shorts":REJECTION_REASON.OTHER_REASON, 
+    }
 
-    OBJECTS_REQUIRED: list = [
-        "Person", "Face"
-    ]
+
+    OBJECTS_REQUIRED: dict = {
+        "Person": REJECTION_REASON.NO_PERSON_RECOGNIZED, 
+        "Face": REJECTION_REASON.NO_PERSON_RECOGNIZED
+    }
     
-    PARENTS_NOT_ALLOWED: list = [
-        "Building", "Architecture", "Animal", "Pet", "Electronics", "Phone", "Outdoors", "Plant", "Food", "Urban", "City", 
-    ]
+    PARENTS_NOT_ALLOWED: dict = {
+        "Building": REJECTION_REASON.NOT_ALLOWED_BACKGROUND,
+        "Architecture": REJECTION_REASON.NOT_ALLOWED_BACKGROUND,
+        "Plant": REJECTION_REASON.NOT_ALLOWED_BACKGROUND,
+        "Outdoors": REJECTION_REASON.NOT_ALLOWED_BACKGROUND,
+        "Urban": REJECTION_REASON.NOT_ALLOWED_BACKGROUND,
+        "City": REJECTION_REASON.NOT_ALLOWED_BACKGROUND, 
+        "Animal": REJECTION_REASON.NOT_ALLOWED_BACKGROUND,
+        "Pet": REJECTION_REASON.NOT_ALLOWED_BACKGROUND,
+        "Food": REJECTION_REASON.NOT_ALLOWED_BACKGROUND,
+        "Electronics": REJECTION_REASON.COVERED_FACE, 
+        "Phone": REJECTION_REASON.COVERED_FACE,
+    }
 
-    PARENTS_REQUIRED: list = [
-
-    ]
-
+    PARENTS_REQUIRED: dict = {
+        
+    }
 
