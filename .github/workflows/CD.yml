@@ -37,7 +37,7 @@ jobs:
 
         - name: DeployWithCDK
           run: |
-            cdk build
+            cdk synth
             cdk deploy
 
 
