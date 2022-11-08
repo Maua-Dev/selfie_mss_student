@@ -15,10 +15,10 @@ class GetStudentController:
             if request.query_params.get('ra') is None:
                 raise MissingParameters('ra')
 
-            student = self.getStudentUsecase(
+            student, student_state = self.getStudentUsecase(
                 ra=request.query_params["ra"]
             )
-            viewmodel = GetStudentViewModel(student)
+            viewmodel = GetStudentViewModel(student, student_state)
             return OK(viewmodel.to_dict())
 
         except NoItemsFound as err:
