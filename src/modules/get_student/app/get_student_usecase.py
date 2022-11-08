@@ -5,6 +5,7 @@ from src.shared.helpers.errors.domain_errors import EntityError
 from src.shared.helpers.errors.usecase_errors import NoItemsFound
 from src.shared.domain.entities.student import Student
 from src.shared.domain.repositories.student_repository_interface import IStudentRepository
+from src.shared.helpers.errors.domain_errors import EntityParameterError
 
 class GetStudentUsecase:
     def __init__(self, repo:IStudentRepository):
@@ -23,13 +24,15 @@ class GetStudentUsecase:
 
         selfies = self.repo.get_selfies_by_ra(ra=student.ra)
         
-        if self.repo.check_student_has_approved_selfie(ra=student.ra): student_state = STUDENT_STATE.APPROVED
-        elif len(selfies) == 0: student_state = STUDENT_STATE.NO_SELFIE
+        if not len(selfies): student_state = STUDENT_STATE.NO_SELFIE
+        elif self.repo.check_student_has_approved_selfie(ra=student.ra): student_state = STUDENT_STATE.APPROVED
         else:
-            recent_selfie_status = selfies[0].state if len(selfies) else [selfie for selfie in selfies].sort(key=lambda x:x.dateCreated)[-1].state 
+            selfies.sort(key=lambda x:x.dateCreated)
+            recent_selfie_status = selfies[-1].state 
             if recent_selfie_status == STATE.DECLINED: student_state = STUDENT_STATE.SELFIE_REJECTED
             elif recent_selfie_status == STATE.IN_REVIEW: student_state = STUDENT_STATE.SELFIE_IN_REVIEW
             elif recent_selfie_status == STATE.PENDING_REVIEW: student_state = STUDENT_STATE.SELFIE_PENDING_REVIEW
+            else: raise EntityParameterError(message=f"state {recent_selfie_status.value} is unknown")
 
         
         return student, student_state
