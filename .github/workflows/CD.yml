@@ -39,7 +39,7 @@ jobs:
           run: |
             cd iac
             cdk synth
-            cdk deploy IacStack --require-approval never
+            cdk deploy IacStack --require-approval never 
 
 
 
