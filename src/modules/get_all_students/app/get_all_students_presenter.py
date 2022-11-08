@@ -1,6 +1,6 @@
 
-from src.modules.get_all_students.app.get_all_students_controller import GetAllStudentsController
-from src.modules.get_all_students.app.get_all_students_usecase import GetAllStudentsUsecase
+from .get_all_students_controller import GetAllStudentsController
+from .get_all_students_usecase import GetAllStudentsUsecase
 from src.shared.infra.repositories.student_repository_mock import StudentRepositoryMock
 from src.shared.helpers.http.http_lambda_requests import LambdaHttpRequest, LambdaHttpResponse
 
