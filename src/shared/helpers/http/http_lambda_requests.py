@@ -12,17 +12,21 @@ class LambdaHttpResponse(HttpResponse):
     body: any = {"message": "No response"}
     headers: dict = {"Content-Type": "application/json"}
 
-    def __init__(self, body: any = None, status_code: int = None, headers: dict = None) -> None:
+    def __init__(self, body: any = None, status_code: int = None, headers: dict = None, **kwargs) -> None:
         """
         Constructor for HttpResponse.
         Args:
             body: The body of the response. Can be a string or a dict.
             status_code: The status code of the response. Defaults to 200.
             headers: The headers of the response. Defaults to {"Content-Type": "application/json"}.
+            **kwargs: Configuration of the HTTP response. Possible values: add_default_cors_headers (default is True)
         """
         _body = body or LambdaHttpResponse.body
         _headers = headers or LambdaHttpResponse.headers
         _status_code = status_code or LambdaHttpResponse.status_code
+
+        if kwargs.get("add_default_cors_headers", True):
+            _headers.update({"Access-Control-Allow-Origin": "*"})
 
         super().__init__(body=_body, headers=_headers, status_code=_status_code)
 
