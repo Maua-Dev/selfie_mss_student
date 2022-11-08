@@ -12,7 +12,7 @@ class SelfieRepositoryMock(ISelfieRepository):
         return object_name
 
 
-    def request_upload_selfie(self, ra: str, name: str, email: str, url: str) -> dict:
+    def request_upload_selfie(self, ra: str, name: str, email: str) -> dict:
         return {
                 "url":"https://test-selfie-bucket.s3.amazonaws.com/",
                 "fields":{
