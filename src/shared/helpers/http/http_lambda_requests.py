@@ -22,6 +22,8 @@ class LambdaHttpResponse(HttpResponse):
         """
         _body = body or LambdaHttpResponse.body
         _headers = headers or LambdaHttpResponse.headers
+        _headers['Access-Control-Allow-Origin'] = '*'
+        
         _status_code = status_code or LambdaHttpResponse.status_code
 
         super().__init__(body=_body, headers=_headers, status_code=_status_code)
