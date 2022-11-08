@@ -3,7 +3,7 @@ import uuid
 from src.shared.domain.repositories.selfie_repository_interface import ISelfieRepository
 
 
-class StudentRepositoryMock(ISelfieRepository):
+class SelfieRepositoryMock(ISelfieRepository):
 
         
     def uuid_pic_generator_generate(self, ra: str):
