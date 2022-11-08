@@ -87,6 +87,8 @@ class ValidateSelfieUsecase:
         
         rejectionReasons = list(set(rejectionReasons)) if automaticallyRejected else [REJECTION_REASON.NONE.value]
         
+        rejectionReasons.sort()
+
         return {
             "automaticallyRejected": automaticallyRejected,
             "rejectionReasons": rejectionReasons,
