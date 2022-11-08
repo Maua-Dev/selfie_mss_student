@@ -39,7 +39,10 @@ jobs:
           run: |
             cd iac
             cdk synth
-            cdk deploy IacStack --require-approval never 
+            cdk deploy IacStack --require-approval never
+          with:
+            AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
+
 
 
 

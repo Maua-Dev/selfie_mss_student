@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import os
 
 import aws_cdk as cdk
 
@@ -14,8 +15,8 @@ print("Finished adjusting the layer directory")
 
 
 env = {
-    "account": "264055331071",
-    "region": "eu-central-1"
+    "account": os.environ["AWS_ACCOUNT_ID"],
+    "region": "sa-east-1"
 }
 
 app = cdk.App()
