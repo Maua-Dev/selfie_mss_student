@@ -1,0 +1,40 @@
+from .update_student_view_model import UpdateStudentViewModel
+from src.shared.helpers.errors.domain_errors import EntityError
+from src.shared.helpers.errors.usecase_errors import DuplicatedItem, NoItemsFound
+from src.shared.helpers.errors.controller_errors import MissingParameters
+from src.shared.helpers.http.http_models import OK, BadRequest, Conflict, HttpRequest, HttpResponse, InternalServerError, NotFound
+from .update_student_usecase import UpdateStudentUsecase
+
+
+class UpdateStudentController:
+    def __init__(self, usecase: UpdateStudentUsecase):
+        self.updateStudentUsecase = usecase
+
+    def __call__(self, request: HttpRequest) -> HttpResponse:
+        try:
+            if request.body.get('ra') is None:
+                raise MissingParameters('ra')
+            student = self.updateStudentUsecase(
+                ra=request.body.get("ra"),
+                new_name=request.body.get("new_name"),
+                new_email=request.body.get("new_email")
+            )
+
+            viewmodel = UpdateStudentViewModel(student)
+
+            return OK(viewmodel.to_dict())
+
+        except NoItemsFound as err:
+            return NotFound(body=err.message)
+
+        except MissingParameters as err:
+            return BadRequest(body=err.message)
+
+        except DuplicatedItem as err:
+            return Conflict(body=err.message)
+
+        except EntityError as err:
+            return BadRequest(body=err.message)
+
+        except Exception as err:
+            return InternalServerError(body=err.args[0])

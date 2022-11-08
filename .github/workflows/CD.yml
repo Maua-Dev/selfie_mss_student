@@ -9,15 +9,13 @@ on:
   workflow_dispatch:
 
 jobs:
-
   DeployToAWS:
     runs-on: ubuntu-latest
     environment: dev
     permissions:
       id-token: write
       contents: read
-      
-      
+
     steps:
         - uses: actions/checkout@v2
 
@@ -27,19 +25,23 @@ jobs:
             aws-region: ${{ secrets.AWS_REGION }}
             role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/GithubActionsRole
             role-session-name: github-action
-            
+
 
         - name: Installing Dependencies
           run: |
             npm install -g aws-cdk
-            ls
             cd iac
             pip install -r requirements.txt
-                
+                 
+
         - name: DeployWithCDK
           run: |
-            cdk build
-            cdk deploy
+            cd iac
+            cdk synth
+            cdk deploy IacStack --require-approval never
+          env:
+            AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
+
 
 
 
