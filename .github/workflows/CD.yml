@@ -39,7 +39,7 @@ jobs:
           run: |
             cd iac
             cdk synth
-            cdk deploy IaCStack
+            cdk deploy IacStack
 
 
 
