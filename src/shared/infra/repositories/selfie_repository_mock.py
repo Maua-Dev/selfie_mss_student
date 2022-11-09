@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime
 import uuid
 from src.shared.domain.repositories.selfie_repository_interface import ISelfieRepository
 
