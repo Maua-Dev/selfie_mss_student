@@ -17,6 +17,6 @@ class RequestUploadSelfieUsecase:
         if not Student.validate_name(name):
             raise EntityError('name')
 
-        presigned_post = self.repo.request_upload_selfie(ra=ra, name=name, email=email)
+        presignedPost = self.repo.request_upload_selfie(ra=ra, name=name, email=email)
 
-        return presigned_post
+        return presignedPost

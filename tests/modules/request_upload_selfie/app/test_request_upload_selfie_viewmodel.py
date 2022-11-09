@@ -18,7 +18,7 @@ class Test_RequestUploadSelfieViewModel:
    }
 }
 
-        presignedPostViewModel = RequestUploadSelfieViewModel(presigned_post=presignedPostDict).to_dict()
+        presignedPostViewModel = RequestUploadSelfieViewModel(presignedPost=presignedPostDict).to_dict()
 
 
         expected = {
