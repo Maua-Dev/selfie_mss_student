@@ -1,4 +1,3 @@
-from src.shared.domain.entities.selfie import Selfie
 from src.shared.domain.entities.student import Student
 from src.shared.domain.repositories.selfie_repository_interface import ISelfieRepository
 from src.shared.helpers.errors.domain_errors import EntityError
