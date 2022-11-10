@@ -27,15 +27,23 @@ class ValidateSelfieViewModel:
     automaticallyRejected: bool
     rejectionReasons: List[REJECTION_REASON]
     labels: List[Label]
+    ra: str
+    url: str
     
-    def __init__(self, data: AutomaticReview):
+    def __init__(self, data: AutomaticReview, ra:str, url:str):
         self.automaticallyRejected = data.automaticallyRejected
         self.rejectionReasons = data.rejectionReasons
         self.labels = data.labels
+        self.ra = ra
+        self.url = url
         
     def to_dict(self) -> dict:
         return {
             "automaticallyRejected": self.automaticallyRejected,
-            "rejectionReasons": self.rejectionReasons,
-            "labels": [LabelViewModel(label=label).to_dict() for label in self.labels]
+            "rejectionReasons": [rejectionReason.value for rejectionReason in self.rejectionReasons],
+            "labels": [LabelViewModel(label=label).to_dict() for label in self.labels],
+            "ra": self.ra,
+            "url": self.url,
+            "message":  "Selfie has been validated"
+            
         }
