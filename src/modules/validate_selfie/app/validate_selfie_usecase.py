@@ -1,4 +1,3 @@
-from typing import Dict
 from src.shared.domain.repositories.student_repository_interface import IStudentRepository
 from src.shared.helpers.utils.validation_lists import ValidationLists
 from src.shared.helpers.errors.domain_errors import EntityError
@@ -10,7 +9,7 @@ class ValidateSelfieUsecase:
     def __init__(self, repo:IStudentRepository):
         self.repo = repo
         
-    def __call__(self, rekognitionResult: dict) -> Dict:
+    def __call__(self, rekognitionResult: dict) -> AutomaticReview:
         
         if type(rekognitionResult) != dict:
             raise EntityError('rekognitionResult')
