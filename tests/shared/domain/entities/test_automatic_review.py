@@ -1,5 +1,5 @@
-from src.shared.domain.entities.label import Label
 from src.shared.domain.entities.automatic_review import AutomaticReview
+from src.shared.domain.entities.label import Label
 from src.shared.domain.enums.rejection_reason_enum import REJECTION_REASON
 from src.shared.helpers.errors.domain_errors import EntityError
 import pytest

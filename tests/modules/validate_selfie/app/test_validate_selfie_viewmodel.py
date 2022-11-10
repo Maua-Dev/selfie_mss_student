@@ -1,161 +1,40 @@
+import pytest 
 from src.modules.validate_selfie.app.validate_selfie_viewmodel import ValidateSelfieViewModel
+from src.shared.domain.entities.automatic_review import AutomaticReview
+from src.shared.domain.entities.label import Label
+from src.shared.domain.enums.rejection_reason_enum import REJECTION_REASON
 
-class Test_ValidateSelfieViewModel:
-    def test_validate_selfie_viewmodel(self):
-        data = {
-   "automaticallyRejected":False,
-   "rejectionReasons":[
-      "NONE"
-   ],
-   "labels":[
-      {
-         "name":"Photography",
-         "confidence":100,
-         "coords":[
-            
-         ],
-         "parents":[
-            
-         ]
-      },
-      {
-         "name":"Portrait",
-         "confidence":100,
-         "coords":[
-            
-         ],
-         "parents":[
-            "Face",
-            "Head",
-            "Person",
-            "Photography"
-         ]
-      },
-      {
-         "name":"Head",
-         "confidence":100,
-         "coords":[
-            
-         ],
-         "parents":[
-            "Person"
-         ]
-      },
-      {
-         "name":"Face",
-         "confidence":100,
-         "coords":[
-            
-         ],
-         "parents":[
-            "Head",
-            "Person"
-         ]
-      },
-      {
-         "name":"Person",
-         "confidence":100,
-         "coords":{
-            "Width":0.9972279071807861,
-            "Height":0.88490229845047,
-            "Left":0.0026419830974191427,
-            "Top":0.11343356966972351
-         },
-         "parents":[
-            
-         ]
-      },
-      {
-         "name":"Neck",
-         "confidence":99.97637939453125,
-         "coords":[
-            
-         ],
-         "parents":[
-            "Body Part",
-            "Face",
-            "Head",
-            "Person"
-         ]
-      },
-      {
-         "name":"Body Part",
-         "confidence":99.97637939453125,
-         "coords":[
-            
-         ],
-         "parents":[
-            
-         ]
-      },
-      {
-         "name":"Woman",
-         "confidence":99.62065124511719,
-         "coords":{
-            "Width":0.9972279071807861,
-            "Height":0.88490229845047,
-            "Left":0.0026419830974191427,
-            "Top":0.11343356966972351
-         },
-         "parents":[
-            "Adult",
-            "Female",
-            "Person"
-         ]
-      },
-      {
-         "name":"Adult",
-         "confidence":99.62065124511719,
-         "coords":{
-            "Width":0.9972279071807861,
-            "Height":0.88490229845047,
-            "Left":0.0026419830974191427,
-            "Top":0.11343356966972351
-         },
-         "parents":[
-            "Person"
-         ]
-      },
-      {
-         "name":"Female",
-         "confidence":99.62065124511719,
-         "coords":{
-            "Width":0.9972279071807861,
-            "Height":0.88490229845047,
-            "Left":0.0026419830974191427,
-            "Top":0.11343356966972351
-         },
-         "parents":[
-            "Person"
-         ]
-      },
-      {
-         "name":"Smile",
-         "confidence":99.51373291015625,
-         "coords":[
-            
-         ],
-         "parents":[
-            "Face",
-            "Happy",
-            "Head",
-            "Person"
-         ]
-      },
-      {
-         "name":"Happy",
-         "confidence":99.51373291015625,
-         "coords":[
-            
-         ],
-         "parents":[
-            "Face",
-            "Head",
-            "Person"
-         ]
-      }
-   ]
-}
+class Test_ValidadeSelfieViewModel:
+    def validate_selfie_viewmodel(self):
+        data = AutomaticReview(
+            automaticallyRejected=True,
+            rejectionReasons=[REJECTION_REASON.NOT_ALLOWED_BACKGROUND, REJECTION_REASON.NO_PERSON_RECOGNIZED],
+            labels=[
+                Label(
+                    name="Building",
+                    coords={
+                                "Width": 0.9711952805519104,
+                                "Height": 0.8659809827804565,
+                                "Left": 0.012313545681536198,
+                                "Top": 0.11108686774969101
+                            },
+                    confidence=98.13214,
+                    parents=["Architecture"]
+                    ),
+                Label(
+                    name="Face",
+                    coords={
+                                "Width": 0.9711952805519104,
+                                "Height": 0.8659809827804565,
+                                "Left": 0.012313545681536198,
+                                "Top": 0.11108686774969101
+                            },
+                    confidence=98.54370880126953,
+                    parents=[]
+                )
+            ]
+        )     
+    
         viewmodel = ValidateSelfieViewModel(data=data)
         
-        assert viewmodel.to_dict() == {'automaticallyRejected': False, 'rejectionReasons': ['NONE'], 'labels': [{'name': 'Photography', 'confidence': 100, 'coords': [], 'parents': []}, {'name': 'Portrait', 'confidence': 100, 'coords': [], 'parents': ['Face', 'Head', 'Person', 'Photography']}, {'name': 'Head', 'confidence': 100, 'coords': [], 'parents': ['Person']}, {'name': 'Face', 'confidence': 100, 'coords': [], 'parents': ['Head', 'Person']}, {'name': 'Person', 'confidence': 100, 'coords': {'Width': 0.9972279071807861, 'Height': 0.88490229845047, 'Left': 0.0026419830974191427, 'Top': 0.11343356966972351}, 'parents': []}, {'name': 'Neck', 'confidence': 99.97637939453125, 'coords': [], 'parents': ['Body Part', 'Face', 'Head', 'Person']}, {'name': 'Body Part', 'confidence': 99.97637939453125, 'coords': [], 'parents': []}, {'name': 'Woman', 'confidence': 99.62065124511719, 'coords': {'Width': 0.9972279071807861, 'Height': 0.88490229845047, 'Left': 0.0026419830974191427, 'Top': 0.11343356966972351}, 'parents': ['Adult', 'Female', 'Person']}, {'name': 'Adult', 'confidence': 99.62065124511719, 'coords': {'Width': 0.9972279071807861, 'Height': 0.88490229845047, 'Left': 0.0026419830974191427, 'Top': 0.11343356966972351}, 'parents': ['Person']}, {'name': 'Female', 'confidence': 99.62065124511719, 'coords': {'Width': 0.9972279071807861, 'Height': 0.88490229845047, 'Left': 0.0026419830974191427, 'Top': 0.11343356966972351}, 'parents': ['Person']}, {'name': 'Smile', 'confidence': 99.51373291015625, 'coords': [], 'parents': ['Face', 'Happy', 'Head', 'Person']}, {'name': 'Happy', 'confidence': 99.51373291015625, 'coords': [], 'parents': ['Face', 'Head', 'Person']}]}
+        assert viewmodel.to_dict() == {}
