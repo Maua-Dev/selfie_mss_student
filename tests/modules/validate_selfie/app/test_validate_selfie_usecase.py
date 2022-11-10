@@ -241,7 +241,7 @@ class Test_ValidateSelfieUsecase:
             "LabelModelVersion": "3.0"
         }
 
-        automaticRekognitionDict = usecase(ra="21014442", url="https://google.com", rekognitionResult=rekognitionResult)
+        automaticRekognitionDict = usecase(rekognitionResult=rekognitionResult)
         assert automaticRekognitionDict == {
    "automaticallyRejected":False,
    "rejectionReasons":[
@@ -998,7 +998,7 @@ class Test_ValidateSelfieUsecase:
             "LabelModelVersion": "3.0"
           }
 
-        automaticRekognitionDict = usecase(ra="21014442", url="https://google.com", rekognitionResult=rekognitionResult)
+        automaticRekognitionDict = usecase(rekognitionResult=rekognitionResult)
 
         assert automaticRekognitionDict == {'automaticallyRejected': True, 'rejectionReasons': ['COVERED_FACE'], 'labels': [{'name': 'Cap', 'confidence': 99.99784088134766, 'coords': [], 'parents': ['Clothing', 'Hat']}, {'name': 'Hat', 'confidence': 99.99784088134766, 'coords': [], 'parents': ['Clothing']}, {'name': 'Clothing', 'confidence': 99.99784088134766, 'coords': [], 'parents': []}, {'name': 'Portrait', 'confidence': 99.93478393554688, 'coords': [], 'parents': ['Face', 'Head', 'Person', 'Photography']}, {'name': 'Photography', 'confidence': 99.93478393554688, 'coords': [], 'parents': []}, {'name': 'Person', 'confidence': 96.26411437988281, 'parents': [], 'coords': {'Width': 0.6901699304580688, 'Height': 0.8336241245269775, 'Left': 0.008156394585967064, 'Top': 0.16374839842319489}}, {'name': 'Person', 'confidence': 93.93721008300781, 'parents': [], 'coords': {'Width': 0.16842180490493774, 'Height': 0.1986818015575409, 'Left': 0.6872493624687195, 'Top': 0.4688829779624939}}, {'name': 'Person', 'confidence': 92.71702575683594, 'parents': [], 'coords': {'Width': 0.07226812839508057, 'Height': 0.12989842891693115, 'Left': 0.0796172097325325, 'Top': 0.5177081227302551}}, {'name': 'Head', 'confidence': 99.93478393554688, 'coords': [], 'parents': ['Person']}, {'name': 'Face', 'confidence': 99.93478393554688, 'coords': [], 'parents': ['Head', 'Person']}, {'name': 'Coat', 'confidence': 99.61935424804688, 'coords': [], 'parents': ['Clothing']}, {'name': 'Man', 'confidence': 96.26411437988281, 'parents': ['Adult', 'Male', 'Person'], 'coords': {'Width': 0.6901699304580688, 'Height': 0.8336241245269775, 'Left': 0.008156394585967064, 'Top': 0.16374839842319489}}, {'name': 'Adult', 'confidence': 96.26411437988281, 'parents': ['Person'], 'coords': {'Width': 0.6901699304580688, 'Height': 0.8336241245269775, 'Left': 0.008156394585967064, 'Top': 0.16374839842319489}}, {'name': 'Male', 
 'confidence': 96.26411437988281, 'parents': ['Person'], 'coords': {'Width': 0.6901699304580688, 'Height': 0.8336241245269775, 'Left': 0.008156394585967064, 'Top': 0.16374839842319489}}]}
@@ -1604,7 +1604,7 @@ class Test_ValidateSelfieUsecase:
             "LabelModelVersion": "3.0"
           }
 
-        automaticRekognitionDict = usecase(ra="21014442", url="https://google.com", rekognitionResult=rekognitionResult)
+        automaticRekognitionDict = usecase(rekognitionResult=rekognitionResult)
 
         assert automaticRekognitionDict == {'automaticallyRejected': True, 'rejectionReasons': ['COVERED_FACE'], 'labels': [{'name': 'Cap', 'confidence': 99.99784088134766, 'coords': [], 'parents': ['Clothing', 'Hat']}, {'name': 'Hat', 'confidence': 99.99784088134766, 'coords': [], 'parents': ['Clothing']}, {'name': 'Clothing', 'confidence': 99.99784088134766, 'coords': [], 'parents': []}, {'name': 'Portrait', 'confidence': 99.93478393554688, 'coords': [], 'parents': ['Face', 'Head', 'Person', 'Photography']}, {'name': 'Photography', 'confidence': 99.93478393554688, 'coords': [], 'parents': []}, {'name': 'Person', 'confidence': 96.26411437988281, 'parents': [], 'coords': {'Width': 0.6901699304580688, 'Height': 0.8336241245269775, 'Left': 0.008156394585967064, 'Top': 0.16374839842319489}}, {'name': 'Person', 'confidence': 93.93721008300781, 'parents': [], 'coords': {'Width': 0.16842180490493774, 'Height': 0.1986818015575409, 'Left': 0.6872493624687195, 'Top': 0.4688829779624939}}, {'name': 'Person', 'confidence': 92.71702575683594, 'parents': [], 'coords': {'Width': 0.07226812839508057, 'Height': 0.12989842891693115, 'Left': 0.0796172097325325, 'Top': 0.5177081227302551}}, {'name': 'Head', 'confidence': 99.93478393554688, 'coords': [], 'parents': ['Person']}, {'name': 'Face', 'confidence': 99.93478393554688, 'coords': [], 'parents': ['Head', 'Person']}, {'name': 'Coat', 'confidence': 99.61935424804688, 'coords': [], 'parents': ['Clothing']}, {'name': 'Man', 'confidence': 96.26411437988281, 'parents': ['Adult', 'Male', 'Person'], 'coords': {'Width': 0.6901699304580688, 'Height': 0.8336241245269775, 'Left': 0.008156394585967064, 'Top': 0.16374839842319489}}, {'name': 'Adult', 'confidence': 96.26411437988281, 'parents': ['Person'], 'coords': {'Width': 0.6901699304580688, 'Height': 0.8336241245269775, 'Left': 0.008156394585967064, 'Top': 0.16374839842319489}}, {'name': 'Male', 
 'confidence': 96.26411437988281, 'parents': ['Person'], 'coords': {'Width': 0.6901699304580688, 'Height': 0.8336241245269775, 'Left': 0.008156394585967064, 'Top': 0.16374839842319489}}]}
@@ -1789,7 +1789,7 @@ class Test_ValidateSelfieUsecase:
     ],
     "LabelModelVersion": "3.0"
 }
-        automaticRekognitionDict = usecase(ra="21014442", url="https://google.com", rekognitionResult=rekognitionResult)
+        automaticRekognitionDict = usecase(rekognitionResult=rekognitionResult)
         
         expected = {'automaticallyRejected': True, 'rejectionReasons': ['NOT_ALLOWED_BACKGROUND', 'NO_PERSON_RECOGNIZED'], 'labels': [{'name': 'Strap', 'confidence': 99.99072265625, 'coords': [], 'parents': ['Accessories']}, {'name': 'Accessories', 'confidence': 99.99072265625, 'coords': [], 'parents': []}, {'name': 'Dog', 'confidence': 98.91767883300781, 'coords': {'Width': 0.4189898669719696, 'Height': 0.5533494353294373, 'Left': 0.29500433802604675, 'Top': 0.1943594515323639}, 'parents': ['Animal', 'Canine', 'Mammal', 'Pet']}, {'name': 'Canine', 'confidence': 98.91767883300781, 'coords': [], 'parents': ['Animal', 'Mammal']}, {'name': 'Pet', 'confidence': 98.91767883300781, 'coords': [], 'parents': ['Animal']}, {'name': 'Mammal', 'confidence': 98.91767883300781, 'coords': [], 'parents': ['Animal']}, {'name': 'Animal', 'confidence': 98.91767883300781, 'coords': [], 'parents': []}]}
 
@@ -1900,7 +1900,7 @@ class Test_ValidateSelfieUsecase:
         "LabelModelVersion": "3.0"
     }
         
-        automaticRekognitionDict = usecase(ra="21014442", url="https://google.com", rekognitionResult=rekognitionResult)
+        automaticRekognitionDict = usecase(rekognitionResult=rekognitionResult)
 
         expected =  {'automaticallyRejected': True, 'rejectionReasons': ['COVERED_FACE', 'NO_PERSON_RECOGNIZED'], 'labels': [{'name': 'Hair', 'confidence': 99.82501220703125, 'coords': [], 'parents': ['Person']}, {'name': 'Person', 'confidence': 99.82501220703125, 'coords': {'Width': 0.9560412168502808, 'Height': 0.9275450706481934, 'Left': 0.03678623214364052, 'Top': 0.07245491445064545}, 'parents': []}, {'name': 'Mobile Phone', 'confidence': 94.71910858154297, 'coords': {'Width': 0.36574506759643555, 'Height': 0.17807289958000183, 'Left': 0.5576263666152954, 'Top': 0.36066752672195435}, 'parents': ['Electronics', 'Phone']}, {'name': 'Phone', 'confidence': 94.71910858154297, 'coords': [], 'parents': ['Electronics']}]}
         

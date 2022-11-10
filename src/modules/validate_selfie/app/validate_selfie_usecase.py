@@ -12,15 +12,7 @@ class ValidateSelfieUsecase:
     def __init__(self, repo:IStudentRepository):
         self.repo = repo
         
-    def __call__(self, rekognitionResult: dict, ra:str, url: str) -> Dict:
-        
-        if not Student.validate_ra(ra):
-            raise EntityError('ra')
-        self.ra = ra
-        
-        if not Selfie.validate_url(url=url):
-            raise EntityError('url')
-        self.url = url
+    def __call__(self, rekognitionResult: dict) -> Dict:
         
         if type(rekognitionResult) != dict:
             raise EntityError('rekognitionResult')
