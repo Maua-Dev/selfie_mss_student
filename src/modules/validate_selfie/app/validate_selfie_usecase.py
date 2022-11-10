@@ -6,7 +6,7 @@ from src.shared.domain.entities.selfie import Selfie
 from src.shared.helpers.errors.domain_errors import EntityError
 from src.shared.domain.entities.label import Label
 from src.shared.domain.enums.rejection_reason_enum import REJECTION_REASON
-
+from src.shared.domain.entities.automatic_review import AutomaticReview
 
 class ValidateSelfieUsecase:
     def __init__(self, repo:IStudentRepository):
@@ -28,8 +28,8 @@ class ValidateSelfieUsecase:
                 labelDict = dict()
                 
                 labelDict["name"] = label["Name"]
-                labelDict["confidence"] = label["Confidence"]
-                labelDict["coords"] = []
+                labelDict["confidence"] = float(label["Confidence"])
+                labelDict["coords"] = dict()
                 labelDict["parents"] = [parent["Name"] for parent in label["Parents"]] 
                 
                 allLabels.append(labelDict)
@@ -38,7 +38,7 @@ class ValidateSelfieUsecase:
                 labelDict = dict()
                 
                 labelDict["name"] = label["Name"]
-                labelDict["confidence"] = label["Confidence"]
+                labelDict["confidence"] = float(label["Confidence"])
                 labelDict["coords"] = label["Instances"][0]["BoundingBox"]
                 labelDict["parents"] = [parent["Name"] for parent in label["Parents"]] 
                 
@@ -49,7 +49,7 @@ class ValidateSelfieUsecase:
                     labelDict = dict()
                     
                     labelDict["name"] = label["Name"]
-                    labelDict["confidence"] = instance["Confidence"]
+                    labelDict["confidence"] = float(instance["Confidence"])
                     labelDict["parents"] = [parent["Name"] for parent in label["Parents"]] 
                     labelDict["coords"] = instance["BoundingBox"]
                     
@@ -63,26 +63,29 @@ class ValidateSelfieUsecase:
  
         for name in names:
             if ValidationLists.OBJECTS_NOT_ALLOWED.get(name) is not None:
-                rejectionReasons.append(ValidationLists.OBJECTS_NOT_ALLOWED.get(name).value)
+                rejectionReasons.append(ValidationLists.OBJECTS_NOT_ALLOWED.get(name))
         
         for parent in parents:
             if ValidationLists.PARENTS_NOT_ALLOWED.get(parent) is not None:
-                rejectionReasons.append(ValidationLists.PARENTS_NOT_ALLOWED.get(parent).value)
+                rejectionReasons.append(ValidationLists.PARENTS_NOT_ALLOWED.get(parent))
                 
         if not all(name in names for name in ValidationLists.OBJECTS_REQUIRED.keys()):
-            rejectionReasons = rejectionReasons + [name.value for name in ValidationLists.OBJECTS_REQUIRED.values() if name not in names]
+            rejectionReasons = rejectionReasons + [name for name in ValidationLists.OBJECTS_REQUIRED.values() if name not in names]
             
         if not all(name in names for name in ValidationLists.PARENTS_REQUIRED.keys()):
-            rejectionReasons = rejectionReasons + [name.value for name in ValidationLists.PARENTS_REQUIRED.values() if name not in names]
+            rejectionReasons = rejectionReasons + [name for name in ValidationLists.PARENTS_REQUIRED.values() if name not in names]
                 
         automaticallyRejected = len(rejectionReasons) > 0
         
-        rejectionReasons = list(set(rejectionReasons)) if automaticallyRejected else [REJECTION_REASON.NONE.value]
+        rejectionReasons = list(set(rejectionReasons)) if automaticallyRejected else [REJECTION_REASON.NONE]
         
-        rejectionReasons.sort()
 
-        return {
-            "automaticallyRejected": automaticallyRejected,
-            "rejectionReasons": rejectionReasons,
-            "labels": validLabels
-        }
+        labelsEntity = [Label(
+            confidence=label["confidence"], coords=label["coords"], name=label["name"], parents=label["parents"]
+        ) for label in validLabels]
+
+        return AutomaticReview(
+            automaticallyRejected=automaticallyRejected,
+            rejectionReasons=rejectionReasons,
+            labels=labelsEntity
+        )

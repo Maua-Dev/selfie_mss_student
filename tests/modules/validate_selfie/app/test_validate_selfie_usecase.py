@@ -241,162 +241,13 @@ class Test_ValidateSelfieUsecase:
             "LabelModelVersion": "3.0"
         }
 
-        automaticRekognitionDict = usecase(rekognitionResult=rekognitionResult)
-        assert automaticRekognitionDict == {
-   "automaticallyRejected":False,
-   "rejectionReasons":[
-      "NONE"
-   ],
-   "labels":[
-      {
-         "name":"Photography",
-         "confidence":100,
-         "coords":[
-            
-         ],
-         "parents":[
-            
-         ]
-      },
-      {
-         "name":"Portrait",
-         "confidence":100,
-         "coords":[
-            
-         ],
-         "parents":[
-            "Face",
-            "Head",
-            "Person",
-            "Photography"
-         ]
-      },
-      {
-         "name":"Head",
-         "confidence":100,
-         "coords":[
-            
-         ],
-         "parents":[
-            "Person"
-         ]
-      },
-      {
-         "name":"Face",
-         "confidence":100,
-         "coords":[
-            
-         ],
-         "parents":[
-            "Head",
-            "Person"
-         ]
-      },
-      {
-         "name":"Person",
-         "confidence":100,
-         "coords":{
-            "Width":0.9972279071807861,
-            "Height":0.88490229845047,
-            "Left":0.0026419830974191427,
-            "Top":0.11343356966972351
-         },
-         "parents":[
-            
-         ]
-      },
-      {
-         "name":"Neck",
-         "confidence":99.97637939453125,
-         "coords":[
-            
-         ],
-         "parents":[
-            "Body Part",
-            "Face",
-            "Head",
-            "Person"
-         ]
-      },
-      {
-         "name":"Body Part",
-         "confidence":99.97637939453125,
-         "coords":[
-            
-         ],
-         "parents":[
-            
-         ]
-      },
-      {
-         "name":"Woman",
-         "confidence":99.62065124511719,
-         "coords":{
-            "Width":0.9972279071807861,
-            "Height":0.88490229845047,
-            "Left":0.0026419830974191427,
-            "Top":0.11343356966972351
-         },
-         "parents":[
-            "Adult",
-            "Female",
-            "Person"
-         ]
-      },
-      {
-         "name":"Adult",
-         "confidence":99.62065124511719,
-         "coords":{
-            "Width":0.9972279071807861,
-            "Height":0.88490229845047,
-            "Left":0.0026419830974191427,
-            "Top":0.11343356966972351
-         },
-         "parents":[
-            "Person"
-         ]
-      },
-      {
-         "name":"Female",
-         "confidence":99.62065124511719,
-         "coords":{
-            "Width":0.9972279071807861,
-            "Height":0.88490229845047,
-            "Left":0.0026419830974191427,
-            "Top":0.11343356966972351
-         },
-         "parents":[
-            "Person"
-         ]
-      },
-      {
-         "name":"Smile",
-         "confidence":99.51373291015625,
-         "coords":[
-            
-         ],
-         "parents":[
-            "Face",
-            "Happy",
-            "Head",
-            "Person"
-         ]
-      },
-      {
-         "name":"Happy",
-         "confidence":99.51373291015625,
-         "coords":[
-            
-         ],
-         "parents":[
-            "Face",
-            "Head",
-            "Person"
-         ]
-      }
-   ]
-}
-
+        automaticRekognition = usecase(rekognitionResult=rekognitionResult)
+        assert automaticRekognition.automaticallyRejected == False
+        assert automaticRekognition.labels[-1].name == "Happy" 
+        assert automaticRekognition.labels[0].parents == [] 
+        assert automaticRekognition.labels[0].coords == {} 
+        
+        
     def test_validate_selfie_usecase_auto_rejected_1(self):
         repo = StudentRepositoryMock()
         usecase = ValidateSelfieUsecase(repo=repo)
@@ -998,11 +849,11 @@ class Test_ValidateSelfieUsecase:
             "LabelModelVersion": "3.0"
           }
 
-        automaticRekognitionDict = usecase(rekognitionResult=rekognitionResult)
+        automaticRekognition = usecase(rekognitionResult=rekognitionResult)
+        assert automaticRekognition.automaticallyRejected == True
+        assert automaticRekognition.labels[-1].name == "Male" 
 
-        assert automaticRekognitionDict == {'automaticallyRejected': True, 'rejectionReasons': ['COVERED_FACE'], 'labels': [{'name': 'Cap', 'confidence': 99.99784088134766, 'coords': [], 'parents': ['Clothing', 'Hat']}, {'name': 'Hat', 'confidence': 99.99784088134766, 'coords': [], 'parents': ['Clothing']}, {'name': 'Clothing', 'confidence': 99.99784088134766, 'coords': [], 'parents': []}, {'name': 'Portrait', 'confidence': 99.93478393554688, 'coords': [], 'parents': ['Face', 'Head', 'Person', 'Photography']}, {'name': 'Photography', 'confidence': 99.93478393554688, 'coords': [], 'parents': []}, {'name': 'Person', 'confidence': 96.26411437988281, 'parents': [], 'coords': {'Width': 0.6901699304580688, 'Height': 0.8336241245269775, 'Left': 0.008156394585967064, 'Top': 0.16374839842319489}}, {'name': 'Person', 'confidence': 93.93721008300781, 'parents': [], 'coords': {'Width': 0.16842180490493774, 'Height': 0.1986818015575409, 'Left': 0.6872493624687195, 'Top': 0.4688829779624939}}, {'name': 'Person', 'confidence': 92.71702575683594, 'parents': [], 'coords': {'Width': 0.07226812839508057, 'Height': 0.12989842891693115, 'Left': 0.0796172097325325, 'Top': 0.5177081227302551}}, {'name': 'Head', 'confidence': 99.93478393554688, 'coords': [], 'parents': ['Person']}, {'name': 'Face', 'confidence': 99.93478393554688, 'coords': [], 'parents': ['Head', 'Person']}, {'name': 'Coat', 'confidence': 99.61935424804688, 'coords': [], 'parents': ['Clothing']}, {'name': 'Man', 'confidence': 96.26411437988281, 'parents': ['Adult', 'Male', 'Person'], 'coords': {'Width': 0.6901699304580688, 'Height': 0.8336241245269775, 'Left': 0.008156394585967064, 'Top': 0.16374839842319489}}, {'name': 'Adult', 'confidence': 96.26411437988281, 'parents': ['Person'], 'coords': {'Width': 0.6901699304580688, 'Height': 0.8336241245269775, 'Left': 0.008156394585967064, 'Top': 0.16374839842319489}}, {'name': 'Male', 
-'confidence': 96.26411437988281, 'parents': ['Person'], 'coords': {'Width': 0.6901699304580688, 'Height': 0.8336241245269775, 'Left': 0.008156394585967064, 'Top': 0.16374839842319489}}]}
-    
+        
     def test_validate_selfie_usecase_auto_rejected_2(self):
         repo = StudentRepositoryMock()
         usecase = ValidateSelfieUsecase(repo=repo)
@@ -1581,34 +1432,17 @@ class Test_ValidateSelfieUsecase:
                             "Name": "Urban"
                         }
                     ]
-                },
-                {
-                    "Name": "Urban",
-                    "Confidence": 55.067928314208984,
-                    "Instances": [],
-                    "Parents": []
-                },
-                {
-                    "Name": "Road",
-                    "Confidence": 55.067928314208984,
-                    "Instances": [],
-                    "Parents": []
-                },
-                {
-                    "Name": "City",
-                    "Confidence": 55.067928314208984,
-                    "Instances": [],
-                    "Parents": []
                 }
             ],
             "LabelModelVersion": "3.0"
           }
 
-        automaticRekognitionDict = usecase(rekognitionResult=rekognitionResult)
-
-        assert automaticRekognitionDict == {'automaticallyRejected': True, 'rejectionReasons': ['COVERED_FACE'], 'labels': [{'name': 'Cap', 'confidence': 99.99784088134766, 'coords': [], 'parents': ['Clothing', 'Hat']}, {'name': 'Hat', 'confidence': 99.99784088134766, 'coords': [], 'parents': ['Clothing']}, {'name': 'Clothing', 'confidence': 99.99784088134766, 'coords': [], 'parents': []}, {'name': 'Portrait', 'confidence': 99.93478393554688, 'coords': [], 'parents': ['Face', 'Head', 'Person', 'Photography']}, {'name': 'Photography', 'confidence': 99.93478393554688, 'coords': [], 'parents': []}, {'name': 'Person', 'confidence': 96.26411437988281, 'parents': [], 'coords': {'Width': 0.6901699304580688, 'Height': 0.8336241245269775, 'Left': 0.008156394585967064, 'Top': 0.16374839842319489}}, {'name': 'Person', 'confidence': 93.93721008300781, 'parents': [], 'coords': {'Width': 0.16842180490493774, 'Height': 0.1986818015575409, 'Left': 0.6872493624687195, 'Top': 0.4688829779624939}}, {'name': 'Person', 'confidence': 92.71702575683594, 'parents': [], 'coords': {'Width': 0.07226812839508057, 'Height': 0.12989842891693115, 'Left': 0.0796172097325325, 'Top': 0.5177081227302551}}, {'name': 'Head', 'confidence': 99.93478393554688, 'coords': [], 'parents': ['Person']}, {'name': 'Face', 'confidence': 99.93478393554688, 'coords': [], 'parents': ['Head', 'Person']}, {'name': 'Coat', 'confidence': 99.61935424804688, 'coords': [], 'parents': ['Clothing']}, {'name': 'Man', 'confidence': 96.26411437988281, 'parents': ['Adult', 'Male', 'Person'], 'coords': {'Width': 0.6901699304580688, 'Height': 0.8336241245269775, 'Left': 0.008156394585967064, 'Top': 0.16374839842319489}}, {'name': 'Adult', 'confidence': 96.26411437988281, 'parents': ['Person'], 'coords': {'Width': 0.6901699304580688, 'Height': 0.8336241245269775, 'Left': 0.008156394585967064, 'Top': 0.16374839842319489}}, {'name': 'Male', 
-'confidence': 96.26411437988281, 'parents': ['Person'], 'coords': {'Width': 0.6901699304580688, 'Height': 0.8336241245269775, 'Left': 0.008156394585967064, 'Top': 0.16374839842319489}}]}
-    
+        automaticRekognition = usecase(rekognitionResult=rekognitionResult)
+        assert automaticRekognition.automaticallyRejected == True
+        assert automaticRekognition.labels[-1].name == "Male" 
+        assert automaticRekognition.labels[-1].coords["Width"] == 0.6901699304580688
+        
+        
     def test_validate_selfie_usecase_auto_rejected_3(self):
         repo = StudentRepositoryMock()
         usecase = ValidateSelfieUsecase(repo=repo)
@@ -1695,7 +1529,24 @@ class Test_ValidateSelfieUsecase:
         {
             "Name": "Animal",
             "Confidence": 98.91767883300781,
-            "Instances": [],
+            "Instances": [
+                {
+                    "BoundingBox": {
+                        "Width": 0.4189898669719696,
+                        "Height": 0.5533494353294373,
+                        "Left": 0.29500433802604675,
+                        "Top": 0.1943594515323639
+                    },
+                    "Confidence": 98.91767883300781
+                },{
+                    "BoundingBox": {
+                        "Width": 0.4189898669719696,
+                        "Height": 0.5533494353294373,
+                        "Left": 0.29500433802604675,
+                        "Top": 0.1943594515323639
+                    },
+                    "Confidence": 98.90
+                }],
             "Parents": []
         },
         {
@@ -1789,12 +1640,13 @@ class Test_ValidateSelfieUsecase:
     ],
     "LabelModelVersion": "3.0"
 }
-        automaticRekognitionDict = usecase(rekognitionResult=rekognitionResult)
+        automaticRekognition = usecase(rekognitionResult=rekognitionResult)
         
-        expected = {'automaticallyRejected': True, 'rejectionReasons': ['NOT_ALLOWED_BACKGROUND', 'NO_PERSON_RECOGNIZED'], 'labels': [{'name': 'Strap', 'confidence': 99.99072265625, 'coords': [], 'parents': ['Accessories']}, {'name': 'Accessories', 'confidence': 99.99072265625, 'coords': [], 'parents': []}, {'name': 'Dog', 'confidence': 98.91767883300781, 'coords': {'Width': 0.4189898669719696, 'Height': 0.5533494353294373, 'Left': 0.29500433802604675, 'Top': 0.1943594515323639}, 'parents': ['Animal', 'Canine', 'Mammal', 'Pet']}, {'name': 'Canine', 'confidence': 98.91767883300781, 'coords': [], 'parents': ['Animal', 'Mammal']}, {'name': 'Pet', 'confidence': 98.91767883300781, 'coords': [], 'parents': ['Animal']}, {'name': 'Mammal', 'confidence': 98.91767883300781, 'coords': [], 'parents': ['Animal']}, {'name': 'Animal', 'confidence': 98.91767883300781, 'coords': [], 'parents': []}]}
 
 
-        assert automaticRekognitionDict == expected
+        assert automaticRekognition.labels[-1].name == "Animal" 
+        assert automaticRekognition.labels[-1].confidence == 98.90
+        assert automaticRekognition.automaticallyRejected == True
 
     def test_validate_selfie_usecase_auto_rejected_4(self):
         repo = StudentRepositoryMock()
@@ -1900,11 +1752,8 @@ class Test_ValidateSelfieUsecase:
         "LabelModelVersion": "3.0"
     }
         
-        automaticRekognitionDict = usecase(rekognitionResult=rekognitionResult)
-
-        expected =  {'automaticallyRejected': True, 'rejectionReasons': ['COVERED_FACE', 'NO_PERSON_RECOGNIZED'], 'labels': [{'name': 'Hair', 'confidence': 99.82501220703125, 'coords': [], 'parents': ['Person']}, {'name': 'Person', 'confidence': 99.82501220703125, 'coords': {'Width': 0.9560412168502808, 'Height': 0.9275450706481934, 'Left': 0.03678623214364052, 'Top': 0.07245491445064545}, 'parents': []}, {'name': 'Mobile Phone', 'confidence': 94.71910858154297, 'coords': {'Width': 0.36574506759643555, 'Height': 0.17807289958000183, 'Left': 0.5576263666152954, 'Top': 0.36066752672195435}, 'parents': ['Electronics', 'Phone']}, {'name': 'Phone', 'confidence': 94.71910858154297, 'coords': [], 'parents': ['Electronics']}]}
+        automaticRekognition = usecase(rekognitionResult=rekognitionResult)
+        assert automaticRekognition.labels[-1].name == "Phone" 
+        assert automaticRekognition.automaticallyRejected == True
         
-
-        assert automaticRekognitionDict == expected
         
-     
