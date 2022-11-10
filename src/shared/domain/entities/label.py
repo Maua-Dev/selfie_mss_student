@@ -14,7 +14,7 @@ class Label(abc.ABC):
           raise EntityError('name') 
         self.name = name
 
-        if (type(coords) != dict):
+        if (not coords is None and type(coords) != dict):
           raise EntityError('coords')
         self.coords = coords
 
@@ -22,6 +22,6 @@ class Label(abc.ABC):
           raise EntityError('confidence')
         self.confidence = confidence
 
-        if (type(parents) != list):
+        if (not coords is None and type(parents) != list):
           raise EntityError('parents')
         self.parents = parents
