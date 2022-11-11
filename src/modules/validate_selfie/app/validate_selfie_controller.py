@@ -12,28 +12,28 @@ class ValidateSelfieController:
     def __call__(self, request:HttpRequest) -> HttpResponse:
         try:
             if request.body.get('ra') is None:
-                raise EntityError('ra')
+                raise MissingParameters('ra')
             if not Student.validate_ra(request.body.get('ra')):
                 raise EntityError('ra')
             if request.body.get('url') is None:
-                raise EntityError('url')
+                raise MissingParameters('url')
             if not Selfie.validate_url(request.body.get('url')):
                 raise EntityError("url")
             if request.body.get('rekognitionResult') is None:
-                raise EntityError("rekognitionResult")
+                raise MissingParameters("rekognitionResult")
             
             automaticReview = self.validateSelfieUsecase(rekognitionResult=request.body.get('rekognitionResult'))
             
             viewmodel = ValidateSelfieViewModel(data=automaticReview, ra=request.body.get('ra'), url=request.body.get('url'))
             
-            return OK(viewmodel.to_dict())
+            return viewmodel.to_dict()
             
             
         except MissingParameters as err:
-            return BadRequest(body=err.message)
+            return err.message
 
         except EntityError as err:
-            return BadRequest(body=err.message)
+            return err.message
 
         except Exception as err:
-            return InternalServerError(body=err.args[0])
+            return err.args[0]
