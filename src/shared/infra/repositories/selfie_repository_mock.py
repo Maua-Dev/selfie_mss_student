@@ -6,8 +6,7 @@ from src.shared.domain.repositories.selfie_repository_interface import ISelfieRe
 class SelfieRepositoryMock(ISelfieRepository):
 
         
-    def uuid_pic_generator_generate(self, ra: str):
-
+    def uuid_pic_generator_generate(self, ra: str) -> str:
         object_name = f"{ra}/selfie-{datetime.today().strftime('%Y-%m-%d-%H:%M:%S')}-{str(uuid.uuid4())[:5]}.jpeg"
         return object_name
 
