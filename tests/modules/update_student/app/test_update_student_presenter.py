@@ -3,7 +3,7 @@ import pytest
 from src.modules.update_student.app.update_student_presenter import lambda_handler
 from src.shared.domain.entities.student import Student
 
-class Test_GetStudentPresenter:
+class Test_UpdateStudentPresenter:
 
     def test_update_student(self):
         event = {
