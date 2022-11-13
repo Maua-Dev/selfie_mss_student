@@ -1,7 +1,7 @@
 from .create_selfie_usecase import CreateSelfieUsecase
 from src.shared.infra.repositories.student_repository_mock import StudentRepositoryMock
 from .create_selfie_controller import CreateSelfieController
-from src.shared.helpers.http.http_lambda_requests import LambdaHttpRequest, LambdaHttpResponse
+from src.shared.helpers.http.http_lambda_requests import LambdaHttpResponse
 
 
 def http_request_handler(event: dict, context):
