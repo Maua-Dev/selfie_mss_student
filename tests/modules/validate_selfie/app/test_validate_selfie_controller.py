@@ -246,12 +246,11 @@ class Test_ValidateSelfieController:
             "LabelModelVersion": "3.0"
         }
 
-        request = HttpRequest(body={
+        response = controller(request={
             "ra": "21014443",
             "rekognitionResult": rekognitionResult,
             "url": "https://www.youtube.com/watch?v=5IpYOF4Hi6Q"
         })
-        response = controller(request=request)
 
 
         assert response['ra'] == "21014443"
@@ -499,12 +498,11 @@ class Test_ValidateSelfieController:
             "LabelModelVersion": "3.0"
         }
 
-        request = HttpRequest(body={
+        response = controller(request={
             "ra": "21.01444-3",
             "rekognitionResult": rekognitionResult,
             "url": "https://www.youtube.com/watch?v=5IpYOF4Hi6Q"
         })
-        response = controller(request=request)
 
 
         assert response == 'Field ra is not valid'
@@ -748,12 +746,11 @@ class Test_ValidateSelfieController:
             "LabelModelVersion": "3.0"
         }
 
-        request = HttpRequest(body={
+        response = controller(request={
             "ra": "21014443",
             "rekognitionResult": rekognitionResult,
             "url": "http://www.youtube.com/watch?v=5IpYOF4Hi6Q"
         })
-        response = controller(request=request)
         assert response == 'Field url is not valid'
         
     def test_validate_selfie_controller_invalid_rekognition_result(self):
@@ -761,12 +758,11 @@ class Test_ValidateSelfieController:
         usecase = ValidateSelfieUsecase(repo=repo)
         controller = ValidateSelfieController(usecase=usecase)
         
-        request = HttpRequest(body={
+        response = controller(request={
             "ra": "21014443",
             "rekognitionResult": 'rekognitionResult',
             "url": "http://www.youtube.com/watch?v=5IpYOF4Hi6Q"
         })
-        response = controller(request=request)
 
 
         assert response == 'Field url is not valid'
@@ -1011,12 +1007,11 @@ class Test_ValidateSelfieController:
             "LabelModelVersion": "3.0"
         }
 
-        request = HttpRequest(body={
+        response = controller(request={
             "ra": None,
             "rekognitionResult": rekognitionResult,
             "url": "https://www.youtube.com/watch?v=5IpYOF4Hi6Q"
         })
-        response = controller(request=request)
 
 
         assert response == 'Field ra is missing'
@@ -1261,12 +1256,11 @@ class Test_ValidateSelfieController:
             "LabelModelVersion": "3.0"
         }
 
-        request = HttpRequest(body={
+        response = controller(request={
             "ra": "21014443",
             "rekognitionResult": rekognitionResult,
             "url": None
         })
-        response = controller(request=request)
 
 
         assert response == 'Field url is missing'
@@ -1276,13 +1270,11 @@ class Test_ValidateSelfieController:
         usecase = ValidateSelfieUsecase(repo=repo)
         controller = ValidateSelfieController(usecase=usecase)
         
-        
-        request = HttpRequest(body={
+        response = controller(request={
             "ra": "21014443",
             "rekognitionResult": None,
             "url": "https://www.youtube.com/watch?v=5IpYOF4Hi6Q"
         })
-        response = controller(request=request)
 
 
         assert response == 'Field rekognitionResult is missing'

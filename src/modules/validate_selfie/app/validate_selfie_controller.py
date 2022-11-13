@@ -9,22 +9,23 @@ class ValidateSelfieController:
     def __init__(self, usecase: ValidateSelfieUsecase):
         self.validateSelfieUsecase = usecase
         
-    def __call__(self, request:HttpRequest) -> HttpResponse:
+    def __call__(self, request:dict) -> dict:
         try:
-            if request.body.get('ra') is None:
+            
+            if request.get('ra') is None:
                 raise MissingParameters('ra')
-            if not Student.validate_ra(request.body.get('ra')):
+            if not Student.validate_ra(request.get('ra')):
                 raise EntityError('ra')
-            if request.body.get('url') is None:
+            if request.get('url') is None:
                 raise MissingParameters('url')
-            if not Selfie.validate_url(request.body.get('url')):
+            if not Selfie.validate_url(request.get('url')):
                 raise EntityError("url")
-            if request.body.get('rekognitionResult') is None:
+            if request.get('rekognitionResult') is None:
                 raise MissingParameters("rekognitionResult")
             
-            automaticReview = self.validateSelfieUsecase(rekognitionResult=request.body.get('rekognitionResult'))
+            automaticReview = self.validateSelfieUsecase(rekognitionResult=request.get('rekognitionResult'))
             
-            viewmodel = ValidateSelfieViewModel(data=automaticReview, ra=request.body.get('ra'), url=request.body.get('url'))
+            viewmodel = ValidateSelfieViewModel(data=automaticReview, ra=request.get('ra'), url=request.get('url'))
             
             return viewmodel.to_dict()
             
