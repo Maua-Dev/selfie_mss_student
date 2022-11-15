@@ -1755,5 +1755,1174 @@ class Test_ValidateSelfieUsecase:
         automaticRekognition = usecase(rekognitionResult=rekognitionResult)
         assert automaticRekognition.labels[-1].name == "Phone" 
         assert automaticRekognition.automaticallyRejected == True
+             
+    def test_validate_selfie_usecase_passed_dev_photos_1(self):
+        repo = StudentRepositoryMock()
+        usecase = ValidateSelfieUsecase(repo=repo)
+        rekognitionResult = {
+        "Labels": [
+            {
+                "Name": "Neck",
+                "Confidence": 99.99999237060547,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Body Part"
+                    },
+                    {
+                        "Name": "Face"
+                    },
+                    {
+                        "Name": "Head"
+                    },
+                    {
+                        "Name": "Person"
+                    }
+                ]
+            },
+            {
+                "Name": "Head",
+                "Confidence": 99.99999237060547,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Person"
+                    }
+                ]
+            },
+            {
+                "Name": "Face",
+                "Confidence": 99.99999237060547,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Head"
+                    },
+                    {
+                        "Name": "Person"
+                    }
+                ]
+            },
+            {
+                "Name": "Person",
+                "Confidence": 99.99999237060547,
+                "Instances": [
+                    {
+                        "BoundingBox": {
+                            "Width": 0.9976066946983337,
+                            "Height": 0.801848292350769,
+                            "Left": 0.000024681092327227816,
+                            "Top": 0.19782958924770355
+                        },
+                        "Confidence": 92.52606201171875
+                    }
+                ],
+                "Parents": []
+            },
+            {
+                "Name": "Body Part",
+                "Confidence": 99.99999237060547,
+                "Instances": [],
+                "Parents": []
+            },
+            {
+                "Name": "Portrait",
+                "Confidence": 99.98992919921875,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Face"
+                    },
+                    {
+                        "Name": "Head"
+                    },
+                    {
+                        "Name": "Person"
+                    },
+                    {
+                        "Name": "Photography"
+                    }
+                ]
+            },
+            {
+                "Name": "Photography",
+                "Confidence": 99.98992919921875,
+                "Instances": [],
+                "Parents": []
+            },
+            {
+                "Name": "Man",
+                "Confidence": 92.52606201171875,
+                "Instances": [
+                    {
+                        "BoundingBox": {
+                            "Width": 0.9976066946983337,
+                            "Height": 0.801848292350769,
+                            "Left": 0.000024681092327227816,
+                            "Top": 0.19782958924770355
+                        },
+                        "Confidence": 92.52606201171875
+                    }
+                ],
+                "Parents": [
+                    {
+                        "Name": "Adult"
+                    },
+                    {
+                        "Name": "Male"
+                    },
+                    {
+                        "Name": "Person"
+                    }
+                ]
+            },
+            {
+                "Name": "Adult",
+                "Confidence": 92.52606201171875,
+                "Instances": [
+                    {
+                        "BoundingBox": {
+                            "Width": 0.9976066946983337,
+                            "Height": 0.801848292350769,
+                            "Left": 0.000024681092327227816,
+                            "Top": 0.19782958924770355
+                        },
+                        "Confidence": 92.52606201171875
+                    }
+                ],
+                "Parents": [
+                    {
+                        "Name": "Person"
+                    }
+                ]
+            },
+            {
+                "Name": "Male",
+                "Confidence": 92.52606201171875,
+                "Instances": [
+                    {
+                        "BoundingBox": {
+                            "Width": 0.9976066946983337,
+                            "Height": 0.801848292350769,
+                            "Left": 0.000024681092327227816,
+                            "Top": 0.19782958924770355
+                        },
+                        "Confidence": 92.52606201171875
+                    }
+                ],
+                "Parents": [
+                    {
+                        "Name": "Person"
+                    }
+                ]
+            },
+            {
+                "Name": "Smile",
+                "Confidence": 56.72469711303711,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Face"
+                    },
+                    {
+                        "Name": "Happy"
+                    },
+                    {
+                        "Name": "Head"
+                    },
+                    {
+                        "Name": "Person"
+                    }
+                ]
+            },
+            {
+                "Name": "Happy",
+                "Confidence": 56.72469711303711,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Face"
+                    },
+                    {
+                        "Name": "Head"
+                    },
+                    {
+                        "Name": "Person"
+                    }
+                ]
+            },
+            {
+                "Name": "Hairdresser",
+                "Confidence": 55.544837951660156,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Person"
+                    }
+                ]
+            },
+            {
+                "Name": "Jaw",
+                "Confidence": 55.435768127441406,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Body Part"
+                    },
+                    {
+                        "Name": "Face"
+                    },
+                    {
+                        "Name": "Head"
+                    },
+                    {
+                        "Name": "Person"
+                    }
+                ]
+            },
+            {
+                "Name": "Selfie",
+                "Confidence": 55.00602340698242,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Face"
+                    },
+                    {
+                        "Name": "Head"
+                    },
+                    {
+                        "Name": "Person"
+                    }
+                ]
+            }
+        ],
+        "LabelModelVersion": "3.0"
+    }
+        automaticRekognition = usecase(rekognitionResult=rekognitionResult)
+        assert automaticRekognition.automaticallyRejected == False
         
+    def test_validate_selfie_usecase_passed_dev_photos_2(self):
+        repo = StudentRepositoryMock()
+        usecase = ValidateSelfieUsecase(repo=repo)
+        rekognitionResult = {
+        "Labels": [
+            {
+                "Name": "Face",
+                "Confidence": 100,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Head"
+                    },
+                    {
+                        "Name": "Person"
+                    }
+                ]
+            },
+            {
+                "Name": "Head",
+                "Confidence": 100,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Person"
+                    }
+                ]
+            },
+            {
+                "Name": "Neck",
+                "Confidence": 100,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Body Part"
+                    },
+                    {
+                        "Name": "Face"
+                    },
+                    {
+                        "Name": "Head"
+                    },
+                    {
+                        "Name": "Person"
+                    }
+                ]
+            },
+            {
+                "Name": "Person",
+                "Confidence": 100,
+                "Instances": [
+                    {
+                        "BoundingBox": {
+                            "Width": 1,
+                            "Height": 0.8708922863006592,
+                            "Left": 0,
+                            "Top": 0.12537027895450592
+                        },
+                        "Confidence": 96.90936279296875
+                    }
+                ],
+                "Parents": []
+            },
+            {
+                "Name": "Body Part",
+                "Confidence": 100,
+                "Instances": [],
+                "Parents": []
+            },
+            {
+                "Name": "Man",
+                "Confidence": 96.90936279296875,
+                "Instances": [
+                    {
+                        "BoundingBox": {
+                            "Width": 1,
+                            "Height": 0.8708922863006592,
+                            "Left": 0,
+                            "Top": 0.12537027895450592
+                        },
+                        "Confidence": 96.90936279296875
+                    }
+                ],
+                "Parents": [
+                    {
+                        "Name": "Adult"
+                    },
+                    {
+                        "Name": "Male"
+                    },
+                    {
+                        "Name": "Person"
+                    }
+                ]
+            },
+            {
+                "Name": "Adult",
+                "Confidence": 96.90936279296875,
+                "Instances": [
+                    {
+                        "BoundingBox": {
+                            "Width": 1,
+                            "Height": 0.8708922863006592,
+                            "Left": 0,
+                            "Top": 0.12537027895450592
+                        },
+                        "Confidence": 96.90936279296875
+                    }
+                ],
+                "Parents": [
+                    {
+                        "Name": "Person"
+                    }
+                ]
+            },
+            {
+                "Name": "Male",
+                "Confidence": 96.90936279296875,
+                "Instances": [
+                    {
+                        "BoundingBox": {
+                            "Width": 1,
+                            "Height": 0.8708922863006592,
+                            "Left": 0,
+                            "Top": 0.12537027895450592
+                        },
+                        "Confidence": 96.90936279296875
+                    }
+                ],
+                "Parents": [
+                    {
+                        "Name": "Person"
+                    }
+                ]
+            }
+        ],
+        "LabelModelVersion": "3.0"
+    }
+        automaticRekognition = usecase(rekognitionResult=rekognitionResult)
+        assert automaticRekognition.automaticallyRejected == False
+        
+    def test_validate_selfie_usecase_passed_dev_photos_3(self):
+        repo = StudentRepositoryMock()
+        usecase = ValidateSelfieUsecase(repo=repo)
+        rekognitionResult = {
+        "Labels": [
+            {
+                "Name": "Neck",
+                "Confidence": 99.9999008178711,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Body Part"
+                    },
+                    {
+                        "Name": "Face"
+                    },
+                    {
+                        "Name": "Head"
+                    },
+                    {
+                        "Name": "Person"
+                    }
+                ]
+            },
+            {
+                "Name": "Head",
+                "Confidence": 99.9999008178711,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Person"
+                    }
+                ]
+            },
+            {
+                "Name": "Face",
+                "Confidence": 99.9999008178711,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Head"
+                    },
+                    {
+                        "Name": "Person"
+                    }
+                ]
+            },
+            {
+                "Name": "Person",
+                "Confidence": 99.9999008178711,
+                "Instances": [
+                    {
+                        "BoundingBox": {
+                            "Width": 0.9946666955947876,
+                            "Height": 0.9131317138671875,
+                            "Left": 0.00003730774187715724,
+                            "Top": 0.08682243525981903
+                        },
+                        "Confidence": 98.72636413574219
+                    }
+                ],
+                "Parents": []
+            },
+            {
+                "Name": "Body Part",
+                "Confidence": 99.9999008178711,
+                "Instances": [],
+                "Parents": []
+            },
+            {
+                "Name": "Man",
+                "Confidence": 98.72636413574219,
+                "Instances": [
+                    {
+                        "BoundingBox": {
+                            "Width": 0.9946666955947876,
+                            "Height": 0.9131317138671875,
+                            "Left": 0.00003730774187715724,
+                            "Top": 0.08682243525981903
+                        },
+                        "Confidence": 98.72636413574219
+                    }
+                ],
+                "Parents": [
+                    {
+                        "Name": "Adult"
+                    },
+                    {
+                        "Name": "Male"
+                    },
+                    {
+                        "Name": "Person"
+                    }
+                ]
+            },
+            {
+                "Name": "Adult",
+                "Confidence": 98.72636413574219,
+                "Instances": [
+                    {
+                        "BoundingBox": {
+                            "Width": 0.9946666955947876,
+                            "Height": 0.9131317138671875,
+                            "Left": 0.00003730774187715724,
+                            "Top": 0.08682243525981903
+                        },
+                        "Confidence": 98.72636413574219
+                    }
+                ],
+                "Parents": [
+                    {
+                        "Name": "Person"
+                    }
+                ]
+            },
+            {
+                "Name": "Male",
+                "Confidence": 98.72636413574219,
+                "Instances": [
+                    {
+                        "BoundingBox": {
+                            "Width": 0.9946666955947876,
+                            "Height": 0.9131317138671875,
+                            "Left": 0.00003730774187715724,
+                            "Top": 0.08682243525981903
+                        },
+                        "Confidence": 98.72636413574219
+                    }
+                ],
+                "Parents": [
+                    {
+                        "Name": "Person"
+                    }
+                ]
+            },
+            {
+                "Name": "Coat",
+                "Confidence": 91.40446472167969,
+                "Instances": [
+                    {
+                        "BoundingBox": {
+                            "Width": 0.9994683265686035,
+                            "Height": 0.3294861316680908,
+                            "Left": 0.00024353028857149184,
+                            "Top": 0.6687983274459839
+                        },
+                        "Confidence": 91.40446472167969
+                    }
+                ],
+                "Parents": [
+                    {
+                        "Name": "Clothing"
+                    }
+                ]
+            },
+            {
+                "Name": "Clothing",
+                "Confidence": 91.40446472167969,
+                "Instances": [],
+                "Parents": []
+            },
+            {
+                "Name": "Portrait",
+                "Confidence": 87.36456298828125,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Face"
+                    },
+                    {
+                        "Name": "Head"
+                    },
+                    {
+                        "Name": "Person"
+                    },
+                    {
+                        "Name": "Photography"
+                    }
+                ]
+            },
+            {
+                "Name": "Photography",
+                "Confidence": 87.36456298828125,
+                "Instances": [],
+                "Parents": []
+            },
+            {
+                "Name": "Crew Cut",
+                "Confidence": 80.65168762207031,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Hair"
+                    },
+                    {
+                        "Name": "Person"
+                    }
+                ]
+            },
+            {
+                "Name": "Hair",
+                "Confidence": 80.65168762207031,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Person"
+                    }
+                ]
+            }
+        ],
+        "LabelModelVersion": "3.0"
+    }
+        automaticRekognition = usecase(rekognitionResult=rekognitionResult)
+        assert automaticRekognition.automaticallyRejected == False
+        
+    def test_validate_selfie_usecase_passed_dev_photos_4(self):
+        repo = StudentRepositoryMock()
+        usecase = ValidateSelfieUsecase(repo=repo)
+        rekognitionResult = {
+        "Labels": [
+            {
+                "Name": "Photography",
+                "Confidence": 100,
+                "Instances": [],
+                "Parents": []
+            },
+            {
+                "Name": "Portrait",
+                "Confidence": 100,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Face"
+                    },
+                    {
+                        "Name": "Head"
+                    },
+                    {
+                        "Name": "Person"
+                    },
+                    {
+                        "Name": "Photography"
+                    }
+                ]
+            },
+            {
+                "Name": "Head",
+                "Confidence": 100,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Person"
+                    }
+                ]
+            },
+            {
+                "Name": "Face",
+                "Confidence": 100,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Head"
+                    },
+                    {
+                        "Name": "Person"
+                    }
+                ]
+            },
+            {
+                "Name": "Person",
+                "Confidence": 100,
+                "Instances": [
+                    {
+                        "BoundingBox": {
+                            "Width": 0.9967337250709534,
+                            "Height": 0.7795467972755432,
+                            "Left": 0.0032662770245224237,
+                            "Top": 0.22045239806175232
+                        },
+                        "Confidence": 99.16930389404297
+                    }
+                ],
+                "Parents": []
+            },
+            {
+                "Name": "Smile",
+                "Confidence": 99.99910736083984,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Face"
+                    },
+                    {
+                        "Name": "Happy"
+                    },
+                    {
+                        "Name": "Head"
+                    },
+                    {
+                        "Name": "Person"
+                    }
+                ]
+            },
+            {
+                "Name": "Happy",
+                "Confidence": 99.99910736083984,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Face"
+                    },
+                    {
+                        "Name": "Head"
+                    },
+                    {
+                        "Name": "Person"
+                    }
+                ]
+            },
+            {
+                "Name": "Neck",
+                "Confidence": 99.62713623046875,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Body Part"
+                    },
+                    {
+                        "Name": "Face"
+                    },
+                    {
+                        "Name": "Head"
+                    },
+                    {
+                        "Name": "Person"
+                    }
+                ]
+            },
+            {
+                "Name": "Body Part",
+                "Confidence": 99.62713623046875,
+                "Instances": [],
+                "Parents": []
+            },
+            {
+                "Name": "Teen",
+                "Confidence": 99.16930389404297,
+                "Instances": [
+                    {
+                        "BoundingBox": {
+                            "Width": 0.9967337250709534,
+                            "Height": 0.7795467972755432,
+                            "Left": 0.0032662770245224237,
+                            "Top": 0.22045239806175232
+                        },
+                        "Confidence": 99.16930389404297
+                    }
+                ],
+                "Parents": [
+                    {
+                        "Name": "Person"
+                    }
+                ]
+            },
+            {
+                "Name": "Girl",
+                "Confidence": 99.16930389404297,
+                "Instances": [
+                    {
+                        "BoundingBox": {
+                            "Width": 0.9967337250709534,
+                            "Height": 0.7795467972755432,
+                            "Left": 0.0032662770245224237,
+                            "Top": 0.22045239806175232
+                        },
+                        "Confidence": 99.16930389404297
+                    }
+                ],
+                "Parents": [
+                    {
+                        "Name": "Female"
+                    },
+                    {
+                        "Name": "Person"
+                    }
+                ]
+            },
+            {
+                "Name": "Female",
+                "Confidence": 99.16930389404297,
+                "Instances": [
+                    {
+                        "BoundingBox": {
+                            "Width": 0.9967337250709534,
+                            "Height": 0.7795467972755432,
+                            "Left": 0.0032662770245224237,
+                            "Top": 0.22045239806175232
+                        },
+                        "Confidence": 99.16930389404297
+                    }
+                ],
+                "Parents": [
+                    {
+                        "Name": "Person"
+                    }
+                ]
+            },
+            {
+                "Name": "Selfie",
+                "Confidence": 73.70368194580078,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Face"
+                    },
+                    {
+                        "Name": "Head"
+                    },
+                    {
+                        "Name": "Person"
+                    }
+                ]
+            },
+            {
+                "Name": "Coat",
+                "Confidence": 62.33521270751953,
+                "Instances": [
+                    {
+                        "BoundingBox": {
+                            "Width": 0.9985669851303101,
+                            "Height": 0.3327409625053406,
+                            "Left": 0.0014330630656331778,
+                            "Top": 0.6671766638755798
+                        },
+                        "Confidence": 62.33521270751953
+                    }
+                ],
+                "Parents": [
+                    {
+                        "Name": "Clothing"
+                    }
+                ]
+            },
+            {
+                "Name": "Clothing",
+                "Confidence": 62.33521270751953,
+                "Instances": [],
+                "Parents": []
+            },
+            {
+                "Name": "Dimples",
+                "Confidence": 57.935970306396484,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Face"
+                    },
+                    {
+                        "Name": "Head"
+                    },
+                    {
+                        "Name": "Person"
+                    }
+                ]
+            },
+            {
+                "Name": "T-Shirt",
+                "Confidence": 57.67470932006836,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Clothing"
+                    }
+                ]
+            },
+            {
+                "Name": "Shirt",
+                "Confidence": 57.3075065612793,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Clothing"
+                    }
+                ]
+            },
+            {
+                "Name": "Teeth",
+                "Confidence": 57.17409896850586,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Body Part"
+                    },
+                    {
+                        "Name": "Mouth"
+                    },
+                    {
+                        "Name": "Person"
+                    }
+                ]
+            },
+            {
+                "Name": "Mouth",
+                "Confidence": 57.17409896850586,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Body Part"
+                    },
+                    {
+                        "Name": "Person"
+                    }
+                ]
+            },
+            {
+                "Name": "Blonde",
+                "Confidence": 57.0540771484375,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Hair"
+                    },
+                    {
+                        "Name": "Person"
+                    }
+                ]
+            },
+            {
+                "Name": "Hair",
+                "Confidence": 57.0540771484375,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Person"
+                    }
+                ]
+            }
+        ],
+        "LabelModelVersion": "3.0"
+    }
+        automaticRekognition = usecase(rekognitionResult=rekognitionResult)
+        assert automaticRekognition.automaticallyRejected == False
+        
+    def test_validate_selfie_usecase_passed_dev_photos_5(self):
+        repo = StudentRepositoryMock()
+        usecase = ValidateSelfieUsecase(repo=repo)
+        rekognitionResult = {
+        "Labels": [
+            {
+                "Name": "Head",
+                "Confidence": 99.99971008300781,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Person"
+                    }
+                ]
+            },
+            {
+                "Name": "Person",
+                "Confidence": 99.99971008300781,
+                "Instances": [
+                    {
+                        "BoundingBox": {
+                            "Width": 0.9894484877586365,
+                            "Height": 0.997348964214325,
+                            "Left": 0.008234825916588306,
+                            "Top": 0.002651001326739788
+                        },
+                        "Confidence": 99.67996215820312
+                    }
+                ],
+                "Parents": []
+            },
+            {
+                "Name": "Face",
+                "Confidence": 99.9996109008789,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Head"
+                    },
+                    {
+                        "Name": "Person"
+                    }
+                ]
+            },
+            {
+                "Name": "Man",
+                "Confidence": 99.67996215820312,
+                "Instances": [
+                    {
+                        "BoundingBox": {
+                            "Width": 0.9894484877586365,
+                            "Height": 0.997348964214325,
+                            "Left": 0.008234825916588306,
+                            "Top": 0.002651001326739788
+                        },
+                        "Confidence": 99.67996215820312
+                    }
+                ],
+                "Parents": [
+                    {
+                        "Name": "Adult"
+                    },
+                    {
+                        "Name": "Male"
+                    },
+                    {
+                        "Name": "Person"
+                    }
+                ]
+            },
+            {
+                "Name": "Adult",
+                "Confidence": 99.67996215820312,
+                "Instances": [
+                    {
+                        "BoundingBox": {
+                            "Width": 0.9894484877586365,
+                            "Height": 0.997348964214325,
+                            "Left": 0.008234825916588306,
+                            "Top": 0.002651001326739788
+                        },
+                        "Confidence": 99.67996215820312
+                    }
+                ],
+                "Parents": [
+                    {
+                        "Name": "Person"
+                    }
+                ]
+            },
+            {
+                "Name": "Male",
+                "Confidence": 99.67996215820312,
+                "Instances": [
+                    {
+                        "BoundingBox": {
+                            "Width": 0.9894484877586365,
+                            "Height": 0.997348964214325,
+                            "Left": 0.008234825916588306,
+                            "Top": 0.002651001326739788
+                        },
+                        "Confidence": 99.67996215820312
+                    }
+                ],
+                "Parents": [
+                    {
+                        "Name": "Person"
+                    }
+                ]
+            },
+            {
+                "Name": "Portrait",
+                "Confidence": 99.65196228027344,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Face"
+                    },
+                    {
+                        "Name": "Head"
+                    },
+                    {
+                        "Name": "Person"
+                    },
+                    {
+                        "Name": "Photography"
+                    }
+                ]
+            },
+            {
+                "Name": "Photography",
+                "Confidence": 99.65196228027344,
+                "Instances": [],
+                "Parents": []
+            },
+            {
+                "Name": "Neck",
+                "Confidence": 79.41056823730469,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Body Part"
+                    },
+                    {
+                        "Name": "Face"
+                    },
+                    {
+                        "Name": "Head"
+                    },
+                    {
+                        "Name": "Person"
+                    }
+                ]
+            },
+            {
+                "Name": "Body Part",
+                "Confidence": 79.41056823730469,
+                "Instances": [],
+                "Parents": []
+            },
+            {
+                "Name": "Selfie",
+                "Confidence": 78.90068817138672,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Face"
+                    },
+                    {
+                        "Name": "Head"
+                    },
+                    {
+                        "Name": "Person"
+                    }
+                ]
+            },
+            {
+                "Name": "Jaw",
+                "Confidence": 57.588531494140625,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Body Part"
+                    },
+                    {
+                        "Name": "Face"
+                    },
+                    {
+                        "Name": "Head"
+                    },
+                    {
+                        "Name": "Person"
+                    }
+                ]
+            },
+            {
+                "Name": "Earring",
+                "Confidence": 55.52973556518555,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Accessories"
+                    },
+                    {
+                        "Name": "Jewelry"
+                    }
+                ]
+            },
+            {
+                "Name": "Jewelry",
+                "Confidence": 55.52973556518555,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Accessories"
+                    }
+                ]
+            },
+            {
+                "Name": "Accessories",
+                "Confidence": 55.52973556518555,
+                "Instances": [],
+                "Parents": []
+            },
+            {
+                "Name": "Hair",
+                "Confidence": 55.25564193725586,
+                "Instances": [],
+                "Parents": [
+                    {
+                        "Name": "Person"
+                    }
+                ]
+            }
+        ],
+        "LabelModelVersion": "3.0"
+    }
+        automaticRekognition = usecase(rekognitionResult=rekognitionResult)
+        assert automaticRekognition.automaticallyRejected == False
         
