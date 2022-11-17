@@ -2,12 +2,13 @@ from datetime import datetime
 import uuid
 from src.shared.domain.repositories.selfie_repository_interface import ISelfieRepository
 import boto3
+from src.shared.environments import Environments
 
 class SelfieRepositoryS3(ISelfieRepository):
     S3_BUCKET_NAME: str
 
     def __init__(self):
-        self.S3_BUCKET_NAME = "test-selfie-bucket"
+        self.S3_BUCKET_NAME = Environments.get_envs().s3_bucket_name
         self.s3_client = boto3.client('s3')
 
       
