@@ -49,20 +49,20 @@ class Test_RequestUploadSelfiePresenter:
                 "time": "12/Mar/2020:19:03:58 +0000",
                 "timeEpoch": 1583348638390
             },
-            "body": '{"ra": "21007586","name": "GUILHERME FERNANDES CLEMENTINO","email": "21.00758-6@maua.br"}',
+            "body": '{"ra": "21002088","name": "MARIA LUIZA VERNASQUI VERGANI","email": "21.00208-8@maua.br"}',
             "pathParameters": None,
             "isBase64Encoded": None,
             "stageVariables": None
         }
 
         expected = {
-                  'fields': {'AWSAccessKeyId': 'ACCESSKEY-21007586',
-                             'key': '21007586/selfie-2022-11-09-20:55:11-35aa9.jpeg',
-                             'policy': 'POLICY-21007586',
-                             'signature': 'SIGNATURE-21007586',
-                             'x-amz-meta-email': '21.00758-6@maua.br',
-                             'x-amz-meta-name': 'GUILHERME FERNANDES CLEMENTINO',
-                             'x-amz-meta-ra': '21007586'},
+                  'fields': {'AWSAccessKeyId': 'ACCESSKEY-21002088',
+                             'key': '21002088/selfie-2022-11-09-20:55:11-35aa9.jpeg',
+                             'policy': 'POLICY-21002088',
+                             'signature': 'SIGNATURE-21002088',
+                             'x-amz-meta-email': '21.00208-8@maua.br',
+                             'x-amz-meta-name': 'MARIA LUIZA VERNASQUI VERGANI',
+                             'x-amz-meta-ra': '21002088'},
                   'url': 'https://test-selfie-bucket.s3.amazonaws.com/',
                  }
 
