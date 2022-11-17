@@ -6,7 +6,7 @@ from src.shared.domain.repositories.selfie_repository_interface import ISelfieRe
 class SelfieRepositoryMock(ISelfieRepository):
 
         
-    def uuid_pic_generator_generate(self, ra: str) -> str:
+    def generate_uuid_key(self, ra: str) -> str:
         object_name = f"{ra}/selfie-{datetime.today().strftime('%Y-%m-%d-%H:%M:%S')}-{str(uuid.uuid4())[:5]}.jpeg"
         return object_name
 
@@ -18,7 +18,7 @@ class SelfieRepositoryMock(ISelfieRepository):
                     "x-amz-meta-ra":f"{ra}",
                     "x-amz-meta-name":f"{name}",
                     "x-amz-meta-email":f"{email}",
-                    "key":self.uuid_pic_generator_generate(ra),
+                    "key":self.generate_uuid_key(ra),
                     "AWSAccessKeyId":f"ACCESSKEY-{ra}",
                     "policy":f"POLICY-{ra}",
                     "signature":f"SIGNATURE-{ra}"

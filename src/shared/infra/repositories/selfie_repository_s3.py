@@ -11,14 +11,14 @@ class SelfieRepositoryS3  (ISelfieRepository):
         self.s3_client = boto3.client('s3')
 
       
-    def uuid_key_generator_generate(self, ra: str):
+    def generate_uuid_key(self, ra: str):
 
         key = f"{ra}/selfie-{datetime.today().strftime('%Y-%m-%d-%H:%M:%S')}-{str(uuid.uuid4())[:5]}.jpeg"
         return key
 
 
     def request_upload_selfie(self, ra: str, name: str, email: str) -> dict:
-        key = self.uuid_key_generator_generate(ra=ra)
+        key = self.generate_uuid_key(ra=ra)
   
         meta = {
             "x-amz-meta-ra": ra,
