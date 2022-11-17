@@ -3,7 +3,7 @@ import uuid
 from src.shared.domain.repositories.selfie_repository_interface import ISelfieRepository
 import boto3
 
-class SelfieRepositoryS3  (ISelfieRepository):
+class SelfieRepositoryS3(ISelfieRepository):
     S3_BUCKET_NAME: str
 
     def __init__(self):
