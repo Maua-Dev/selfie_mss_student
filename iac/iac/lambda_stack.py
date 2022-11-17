@@ -39,5 +39,7 @@ class LambdaStack(NestedStack):
         self.createLambdaApiGatewayIntegration(module_name="create_selfie", method="POST", mss_student_api_resource=mss_student_api_resource)
         self.createLambdaApiGatewayIntegration(module_name="update_selfie", method="POST", mss_student_api_resource=mss_student_api_resource)
         self.createLambdaApiGatewayIntegration(module_name="delete_selfie", method="POST", mss_student_api_resource=mss_student_api_resource)
+        self.createLambdaApiGatewayIntegration(module_name="get_all_selfies", method="GET", mss_student_api_resource=mss_student_api_resource)
+        self.createLambdaApiGatewayIntegration(module_name="get_all_students", method="GET", mss_student_api_resource=mss_student_api_resource)
 
 
