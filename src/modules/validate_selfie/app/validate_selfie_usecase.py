@@ -19,15 +19,22 @@ class ValidateSelfieUsecase:
         if rekognitionResult.get("Labels") is None:
             raise EntityError('rekognitionResult')
 
+        names = set()
+        parents = set()
+
         labels = rekognitionResult['Labels']
         for label in labels:
             if len(label["Instances"]) == 0 and float(label["Confidence"]) >= Label.MIN_CONFIDENCE:
                 labelDict = dict()
                 
                 labelDict["name"] = label["Name"]
+                names.add(labelDict["name"])
+                
                 labelDict["confidence"] = float(label["Confidence"])
                 labelDict["coords"] = dict()
                 labelDict["parents"] = [parent["Name"] for parent in label["Parents"]] 
+                for parent in labelDict["parents"]:
+                    parents.add(parent)
                 
                 allLabels.append(labelDict)
                 
@@ -35,10 +42,14 @@ class ValidateSelfieUsecase:
                 labelDict = dict()
                 
                 labelDict["name"] = label["Name"]
+                names.add(labelDict["name"])
+                
                 labelDict["confidence"] = float(label["Confidence"])
                 labelDict["coords"] = label["Instances"][0]["BoundingBox"]
                 labelDict["parents"] = [parent["Name"] for parent in label["Parents"]] 
-                
+                for parent in labelDict["parents"]:
+                    parents.add(parent)
+                    
                 allLabels.append(labelDict)
     
             else:
@@ -47,17 +58,19 @@ class ValidateSelfieUsecase:
                         labelDict = dict()
                         
                         labelDict["name"] = label["Name"]
+                        names.add(labelDict["name"])
+                        
                         labelDict["confidence"] = float(instance["Confidence"])
                         labelDict["parents"] = [parent["Name"] for parent in label["Parents"]] 
+                        for parent in labelDict["parents"]:
+                            parents.add(parent)
+                            
                         labelDict["coords"] = instance["BoundingBox"]
                         
                         allLabels.append(labelDict)
 
         rejectionReasons = list()
         
-        names = set([label["name"] for label in allLabels])
-        parents = set([parent for parents in (label["parents"] for label in allLabels) for parent in parents])
- 
         for name in names:
             if ValidationLists.OBJECTS_NOT_ALLOWED.get(name) is not None:
                 rejectionReasons.append(ValidationLists.OBJECTS_NOT_ALLOWED.get(name))
