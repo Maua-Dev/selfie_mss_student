@@ -14,9 +14,6 @@ class GetSelfiesByRaUsecase:
             raise EntityError('ra')
 
         student = self.repo.get_student(ra=ra)
-        
-        if student ==  None:
-            raise NoItemsFound("ra")
    
         selfies = self.repo.get_selfies_by_ra(ra=ra)
      

@@ -187,6 +187,12 @@ class StudentRepositoryMock(IStudentRepository):
         return student
     
     def get_selfies_by_ra(self, ra) -> Tuple[List[Selfie], Student]:
+        
+        student = self.get_student(ra=ra)
+        
+        if student ==  None:
+            raise NoItemsFound("ra")
+   
         return [selfie for selfie in self.selfies if selfie.student.ra == ra]
             
     def get_selfie(self, ra: str, idSelfie: int) -> Selfie:
@@ -214,7 +220,7 @@ class StudentRepositoryMock(IStudentRepository):
                     idxSelfie = idx
                     
         if idxSelfie == -1:
-            raise NoItemsFound("ra or idSelfie")
+            raise NoItemsFound("idSelfie")
         
         if new_state != None:
             self.selfies[idxSelfie].state = new_state

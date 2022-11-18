@@ -118,7 +118,7 @@ class Test_DeleteSelfiePresenter:
         
         response = lambda_handler(event, None)
         assert response["statusCode"] == 404
-        assert json.loads(response["body"]) == "No items found for ra or idSelfie"
+        assert json.loads(response["body"]) == "No items found for idSelfie"
   
     def test_delete_selfie_idSelfie_is_missing(self):
         event = {
@@ -233,7 +233,7 @@ class Test_DeleteSelfiePresenter:
 
         response = lambda_handler(event, None)
         assert response["statusCode"] == 404
-        assert json.loads(response["body"]) == "No items found for ra or idSelfie"
+        assert json.loads(response["body"]) == "No items found for ra"
     
     
     def test_delete_selfie_student_forbidden_item(self):
