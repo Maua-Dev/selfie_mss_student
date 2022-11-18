@@ -3,6 +3,7 @@ from datetime import datetime
 from decimal import Decimal
 
 from src.shared.domain.entities.automatic_review import AutomaticReview
+from src.shared.domain.entities.label import Label
 from src.shared.domain.entities.selfie import Selfie
 from src.shared.domain.entities.student import Student
 from src.shared.domain.enums.rejection_reason_enum import REJECTION_REASON
@@ -11,7 +12,7 @@ from src.shared.domain.enums.state_enum import STATE
 
 class SelfieDynamoDTO:
     idSelfie: int
-    student: dict
+    student: Student
     dateCreated: datetime
     url: str
     state: str
@@ -32,7 +33,7 @@ class SelfieDynamoDTO:
         self.automaticReview = automaticReview
 
     @staticmethod
-    def from_dynamo(selfie_data: dict, student_data: dict):
+    def from_dynamo(selfie_data: dict, student_data: dict) -> "SelfieDynamoDTO":
         """
         Parse data from DynamoDB to SelfieDynamoDTO
         @param selfie_data: dict from DynamoDB
@@ -42,16 +43,15 @@ class SelfieDynamoDTO:
 
         automatic_review_parsed = {
             "automaticallyRejected": selfie_data['automaticReview']['automaticallyRejected'],
-            "labels": [{
-
-                    'confidence': float(i['confidence']),
-                    'coords': {'Height': float(i['coords']['Height']),
+            "labels": [Label(
+                    confidence=float(i['confidence']),
+                    coords={'Height': float(i['coords']['Height']),
                                'Left': float(i['coords']['Left']),
                                'Top': float(i['coords']['Top']),
                                'Width': float(i['coords']['Width'])
                                } if i['coords'] else {},
-                    'name': i['name'],
-                    'parents': i["parents"]} for i in selfie_data['automaticReview']['labels']],
+                    name=i['name'],
+                    parents=i["parents"]) for i in selfie_data['automaticReview']['labels']],
             "rejectionReasons": [REJECTION_REASON[reason] for reason in selfie_data['automaticReview']['rejectionReasons']],
         }
 
@@ -71,7 +71,7 @@ class SelfieDynamoDTO:
             automaticReview=AutomaticReview(**automatic_review_parsed)
         )
 
-    def to_entity(self):
+    def to_entity(self) -> Selfie:
         """
         Parse data from SelfieDynamoDTO to Selfie
         """
@@ -85,3 +85,60 @@ class SelfieDynamoDTO:
             rejectionDescription=self.rejectionDescription,
             automaticReview=self.automaticReview
         )
+
+    @staticmethod
+    def from_entity(selfie: Selfie) -> "SelfieDynamoDTO":
+        """
+        Parse data from Selfie to SelfieDynamoDTO
+        """
+        return SelfieDynamoDTO(
+            idSelfie=selfie.idSelfie,
+            student=selfie.student,
+            dateCreated=selfie.dateCreated,
+            url=selfie.url,
+            state=selfie.state,
+            rejectionReasons=selfie.rejectionReasons,
+            rejectionDescription=selfie.rejectionDescription,
+            automaticReview=selfie.automaticReview
+        )
+
+    def to_dynamo(self) -> dict:
+        """
+        Parse data from SelfieDynamoDTO to DynamoDB format
+        """
+        return {
+            "idSelfie": self.idSelfie,
+            "student": {
+                "ra": self.student.ra,
+                "name": self.student.name,
+                "email": self.student.email
+            },
+            "dateCreated": self.dateCreated.isoformat(),
+            "url": self.url,
+            "state": self.state,
+            "rejectionReasons": self.rejectionReasons,
+            "rejectionDescription": self.rejectionDescription,
+            "automaticReview": {
+                "automaticallyRejected": self.automaticReview.automaticallyRejected,
+                "labels": [{
+                    'confidence': Decimal(str(i.confidence)),
+                    'coords': {'Height': Decimal(str(i.coords['Height'])),
+                               'Left': Decimal(str(i.coords['Left'])),
+                               'Top': Decimal(str(i.coords['Top'])),
+                               'Width': Decimal(str(i.coords['Width']))
+                               } if i.coords else {},
+                    'name': i.name,
+                    'parents': i.parents} for i in self.automaticReview.labels],
+                "rejectionReasons": [reason.value for reason in self.automaticReview.rejectionReasons],
+            }
+        }
+
+
+
+
+    def __repr__(self):
+        return json.dumps(self.__dict__, indent=4, default=str)
+
+    def __eq__(self, other):
+        return self.__dict__ == other.__dict__
+
