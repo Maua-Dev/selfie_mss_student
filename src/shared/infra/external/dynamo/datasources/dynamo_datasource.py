@@ -16,11 +16,11 @@ class DynamoDatasource:
     partition_key: str
     sort_key: str
 
-    def __init__(self, access_key: str, secret_key: str, endpoint_url: str, dynamo_table_name: str, region: str,
-                 partition_key: str, sort_key: str = None):
+    def __init__(self, dynamo_table_name: str, partition_key: str, region: str,
+                 endpoint_url: str = None, sort_key: str = None):
 
-        self.dynamo_table = DynamoTable(access_key=access_key, secret_key=secret_key, endpoint_url=endpoint_url,
-                                        dynamo_table_name=dynamo_table_name, region=region)
+        self.dynamo_table = DynamoTable(dynamo_table_name=dynamo_table_name, region=region,
+                                        endpoint_url=endpoint_url)
 
         self.partition_key = partition_key
         self.sort_key = sort_key
@@ -173,7 +173,7 @@ class DynamoDatasource:
 
 
 if __name__ == '__main__':
-    dynamo = DynamoDatasource(access_key="foobar", secret_key="foobar", endpoint_url="http://localhost:8000",
+    dynamo = DynamoDatasource(endpoint_url="http://localhost:8000",
                               dynamo_table_name="selfie_mss_student-table", region="foobar",
                               partition_key="PK", sort_key="SK")
 
