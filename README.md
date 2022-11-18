@@ -21,4 +21,5 @@
 ### Subir o container (ir para pasta iac/local)
     docker-compose up
 
-## Configurar dynamo local (ir para pasta iac/local)
+## Configurar dynamo local (ir para pasta root)
+    python -m src.shared.infra.repositories.load_student_mock_to_dynamo
