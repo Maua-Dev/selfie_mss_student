@@ -24,6 +24,7 @@ class ValidateSelfieUsecase:
 
         labels = rekognitionResult['Labels']
         for label in labels:
+            # Uma label que não possui coordenadas
             if len(label["Instances"]) == 0 and float(label["Confidence"]) >= Label.MIN_CONFIDENCE:
                 labelDict = dict()
                 
@@ -38,6 +39,7 @@ class ValidateSelfieUsecase:
                 
                 allLabels.append(labelDict)
                 
+            # Uma label que possui coordenadas
             elif len(label["Instances"]) == 1 and float(label["Confidence"]) >= Label.MIN_CONFIDENCE:
                 labelDict = dict()
                 
@@ -52,6 +54,7 @@ class ValidateSelfieUsecase:
                     
                 allLabels.append(labelDict)
     
+            # Várias labels (de mesmo nome) que possuem (ou não) coordenadas
             else:
                 for instance in label["Instances"]:
                     if float(instance["Confidence"]) >= Label.MIN_CONFIDENCE:
