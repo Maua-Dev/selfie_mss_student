@@ -32,7 +32,7 @@ class UpdateSelfieController:
             # None
 
             # if not all(str(reason).upper()  in [rejectionReasons.value for rejectionReasons in REJECTION_REASON] for reason in request.body.get("new_rejectionReasons")):
-            if not request.body.get("new_rejectionReasons") is None:
+            if "new_rejectionReasons" in request.body:
                 if type(request.body.get("new_rejectionReasons")) != list:
                     raise EntityError("new_rejectionReasons")
                 elif not all([reason in [rejectionReasons.value for rejectionReasons in REJECTION_REASON] for reason in request.body.get("new_rejectionReasons")]):
