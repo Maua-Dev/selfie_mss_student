@@ -7,6 +7,7 @@ from src.shared.domain.enums.state_enum import STATE
 from src.shared.domain.repositories.student_repository_interface import IStudentRepository
 from src.shared.environments import Environments
 from src.shared.infra.dtos.selfie_dynamo_dto import SelfieDynamoDTO
+from src.shared.infra.dtos.student_dynamo_dto import StudentDynamoDTO
 from src.shared.infra.external.dynamo.datasources.dynamo_datasource import DynamoDatasource
 
 
@@ -28,7 +29,10 @@ class StudentRepositoryDynamo(IStudentRepository):
                                        sort_key=Environments.get_envs().dynamo_sort_key)
 
     def get_student(self, ra: str) -> Student:
-        pass
+        student = self.dynamo.get_item(partition_key=self.partition_key_format(ra), sort_key=ra)
+        student_dto = StudentDynamoDTO.from_dynamo(student['Item'])
+        return student_dto.to_entity()
+
 
     def update_student(self, ra: str, new_name: str = None, new_email: str = None) -> Student:
         pass
@@ -37,7 +41,9 @@ class StudentRepositoryDynamo(IStudentRepository):
         pass
 
     def create_student(self, student: Student) -> Student:
-        pass
+        student_dto = StudentDynamoDTO.from_entity(student)
+        self.dynamo.put_item(partition_key=self.partition_key_format(student.ra), sort_key=student.ra, item=student_dto.to_dynamo())
+
 
     def get_selfies_by_ra(self, ra: str) -> Tuple[List[Selfie], Student]:
         pass
@@ -53,7 +59,9 @@ class StudentRepositoryDynamo(IStudentRepository):
         pass
 
     def create_selfie(self, selfie: Selfie) -> Selfie:
-        pass
+        selfie_dto = SelfieDynamoDTO.from_entity(selfie)
+        item = selfie_dto.to_dynamo()
+        self.dynamo.put_item(partition_key=self.partition_key_format(selfie.student.ra), sort_key=self.selfie_sort_key_format(selfie.student.ra, selfie.idSelfie), item=item, is_decimal=True)
 
     def update_selfie(self, ra: str, idSelfie: int, new_state: STATE = None,
                       new_rejectionReasons: REJECTION_REASON = None, new_rejectionDescription: str = None) -> Selfie:
