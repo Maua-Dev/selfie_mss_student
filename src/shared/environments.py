@@ -44,7 +44,7 @@ class Environments:
         )
 
     @staticmethod
-    def get_envs() -> "Environments":
+    def __call__() -> "Environments":
         """
         Returns the Environments object. This method should be used to get the Environments object instead of instantiating it directly.
         :return: Environments (stage={self.stage}, s3_bucket_name={self.s3_bucket_name}, region={self.region}, endpoint_url={self.endpoint_url})
