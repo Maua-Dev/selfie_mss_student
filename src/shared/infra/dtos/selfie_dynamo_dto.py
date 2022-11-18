@@ -15,8 +15,8 @@ class SelfieDynamoDTO:
     student: Student
     dateCreated: datetime
     url: str
-    state: str
-    rejectionReasons: list[str]
+    state: STATE
+    rejectionReasons: list[REJECTION_REASON]
     rejectionDescription: str
     automaticReview: AutomaticReview
 
@@ -65,8 +65,8 @@ class SelfieDynamoDTO:
             ),
             dateCreated=datetime.fromisoformat(selfie_data['dateCreated']),
             url=selfie_data['url'],
-            state=selfie_data['state'],
-            rejectionReasons=selfie_data['rejectionReasons'],
+            state=STATE[selfie_data['state']],
+            rejectionReasons= [REJECTION_REASON[reason] for reason in selfie_data['rejectionReasons']],
             rejectionDescription=selfie_data['rejectionDescription'],
             automaticReview=AutomaticReview(**automatic_review_parsed)
         )
@@ -80,8 +80,8 @@ class SelfieDynamoDTO:
             student=self.student,
             dateCreated=self.dateCreated,
             url=self.url,
-            state=STATE[self.state],
-            rejectionReasons=[REJECTION_REASON[reason] for reason in self.rejectionReasons],
+            state=self.state,
+            rejectionReasons=self.rejectionReasons,
             rejectionDescription=self.rejectionDescription,
             automaticReview=self.automaticReview
         )
@@ -107,16 +107,11 @@ class SelfieDynamoDTO:
         Parse data from SelfieDynamoDTO to DynamoDB format
         """
         return {
-            "idSelfie": self.idSelfie,
-            "student": {
-                "ra": self.student.ra,
-                "name": self.student.name,
-                "email": self.student.email
-            },
+            "idSelfie": Decimal(str(self.idSelfie)),
             "dateCreated": self.dateCreated.isoformat(),
             "url": self.url,
-            "state": self.state,
-            "rejectionReasons": self.rejectionReasons,
+            "state": self.state.value,
+            "rejectionReasons": [reason.value for reason in self.rejectionReasons],
             "rejectionDescription": self.rejectionDescription,
             "automaticReview": {
                 "automaticallyRejected": self.automaticReview.automaticallyRejected,

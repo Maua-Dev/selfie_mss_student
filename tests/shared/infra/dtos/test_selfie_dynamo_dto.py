@@ -4,6 +4,7 @@ from decimal import Decimal
 from src.shared.domain.entities.label import Label
 from src.shared.domain.entities.student import Student
 from src.shared.domain.enums.rejection_reason_enum import REJECTION_REASON
+from src.shared.domain.enums.state_enum import STATE
 from src.shared.infra.dtos.selfie_dynamo_dto import SelfieDynamoDTO
 from src.shared.infra.repositories.student_repository_mock import StudentRepositoryMock
 
@@ -68,8 +69,8 @@ class Test_SelfieDynamoDTO:
         assert selfie_dto.student.email == Student(**student_data).email
         assert selfie_dto.dateCreated == datetime(2022, 10, 1, 16, 1, 59, 149927)
         assert selfie_dto.url == 'https://i.imgur.com/0KFBHTB.jpg'
-        assert selfie_dto.state == 'DECLINED'
-        assert selfie_dto.rejectionReasons == ['COVERED_FACE']
+        assert selfie_dto.state == STATE.DECLINED
+        assert selfie_dto.rejectionReasons == [REJECTION_REASON.COVERED_FACE]
         assert selfie_dto.rejectionDescription == 'Balaclava'
         assert selfie_dto.automaticReview.automaticallyRejected == True
         assert type(selfie_dto.automaticReview.labels[0]) == Label
@@ -97,9 +98,6 @@ class Test_SelfieDynamoDTO:
         assert selfie_dto.automaticReview.labels[2].coords['Top'] == 0.11108686774969101
         assert selfie_dto.automaticReview.labels[2].coords['Width'] == 0.9711952805519104
 
-
-
-
     def test_to_entity(self):
         repo = StudentRepositoryMock()
 
@@ -108,8 +106,8 @@ class Test_SelfieDynamoDTO:
             student=repo.students[0],
             dateCreated=datetime(2022, 10, 1, 16, 1, 59, 149927),
             url='https://i.imgur.com/0KFBHTB.jpg',
-            state='DECLINED',
-            rejectionReasons=['COVERED_FACE'],
+            state=STATE.DECLINED,
+            rejectionReasons=[REJECTION_REASON.COVERED_FACE],
             rejectionDescription='Balaclava',
             automaticReview=repo.selfies[0].automaticReview
         )
@@ -144,8 +142,8 @@ class Test_SelfieDynamoDTO:
             student=repo.students[0],
             dateCreated=datetime(2022, 10, 1, 16, 1, 59, 149927),
             url='https://i.imgur.com/0KFBHTB.jpg',
-            state='DECLINED',
-            rejectionReasons=['COVERED_FACE'],
+            state=STATE.DECLINED,
+            rejectionReasons=[REJECTION_REASON.COVERED_FACE],
             rejectionDescription='Balaclava',
             automaticReview=repo.selfies[0].automaticReview
         )
@@ -153,9 +151,6 @@ class Test_SelfieDynamoDTO:
         selfie_dynamo = selfie_dto.to_dynamo()
 
         assert selfie_dynamo['idSelfie'] == 0
-        assert selfie_dynamo['student']['ra'] == repo.students[0].ra
-        assert selfie_dynamo['student']['name'] == repo.students[0].name
-        assert selfie_dynamo['student']['email'] == repo.students[0].email
         assert selfie_dynamo['dateCreated'] == datetime(2022, 10, 1, 16, 1, 59, 149927).isoformat()
         assert selfie_dynamo['url'] == 'https://i.imgur.com/0KFBHTB.jpg'
         assert selfie_dynamo['state'] == 'DECLINED'
@@ -229,6 +224,45 @@ class Test_SelfieDynamoDTO:
 
         assert entity == repo.selfies[0]
 
+    def test_from_entity_to_dynamo(self):
+        repo = StudentRepositoryMock()
+
+        entity = repo.selfies[0]
+
+        dynamo_item = {
+            'automaticReview': {'automaticallyRejected': True,
+                                'labels': [{'confidence': Decimal('98.54370880126953'),
+                                            'coords': {'Height': Decimal('0.8659809827804565'),
+                                                       'Left': Decimal('0.012313545681536198'),
+                                                       'Top': Decimal('0.11108686774969101'),
+                                                       'Width': Decimal('0.9711952805519104')},
+                                            'name': 'Person',
+                                            'parents': []},
+                                           {'confidence': Decimal('98.54370880126953'),
+                                            'coords': {'Height': Decimal('0.8659809827804565'),
+                                                       'Left': Decimal('0.012313545681536198'),
+                                                       'Top': Decimal('0.11108686774969101'),
+                                                       'Width': Decimal('0.9711952805519104')},
+                                            'name': 'Hat',
+                                            'parents': []},
+                                           {'confidence': Decimal('98.54370880126953'),
+                                            'coords': {'Height': Decimal('0.8659809827804565'),
+                                                       'Left': Decimal('0.012313545681536198'),
+                                                       'Top': Decimal('0.11108686774969101'),
+                                                       'Width': Decimal('0.9711952805519104')},
+                                            'name': 'Face',
+                                            'parents': []}],
+                                'rejectionReasons': ['COVERED_FACE']},
+            'dateCreated': '2022-10-01T16:01:59.149927',
+            'idSelfie': Decimal('0'),
+            'rejectionDescription': 'Balaclava',
+            'rejectionReasons': ['COVERED_FACE'],
+            'state': 'DECLINED',
+            'url': 'https://i.imgur.com/0KFBHTB.jpg'}
+
+        dynamo_item_from_dto = SelfieDynamoDTO.from_entity(entity).to_dynamo()
+
+        assert dynamo_item == dynamo_item_from_dto
 
 
 
