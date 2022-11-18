@@ -80,10 +80,10 @@ class ValidateSelfieUsecase:
                 rejectionReasons.append(ValidationLists.PARENTS_NOT_ALLOWED.get(parent))
                 
         if not all(name in names for name in ValidationLists.OBJECTS_REQUIRED.keys()):
-            rejectionReasons = rejectionReasons + [name for name in ValidationLists.OBJECTS_REQUIRED.values() if name not in names]
+            rejectionReasons.extend([name for name in ValidationLists.OBJECTS_REQUIRED.values() if name not in names])
             
         if not all(name in names for name in ValidationLists.PARENTS_REQUIRED.keys()):
-            rejectionReasons = rejectionReasons + [name for name in ValidationLists.PARENTS_REQUIRED.values() if name not in names]
+            rejectionReasons.extend([name for name in ValidationLists.PARENTS_REQUIRED.values() if name not in names])
                 
         automaticallyRejected = len(rejectionReasons) > 0
         
