@@ -1,3 +1,5 @@
+import pytest
+
 from src.shared.infra.repositories.student_repository_dynamo import StudentRepositoryDynamo
 import os
 
@@ -6,6 +8,7 @@ from src.shared.infra.repositories.student_repository_mock import StudentReposit
 
 class Test_StudentRepositoryDynamo:
 
+    @pytest.mark.skip(reason="Needs dynamoDB")
     def test_get_selfie(self):
         os.environ["STAGE"] = "TEST"
 
@@ -13,6 +16,7 @@ class Test_StudentRepositoryDynamo:
         resp = student_repository.get_selfie("21010757", 0)
         assert True
 
+    @pytest.mark.skip(reason="Needs dynamoDB")
     def test_get_student(self):
         os.environ["STAGE"] = "TEST"
 
@@ -20,6 +24,7 @@ class Test_StudentRepositoryDynamo:
         resp = student_repository.get_student("19003315")
         assert True
 
+    @pytest.mark.skip(reason="Needs dynamoDB")
     def test_create_student(self):
         os.environ["STAGE"] = "TEST"
 
@@ -29,6 +34,7 @@ class Test_StudentRepositoryDynamo:
 
         assert True
 
+    @pytest.mark.skip(reason="Needs dynamoDB")
     def test_create_selfie(self):
         os.environ["STAGE"] = "TEST"
 
