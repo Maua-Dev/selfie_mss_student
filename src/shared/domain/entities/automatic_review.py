@@ -27,4 +27,9 @@ class AutomaticReview(abc.ABC):
           raise EntityError('labels')
         self.labels = labels
 
+
+    def __repr__(self):
+        return f"AutomaticReview(automaticallyRejected={self.automaticallyRejected}, rejectionReasons={self.rejectionReasons}, labels={self.labels})"
+
+
        

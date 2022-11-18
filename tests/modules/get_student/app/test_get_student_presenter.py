@@ -60,7 +60,8 @@ class Test_GetStudentPresenter:
         expected = {
             "ra":"21014440",
             "name":"Eh o Vilas do Mockas",
-            "email":"eusouoawsboy@amazon.com"
+            "email":"eusouoawsboy@amazon.com",
+            "status":"SELFIE_IN_REVIEW"
         }
 
         response = lambda_handler(event, None)

@@ -1,6 +1,6 @@
-from src.modules.get_all_selfies.app.get_all_selfies_usecase import GetAllSelfiesUsecase
+from .get_all_selfies_usecase import GetAllSelfiesUsecase
 from src.shared.helpers.http.http_models import OK, HttpRequest, HttpResponse
-from src.modules.get_all_selfies.app.get_all_selfies_viewmodel import GetAllSelfiesViewModel
+from .get_all_selfies_viewmodel import GetAllSelfiesViewModel
 
 
 class GetAllSelfiesController:

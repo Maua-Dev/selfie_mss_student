@@ -1,4 +1,5 @@
 from src.modules.get_student.app.get_student_view_model import GetStudentViewModel
+from src.shared.domain.enums.student_state_enum import STUDENT_STATE
 from src.shared.infra.repositories.student_repository_mock import StudentRepositoryMock
 
 class Test_GetStudentViewModel:
@@ -8,10 +9,11 @@ class Test_GetStudentViewModel:
         result = {
             "ra":"21010757",
             "name":"Victor",
-            "email":"eusousoller@gmail.com"
+            "email":"eusousoller@gmail.com",
+            "status": "APPROVED"
         }
         
-        studentViewModel = GetStudentViewModel(student).to_dict()
+        studentViewModel = GetStudentViewModel(student, STUDENT_STATE.APPROVED).to_dict()
         
         assert studentViewModel == result
         

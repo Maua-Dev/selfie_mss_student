@@ -25,3 +25,7 @@ class Label(abc.ABC):
         if (not coords is None and type(parents) != list):
           raise EntityError('parents')
         self.parents = parents
+
+
+    def __repr__(self):
+        return f"Label(name={self.name}, coords={self.coords}, confidence={self.confidence}, parents={self.parents})"
