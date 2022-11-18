@@ -37,6 +37,7 @@ class CreateSelfieUsecase:
             rejectionReasons=[REJECTION_REASON.NONE] if not automaticReviewInstance.automaticallyRejected else automaticReviewInstance.rejectionReasons,
             rejectionDescription=None if not automaticReviewInstance.automaticallyRejected else "auto-rejected by AI",
             automaticReview=automaticReviewInstance
+
         )
         
         selfie = self.repo.create_selfie(selfie=selfie)

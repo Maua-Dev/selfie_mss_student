@@ -22,12 +22,11 @@ class GetStudentUsecase:
         if student == None:
             raise NoItemsFound("Student")
 
-        selfies = self.repo.get_selfies_by_ra(ra=student.ra)
+        selfies, student = self.repo.get_selfies_by_ra(ra=student.ra)
         
         if not len(selfies): student_state = STUDENT_STATE.NO_SELFIE
         elif self.repo.check_student_has_approved_selfie(ra=student.ra): student_state = STUDENT_STATE.APPROVED
         else:
-            selfies.sort(key=lambda x:x.dateCreated)
             recent_selfie_status = selfies[-1].state 
             if recent_selfie_status == STATE.DECLINED: student_state = STUDENT_STATE.SELFIE_REJECTED
             elif recent_selfie_status == STATE.IN_REVIEW: student_state = STUDENT_STATE.SELFIE_IN_REVIEW
