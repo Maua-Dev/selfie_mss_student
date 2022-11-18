@@ -21,7 +21,7 @@ class ValidateSelfieUsecase:
 
         labels = rekognitionResult['Labels']
         for label in labels:
-            if len(label["Instances"]) == 0:
+            if len(label["Instances"]) == 0 and float(label["Confidence"]) >= Label.MIN_CONFIDENCE:
                 labelDict = dict()
                 
                 labelDict["name"] = label["Name"]
@@ -31,7 +31,7 @@ class ValidateSelfieUsecase:
                 
                 allLabels.append(labelDict)
                 
-            elif len(label["Instances"]) == 1:
+            elif len(label["Instances"]) == 1 and float(label["Confidence"]) >= Label.MIN_CONFIDENCE:
                 labelDict = dict()
                 
                 labelDict["name"] = label["Name"]
@@ -43,20 +43,20 @@ class ValidateSelfieUsecase:
     
             else:
                 for instance in label["Instances"]:
-                    labelDict = dict()
-                    
-                    labelDict["name"] = label["Name"]
-                    labelDict["confidence"] = float(instance["Confidence"])
-                    labelDict["parents"] = [parent["Name"] for parent in label["Parents"]] 
-                    labelDict["coords"] = instance["BoundingBox"]
-                    
-                    allLabels.append(labelDict)
+                    if float(instance["Confidence"]) >= Label.MIN_CONFIDENCE:
+                        labelDict = dict()
+                        
+                        labelDict["name"] = label["Name"]
+                        labelDict["confidence"] = float(instance["Confidence"])
+                        labelDict["parents"] = [parent["Name"] for parent in label["Parents"]] 
+                        labelDict["coords"] = instance["BoundingBox"]
+                        
+                        allLabels.append(labelDict)
 
-        validLabels = [label for label in allLabels if float(label["confidence"]) >= Label.MIN_CONFIDENCE]
         rejectionReasons = list()
         
-        names = set([label["name"] for label in validLabels])
-        parents = set([parent for parents in (label["parents"] for label in validLabels) for parent in parents])
+        names = set([label["name"] for label in allLabels])
+        parents = set([parent for parents in (label["parents"] for label in allLabels) for parent in parents])
  
         for name in names:
             if ValidationLists.OBJECTS_NOT_ALLOWED.get(name) is not None:
@@ -79,7 +79,7 @@ class ValidateSelfieUsecase:
 
         labelsEntity = [Label(
             confidence=label["confidence"], coords=label["coords"], name=label["name"], parents=label["parents"]
-        ) for label in validLabels]
+        ) for label in allLabels]
 
         return AutomaticReview(
             automaticallyRejected=automaticallyRejected,
