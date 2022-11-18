@@ -44,7 +44,9 @@ class Test_CreateSelfieController:
         }
         
         lenBefore = len(repo.selfies)
-        response = controller(request=request)
+        
+        http_request = HttpRequest(body=request)
+        response = controller(request=http_request)
         lenAfter = lenBefore + 1
 
 
@@ -97,7 +99,8 @@ class Test_CreateSelfieController:
         }
         
         lenBefore = len(repo.selfies)
-        response = controller(request=request)
+        http_request = HttpRequest(body=request)
+        response = controller(request=http_request)
 
         lenAfter = lenBefore + 1
 
@@ -119,7 +122,8 @@ class Test_CreateSelfieController:
         request = {
             "url": "https://www.youtube.com/watch?v=5IpYOF4Hi6Q",
         }
-        response = controller(request=request)
+        http_request = HttpRequest(body=request)
+        response = controller(request=http_request)
 
         assert response.status_code == 400
         assert response.body == "Field ra is missing"
@@ -131,7 +135,8 @@ class Test_CreateSelfieController:
         request = {
             "ra": "21002008",
         }
-        response = controller(request=request)
+        http_request = HttpRequest(body=request)
+        response = controller(request=http_request)
 
         assert response.status_code == 400
         assert response.body == "Field url is missing"
@@ -148,7 +153,8 @@ class Test_CreateSelfieController:
             "automaticReview": AUTOMATIC_REVIEW_DICT
         }
 
-        response = controller(request=request)
+        http_request = HttpRequest(body=request)
+        response = controller(request=http_request)
 
         assert response.status_code == 400
         assert response.body == "ra must be a string"
@@ -164,7 +170,8 @@ class Test_CreateSelfieController:
             "automaticReview": AUTOMATIC_REVIEW_DICT
         }
         
-        response = controller(request=request)
+        http_request = HttpRequest(body=request)
+        response = controller(request=http_request)
 
         assert response.status_code == 400
         assert response.body == "Field ra is not valid"
@@ -180,7 +187,8 @@ class Test_CreateSelfieController:
             "automaticReview": AUTOMATIC_REVIEW_DICT
         }
         
-        response = controller(request=request)
+        http_request = HttpRequest(body=request)
+        response = controller(request=http_request)
 
         assert response.status_code == 404
         assert response.body == "No items found for ra"
@@ -196,7 +204,8 @@ class Test_CreateSelfieController:
             "automaticReview": AUTOMATIC_REVIEW_DICT
         }
 
-        response = controller(request=request)
+        http_request = HttpRequest(body=request)
+        response = controller(request=http_request)
 
         assert response.status_code == 400
         assert response.body == 'Field url is not valid'
@@ -212,7 +221,8 @@ class Test_CreateSelfieController:
             "automaticReview": AUTOMATIC_REVIEW_DICT
         }
 
-        response = controller(request=request)
+        http_request = HttpRequest(body=request)
+        response = controller(request=http_request)
 
         assert response.status_code == 403
         assert response.body == 'That action is forbidden for this Student'
@@ -228,7 +238,8 @@ class Test_CreateSelfieController:
             "automaticReview": 1
         }
 
-        response = controller(request=request)
+        http_request = HttpRequest(body=request)
+        response = controller(request=http_request)
 
         assert response.status_code == 400
         assert response.body == 'Field automaticReview is not valid'

@@ -9,7 +9,7 @@ def http_request_handler(event: dict, context):
     usecase = ValidateSelfieUsecase(repo)
     controller = ValidateSelfieController(usecase)
 
-    http_request = HttpRequest(body=event["body"])
+    http_request = HttpRequest(body=event["body"],headers=event.get("headers"), query_params=event.get("query_params"))
     response = controller(request=http_request)
 
     return response

@@ -10,18 +10,18 @@ class CreateSelfieController:
     def __init__(self, usecase: CreateSelfieUsecase):
         self.createSelfieUsecase = usecase
 
-    def __call__(self, request: dict) -> HttpResponse:
+    def __call__(self, request: HttpRequest) -> HttpResponse:
         try:
-            if request.get('ra') is None:
+            if request.body.get('ra') is None:
                 raise MissingParameters('ra')
 
-            if request.get('url') is None:
+            if request.body.get('url') is None:
                 raise MissingParameters('url')
 
-            if request.get('automaticReview') is None:
+            if request.body.get('automaticReview') is None:
                 raise MissingParameters('automaticReview')
             
-            selfie = self.createSelfieUsecase(ra=request.get('ra'), url=request.get('url'), automaticReview=request.get("automaticReview"))
+            selfie = self.createSelfieUsecase(ra=request.body.get('ra'), url=request.body.get('url'), automaticReview=request.body.get("automaticReview"))
             viewmodel = CreateSelfieViewModel(selfie)
 
             return Created(viewmodel.to_dict())
