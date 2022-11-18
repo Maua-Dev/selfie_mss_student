@@ -4,9 +4,9 @@ from src.shared.domain.enums.state_enum import STATE
 from src.shared.helpers.errors.domain_errors import EntityError
 from src.shared.helpers.errors.usecase_errors import NoItemsFound, ForbiddenAction
 from src.shared.domain.entities.student import Student
+from src.shared.domain.entities.automatic_review import AutomaticReview
 from src.shared.domain.entities.selfie import Selfie
 from src.shared.domain.repositories.student_repository_interface import IStudentRepository
-from src.shared.helpers.functions.read_automatic_review import read_automatic_review
 class CreateSelfieUsecase:
     def __init__(self, repo:IStudentRepository):
         self.repo = repo
@@ -26,7 +26,7 @@ class CreateSelfieUsecase:
         if self.repo.check_student_has_approved_selfie(ra=ra):       
             raise ForbiddenAction("Student")
 
-        automaticReviewInstance = read_automatic_review(automaticReview)
+        automaticReviewInstance = AutomaticReview.read_automatic_review(automaticReview)
 
         selfie = Selfie(
             student=student,

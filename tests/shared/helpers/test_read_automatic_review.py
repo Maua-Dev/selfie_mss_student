@@ -1,6 +1,5 @@
 import pytest
 from src.shared.domain.enums.rejection_reason_enum import REJECTION_REASON
-from src.shared.helpers.functions.read_automatic_review import read_automatic_review
 from src.shared.domain.entities.automatic_review import AutomaticReview
 from src.shared.domain.entities.label import Label
 from src.shared.helpers.errors.controller_errors import MissingParameters
@@ -34,7 +33,7 @@ class Test_read_automatic_review:
                         }]
                   }
         
-        result = read_automatic_review(automaticReview=automatic_review_dict)
+        result = AutomaticReview.read_automatic_review(automaticReview=automatic_review_dict)
         
         expected = AutomaticReview(
             automaticallyRejected = True,
@@ -105,4 +104,4 @@ class Test_read_automatic_review:
                         }]
                   }
             with pytest.raises(MissingParameters):
-                automaticReview = read_automatic_review(automaticReview=automatic_review_dict)
+                automaticReview = AutomaticReview.read_automatic_review(automaticReview=automatic_review_dict)

@@ -4,8 +4,8 @@ from src.shared.helpers.errors.domain_errors import EntityError
 from src.modules.create_selfie.app.create_selfie_usecase import CreateSelfieUsecase
 from src.shared.infra.repositories.student_repository_mock import StudentRepositoryMock
 from src.shared.helpers.errors.usecase_errors import ForbiddenAction, NoItemsFound
-from src.shared.helpers.functions.read_automatic_review import read_automatic_review
 from src.shared.domain.enums.state_enum import STATE
+from src.shared.domain.entities.automatic_review import AutomaticReview
 import pytest
 
 
@@ -53,7 +53,7 @@ class Test_CreateSelfieUsecase:
         assert repo.selfies[lenAfter - 1].student.ra == "21014442"
         assert repo.selfies[lenAfter - 1].student.name == repo.students[1].name
         assert repo.selfies[lenAfter - 1].student.email == repo.students[1].email
-        assert repo.selfies[lenAfter - 1].automaticReview.automaticallyRejected == read_automatic_review(automaticReview=AUTOMATIC_REVIEW_DICT).automaticallyRejected
+        assert repo.selfies[lenAfter - 1].automaticReview.automaticallyRejected == AutomaticReview.read_automatic_review(automaticReview=AUTOMATIC_REVIEW_DICT).automaticallyRejected
         assert selfie.idSelfie == 1
 
     def test_create_selfie_usecase_automaticallyRejected(self):
@@ -101,7 +101,7 @@ class Test_CreateSelfieUsecase:
         assert repo.selfies[lenAfter - 1].student.ra == "21014442"
         assert repo.selfies[lenAfter - 1].student.name == repo.students[1].name
         assert repo.selfies[lenAfter - 1].student.email == repo.students[1].email
-        assert repo.selfies[lenAfter - 1].automaticReview.automaticallyRejected == read_automatic_review(automaticReview=automaticReviewDict).automaticallyRejected
+        assert repo.selfies[lenAfter - 1].automaticReview.automaticallyRejected == AutomaticReview.read_automatic_review(automaticReview=automaticReviewDict).automaticallyRejected
         assert selfie.idSelfie == 1
 
 
