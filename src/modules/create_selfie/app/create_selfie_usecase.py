@@ -33,7 +33,7 @@ class CreateSelfieUsecase:
             dateCreated=datetime.datetime.now(),
             url=url,
             state=STATE.PENDING_REVIEW if not automaticReviewInstance.automaticallyRejected else STATE.DECLINED,
-            idSelfie=len(self.repo.get_selfies_by_ra(ra=ra)),
+            idSelfie=len(self.repo.get_selfies_by_ra(ra=ra)[0]),
             rejectionReasons=[REJECTION_REASON.NONE] if not automaticReviewInstance.automaticallyRejected else automaticReviewInstance.rejectionReasons,
             rejectionDescription=None if not automaticReviewInstance.automaticallyRejected else "auto-rejected by AI",
             automaticReview=automaticReviewInstance
