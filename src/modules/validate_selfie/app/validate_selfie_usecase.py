@@ -16,7 +16,7 @@ class ValidateSelfieUsecase:
         
         allLabels = list()
         
-        if rekognitionResult.get("Labels") is None:
+        if not "Labels" in rekognitionResult:
             raise EntityError('rekognitionResult')
 
         names = set()
@@ -24,6 +24,7 @@ class ValidateSelfieUsecase:
 
         labels = rekognitionResult['Labels']
         for label in labels:
+            
             # Uma label que não possui coordenadas
             if len(label["Instances"]) == 0 and float(label["Confidence"]) >= Label.MIN_CONFIDENCE:
                 labelDict = dict()
