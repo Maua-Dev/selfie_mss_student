@@ -155,3 +155,21 @@ class Test_RequestUploadSelfieController:
 
         assert response.status_code == 403
         assert response.body == 'That action is forbidden for this Student'
+
+            
+    def test_request_upload_selfie_ra_not_found(self):
+        repoSelfie = SelfieRepositoryMock()
+        repoStudent = StudentRepositoryMock()
+        usecase = RequestUploadSelfieUsecase(repoSelfie=repoSelfie, repoStudent=repoStudent)
+        controller = RequestUploadSelfieController(usecase=usecase)
+        request = HttpRequest(body={
+            "ra": "21007586",
+            "name": "GUILHERME FERNANDES CLEMENTINO",
+            "email": "21.00758-6@gmail.com",
+        })
+        response = controller(request=request)
+
+        assert response.status_code == 404
+        assert response.body == 'No items found for ra'
+
+ 

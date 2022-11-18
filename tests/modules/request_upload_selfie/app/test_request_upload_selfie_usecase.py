@@ -66,6 +66,13 @@ class Test_RequestUploadSelfieUsecase:
        
         with pytest.raises(ForbiddenAction):
             presignedPost = usecase(ra="21014442", name="VITOR GUIRAO SOLLER", email="21.01444-2@maua.com")
-
-
+             
+        
+    def test_request_upload_selfie_ra_not_found(self):
+        repoSelfie = SelfieRepositoryMock()
+        repoStudent = StudentRepositoryMock()
+        usecase = RequestUploadSelfieUsecase(repoSelfie=repoSelfie, repoStudent=repoStudent)
+       
+        with pytest.raises(NoItemsFound):
+            presignedPost = usecase(ra="21007586", name="GUILHERME FERNANDES CLEMENTINO", email="21.00758-6@maua.com")
        

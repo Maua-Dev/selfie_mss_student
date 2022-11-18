@@ -21,11 +21,7 @@ class RequestUploadSelfieUsecase:
         if not Student.validate_name(name):
             raise EntityError('name')
 
-        # student = self.repoStudent.get_student(ra=ra)
-        # if student == None:
-        #     raise NoItemsFound("Student")
-
-        selfies = self.repoStudent.get_selfies_by_ra(ra=ra)
+        selfies, student = self.repoStudent.get_selfies_by_ra(ra=ra)
 
         if len(selfies) > 0 and not all([selfie.state == STATE.DECLINED for selfie in selfies]):
             raise ForbiddenAction("Student")        
