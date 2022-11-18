@@ -14,10 +14,8 @@ class GetAllStudentsUsecase:
 
         all_students_list = list()
         
-        for student in self.repo.get_all_students():
+        for selfies, student in self.repo.get_all_students():
             student_dict = dict()
-            
-            selfies, student = self.repo.get_selfies_by_ra(ra=student.ra)
             
             if len(selfies) == 0: status = STUDENT_STATE.NO_SELFIE
             elif self.repo.check_student_has_approved_selfie(ra=student.ra): status = STUDENT_STATE.APPROVED

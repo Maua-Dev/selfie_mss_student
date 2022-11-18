@@ -63,7 +63,7 @@ class Test_GetSelfiePresenter:
         response = lambda_handler(event, None)
         assert response["statusCode"] == 200
         assert json.loads(response["body"])["url"] == "https://i.imgur.com/0KFBHTB.jpg"
-        assert json.loads(response["body"])["rejectionReason"] == "COVERED_FACE"
+        assert json.loads(response["body"])["rejectionReasons"] == ["COVERED_FACE"]
         assert json.loads(response["body"])["rejectionDescription"] == "Balaclava"
         assert json.loads(response["body"])['message'] == "the selfie was retriven"
 

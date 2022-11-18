@@ -49,7 +49,7 @@ class Test_GetSelfiePresenter:
                 "time": "12/Mar/2020:19:03:58 +0000",
                 "timeEpoch": 1583348638390
             },
-             "body": '{"ra": "21014440","idSelfie": "0","new_state": "DECLINED","new_rejectionReason": "OTHER_REASON", "new_rejectionDescription":"skip bap du bap", "parameter2": "value" }',
+             "body": '{"ra": "21014440","idSelfie": "0","new_state": "DECLINED","new_rejectionReasons": ["OTHER_REASON"], "new_rejectionDescription":"skip bap du bap", "parameter2": "value" }',
              "pathParameters": None,
             "isBase64Encoded": None,
             "stageVariables": None

@@ -12,14 +12,12 @@ class Test_UpdateSelfieUsecase:
     def test_update_selfie_usecase_state_declined(self):
         repo = StudentRepositoryMock()
         usecase = UpdateSelfieUsecase(repo=repo)
-        usecase(ra="21014440", idSelfie=0, new_state=STATE.DECLINED, new_rejectionReason=REJECTION_REASON.NO_PERSON_RECOGNIZED, new_rejectionDescription="Please appear more")
+        usecase(ra="21014440", idSelfie=0, new_state=STATE.DECLINED, new_rejectionReasons=[REJECTION_REASON.NO_PERSON_RECOGNIZED], new_rejectionDescription="Please appear more")
         
-        expected = Selfie(student=repo.students[3], idSelfie=0, state=STATE.DECLINED, rejectionReason=REJECTION_REASON.NO_PERSON_RECOGNIZED, rejectionDescription="Please appear more", dateCreated=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),url="https://i.imgur.com/0KFBHTB.jpg",)
-
-        assert repo.selfies[4].student.ra == expected.student.ra 
-        assert repo.selfies[4].rejectionDescription == expected.rejectionDescription 
-        assert repo.selfies[4].rejectionReason == expected.rejectionReason
-        assert repo.selfies[4].state == expected.state 
+        assert repo.selfies[4].student.ra == repo.students[3].ra 
+        assert repo.selfies[4].rejectionDescription == "Please appear more"
+        assert repo.selfies[4].rejectionReasons == [REJECTION_REASON.NO_PERSON_RECOGNIZED]
+        assert repo.selfies[4].state == STATE.DECLINED
 
     def test_update_selfie_usecase_state_approved(self):
         repo = StudentRepositoryMock()
@@ -66,6 +64,3 @@ class Test_UpdateSelfieUsecase:
                 ra="21002088",
                 idSelfie=0
             )
-
- 
-            

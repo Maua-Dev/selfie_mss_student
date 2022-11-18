@@ -27,15 +27,23 @@ class UpdateSelfieController:
                 raise EntityError("idSelfie")
             if request.body.get("new_state") not in [state.value for state in STATE] and not request.body.get("new_state") is None :
                 raise EntityError("new_state")
-            if str(request.body.get("new_rejectionReason")).upper() not in [rejectionReason.value for rejectionReason in REJECTION_REASON]:
-                raise EntityError("new_rejectionReason")
+
+            # ['COVERED_FACE', 'NOT_ALLOWED_BACKGROUND']
+            # None
+
+            # if not all(str(reason).upper()  in [rejectionReasons.value for rejectionReasons in REJECTION_REASON] for reason in request.body.get("new_rejectionReasons")):
+            if "new_rejectionReasons" in request.body:
+                if type(request.body.get("new_rejectionReasons")) != list:
+                    raise EntityError("new_rejectionReasons")
+                elif not all([reason in [rejectionReasons.value for rejectionReasons in REJECTION_REASON] for reason in request.body.get("new_rejectionReasons")]):
+                    raise EntityError("new_rejectionReasons")
 
 
             selfie = self.updateSelfieUsecase(
                 ra=request.body.get("ra"),
                 idSelfie=int(request.body.get("idSelfie")),
                 new_state=STATE[request.body.get("new_state")] if not request.body.get("new_state") is None else None,
-                new_rejectionReason=REJECTION_REASON[str(request.body.get("new_rejectionReason")).upper()] if not request.body.get("new_rejectionReason") is None else None,
+                new_rejectionReasons=[REJECTION_REASON[reason.upper()] for reason in request.body.get("new_rejectionReasons")] if not request.body.get("new_rejectionReasons") is None else None,
                 new_rejectionDescription=request.body.get("new_rejectionDescription")
             )
 
