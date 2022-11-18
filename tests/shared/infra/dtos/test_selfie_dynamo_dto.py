@@ -114,7 +114,28 @@ class Test_SelfieDynamoDTO:
 
         selfie_entity = selfie_dto.to_entity()
 
-        assert selfie_entity == repo.selfies[0]
+        assert selfie_entity.idSelfie == repo.selfies[0].idSelfie
+        assert selfie_entity.student.ra == repo.selfies[0].student.ra
+        assert selfie_entity.student.name == repo.selfies[0].student.name
+        assert selfie_entity.student.email == repo.selfies[0].student.email
+        assert selfie_entity.dateCreated == repo.selfies[0].dateCreated
+        assert selfie_entity.url == repo.selfies[0].url
+        assert selfie_entity.state == repo.selfies[0].state
+        assert selfie_entity.rejectionReasons == repo.selfies[0].rejectionReasons
+        assert selfie_entity.rejectionDescription == repo.selfies[0].rejectionDescription
+        assert selfie_entity.automaticReview.automaticallyRejected == repo.selfies[0].automaticReview.automaticallyRejected
+
+        for i in range(len(selfie_entity.automaticReview.labels)):
+            assert selfie_entity.automaticReview.labels[i].name == repo.selfies[0].automaticReview.labels[i].name
+            assert selfie_entity.automaticReview.labels[i].confidence == repo.selfies[0].automaticReview.labels[i].confidence
+            assert selfie_entity.automaticReview.labels[i].parents == repo.selfies[0].automaticReview.labels[i].parents
+            assert selfie_entity.automaticReview.labels[i].coords == repo.selfies[0].automaticReview.labels[i].coords
+
+
+
+
+
+
 
     def test_from_entity(self):
         repo = StudentRepositoryMock()
@@ -222,7 +243,7 @@ class Test_SelfieDynamoDTO:
             assert entity.automaticReview.labels[i].coords['Top'] == repo.selfies[0].automaticReview.labels[i].coords['Top']
             assert entity.automaticReview.labels[i].coords['Width'] == repo.selfies[0].automaticReview.labels[i].coords['Width']
 
-        assert entity == repo.selfies[0]
+
 
     def test_from_entity_to_dynamo(self):
         repo = StudentRepositoryMock()

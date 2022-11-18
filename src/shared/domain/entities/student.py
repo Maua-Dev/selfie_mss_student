@@ -55,6 +55,3 @@ class Student(abc.ABC):
             return False
 
         return True
-
-    def __eq__(self, other):
-        return self.__dict__ == other.__dict__

@@ -26,8 +26,6 @@ class Label(abc.ABC):
           raise EntityError('parents')
         self.parents = parents
 
-    def __eq__(self, other):
-        return self.__dict__ == other.__dict__
 
     def __repr__(self):
         return f"Label(name={self.name}, coords={self.coords}, confidence={self.confidence}, parents={self.parents})"

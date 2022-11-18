@@ -67,5 +67,6 @@ class Selfie(abc.ABC):
         
         return True
 
-    def __eq__(self, other):
-        return self.__dict__ == other.__dict__
+    def __repr__(self):
+        return f"Selfie(idSelfie={self.idSelfie}, student={self.student}, dateCreated={self.dateCreated}, url={self.url}, state={self.state}, rejectionReasons={self.rejectionReasons}, rejectionDescription={self.rejectionDescription}, automaticReview={self.automaticReview})"
+
