@@ -28,7 +28,7 @@ class CreateSelfieUsecase:
             dateCreated=datetime.datetime.now(),
             url=url,
             state=STATE.PENDING_REVIEW,
-            idSelfie=len(self.repo.get_selfies_by_ra(ra=ra)),
+            idSelfie=len(self.repo.get_selfies_by_ra(ra=ra)[0]),
             rejectionReason=REJECTION_REASON.NONE,
             rejectionDescription=None
         )
