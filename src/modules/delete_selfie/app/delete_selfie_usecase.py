@@ -20,7 +20,7 @@ class DeleteSelfieUsecase:
         selfie, student = self.repo.delete_selfie(ra=ra, idSelfie=idSelfie)
 
         if student == None:
-            raise NoItemsFound('ra or idSelfie')
+            raise NoItemsFound('idSelfie')
 
         return selfie, student
         

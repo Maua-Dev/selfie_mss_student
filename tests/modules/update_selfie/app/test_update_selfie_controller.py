@@ -58,7 +58,7 @@ class Test_UpdateSelfieController:
 
         response = controller(request=request)
 
-        assert response.body == "No items found for ra or idSelfie"
+        assert response.body == "No items found for ra"
         assert response.status_code == 404
 
     def test_update_selfie_controller_bad_request(self):

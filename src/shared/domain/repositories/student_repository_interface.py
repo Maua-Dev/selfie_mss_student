@@ -25,6 +25,9 @@ class IStudentRepository(ABC):
 
     @abstractmethod    
     def get_selfies_by_ra(self, ra: str) -> Tuple[List[Selfie], Student]:
+        """
+        If student does not exist, then raise NoItemsFound
+        """
         pass
 
     @abstractmethod    
