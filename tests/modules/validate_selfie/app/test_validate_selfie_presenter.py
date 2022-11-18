@@ -240,9 +240,9 @@ class Test_ValidadeSelfiePresenter:
         }
 
         event = {
-            "ra": "21014443",
+            "body":{"ra": "21014443",
             "rekognitionResult": rekognitionResult,
-            "url": "https://www.youtube.com/watch?v=5IpYOF4Hi6Q"
+            "url": "https://www.youtube.com/watch?v=5IpYOF4Hi6Q"}
         }
 
         response = http_request_handler(event, None)
@@ -489,16 +489,16 @@ class Test_ValidadeSelfiePresenter:
         }
 
         event = {
-            "ra": "21.01444-3",
+            "body":{"ra": "21.01444-3",
             "rekognitionResult": rekognitionResult,
-            "url": "https://www.youtube.com/watch?v=5IpYOF4Hi6Q"
+            "url": "https://www.youtube.com/watch?v=5IpYOF4Hi6Q"}
         }
         response = http_request_handler(event, None)
         
         assert response == 'Field ra is not valid'
         
     def test_validate_selfie_presenter_missing_rekognition_result(self):
-        event = {"ra":"21010757", "url":"https://www.youtube.com/watch?v=5IpYOF4Hi6Q"}
+        event = {"body":{"ra":"21010757", "url":"https://www.youtube.com/watch?v=5IpYOF4Hi6Q"}}
         
         response = http_request_handler(event, None)
     
