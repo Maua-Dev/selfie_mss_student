@@ -34,7 +34,7 @@ class Environments:
         load_dotenv()
 
     def load_envs(self):
-        if "STAGE" not in os.environ:
+        if "STAGE" not in os.environ or os.environ["STAGE"] == STAGE.LOCAL.value:
             self._configure_local()
 
         self.stage = STAGE[os.environ.get("STAGE")]

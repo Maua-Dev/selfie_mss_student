@@ -46,7 +46,7 @@ def load_mock_to_local_dynamo():
     setup_dynamo_table()
 
 
-    os.environ["STAGE"] = "TEST"
+    # os.environ["STAGE"] = "TEST"
     mock_repo = StudentRepositoryMock()
     dynamo_repo = StudentRepositoryDynamo()
 
