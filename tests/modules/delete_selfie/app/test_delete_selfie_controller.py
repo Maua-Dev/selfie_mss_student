@@ -18,16 +18,32 @@ class Test_DeleteSelfieController:
         response = controller(request=request)
 
         expected = {
-          'message': 'the selfie was deleted',
-          'selfie': {'dateCreated': '2022-10-12T16:01:59.149927',
-                     'idSelfie': 0,
-                     'rejectionDescription': '',
-                     'rejectionReason': 'NONE',
-                     'state': 'PENDING_REVIEW',
-                     'url': 'https://i.imgur.com/dv7Q5VT.jpg'},
-          'student': {'email': 'eutambemsousoler@outlook.com',
-                      'name': 'Soller',
-                      'ra': '21014442'},
+           'message': 'the selfie was deleted',
+           'selfie': {'automaticReview': {'automaticallyRejected': False,
+                                          'labels': [{'confidence': 98.54370880126953,
+                                                      'coords': {'Height': 0.8659809827804565,
+                                                                 'Left': 0.012313545681536198,
+                                                                 'Top': 0.11108686774969101,
+                                                                 'Width': 0.9711952805519104},
+                                                      'name': 'Person',
+                                                      'parents': []},
+                                                     {'confidence': 98.54370880126953,
+                                                      'coords': {'Height': 0.8659809827804565,
+                                                                 'Left': 0.012313545681536198,
+                                                                 'Top': 0.11108686774969101,
+                                                                 'Width': 0.9711952805519104},
+                                                      'name': 'Face',
+                                                      'parents': []}],
+                                          'rejectionReasons': ['NONE']},
+                      'dateCreated': '2022-10-12T16:01:59.149927',
+                      'idSelfie': 0,
+                      'rejectionDescription': '',
+                      'rejectionReasons': ['NONE'],
+                      'state': 'PENDING_REVIEW',
+                      'url': 'https://i.imgur.com/dv7Q5VT.jpg'},
+           'student': {'email': 'eutambemsousoler@outlook.com',
+                       'name': 'Soller',
+                       'ra': '21014442'},
           }
         
         assert response.status_code == 200
@@ -46,7 +62,7 @@ class Test_DeleteSelfieController:
         response = controller(request=request)
 
         
-        assert response.body == "No items found for ra or idSelfie"
+        assert response.body == "No items found for idSelfie"
         assert response.status_code == 404
 
 
@@ -62,7 +78,7 @@ class Test_DeleteSelfieController:
 
         response = controller(request=request)
 
-        assert response.body == "No items found for ra or idSelfie"
+        assert response.body == "No items found for ra"
         assert response.status_code == 404
 
     def test_delete_selfie_controller_bad_request_missing_ra(self):

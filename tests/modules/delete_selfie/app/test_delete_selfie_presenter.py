@@ -60,9 +60,10 @@ class Test_DeleteSelfiePresenter:
         assert json.loads(response["body"])["student"]["name"] == "Soller"
         assert json.loads(response["body"])["selfie"]["url"] == "https://i.imgur.com/dv7Q5VT.jpg"
         assert json.loads(response["body"])["selfie"]["idSelfie"] == 0
-        assert json.loads(response["body"])["selfie"]["rejectionReason"] == "NONE"
+        assert json.loads(response["body"])["selfie"]["rejectionReasons"] == ["NONE"]
         assert json.loads(response["body"])["selfie"]["state"] == "PENDING_REVIEW"
         assert json.loads(response["body"])['message'] == "the selfie was deleted"
+        assert json.loads(response["body"])['selfie']['automaticReview']['automaticallyRejected'] == False
 
     def test_delete_selfie_found(self):
         event = {
@@ -118,7 +119,7 @@ class Test_DeleteSelfiePresenter:
         
         response = lambda_handler(event, None)
         assert response["statusCode"] == 404
-        assert json.loads(response["body"]) == "No items found for ra or idSelfie"
+        assert json.loads(response["body"]) == "No items found for idSelfie"
   
     def test_delete_selfie_idSelfie_is_missing(self):
         event = {
@@ -233,7 +234,7 @@ class Test_DeleteSelfiePresenter:
 
         response = lambda_handler(event, None)
         assert response["statusCode"] == 404
-        assert json.loads(response["body"]) == "No items found for ra or idSelfie"
+        assert json.loads(response["body"]) == "No items found for ra"
     
     
     def test_delete_selfie_student_forbidden_item(self):

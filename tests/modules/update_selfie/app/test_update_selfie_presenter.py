@@ -49,7 +49,7 @@ class Test_GetSelfiePresenter:
                 "time": "12/Mar/2020:19:03:58 +0000",
                 "timeEpoch": 1583348638390
             },
-             "body": '{"ra": "21014440","idSelfie": "0","new_state": "DECLINED","new_rejectionReason": "OTHER_REASON", "new_rejectionDescription":"skip bap du bap", "parameter2": "value" }',
+             "body": '{"ra": "21014440","idSelfie": "0","new_state": "DECLINED","new_rejectionReasons": ["OTHER_REASON"], "new_rejectionDescription":"skip bap du bap", "parameter2": "value" }',
              "pathParameters": None,
             "isBase64Encoded": None,
             "stageVariables": None
@@ -113,7 +113,7 @@ class Test_GetSelfiePresenter:
 
         response = lambda_handler(event, None)
         assert response["statusCode"] == 404
-        assert json.loads(response["body"]) == "No items found for ra or idSelfie"
+        assert json.loads(response["body"]) == "No items found for ra"
 
     def test_update_selfie_non_valid_ra_dash(self):
         event = {
@@ -213,7 +213,7 @@ class Test_GetSelfiePresenter:
                 "time": "12/Mar/2020:19:03:58 +0000",
                 "timeEpoch": 1583348638390
             },
-            "body": '{"ra": "12345678","idSelfie": "0","parameter2": "value" }',          "pathParameters": None,
+            "body": '{"ra": "21014442","idSelfie": "10","parameter2": "value" }',          "pathParameters": None,
             "pathParameters": None,
             "isBase64Encoded": None,
             "stageVariables": None
@@ -221,7 +221,7 @@ class Test_GetSelfiePresenter:
 
         response = lambda_handler(event, None)
         assert response["statusCode"] == 404
-        assert json.loads(response["body"]) == "No items found for ra or idSelfie"
+        assert json.loads(response["body"]) == "No items found for idSelfie"
 
   
 

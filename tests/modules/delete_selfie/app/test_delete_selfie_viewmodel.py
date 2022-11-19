@@ -7,21 +7,40 @@ class Test_DeleteSelfieViewModel:
         selfie = repo.selfies[0]
         student = repo.students[0]
         result = {
-            'student':{
-            "ra":"21010757",
-            "name":"Victor",
-            "email":"eusousoller@gmail.com"
-        },
-            'selfie':{
-            'dateCreated': '2022-10-01T16:01:59.149927',
-            'idSelfie': 0,
-            'state': 'DECLINED',
-            'url': 'https://i.imgur.com/0KFBHTB.jpg',
-            'rejectionReason': 'COVERED_FACE',
-            'rejectionDescription': 'Balaclava'
-            },
-            'message':"the selfie was deleted"
-          }
+                  'message': 'the selfie was deleted',
+                  'selfie': {'automaticReview': {'automaticallyRejected': True,
+                                                 'labels': [{'confidence': 98.54370880126953,
+                                                             'coords': {'Height': 0.8659809827804565,
+                                                                        'Left': 0.012313545681536198,
+                                                                        'Top': 0.11108686774969101,
+                                                                        'Width': 0.9711952805519104},
+                                                             'name': 'Person',
+                                                             'parents': []},
+                                                            {'confidence': 98.54370880126953,
+                                                             'coords': {'Height': 0.8659809827804565,
+                                                                        'Left': 0.012313545681536198,
+                                                                        'Top': 0.11108686774969101,
+                                                                        'Width': 0.9711952805519104},
+                                                             'name': 'Hat',
+                                                             'parents': []},
+                                                            {'confidence': 98.54370880126953,
+                                                             'coords': {'Height': 0.8659809827804565,
+                                                                        'Left': 0.012313545681536198,
+                                                                        'Top': 0.11108686774969101,
+                                                                        'Width': 0.9711952805519104},
+                                                             'name': 'Face',
+                                                             'parents': []}],
+                                                 'rejectionReasons': ['COVERED_FACE']},
+                             'dateCreated': '2022-10-01T16:01:59.149927',
+                             'idSelfie': 0,
+                             'rejectionDescription': 'Balaclava',
+                             'rejectionReasons': ['COVERED_FACE'],
+                             'state': 'DECLINED',
+                             'url': 'https://i.imgur.com/0KFBHTB.jpg'},
+                  'student': {'email': 'eusousoller@gmail.com',
+                              'name': 'Victor',
+                              'ra': '21010757'},
+                    }
      
         
         studentViewModel = DeleteSelfieViewModel(data=selfie, student=student).to_dict()

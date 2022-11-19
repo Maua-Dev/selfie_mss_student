@@ -18,8 +18,11 @@ class CreateSelfieController:
             if request.body.get('url') is None:
                 raise MissingParameters('url')
 
-            student = self.createSelfieUsecase(ra=request.body.get('ra'), url=request.body.get('url'))
-            viewmodel = CreateSelfieViewModel(student)
+            if request.body.get('automaticReview') is None:
+                raise MissingParameters('automaticReview')
+            
+            selfie = self.createSelfieUsecase(ra=request.body.get('ra'), url=request.body.get('url'), automaticReview=request.body.get("automaticReview"))
+            viewmodel = CreateSelfieViewModel(selfie)
 
             return Created(viewmodel.to_dict())
 

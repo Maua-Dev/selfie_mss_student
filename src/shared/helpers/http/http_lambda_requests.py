@@ -23,6 +23,8 @@ class LambdaHttpResponse(HttpResponse):
         """
         _body = body or LambdaHttpResponse.body
         _headers = headers or LambdaHttpResponse.headers
+        _headers['Access-Control-Allow-Origin'] = '*'
+        
         _status_code = status_code or LambdaHttpResponse.status_code
 
         if kwargs.get("add_default_cors_headers", True):

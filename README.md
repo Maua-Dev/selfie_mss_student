@@ -13,3 +13,13 @@
     pytest  --ignore=tests/external/dynamo --cov=./src/
 
 😎
+
+---
+
+## Configurar dynamo local 
+
+### Subir o container (ir para pasta iac/local)
+    docker-compose up -d
+
+## Configurar dynamo local (ir para pasta root)
+    python -m src.shared.infra.repositories.load_student_mock_to_dynamo

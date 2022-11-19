@@ -19,6 +19,7 @@ class Test_GetStudentController:
 
         assert response.status_code == 200
         assert response.body['name'] == "Eh o Vilas do Mockas"
+        assert response.body['status'] == "SELFIE_IN_REVIEW"
 
     def test_get_student_controller_no_items_found(self):
         repo = StudentRepositoryMock()
