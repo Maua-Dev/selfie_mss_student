@@ -8,7 +8,7 @@ from src.shared.infra.repositories.student_repository_mock import StudentReposit
 
 class Test_StudentRepositoryDynamo:
 
-    # @pytest.mark.skip(reason="Needs dynamoDB")
+    @pytest.mark.skip(reason="Needs dynamoDB")
     def test_get_selfie(self):
         os.environ["STAGE"] = "TEST"
 
@@ -44,7 +44,7 @@ class Test_StudentRepositoryDynamo:
 
         assert True
 
-    # @pytest.mark.skip(reason="Needs dynamoDB")
+    @pytest.mark.skip(reason="Needs dynamoDB")
     def test_update_student(self):
         os.environ["STAGE"] = "TEST"
 
@@ -60,7 +60,7 @@ class Test_StudentRepositoryDynamo:
         assert resp.email == old_student.email
         assert resp.ra == old_student.ra
 
-    # @pytest.mark.skip(reason="Needs dynamoDB")
+    @pytest.mark.skip(reason="Needs dynamoDB")
     def test_delete_student(self):
         os.environ["STAGE"] = "TEST"
 
@@ -72,7 +72,7 @@ class Test_StudentRepositoryDynamo:
         assert resp.email == student_repository_mock.students[0].email
         assert resp.ra == student_repository_mock.students[0].ra
 
-    # @pytest.mark.skip(reason="Needs dynamoDB")
+    @pytest.mark.skip(reason="Needs dynamoDB")
     def test_get_selfies_by_ra(self):
         os.environ["STAGE"] = "TEST"
 
@@ -82,7 +82,7 @@ class Test_StudentRepositoryDynamo:
 
         assert True
 
-    # @pytest.mark.skip(reason="Needs dynamoDB")
+    @pytest.mark.skip(reason="Needs dynamoDB")
     def test_delete_selfie(self):
         os.environ["STAGE"] = "TEST"
 
@@ -93,7 +93,7 @@ class Test_StudentRepositoryDynamo:
 
         assert True
 
-    # @pytest.mark.skip(reason="Needs dynamoDB")
+    @pytest.mark.skip(reason="Needs dynamoDB")
     def test_get_all_selfies(self):
         os.environ["STAGE"] = "TEST"
 
@@ -133,7 +133,7 @@ class Test_StudentRepositoryDynamo:
 
         assert len(resp) == len(student_repository_mock.students)
 
-    # @pytest.mark.skip(reason="Needs dynamoDB")
+    @pytest.mark.skip(reason="Needs dynamoDB")
     def test_get_all_students(self):
         os.environ["STAGE"] = "TEST"
 
