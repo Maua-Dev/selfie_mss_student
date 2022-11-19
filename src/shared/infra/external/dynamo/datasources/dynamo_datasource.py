@@ -112,16 +112,21 @@ class DynamoDatasource:
             )
             return resp
 
-    def delete_item(self, key):
+    def delete_item(self, partition_key: str, sort_key: str = None):
         """
         Delete an item from the table from its keys (Partition and Sort).
-        @param key: dict with the keys (Partition and Sort)
+        @param partition_key: string with the partition key
+        @param sort_key: string with the sort key (optional)
         @return: dict with the response from DynamoDB
         """
 
         with self.dynamo_table as table:
             resp = table.delete_item(
-                Key=key
+                Key={
+                    self.partition_key: partition_key,
+                    self.sort_key: sort_key if sort_key else None
+                },
+                ReturnValues='ALL_OLD'
             )
             return resp
 
@@ -132,18 +137,21 @@ class DynamoDatasource:
         """
 
         with self.dynamo_table as table:
-            resp = table.scan()
-            return resp['Items']
+            resp = table.scan(Select='ALL_ATTRIBUTES')
+            return resp
 
-    def scan_items(self, filter_expression):
+    def scan_items(self, filter_expression, **kwargs):
         """
         Scan items from the table.
         @return: dict with the response from DynamoDB
         """
 
         with self.dynamo_table as table:
-            resp = table.scan(FilterExpression=filter_expression)
-            return resp['Items']
+            resp = table.scan(
+                FilterExpression=filter_expression,
+                **kwargs
+            )
+            return resp
 
     def query(self, key_condition_expression, **kwargs):
         """
@@ -158,9 +166,10 @@ class DynamoDatasource:
         with self.dynamo_table as table:
             resp = table.query(
                 KeyConditionExpression=key_condition_expression,
+
                 **kwargs
             )
-            return resp['Items']
+            return resp
 
     def batch_write_items(self, items):
         """

@@ -107,6 +107,7 @@ class SelfieDynamoDTO:
         Parse data from SelfieDynamoDTO to DynamoDB format
         """
         return {
+            "entity": "selfie",
             "idSelfie": Decimal(str(self.idSelfie)),
             "dateCreated": self.dateCreated.isoformat(),
             "url": self.url,

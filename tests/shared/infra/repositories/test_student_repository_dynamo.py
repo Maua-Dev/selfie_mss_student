@@ -8,7 +8,7 @@ from src.shared.infra.repositories.student_repository_mock import StudentReposit
 
 class Test_StudentRepositoryDynamo:
 
-    @pytest.mark.skip(reason="Needs dynamoDB")
+    # @pytest.mark.skip(reason="Needs dynamoDB")
     def test_get_selfie(self):
         os.environ["STAGE"] = "TEST"
 
@@ -43,5 +43,105 @@ class Test_StudentRepositoryDynamo:
         resp = student_repository.create_selfie(student_repository_mock.selfies[0])
 
         assert True
+
+    # @pytest.mark.skip(reason="Needs dynamoDB")
+    def test_update_student(self):
+        os.environ["STAGE"] = "TEST"
+
+        student_repository = StudentRepositoryDynamo()
+        student_repository_mock = StudentRepositoryMock()
+        resp = student_repository.update_student(student_repository_mock.students[0].ra, new_name="Teste", new_email="testinha@test.com")
+
+        old_student = student_repository_mock.students[0]
+        old_student.name = "Teste"
+        old_student.email = "testinha@test.com"
+
+        assert resp.name == old_student.name
+        assert resp.email == old_student.email
+        assert resp.ra == old_student.ra
+
+    # @pytest.mark.skip(reason="Needs dynamoDB")
+    def test_delete_student(self):
+        os.environ["STAGE"] = "TEST"
+
+        student_repository = StudentRepositoryDynamo()
+        student_repository_mock = StudentRepositoryMock()
+        resp = student_repository.delete_student(student_repository_mock.students[0].ra)
+
+        assert resp.name == student_repository_mock.students[0].name
+        assert resp.email == student_repository_mock.students[0].email
+        assert resp.ra == student_repository_mock.students[0].ra
+
+    # @pytest.mark.skip(reason="Needs dynamoDB")
+    def test_get_selfies_by_ra(self):
+        os.environ["STAGE"] = "TEST"
+
+        student_repository = StudentRepositoryDynamo()
+        student_repository_mock = StudentRepositoryMock()
+        resp = student_repository.get_selfies_by_ra(student_repository_mock.students[0].ra)
+
+        assert True
+
+    # @pytest.mark.skip(reason="Needs dynamoDB")
+    def test_delete_selfie(self):
+        os.environ["STAGE"] = "TEST"
+
+        student_repository = StudentRepositoryDynamo()
+        student_repository_mock = StudentRepositoryMock()
+        resp = student_repository.delete_selfie(student_repository_mock.selfies[0].student.ra, student_repository_mock.selfies[0].idSelfie)
+
+
+        assert True
+
+    # @pytest.mark.skip(reason="Needs dynamoDB")
+    def test_get_all_selfies(self):
+        os.environ["STAGE"] = "TEST"
+
+        student_repository = StudentRepositoryDynamo()
+        student_repository_mock = StudentRepositoryMock()
+        resp = student_repository.get_all_selfies()
+
+        assert len(resp) == len(student_repository_mock.selfies)
+
+    @pytest.mark.skip(reason="Needs dynamoDB")
+    def test_get_all_students(self):
+        os.environ["STAGE"] = "TEST"
+
+        student_repository = StudentRepositoryDynamo()
+        student_repository_mock = StudentRepositoryMock()
+        resp = student_repository.get_all_students()
+
+        assert len(resp) == len(student_repository_mock.students)
+
+    @pytest.mark.skip(reason="Needs dynamoDB")
+    def test_get_all_students_by_name(self):
+        os.environ["STAGE"] = "TEST"
+
+        student_repository = StudentRepositoryDynamo()
+        student_repository_mock = StudentRepositoryMock()
+        resp = student_repository.get_all_students_by_name("Teste")
+
+        assert len(resp) == len(student_repository_mock.students)
+
+    @pytest.mark.skip(reason="Needs dynamoDB")
+    def test_get_all_students_by_ra(self):
+        os.environ["STAGE"] = "TEST"
+
+        student_repository = StudentRepositoryDynamo()
+        student_repository_mock = StudentRepositoryMock()
+        resp = student_repository.get_all_students_by_ra("19003315")
+
+        assert len(resp) == len(student_repository_mock.students)
+
+    # @pytest.mark.skip(reason="Needs dynamoDB")
+    def test_get_all_students(self):
+        os.environ["STAGE"] = "TEST"
+
+        student_repository = StudentRepositoryDynamo()
+        student_repository_mock = StudentRepositoryMock()
+        resp = student_repository.get_all_students()
+
+        assert len(resp) == len(student_repository_mock.students)
+
 
 

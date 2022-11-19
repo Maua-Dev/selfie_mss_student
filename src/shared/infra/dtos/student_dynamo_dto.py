@@ -60,6 +60,7 @@ class StudentDynamoDTO:
         Parse data from StudentDynamoDTO to dict
         """
         return {
+            "entity": "student",
             "ra": self.ra,
             "name": self.name,
             "email": self.email,
