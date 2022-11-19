@@ -46,21 +46,27 @@ def load_mock_to_local_dynamo():
     setup_dynamo_table()
 
 
-    os.environ["STAGE"] = "TEST"
+    # os.environ["STAGE"] = "TEST"
     mock_repo = StudentRepositoryMock()
     dynamo_repo = StudentRepositoryDynamo()
 
     print('Loading mock data to dynamo...')
 
     print('Loading students...')
+    count = 0
     for student in mock_repo.students:
         print(f'Loading student {student.ra} | {student.name}...')
         dynamo_repo.create_student(student)
+        count += 1
+    print(f'{count} students loaded!\n')
 
     print('\nLoading Selfies...')
+    count = 0
     for selfie in mock_repo.selfies:
         print(f'Loading selfie {selfie.student.ra} - {selfie.idSelfie} | {selfie.url}...')
         dynamo_repo.create_selfie(selfie)
+        count += 1
+    print(f'{count} selfies loaded!\n')
 
     print('Done!')
 

@@ -16,7 +16,7 @@ print("Finished adjusting the layer directory")
 
 env = {
     "account": os.environ["AWS_ACCOUNT_ID"],
-    "region": "sa-east-1"
+    "region": "sa-east-1",
 }
 
 app = cdk.App()

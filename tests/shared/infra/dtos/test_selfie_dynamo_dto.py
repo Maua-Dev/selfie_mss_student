@@ -279,7 +279,10 @@ class Test_SelfieDynamoDTO:
             'rejectionDescription': 'Balaclava',
             'rejectionReasons': ['COVERED_FACE'],
             'state': 'DECLINED',
-            'url': 'https://i.imgur.com/0KFBHTB.jpg'}
+            'url': 'https://i.imgur.com/0KFBHTB.jpg',
+            'entity': 'selfie'
+
+        }
 
         dynamo_item_from_dto = SelfieDynamoDTO.from_entity(entity).to_dynamo()
 

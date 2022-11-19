@@ -2,6 +2,7 @@ import enum
 from enum import Enum
 import os
 
+from src.shared.domain.repositories.student_repository_interface import IStudentRepository
 
 
 
@@ -27,14 +28,13 @@ class Environments:
     dynamo_partition_key: str
     dynamo_sort_key: str
 
-
     def _configure_local(self):
         from dotenv import load_dotenv
         os.environ["STAGE"] = STAGE.LOCAL.value
         load_dotenv()
 
     def load_envs(self):
-        if "STAGE" not in os.environ:
+        if "STAGE" not in os.environ or os.environ["STAGE"] == STAGE.LOCAL.value:
             self._configure_local()
 
         self.stage = STAGE[os.environ.get("STAGE")]
@@ -54,9 +54,15 @@ class Environments:
             self.dynamo_partition_key = os.environ.get("DYNAMO_PARTITION_KEY")
             self.dynamo_sort_key = os.environ.get("DYNAMO_SORT_KEY")
 
-    def __repr__(self):
-        return f"Environments(stage={self.stage}, s3_bucket_name={self.s3_bucket_name}, region={self.region}, endpoint_url={self.endpoint_url}, dynamo_table_name={self.dynamo_table_name}, dynamo_partition_key={self.dynamo_partition_key}, dynamo_sort_key={self.dynamo_sort_key})"
 
+    @staticmethod
+    def get_student_repo() -> IStudentRepository:
+        if Environments.get_envs().stage == STAGE.TEST:
+            from src.shared.infra.repositories.student_repository_mock import StudentRepositoryMock
+            return StudentRepositoryMock
+        else:
+            from src.shared.infra.repositories.student_repository_dynamo import StudentRepositoryDynamo
+            return StudentRepositoryDynamo
 
     @staticmethod
     def get_envs() -> "Environments":
@@ -68,4 +74,7 @@ class Environments:
         envs = Environments()
         envs.load_envs()
         return envs
+
+    def __repr__(self):
+        return f"Environments(stage={self.stage}, s3_bucket_name={self.s3_bucket_name}, region={self.region}, endpoint_url={self.endpoint_url}, dynamo_table_name={self.dynamo_table_name}, dynamo_partition_key={self.dynamo_partition_key}, dynamo_sort_key={self.dynamo_sort_key})"
 
