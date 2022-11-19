@@ -1,4 +1,4 @@
-
+from src.shared.environments import Environments
 from .get_all_students_controller import GetAllStudentsController
 from .get_all_students_usecase import GetAllStudentsUsecase
 from src.shared.infra.repositories.student_repository_mock import StudentRepositoryMock
@@ -7,7 +7,7 @@ from src.shared.helpers.http.http_lambda_requests import LambdaHttpRequest, Lamb
 
 
 def lambda_handler(event, context):
-    repo = StudentRepositoryMock() 
+    repo = Environments.get_student_repo()()
     usecase = GetAllStudentsUsecase(repo)
     controller = GetAllStudentsController(usecase)
 

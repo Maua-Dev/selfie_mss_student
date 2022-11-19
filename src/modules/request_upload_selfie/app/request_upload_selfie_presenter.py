@@ -7,7 +7,7 @@ from src.shared.infra.repositories.selfie_repository_mock import SelfieRepositor
 
 
 def lambda_handler(event, context):
-    repoSelfie = SelfieRepositoryMock() # if Environments.get_envs().stage.value == 'LOCAL' else SelfieRepositoryS3()
+    repoSelfie = Environments.get_student_repo()()
     repoStudent = StudentRepositoryMock() # if Environments.get_envs().stage.value == 'LOCAL' else StudentRepositoryDynamo()
     usecase = RequestUploadSelfieUsecase(repoSelfie=repoSelfie, repoStudent=repoStudent)
     controller = RequestUploadSelfieController(usecase)
