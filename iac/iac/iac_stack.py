@@ -44,3 +44,4 @@ class IacStack(Stack):
         self.lambda_stack = LambdaStack(self, mss_student_api_resource=mss_student_api_resource, environment_variables=ENVIRONMENT_VARIABLES)
 
         self.dynamo_stack.dynamo_table.grant_read_write_data(self.lambda_stack.get_all_selfies_function)
+        self.dynamo_stack.dynamo_table.grant_read_write_data(self.lambda_stack.get_selfies_by_ra_function)

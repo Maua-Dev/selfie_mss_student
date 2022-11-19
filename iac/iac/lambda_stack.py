@@ -1,6 +1,8 @@
+
+
 from aws_cdk import (
     aws_lambda as lambda_,
-    NestedStack,
+    NestedStack, Duration,
 )
 from constructs import Construct
 from aws_cdk.aws_apigateway import Resource, LambdaIntegration
@@ -16,7 +18,7 @@ class LambdaStack(NestedStack):
             runtime=lambda_.Runtime.PYTHON_3_9,
             layers=[self.lambda_layer],
             environment=enviroment_variables,
-            timeout=15
+            timeout=Duration.seconds(15)
         )
 
         mss_student_api_resource.add_resource(module_name.replace("_", "-")).add_method(method,
