@@ -1,3 +1,4 @@
+from src.shared.environments import Environments
 from .create_selfie_usecase import CreateSelfieUsecase
 from src.shared.infra.repositories.student_repository_mock import StudentRepositoryMock
 from .create_selfie_controller import CreateSelfieController
@@ -5,7 +6,7 @@ from src.shared.helpers.http.http_lambda_requests import LambdaHttpResponse
 from src.shared.helpers.http.http_models import HttpRequest
 
 def http_request_handler(event: dict, context):
-    repo = StudentRepositoryMock()
+    repo = Environments.get_student_repo()()
     usecase = CreateSelfieUsecase(repo)
     controller = CreateSelfieController(usecase)
 
