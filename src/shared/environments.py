@@ -65,6 +65,15 @@ class Environments:
             return StudentRepositoryDynamo
 
     @staticmethod
+    def get_selfie_repo():
+        if Environments.get_envs().stage == STAGE.TEST:
+            from src.shared.infra.repositories.selfie_repository_mock import SelfieRepositoryMock
+            return SelfieRepositoryMock
+        else:
+            from src.shared.infra.repositories.selfie_repository_s3 import SelfieRepositoryS3
+            return SelfieRepositoryS3
+
+    @staticmethod
     def get_envs() -> "Environments":
         """
         Returns the Environments object. This method should be used to get the Environments object instead of instantiating it directly.
