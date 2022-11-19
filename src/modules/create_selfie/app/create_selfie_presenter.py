@@ -5,7 +5,7 @@ from .create_selfie_controller import CreateSelfieController
 from src.shared.helpers.http.http_lambda_requests import LambdaHttpResponse
 from src.shared.helpers.http.http_models import HttpRequest
 
-def http_request_handler(event: dict, context):
+def lambda_handler(event: dict, context):
     repo = Environments.get_student_repo()()
     usecase = CreateSelfieUsecase(repo)
     controller = CreateSelfieController(usecase)

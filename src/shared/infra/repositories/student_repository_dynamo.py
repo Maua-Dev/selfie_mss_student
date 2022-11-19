@@ -114,9 +114,12 @@ class StudentRepositoryDynamo(IStudentRepository):
     def create_selfie(self, selfie: Selfie) -> Selfie:
         selfie_dto = SelfieDynamoDTO.from_entity(selfie)
         item = selfie_dto.to_dynamo()
-        self.dynamo.put_item(partition_key=self.partition_key_format(selfie.student.ra),
+        resp = self.dynamo.put_item(partition_key=self.partition_key_format(selfie.student.ra),
                              sort_key=self.selfie_sort_key_format(selfie.student.ra, selfie.idSelfie), item=item,
                              is_decimal=True)
+
+        return selfie #todo fix that
+
 
     def update_selfie(self, ra: str, idSelfie: int, new_state: STATE = None,
                       new_rejectionReasons: REJECTION_REASON = None, new_rejectionDescription: str = None) -> Selfie:
