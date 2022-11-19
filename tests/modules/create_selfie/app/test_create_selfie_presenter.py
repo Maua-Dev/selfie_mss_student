@@ -1,6 +1,6 @@
 import json
 
-from src.modules.create_selfie.app.create_selfie_presenter import http_request_handler
+from src.modules.create_selfie.app.create_selfie_presenter import lambda_handler
 
 
 class Test_CreateSelfiePresenter:
@@ -49,7 +49,7 @@ class Test_CreateSelfiePresenter:
 
 
 
-        response = http_request_handler(event, None)
+        response = lambda_handler(event, None)
         assert response["statusCode"] == 201
         assert json.loads(response["body"])["message"] == "the selfie was created"
         assert json.loads(response["body"])["idSelfie"] == 1
@@ -103,7 +103,7 @@ class Test_CreateSelfiePresenter:
 
 
 
-        response = http_request_handler(event, None)
+        response = lambda_handler(event, None)
         assert response["statusCode"] == 201
         assert json.loads(response["body"])["message"] == "the selfie was created"
         assert json.loads(response["body"])["idSelfie"] == 1
@@ -120,7 +120,7 @@ class Test_CreateSelfiePresenter:
 
         expected = 'Field ra is missing'
 
-        response = http_request_handler(event, None)
+        response = lambda_handler(event, None)
         assert response["statusCode"] == 400
         assert json.loads(response["body"]) == expected
 
@@ -165,7 +165,7 @@ class Test_CreateSelfiePresenter:
 
         expected = 'ra must be a string'
 
-        response = http_request_handler(event, None)
+        response = lambda_handler(event, None)
         assert response["statusCode"] == 400
         assert json.loads(response["body"]) == expected
         
@@ -210,7 +210,7 @@ class Test_CreateSelfiePresenter:
 
         expected = 'No items found for ra'
 
-        response = http_request_handler(event, None)
+        response = lambda_handler(event, None)
         assert response["statusCode"] == 404
         assert json.loads(response["body"]) == expected
 
@@ -220,7 +220,7 @@ class Test_CreateSelfiePresenter:
 
             expected = 'Field url is not valid'
 
-            response = http_request_handler(event, None)
+            response = lambda_handler(event, None)
             assert response["statusCode"] == 400
             assert json.loads(response["body"]) == expected
 
@@ -230,7 +230,7 @@ class Test_CreateSelfiePresenter:
 
             expected = 'That action is forbidden for this Student'
 
-            response = http_request_handler(event, None)
+            response = lambda_handler(event, None)
             assert response["statusCode"] == 403
             assert json.loads(response["body"]) == expected
    
