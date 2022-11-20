@@ -56,11 +56,7 @@ class Test_RequestUploadSelfiePresenter:
         }
 
         expected = {
-                  'fields': {'AWSAccessKeyId': 'ACCESSKEY-21002088',
-                             'key': '21002088/selfie-2022-11-09-20:55:11-35aa9.jpeg',
-                             'policy': 'POLICY-21002088',
-                             'signature': 'SIGNATURE-21002088',
-                             'x-amz-meta-email': '21.00208-8@maua.br',
+                  'fields': {'x-amz-meta-email': '21.00208-8@maua.br',
                              'x-amz-meta-name': 'MARIA LUIZA VERNASQUI VERGANI',
                              'x-amz-meta-ra': '21002088'},
                   'url': 'https://test-selfie-bucket.s3.amazonaws.com/',
@@ -69,9 +65,6 @@ class Test_RequestUploadSelfiePresenter:
         response = lambda_handler(event, None)
         assert response["statusCode"] == 200
         assert json.loads(response["body"])['url'] == expected['url']
-        assert json.loads(response["body"])['fields']['AWSAccessKeyId'] == expected['fields']['AWSAccessKeyId']
-        assert json.loads(response["body"])['fields']['key'][:8] == expected['fields']['key'][:8]
-        assert json.loads(response["body"])['fields']['policy'] == expected['fields']['policy']
         assert json.loads(response["body"])['fields']['x-amz-meta-email'] == expected['fields']['x-amz-meta-email']
         assert json.loads(response["body"])['fields']['x-amz-meta-name'] == expected['fields']['x-amz-meta-name']
         assert json.loads(response["body"])['fields']['x-amz-meta-ra'] == expected['fields']['x-amz-meta-ra']

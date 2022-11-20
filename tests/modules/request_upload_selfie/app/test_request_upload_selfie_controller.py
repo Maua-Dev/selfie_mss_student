@@ -27,10 +27,8 @@ class Test_RequestUploadSelfieController:
         assert response.body["fields"]['x-amz-meta-ra'] == "21002088"
         assert response.body["fields"]['x-amz-meta-name'] == "MARIA LUIZA VERNASQUI VERGANI"
         assert response.body["fields"]['x-amz-meta-email'] == "21.00208-8@maua.br"
-        assert '21002088' in response.body["fields"]['key']
-        assert response.body["fields"]['AWSAccessKeyId'] == "ACCESSKEY-21002088"
-        assert response.body["fields"]['policy'] == "POLICY-21002088"
-        assert response.body["fields"]['signature'] == "SIGNATURE-21002088"
+
+
        
 
     def test_request_upload_selfie_missing_ra(self):

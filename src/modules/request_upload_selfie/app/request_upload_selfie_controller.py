@@ -23,6 +23,9 @@ class RequestUploadSelfieController:
 
             presignedPost = self.requestUploadSelfieUsecase(email=request.body.get('email'), name=request.body.get('name'), ra=request.body.get('ra'))
             viewmodel = RequestUploadSelfieViewModel(presignedPost)
+            print(f"ViewMode: {viewmodel}")
+            print(f"ViewMode dict: {viewmodel.to_dict()}")
+
 
             return OK(viewmodel.to_dict())
 

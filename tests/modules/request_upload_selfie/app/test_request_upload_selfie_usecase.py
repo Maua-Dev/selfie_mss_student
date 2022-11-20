@@ -15,13 +15,10 @@ class Test_RequestUploadSelfieUsecase:
        
 
         assert presignedPost['url'] == "https://test-selfie-bucket.s3.amazonaws.com/"
-        assert presignedPost['fields']['x-amz-meta-ra'] == "21002088"
-        assert presignedPost['fields']['x-amz-meta-name'] == "MARIA LUIZA VERNASQUI VERGANI"
-        assert presignedPost['fields']['x-amz-meta-email'] == "21.00208-8@maua.br"
-        assert '21002088' in presignedPost['fields']['key']
-        assert presignedPost['fields']['AWSAccessKeyId'] == "ACCESSKEY-21002088"
-        assert presignedPost['fields']['policy'] == "POLICY-21002088"
-        assert presignedPost['fields']['signature'] == "SIGNATURE-21002088"
+        assert presignedPost['metadata']['ra'] == "21002088"
+        assert presignedPost['metadata']['name'] == "MARIA LUIZA VERNASQUI VERGANI"
+        assert presignedPost['metadata']['email'] == "21.00208-8@maua.br"
+
  
     def test_request_upload_selfie_error_ra(self):
         repoSelfie = SelfieRepositoryMock()
