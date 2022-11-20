@@ -27,12 +27,18 @@ class SelfieRepositoryS3(ISelfieRepository):
             "x-amz-meta-email": email
         }
 
-        presignedPost = self.s3_client.generate_presigned_post(
+        try:
+            print("Trying to upload file to S3")
+            presignedPost = self.s3_client.generate_presigned_post(
             Bucket=self.S3_BUCKET_NAME,
             Key=key,
             Fields=meta,
             Conditions=[{key: value} for (key, value) in meta.items()],
             ExpiresIn=600
-        )
+            )
+        except Exception as e:
+            print("Error while trying to upload file to S3")
+            print(e)
+            raise e
 
         return presignedPost

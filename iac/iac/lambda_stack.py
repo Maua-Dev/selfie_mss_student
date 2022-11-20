@@ -1,7 +1,7 @@
 
 from aws_cdk import (
     aws_lambda as lambda_,
-    NestedStack, Duration,
+    NestedStack, Duration
 )
 from constructs import Construct
 from aws_cdk.aws_apigateway import Resource, LambdaIntegration
@@ -97,6 +97,14 @@ class LambdaStack(Construct):
             mss_student_api_resource=mss_student_api_resource,
             environment_variables=environment_variables
         )
+        self.request_upload_selfie_function = self.createLambdaApiGatewayIntegration(
+            module_name="request_upload_selfie",
+            method="POST",
+            mss_student_api_resource=mss_student_api_resource,
+            environment_variables=environment_variables
+        )
+
+
         self.create_selfie_function = lambda_.Function(
             self, "create_selfie",
             code=lambda_.Code.from_asset(f"../src/modules/create_selfie"),
@@ -128,5 +136,6 @@ class LambdaStack(Construct):
             self.update_selfie_function,
             self.delete_selfie_function,
             self.get_all_selfies_function,
-            self.get_all_students_function
+            self.get_all_students_function,
+            self.request_upload_selfie_function
         ]

@@ -9,6 +9,8 @@ from aws_cdk.aws_apigateway import Resource, LambdaIntegration
 
 
 class SelfieRepositoryStack(Construct):
+    s3_bucket: aws_s3.Bucket
+    selfie_validation_step_function: aws_stepfunctions.StateMachine
     def __init__(self, scope: Construct, construct_id: str, create_selfie_lambda_function: aws_lambda.Function, validate_selfie_lambda_function: aws_lambda.Function, **kwargs):
         super().__init__(scope, construct_id, **kwargs)
 

@@ -246,7 +246,7 @@ class Test_RequestUploadSelfiePresenter:
 
 
 
-    def test_request_upload_selfie(self):
+    def test_request_upload_selfie_2(self):
         event = {
             "version": "2.0",
             "routeKey": "$default",
