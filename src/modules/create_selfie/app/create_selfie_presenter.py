@@ -6,14 +6,17 @@ from src.shared.helpers.http.http_lambda_requests import LambdaHttpResponse
 from src.shared.helpers.http.http_models import HttpRequest
 
 def lambda_handler(event: dict, context):
+    print(event)
     repo = Environments.get_student_repo()()
     usecase = CreateSelfieUsecase(repo)
     controller = CreateSelfieController(usecase)
 
-    http_request = HttpRequest(body=event["body"],headers=event.get("headers"), query_params=event.get("query_params"))
+    http_request = HttpRequest(body=event, headers=event.get("headers"), query_params=event.get("query_params"))
 
     response = controller(request=http_request)
     httpResponse = LambdaHttpResponse(
         status_code=response.status_code, body=response.body, headers=response.headers)
+
+    print(httpResponse.toDict())
 
     return httpResponse.toDict()

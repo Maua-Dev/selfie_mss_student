@@ -7,7 +7,7 @@ from constructs import Construct
 from aws_cdk.aws_apigateway import Resource, LambdaIntegration
 
 
-class LambdaStack(NestedStack):
+class LambdaStack(Construct):
 
     functions_that_need_dynamo_permissions = []
 
@@ -73,12 +73,6 @@ class LambdaStack(NestedStack):
             mss_student_api_resource=mss_student_api_resource,
             environment_variables=environment_variables
         )
-        self.create_selfie_function = self.createLambdaApiGatewayIntegration(
-            module_name="create_selfie",
-            method="POST",
-            mss_student_api_resource=mss_student_api_resource,
-            environment_variables=environment_variables
-        )
         self.update_selfie_function = self.createLambdaApiGatewayIntegration(
             module_name="update_selfie",
             method="POST",
@@ -103,7 +97,24 @@ class LambdaStack(NestedStack):
             mss_student_api_resource=mss_student_api_resource,
             environment_variables=environment_variables
         )
-
+        self.create_selfie_function = lambda_.Function(
+            self, "create_selfie",
+            code=lambda_.Code.from_asset(f"../src/modules/create_selfie"),
+            handler=f"app.create_selfie_presenter.lambda_handler",
+            runtime=lambda_.Runtime.PYTHON_3_9,
+            layers=[self.lambda_layer],
+            environment=environment_variables,
+            timeout=Duration.seconds(15)
+        )
+        self.validate_selfie_function = lambda_.Function(
+            self, "validate_selfie",
+            code=lambda_.Code.from_asset(f"../src/modules/validate_selfie"),
+            handler=f"app.validate_selfie_presenter.lambda_handler",
+            runtime=lambda_.Runtime.PYTHON_3_9,
+            layers=[self.lambda_layer],
+            environment=environment_variables,
+            timeout=Duration.seconds(15)
+        )
 
         self.functions_that_need_dynamo_permissions = [
             self.get_student_function,
@@ -113,6 +124,7 @@ class LambdaStack(NestedStack):
             self.get_selfie_function,
             self.get_selfies_by_ra_function,
             self.create_selfie_function,
+            self.validate_selfie_function,
             self.update_selfie_function,
             self.delete_selfie_function,
             self.get_all_selfies_function,

@@ -1,11 +1,12 @@
 from aws_cdk import (
-    Stack,
+    Stack, CfnOutput
 )
 from aws_cdk.aws_apigateway import RestApi, Cors
 from constructs import Construct
 
 from .dynamo_stack import DynamoStack
 from .lambda_stack import LambdaStack
+from .selfie_repository_stack import SelfieRepositoryStack
 
 
 class IacStack(Stack):
@@ -41,7 +42,16 @@ class IacStack(Stack):
             "DYNAMO_SORT_KEY": self.dynamo_stack.sort_key_name
         }
 
-        self.lambda_stack = LambdaStack(self, mss_student_api_resource=mss_student_api_resource, environment_variables=ENVIRONMENT_VARIABLES)
+        self.lambda_stack = LambdaStack(self, mss_student_api_resource=mss_student_api_resource,
+                                        environment_variables=ENVIRONMENT_VARIABLES)
 
         for func in self.lambda_stack.functions_that_need_dynamo_permissions:
             self.dynamo_stack.dynamo_table.grant_read_write_data(func)
+
+        self.selfie_repository_stack = SelfieRepositoryStack(self, "SelfieRepositoryStack", create_selfie_lambda_function=self.lambda_stack.create_selfie_function, validate_selfie_lambda_function=self.lambda_stack.validate_selfie_function)
+
+        output_1 = CfnOutput(self, "Warnings!!",
+                                value="Remember to update the S3 bucket to send EventBridge notifications",
+                                description="This is a warning",
+                                export_name="Warnings"
+                                )

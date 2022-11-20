@@ -1,3 +1,4 @@
+from src.shared.environments import Environments
 from src.shared.infra.repositories.student_repository_dynamo import StudentRepositoryDynamo
 from src.shared.infra.repositories.student_repository_mock import StudentRepositoryMock
 import os
@@ -43,7 +44,9 @@ def setup_dynamo_table():
 
 def load_mock_to_local_dynamo():
 
-    setup_dynamo_table()
+
+    if Environments.get_envs().endpoint_url == 'http://localhost:8000':
+        setup_dynamo_table()
 
 
     # os.environ["STAGE"] = "TEST"

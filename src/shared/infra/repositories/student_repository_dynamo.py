@@ -34,6 +34,10 @@ class StudentRepositoryDynamo(IStudentRepository):
 
     def get_student(self, ra: str) -> Student:
         student = self.dynamo.get_item(partition_key=self.partition_key_format(ra), sort_key=ra)
+
+        if "Item" not in student:
+            raise NoItemsFound("ra")
+
         student_dto = StudentDynamoDTO.from_dynamo(student['Item'])
         return student_dto.to_entity()
 

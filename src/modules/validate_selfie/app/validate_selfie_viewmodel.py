@@ -39,9 +39,11 @@ class ValidateSelfieViewModel:
         
     def to_dict(self) -> dict:
         return {
-            "automaticallyRejected": self.automaticallyRejected,
-            "rejectionReasons": [rejectionReason.value for rejectionReason in self.rejectionReasons],
-            "labels": [LabelViewModel(label=label).to_dict() for label in self.labels],
+            "automaticReview": {
+                "automaticallyRejected": self.automaticallyRejected,
+                "rejectionReasons": [rejectionReason.value for rejectionReason in self.rejectionReasons],
+                "labels": [LabelViewModel(label=label).to_dict() for label in self.labels],
+            },
             "ra": self.ra,
             "url": self.url,
             "message":  "Selfie has been validated"
