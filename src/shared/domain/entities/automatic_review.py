@@ -41,10 +41,10 @@ class AutomaticReview(abc.ABC):
               label = Label(
                   name = label_dict['name'],
                   coords = {
-                              "Width": float(label_dict['coords']['Width']),
-                              "Height": float(label_dict['coords']['Height']),
-                              "Left": float(label_dict['coords']["Left"]),
-                              "Top": float(label_dict['coords']["Top"])
+                              "Width": float(label_dict['coords']['Width']) if label_dict["coords"] else None,
+                              "Height": float(label_dict['coords']['Height']) if label_dict["coords"] else None,
+                              "Left": float(label_dict['coords']["Left"]) if label_dict["coords"] else None,
+                              "Top": float(label_dict['coords']["Top"]) if label_dict["coords"] else None
                           },
                   confidence= float(label_dict["confidence"]),
                   parents= label_dict["parents"]
