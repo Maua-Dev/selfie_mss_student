@@ -1,6 +1,8 @@
 from src.modules.validate_selfie.app.validate_selfie_presenter import lambda_handler
 import pytest
 
+from src.shared.environments import Environments
+
 
 class Test_ValidadeSelfiePresenter:
     def test_validate_selfie_presenter(self):
@@ -284,8 +286,9 @@ class Test_ValidadeSelfiePresenter:
 
 
         response = lambda_handler(event, None)
+        cur_region = Environments.get_envs().region
         assert response['ra'] == "21010757"
-        assert response['url']== "https://selfiemssstudent-stack-selfierepositorystackselfi-1lw4vjo4qzdoj.s3.us-east-2.amazonaws.com/foto.png"
+        assert response['url']== f"https://selfiemssstudent-stack-selfierepositorystackselfi-1lw4vjo4qzdoj.s3.{cur_region}.amazonaws.com/foto.png"
         assert response["automaticReview"]["automaticallyRejected"] == False
         assert response["automaticReview"]["labels"][0]["confidence"] == 100.0
         assert response['message'] == "Selfie has been validated"
