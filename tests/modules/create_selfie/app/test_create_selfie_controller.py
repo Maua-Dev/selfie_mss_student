@@ -5,7 +5,7 @@ from src.shared.helpers.http.http_models import HttpRequest
 from src.shared.domain.enums.state_enum import STATE
 
 AUTOMATIC_REVIEW_DICT = {
-            "automaticallyRejected": "False",
+            "automaticallyRejected": False,
             "rejectionReasons": ["NONE"],
             "labels": [{
                             "name": "Glasses",
@@ -66,7 +66,7 @@ class Test_CreateSelfieController:
         controller = CreateSelfieController(usecase=usecase)
 
         automaticReviewDict = {
-                    "automaticallyRejected": "True",
+                    "automaticallyRejected": True,
                     "rejectionReasons": ["COVERED_FACE", "NO_PERSON_RECOGNIZED"],
                     "labels": [{
                                     "name": "Glasses",

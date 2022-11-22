@@ -15,7 +15,7 @@ class Test_CreateSelfiePresenter:
 
     def test_create_selfie(self):
         event = self.example_event(ra="21014442", url="https://www.youtube.com/watch?v=5IpYOF4Hi6Q", automaticReview={
-                "automaticallyRejected":"False",
+                "automaticallyRejected":False,
                 "rejectionReasons":[
                     "NONE"
                 ],
@@ -62,7 +62,7 @@ class Test_CreateSelfiePresenter:
 
     def test_create_selfie_automaticallyRejected(self):
         event = self.example_event(ra="21014442", url="https://www.youtube.com/watch?v=5IpYOF4Hi6Q", automaticReview={
-                "automaticallyRejected":"True",
+                "automaticallyRejected":True,
                 "rejectionReasons":[
                     "COVERED_FACE"
                 ],
@@ -163,7 +163,7 @@ class Test_CreateSelfiePresenter:
         
     def test_create_selfie_not_found_ra(self):
         event = self.example_event(ra="12345678", url="https://www.youtube.com/watch?v=5IpYOF4Hi6Q", automaticReview={
-            "automaticallyRejected":"False",
+            "automaticallyRejected":False,
             "rejectionReasons":["NONE"],
             "labels":[
                 {
@@ -204,7 +204,7 @@ class Test_CreateSelfiePresenter:
 
     
     def test_create_selfie_invalid_url(self):
-        event = self.example_event(ra="21014442", url="http://www.youtube.com/watch?v=5IpYOF4Hi6Q", automaticReview={'automaticallyRejected': 'False', 'rejectionReasons': ['NONE'], 'labels': [{'name': 'Glasses', 'coords': {'Width': '0.6591288447380066', 'Height': '0.17444363236427307', 'Left': '0.19148917496204376', 'Top': '0.3813813030719757'}, 'confidence': '94.5357666015625', 'parents': ['Accessories']}, {'name': 'Blalblas', 'coords': {'Width': '0.6591288480066', 'Height': '0.1744236427307', 'Left': '0.19148916204376', 'Top': '0.3813813719757'}, 'confidence': '95.5366015625', 'parents': ['ASODnoasdsa', 'nmdokasnkndkasnkd']}]}, message="Invalid url")
+        event = self.example_event(ra="21014442", url="http://www.youtube.com/watch?v=5IpYOF4Hi6Q", automaticReview={'automaticallyRejected': True, 'rejectionReasons': ['NONE'], 'labels': [{'name': 'Glasses', 'coords': {'Width': '0.6591288447380066', 'Height': '0.17444363236427307', 'Left': '0.19148917496204376', 'Top': '0.3813813030719757'}, 'confidence': '94.5357666015625', 'parents': ['Accessories']}, {'name': 'Blalblas', 'coords': {'Width': '0.6591288480066', 'Height': '0.1744236427307', 'Left': '0.19148916204376', 'Top': '0.3813813719757'}, 'confidence': '95.5366015625', 'parents': ['ASODnoasdsa', 'nmdokasnkndkasnkd']}]}, message="Invalid url")
 
         expected = 'Field url is not valid'
 
@@ -213,7 +213,7 @@ class Test_CreateSelfiePresenter:
         assert json.loads(response["body"]) == expected
 
     def test_create_selfie_student_have_approved_selfie(self):
-        event = self.example_event(ra="15013103", url="https://www.youtube.com/watch?v=5IpYOF4Hi6Q", automaticReview={'automaticallyRejected': 'False', 'rejectionReasons': ['NONE'], 'labels': [{'name': 'Glasses', 'coords': {'Width': '0.6591288447380066', 'Height': '0.17444363236427307', 'Left': '0.19148917496204376', 'Top': '0.3813813030719757'}, 'confidence': '94.5357666015625', 'parents': ['Accessories']}, {'name': 'Blalblas', 'coords': {'Width': '0.6591288480066', 'Height': '0.1744236427307', 'Left': '0.19148916204376', 'Top': '0.3813813719757'}, 'confidence': '95.5366015625', 'parents': ['ASODnoasdsa', 'nmdokasnkndkasnkd']}]} , message="That action is forbidden for this Student")
+        event = self.example_event(ra="15013103", url="https://www.youtube.com/watch?v=5IpYOF4Hi6Q", automaticReview={'automaticallyRejected': False, 'rejectionReasons': ['NONE'], 'labels': [{'name': 'Glasses', 'coords': {'Width': '0.6591288447380066', 'Height': '0.17444363236427307', 'Left': '0.19148917496204376', 'Top': '0.3813813030719757'}, 'confidence': '94.5357666015625', 'parents': ['Accessories']}, {'name': 'Blalblas', 'coords': {'Width': '0.6591288480066', 'Height': '0.1744236427307', 'Left': '0.19148916204376', 'Top': '0.3813813719757'}, 'confidence': '95.5366015625', 'parents': ['ASODnoasdsa', 'nmdokasnkndkasnkd']}]} , message="That action is forbidden for this Student")
 
 
         expected = 'That action is forbidden for this Student'
