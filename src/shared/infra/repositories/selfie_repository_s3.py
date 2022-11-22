@@ -10,7 +10,7 @@ class SelfieRepositoryS3(ISelfieRepository):
 
     def __init__(self):
         self.S3_BUCKET_NAME = Environments.get_envs().s3_bucket_name
-        self.s3_client = boto3.client('s3', config=Config(signature_version='s3v4'))
+        self.s3_client = boto3.client('s3', config=Config(signature_version='s3v4'), region_name=Environments.get_envs().region)
 
       
     def generate_uuid_key(self, ra: str):
