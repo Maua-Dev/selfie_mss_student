@@ -3,7 +3,8 @@ from .request_upload_selfie_usecase import RequestUploadSelfieUsecase
 from src.shared.helpers.errors.domain_errors import EntityError
 from src.shared.helpers.errors.usecase_errors import ForbiddenAction, NoItemsFound
 from src.shared.helpers.errors.controller_errors import MissingParameters, WrongTypeParameter
-from src.shared.helpers.http.http_models import OK, BadRequest, Forbidden, HttpRequest, HttpResponse, InternalServerError, NotFound
+from src.shared.helpers.http.http_models import OK, BadRequest, Forbidden, HttpRequest, HttpResponse, \
+    InternalServerError, NotFound
 
 
 class RequestUploadSelfieController:
@@ -21,11 +22,9 @@ class RequestUploadSelfieController:
             if request.body.get('email') is None:
                 raise MissingParameters('email')
 
-            presignedPost = self.requestUploadSelfieUsecase(email=request.body.get('email'), name=request.body.get('name'), ra=request.body.get('ra'))
+            presignedPost = self.requestUploadSelfieUsecase(email=request.body.get('email'),
+                                                            name=request.body.get('name'), ra=request.body.get('ra'))
             viewmodel = RequestUploadSelfieViewModel(presignedPost)
-            print(f"ViewMode: {viewmodel}")
-            print(f"ViewMode dict: {viewmodel.to_dict()}")
-
 
             return OK(viewmodel.to_dict())
 
@@ -34,7 +33,7 @@ class RequestUploadSelfieController:
 
         except MissingParameters as err:
             return BadRequest(body=err.message)
-        
+
         except ForbiddenAction as err:
             return Forbidden(body=err.message)
 

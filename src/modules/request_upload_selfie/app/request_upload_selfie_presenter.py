@@ -14,9 +14,7 @@ def lambda_handler(event, context):
 
     httpRequest = LambdaHttpRequest(data=event)
     response = controller(httpRequest)
-    print(response)
     httpResponse = LambdaHttpResponse(
         status_code=response.status_code, body=response.body, headers=response.headers)
-    print(httpResponse)
 
     return httpResponse.toDict()
