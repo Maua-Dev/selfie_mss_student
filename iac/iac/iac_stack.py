@@ -42,7 +42,8 @@ class IacStack(Stack):
             "STAGE": "DEV",
             "DYNAMO_TABLE_NAME": self.dynamo_stack.dynamo_table.table_name,
             "DYNAMO_PARTITION_KEY": self.dynamo_stack.partition_key_name,
-            "DYNAMO_SORT_KEY": self.dynamo_stack.sort_key_name
+            "DYNAMO_SORT_KEY": self.dynamo_stack.sort_key_name,
+            "REGION": self.region,
         }
 
         self.lambda_stack = LambdaStack(self, mss_student_api_resource=mss_student_api_resource,
