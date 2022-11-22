@@ -1,11 +1,12 @@
 from src.modules.create_selfie.app.create_selfie_usecase import CreateSelfieUsecase
+from src.shared.environments import Environments
 from src.shared.infra.repositories.student_repository_mock import StudentRepositoryMock
 from src.modules.create_selfie.app.create_selfie_controller import CreateSelfieController
 from src.shared.helpers.http.http_models import HttpRequest
 from src.shared.domain.enums.state_enum import STATE
 
 AUTOMATIC_REVIEW_DICT = {
-            "automaticallyRejected": "False",
+            "automaticallyRejected": False,
             "rejectionReasons": ["NONE"],
             "labels": [{
                             "name": "Glasses",
@@ -33,6 +34,8 @@ AUTOMATIC_REVIEW_DICT = {
 
 class Test_CreateSelfieController:
 
+    base_url = Environments.get_envs().cloud_front_distribution_domain
+
     def test_create_selfie_controller(self):
         repo = StudentRepositoryMock()
         usecase = CreateSelfieUsecase(repo=repo)
@@ -53,7 +56,7 @@ class Test_CreateSelfieController:
         assert response.status_code == 201
         assert response.body["message"] == "the selfie was created"
         assert len(repo.selfies) == lenAfter
-        assert response.body["url"] == "https://www.youtube.com/watch?v=5IpYOF4Hi6Q"
+        assert response.body["url"] == f"{self.base_url}/watch?v=5IpYOF4Hi6Q"
         assert response.body["idSelfie"] == 1
         assert response.body["student"]["ra"] == "21014442"
         assert response.body["rejectionReasons"] == ["NONE"]
@@ -66,7 +69,7 @@ class Test_CreateSelfieController:
         controller = CreateSelfieController(usecase=usecase)
 
         automaticReviewDict = {
-                    "automaticallyRejected": "True",
+                    "automaticallyRejected": True,
                     "rejectionReasons": ["COVERED_FACE", "NO_PERSON_RECOGNIZED"],
                     "labels": [{
                                     "name": "Glasses",
@@ -105,7 +108,7 @@ class Test_CreateSelfieController:
         lenAfter = lenBefore + 1
 
         assert len(repo.selfies) == lenAfter
-        assert response.body["url"] == "https://www.youtube.com/watch?v=5IpYOF4Hi6Q"
+        assert response.body["url"] == f"{self.base_url}/watch?v=5IpYOF4Hi6Q"
         assert response.body["idSelfie"] == 1
         assert response.body["student"]["ra"] == "21014442"
         assert response.status_code == 201

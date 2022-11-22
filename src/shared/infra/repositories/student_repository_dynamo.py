@@ -34,6 +34,10 @@ class StudentRepositoryDynamo(IStudentRepository):
 
     def get_student(self, ra: str) -> Student:
         student = self.dynamo.get_item(partition_key=self.partition_key_format(ra), sort_key=ra)
+
+        if "Item" not in student:
+            return None
+
         student_dto = StudentDynamoDTO.from_dynamo(student['Item'])
         return student_dto.to_entity()
 
@@ -64,8 +68,10 @@ class StudentRepositoryDynamo(IStudentRepository):
 
     def create_student(self, student: Student) -> Student:
         student_dto = StudentDynamoDTO.from_entity(student)
-        self.dynamo.put_item(partition_key=self.partition_key_format(student.ra), sort_key=student.ra,
+        resp = self.dynamo.put_item(partition_key=self.partition_key_format(student.ra), sort_key=student.ra,
                              item=student_dto.to_dynamo())
+
+        return student_dto.to_entity()
 
     def get_selfies_by_ra(self, ra: str) -> Tuple[List[Selfie], Student]:
 

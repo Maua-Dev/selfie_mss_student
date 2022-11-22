@@ -10,7 +10,7 @@ def lambda_handler(event: dict, context):
     usecase = CreateSelfieUsecase(repo)
     controller = CreateSelfieController(usecase)
 
-    http_request = HttpRequest(body=event["body"],headers=event.get("headers"), query_params=event.get("query_params"))
+    http_request = HttpRequest(body=event, headers=event.get("headers"), query_params=event.get("query_params"))
 
     response = controller(request=http_request)
     httpResponse = LambdaHttpResponse(

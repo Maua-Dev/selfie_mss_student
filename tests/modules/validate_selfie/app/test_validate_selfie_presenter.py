@@ -1,10 +1,52 @@
-from src.modules.validate_selfie.app.validate_selfie_presenter import http_request_handler
+from src.modules.validate_selfie.app.validate_selfie_presenter import lambda_handler
 import pytest
 
 
 class Test_ValidadeSelfiePresenter:
     def test_validate_selfie_presenter(self):
-        rekognitionResult = {
+
+        event = {
+      "version":"0",
+      "id":"c0b7e3c7-4721-3809-e769-65f6ab7d9c9a",
+      "detail-type":"Object Created",
+      "source":"aws.s3",
+      "account":"XXXXXXXXXXXX",
+      "time":"2022-11-20T15:35:38Z",
+      "region":"us-east-2",
+      "resources":[
+         "arn:aws:s3:::selfiemssstudent-stack-selfierepositorystackselfi-1lw4vjo4qzdoj"
+      ],
+      "detail":{
+         "version":"0",
+         "bucket":{
+            "name":"selfiemssstudent-stack-selfierepositorystackselfi-1lw4vjo4qzdoj"
+         },
+         "object":{
+            "key":"foto.png",
+            "size":353715,
+            "etag":"4ce0ae3aadd8c651e8113d96285ce212",
+            "version-id":"rADMHOdgPsTyfqZDjn0eAbiZV07OoG9j",
+            "sequencer":"00637A494A5B9942AB"
+         },
+         "request-id":"XBV3TZ4A7GBAC5AB",
+         "requester":"264055331071",
+         "source-ip-address":"189.69.5.57",
+         "reason":"PutObject"
+      },
+      "bucketMetadataResult":{
+         "AcceptRanges":"bytes",
+         "ContentLength":353715,
+         "ContentType":"image/png",
+         "ETag":"\"4ce0ae3aadd8c651e8113d96285ce212\"",
+         "LastModified":"2022-11-20T15:35:39Z",
+         "Metadata":{
+            "name":"Victor",
+            "email":"eusousoller@gmail.com",
+            "ra":"21010757"
+         },
+         "VersionId":"rADMHOdgPsTyfqZDjn0eAbiZV07OoG9j"
+      },
+      "rekognitionResult":{
             "Labels": [
                 {
                     "Name": "Photography",
@@ -238,18 +280,14 @@ class Test_ValidadeSelfiePresenter:
             ],
             "LabelModelVersion": "3.0"
         }
+   }
 
-        event = {
-            "body":{"ra": "21014443",
-            "rekognitionResult": rekognitionResult,
-            "url": "https://www.youtube.com/watch?v=5IpYOF4Hi6Q"}
-        }
 
-        response = http_request_handler(event, None)
-        assert response['ra'] == "21014443"
-        assert response['url']== "https://www.youtube.com/watch?v=5IpYOF4Hi6Q"
-        assert response["automaticallyRejected"] == False
-        assert response["labels"][0]["confidence"] == 100.0
+        response = lambda_handler(event, None)
+        assert response['ra'] == "21010757"
+        assert response['url']== "https://selfiemssstudent-stack-selfierepositorystackselfi-1lw4vjo4qzdoj.s3.us-east-2.amazonaws.com/foto.png"
+        assert response["automaticReview"]["automaticallyRejected"] == False
+        assert response["automaticReview"]["labels"][0]["confidence"] == 100.0
         assert response['message'] == "Selfie has been validated"
 
     def test_validate_selfie_presenter_invalid_ra(self):
@@ -489,17 +527,98 @@ class Test_ValidadeSelfiePresenter:
         }
 
         event = {
-            "body":{"ra": "21.01444-3",
-            "rekognitionResult": rekognitionResult,
-            "url": "https://www.youtube.com/watch?v=5IpYOF4Hi6Q"}
-        }
-        response = http_request_handler(event, None)
+      "version":"0",
+      "id":"c0b7e3c7-4721-3809-e769-65f6ab7d9c9a",
+      "detail-type":"Object Created",
+      "source":"aws.s3",
+      "account":"XXXXXXXXXXXX",
+      "time":"2022-11-20T15:35:38Z",
+      "region":"us-east-2",
+      "resources":[
+         "arn:aws:s3:::selfiemssstudent-stack-selfierepositorystackselfi-1lw4vjo4qzdoj"
+      ],
+      "detail":{
+         "version":"0",
+         "bucket":{
+            "name":"selfiemssstudent-stack-selfierepositorystackselfi-1lw4vjo4qzdoj"
+         },
+         "object":{
+            "key":"foto.png",
+            "size":353715,
+            "etag":"4ce0ae3aadd8c651e8113d96285ce212",
+            "version-id":"rADMHOdgPsTyfqZDjn0eAbiZV07OoG9j",
+            "sequencer":"00637A494A5B9942AB"
+         },
+         "request-id":"XBV3TZ4A7GBAC5AB",
+         "requester":"264055331071",
+         "source-ip-address":"189.69.5.57",
+         "reason":"PutObject"
+      },
+      "bucketMetadataResult":{
+         "AcceptRanges":"bytes",
+         "ContentLength":353715,
+         "ContentType":"image/png",
+         "ETag":"\"4ce0ae3aadd8c651e8113d96285ce212\"",
+         "LastModified":"2022-11-20T15:35:39Z",
+         "Metadata":{
+            "name":"Victor",
+            "email":"eusousoller@gmail.com",
+            "ra":"2100757"
+         },
+         "VersionId":"rADMHOdgPsTyfqZDjn0eAbiZV07OoG9j"
+      },
+        "rekognitionResult":rekognitionResult
+    }
+
+        response = lambda_handler(event, None)
         
         assert response == 'Field ra is not valid'
         
     def test_validate_selfie_presenter_missing_rekognition_result(self):
-        event = {"body":{"ra":"21010757", "url":"https://www.youtube.com/watch?v=5IpYOF4Hi6Q"}}
+        event = {
+      "version":"0",
+      "id":"c0b7e3c7-4721-3809-e769-65f6ab7d9c9a",
+      "detail-type":"Object Created",
+      "source":"aws.s3",
+      "account":"XXXXXXXXXXXX",
+      "time":"2022-11-20T15:35:38Z",
+      "region":"us-east-2",
+      "resources":[
+         "arn:aws:s3:::selfiemssstudent-stack-selfierepositorystackselfi-1lw4vjo4qzdoj"
+      ],
+      "detail":{
+         "version":"0",
+         "bucket":{
+            "name":"selfiemssstudent-stack-selfierepositorystackselfi-1lw4vjo4qzdoj"
+         },
+         "object":{
+            "key":"foto.png",
+            "size":353715,
+            "etag":"4ce0ae3aadd8c651e8113d96285ce212",
+            "version-id":"rADMHOdgPsTyfqZDjn0eAbiZV07OoG9j",
+            "sequencer":"00637A494A5B9942AB"
+         },
+         "request-id":"XBV3TZ4A7GBAC5AB",
+         "requester":"264055331071",
+         "source-ip-address":"189.69.5.57",
+         "reason":"PutObject"
+      },
+      "bucketMetadataResult":{
+         "AcceptRanges":"bytes",
+         "ContentLength":353715,
+         "ContentType":"image/png",
+         "ETag":"\"4ce0ae3aadd8c651e8113d96285ce212\"",
+         "LastModified":"2022-11-20T15:35:39Z",
+         "Metadata":{
+            "name":"Victor",
+            "email":"eusousoller@gmail.com",
+            "ra":"21010757"
+         },
+         "VersionId":"rADMHOdgPsTyfqZDjn0eAbiZV07OoG9j"
+      },
+
+   }
         
-        response = http_request_handler(event, None)
+        response = lambda_handler(event, None)
     
         assert response == "Field rekognitionResult is missing"

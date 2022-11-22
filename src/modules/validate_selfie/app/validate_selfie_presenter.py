@@ -5,12 +5,22 @@ from .validate_selfie_controller import ValidateSelfieController
 from src.shared.helpers.http.http_models import HttpRequest
 
 
-def http_request_handler(event: dict, context):
+def lambda_handler(event: dict, context):
     repo = Environments.get_student_repo()()
     usecase = ValidateSelfieUsecase(repo)
     controller = ValidateSelfieController(usecase)
 
-    http_request = HttpRequest(body=event["body"],headers=event.get("headers"), query_params=event.get("query_params"))
+    body = {}
+
+    body['ra'] = event.get('bucketMetadataResult').get('Metadata').get('ra')
+    body['name'] = event.get('bucketMetadataResult').get('Metadata').get('name')
+    body['email'] = event.get('bucketMetadataResult').get('Metadata').get('email')
+    body['url'] = f"https://{event.get('detail').get('bucket').get('name')}.s3.us-east-2.amazonaws.com/{event.get('detail').get('object').get('key')}"
+    body['rekognitionResult'] = event.get('rekognitionResult')
+
+
+
+    http_request = HttpRequest(body=body, headers=event.get("headers"), query_params=event.get("query_params"))
     response = controller(request=http_request)
 
     return response
