@@ -1,3 +1,5 @@
+from src.shared.domain.entities.selfie import Selfie
+from src.shared.environments import Environments
 from src.shared.helpers.errors.domain_errors import EntityError
 from src.shared.helpers.errors.usecase_errors import DuplicatedItem, ForbiddenAction, NoItemsFound
 from src.shared.helpers.errors.controller_errors import MissingParameters
@@ -20,8 +22,13 @@ class CreateSelfieController:
 
             if request.body.get('automaticReview') is None:
                 raise MissingParameters('automaticReview')
-            
-            selfie = self.createSelfieUsecase(ra=request.body.get('ra'), url=request.body.get('url'), automaticReview=request.body.get("automaticReview"))
+
+            url_cloudfront = None
+            if Selfie.validate_url(request.body.get('url')):
+                url_cloudfront = f'{Environments.get_envs().cloud_front_distribution_domain}/{request.body["url"].split(".com/")[1]}'
+
+
+            selfie = self.createSelfieUsecase(ra=request.body.get('ra'), url=url_cloudfront or request.body.get('url'), automaticReview=request.body.get("automaticReview"))
             viewmodel = CreateSelfieViewModel(selfie)
 
             return Created(viewmodel.to_dict())

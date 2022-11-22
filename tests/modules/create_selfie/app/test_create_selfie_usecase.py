@@ -10,7 +10,7 @@ import pytest
 
 
 AUTOMATIC_REVIEW_DICT = {
-            "automaticallyRejected": "False",
+            "automaticallyRejected": False,
             "rejectionReasons": ["NONE"],
             "labels": [{
                             "name": "Glasses",
@@ -63,7 +63,7 @@ class Test_CreateSelfieUsecase:
         lenBefore = len(repo.selfies)
 
         automaticReviewDict = {
-            "automaticallyRejected": "True",
+            "automaticallyRejected": True,
             "rejectionReasons": ["COVERED_FACE", "NO_PERSON_RECOGNIZED"],
             "labels": [{
                             "name": "Glasses",

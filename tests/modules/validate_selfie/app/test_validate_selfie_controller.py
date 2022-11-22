@@ -256,8 +256,8 @@ class Test_ValidateSelfieController:
 
         assert response['ra'] == "21014443"
         assert response['url']== "https://www.youtube.com/watch?v=5IpYOF4Hi6Q"
-        assert response["automaticallyRejected"] == False
-        assert response["labels"][0]["confidence"] == 100.0
+        assert response["automaticReview"]["automaticallyRejected"] == False
+        assert response["automaticReview"]["labels"][0]["confidence"] == 100.0
         assert response['message'] == "Selfie has been validated"
         
     def test_validate_selfie_controller_invalid_ra(self):

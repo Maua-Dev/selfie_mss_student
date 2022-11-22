@@ -21,7 +21,7 @@ env = {
 
 app = cdk.App()
 
-IacStack(app, "IacStack", env=env)
+IacStack(app, "SelfieMssStudent-Stack", env=env)
 # PipelineStack(app, "PipelineStack", env=env)
 
 

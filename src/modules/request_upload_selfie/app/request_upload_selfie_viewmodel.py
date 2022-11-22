@@ -9,12 +9,8 @@ class RequestUploadSelfieViewModel:
         return {
           "url":self.presignedPost["url"],
           "fields":{
-              "key":self.presignedPost["fields"]["key"],
-              "x-amz-meta-ra": self.presignedPost["fields"]["x-amz-meta-ra"],
-              "x-amz-meta-name":self.presignedPost["fields"]["x-amz-meta-name"],
-              "x-amz-meta-email": self.presignedPost["fields"]["x-amz-meta-email"],
-              "AWSAccessKeyId":self.presignedPost["fields"]["AWSAccessKeyId"],
-              "policy":self.presignedPost["fields"]["policy"],
-              "signature":self.presignedPost["fields"]["signature"]
+              "x-amz-meta-ra": self.presignedPost["metadata"].get("ra", "NONE"),
+              "x-amz-meta-name":self.presignedPost["metadata"].get("name", "NONE"),
+              "x-amz-meta-email": self.presignedPost["metadata"].get("email", "NONE"),
           }
         }

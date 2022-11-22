@@ -6,7 +6,7 @@ from constructs import Construct
 from aws_cdk.aws_apigateway import Resource, LambdaIntegration
 
 
-class DynamoStack(NestedStack):
+class DynamoStack(Construct):
     def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
 
@@ -14,11 +14,9 @@ class DynamoStack(NestedStack):
         self.sort_key_name = "SK"
 
         self.dynamo_table = dynamodb.Table(self, "Selfie_Dynamo_Table",
-                                             partition_key=dynamodb.Attribute(name=self.partition_key_name,
-                                                                                type=dynamodb.AttributeType.STRING),
-                                                sort_key=dynamodb.Attribute(name=self.sort_key_name,
+                                           partition_key=dynamodb.Attribute(name=self.partition_key_name,
                                                                             type=dynamodb.AttributeType.STRING),
-                                                billing_mode=dynamodb.BillingMode.PAY_PER_REQUEST
-                                                )
-
-
+                                           sort_key=dynamodb.Attribute(name=self.sort_key_name,
+                                                                       type=dynamodb.AttributeType.STRING),
+                                           billing_mode=dynamodb.BillingMode.PAY_PER_REQUEST
+                                           )

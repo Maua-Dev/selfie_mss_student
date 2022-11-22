@@ -7,7 +7,7 @@ from src.shared.helpers.errors.controller_errors import MissingParameters
 class Test_read_automatic_review:
     def test_read_automatic_review(self):
         automatic_review_dict = {
-            "automaticallyRejected": "True",
+            "automaticallyRejected": True,
             "rejectionReasons": ["COVERED_FACE", "NO_PERSON_RECOGNIZED"],
             "labels": [{
                             "name": "Glasses",

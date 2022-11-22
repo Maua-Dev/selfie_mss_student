@@ -27,6 +27,7 @@ class Environments:
     dynamo_table_name: str
     dynamo_partition_key: str
     dynamo_sort_key: str
+    cloud_front_distribution_domain: str
 
     def _configure_local(self):
         from dotenv import load_dotenv
@@ -46,6 +47,7 @@ class Environments:
             self.dynamo_table_name = "selfie_mss_student-table"
             self.dynamo_partition_key = "PK"
             self.dynamo_sort_key = "SK"
+            self.cloud_front_distribution_domain = "https://d3q9q9q9q9q9q9.cloudfront.net"
         else:
             self.s3_bucket_name = os.environ.get("S3_BUCKET_NAME")
             self.region = os.environ.get("REGION")
@@ -53,6 +55,7 @@ class Environments:
             self.dynamo_table_name = os.environ.get("DYNAMO_TABLE_NAME")
             self.dynamo_partition_key = os.environ.get("DYNAMO_PARTITION_KEY")
             self.dynamo_sort_key = os.environ.get("DYNAMO_SORT_KEY")
+            self.cloud_front_distribution_domain = os.environ.get("CLOUD_FRONT_DISTRIBUTION_DOMAIN")
 
 
     @staticmethod
@@ -85,5 +88,5 @@ class Environments:
         return envs
 
     def __repr__(self):
-        return f"Environments(stage={self.stage}, s3_bucket_name={self.s3_bucket_name}, region={self.region}, endpoint_url={self.endpoint_url}, dynamo_table_name={self.dynamo_table_name}, dynamo_partition_key={self.dynamo_partition_key}, dynamo_sort_key={self.dynamo_sort_key})"
+        return self.__dict__
 

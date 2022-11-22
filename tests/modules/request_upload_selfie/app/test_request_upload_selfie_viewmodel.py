@@ -7,14 +7,10 @@ class Test_RequestUploadSelfieViewModel:
   
         presignedPostDict = {
         "url":"https://test-selfie-bucket.s3.amazonaws.com/",
-        "fields":{
-            "x-amz-meta-ra":"21014442",
-            "x-amz-meta-name":"VITOR GUIRAO SOLLER",
-            "x-amz-meta-email":"21.01444-2@gmail.com",
-            "key":"21014442/selfie-2022-11-09-12:42:22-0dc42.jpeg",
-            "AWSAccessKeyId":"ACCESSKEY-21014442",
-            "policy":"POLICY-21014442",
-            "signature":"SIGNATURE-21014442"
+        "metadata":{
+            "ra":"21014442",
+            "name":"VITOR GUIRAO SOLLER",
+            "email":"21.01444-2@gmail.com"
    }
 }
 
@@ -27,10 +23,6 @@ class Test_RequestUploadSelfieViewModel:
               "x-amz-meta-ra":"21014442",
               "x-amz-meta-name":"VITOR GUIRAO SOLLER",
               "x-amz-meta-email":"21.01444-2@gmail.com",
-              "key":"21014442/selfie-2022-11-09-12:42:22-0dc42.jpeg",
-              "AWSAccessKeyId":"ACCESSKEY-21014442",
-              "policy":"POLICY-21014442",
-              "signature":"SIGNATURE-21014442"
           }
         }
         
