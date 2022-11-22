@@ -56,6 +56,8 @@ class IacStack(Stack):
 
 
         self.lambda_stack.request_upload_selfie_function.add_environment("S3_BUCKET_NAME", self.selfie_repository_stack.s3_bucket.bucket_name)
+        self.lambda_stack.create_selfie_function.add_environment("CLOUD_FRONT_DISTRIBUTION_DOMAIN", f"https://{self.selfie_repository_stack.cloudfront_distribution.domain_name}")
+
         self.selfie_repository_stack.s3_bucket.grant_read(self.lambda_stack.request_upload_selfie_function)
         self.selfie_repository_stack.s3_bucket.grant_write(self.lambda_stack.request_upload_selfie_function)
 
@@ -66,8 +68,16 @@ class IacStack(Stack):
                                 export_name="S3BucketName"
                                 )
 
-        output_2 = CfnOutput(self, "Dynamo Table Name",
+        output_2 = CfnOutput(self, "CloudFront Distribution Domain Name",
+                                value=self.selfie_repository_stack.cloudfront_distribution.domain_name,
+                                description="CloudFront Distribution Domain Name",
+                                export_name="CloudFrontDistributionDomainName"
+                                )
+
+        output_3 = CfnOutput(self, "Dynamo Table Name",
                                 value=self.dynamo_stack.dynamo_table.table_name,
                                 description="Dynamo Table Name",
                                 export_name="DynamoTableName"
                                 )
+
+
