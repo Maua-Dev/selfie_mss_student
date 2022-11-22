@@ -48,8 +48,6 @@ def load_mock_to_local_dynamo():
     if Environments.get_envs().endpoint_url == 'http://localhost:8000':
         setup_dynamo_table()
 
-
-    # os.environ["STAGE"] = "TEST"
     mock_repo = StudentRepositoryMock()
     dynamo_repo = StudentRepositoryDynamo()
 
