@@ -43,15 +43,11 @@ class IStudentRepository(ABC):
         pass
     
     @abstractmethod    
-    def delete_selfie(self, ra: str, idSelfie: int) -> Tuple[Selfie, Student]:
-        pass
-    
-    @abstractmethod    
     def create_selfie(self, selfie: Selfie) -> Selfie:
         pass
     
     @abstractmethod    
-    def update_selfie(self, ra: str, idSelfie: int, new_state: STATE = None, new_rejectionReasons: REJECTION_REASON = None, new_rejectionDescription: str = None) -> Selfie:
+    def update_selfie(self, ra: str, idSelfie: int, new_state: STATE = None, new_rejectionReasons: list[REJECTION_REASON] = None, new_rejectionDescription: str = None) -> Selfie:
         pass
        
     @abstractmethod    
