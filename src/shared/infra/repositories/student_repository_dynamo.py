@@ -53,9 +53,9 @@ class StudentRepositoryDynamo(IStudentRepository):
         if not update_item:
             raise NoItemsFound("ra")
 
-        self.dynamo.update_item(partition_key=self.partition_key_format(ra), sort_key=ra, update_dict=update_item)
+        new_student = self.dynamo.update_item(partition_key=self.partition_key_format(ra), sort_key=ra, update_dict=update_item)
 
-        return self.get_student(ra)
+        return StudentDynamoDTO.from_dynamo(new_student['Attributes']).to_entity()
 
     def delete_student(self, ra: str) -> Student:
         resp = self.dynamo.delete_item(partition_key=self.partition_key_format(ra), sort_key=ra)
