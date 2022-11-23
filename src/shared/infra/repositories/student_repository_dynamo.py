@@ -159,7 +159,21 @@ class StudentRepositoryDynamo(IStudentRepository):
                 return True
         return False
 
-    def get_all_students(self) -> List[Student]:
-        all_students = self.dynamo.scan_items(filter_expression=Attr('entity').eq('student'))
+    def get_all_students(self)-> List[Tuple[List[Selfie], Student]]:
+        all_items = self.dynamo.get_all_items()
+        res = {}
 
-        return [StudentDynamoDTO.from_dynamo(item).to_entity() for item in all_students['Items']]
+        if 'Items' not in all_items:
+            return ([], None)
+
+        for item in all_items['Items']:
+            if item['entity'] == 'student':
+                res[item['ra']] = ([], item)
+            elif item['entity'] == 'selfie':
+                ra = item['SK'].split('#')[1]
+                res[ra][0].append(item)
+            else:
+                raise Warning(f"Unknown entity type: {item['entity']}")
+
+
+        return [(list(map(lambda x: SelfieDynamoDTO.from_dynamo(x, student).to_entity(), selfies)), StudentDynamoDTO.from_dynamo(student).to_entity()) for selfies, student in res.values()]
