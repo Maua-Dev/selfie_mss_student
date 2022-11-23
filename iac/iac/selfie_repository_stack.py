@@ -3,7 +3,7 @@ from aws_cdk import (
     aws_stepfunctions,
     aws_stepfunctions_tasks,
     aws_events, aws_events_targets,
-    aws_cloudfront, aws_cloudfront_origins,
+    aws_cloudfront, aws_cloudfront_origins, RemovalPolicy
 )
 from constructs import Construct
 from aws_cdk.aws_apigateway import Resource, LambdaIntegration
@@ -26,7 +26,8 @@ class SelfieRepositoryStack(Construct):
                                                 allowed_origins=["*"],
                                                 allowed_headers=["*"],
                                                 max_age=3000
-                                            )]
+                                            )],
+                                       removal_policy=RemovalPolicy.DESTROY
                                        )
 
         oai = aws_cloudfront.OriginAccessIdentity(self, "Selfie_OAI")

@@ -1,6 +1,7 @@
+
 from aws_cdk import (
     aws_dynamodb as dynamodb,
-    NestedStack,
+    NestedStack, RemovalPolicy
 )
 from constructs import Construct
 from aws_cdk.aws_apigateway import Resource, LambdaIntegration
@@ -18,5 +19,6 @@ class DynamoStack(Construct):
                                                                             type=dynamodb.AttributeType.STRING),
                                            sort_key=dynamodb.Attribute(name=self.sort_key_name,
                                                                        type=dynamodb.AttributeType.STRING),
-                                           billing_mode=dynamodb.BillingMode.PAY_PER_REQUEST
+                                           billing_mode=dynamodb.BillingMode.PAY_PER_REQUEST,
+                                           removal_policy=RemovalPolicy.DESTROY
                                            )
