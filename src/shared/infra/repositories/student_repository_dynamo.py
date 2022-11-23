@@ -49,7 +49,7 @@ class StudentRepositoryDynamo(IStudentRepository):
         if new_email:
             update_item['email'] = new_email
         if not update_item:
-            raise NoItemsFound("ra")
+            raise NoItemsFound("Nothing to update. Please check if you are using the correct parameters (e.g. 'new_name' or 'new_email')")
 
         new_student = self.dynamo.update_item(partition_key=self.partition_key_format(ra), sort_key=ra,
                                               update_dict=update_item)
