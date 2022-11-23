@@ -10,11 +10,11 @@ from src.shared.helpers.errors.usecase_errors import NoItemsFound
 from src.shared.domain.entities.student import Student
 from src.shared.domain.repositories.student_repository_interface import IStudentRepository
 
-class StudentRepositoryMock(IStudentRepository):
 
+class StudentRepositoryMock(IStudentRepository):
     students: List[Student]
     selfies: List[Selfie]
-    
+
     def __init__(self):
         self.students = [
             Student(
@@ -70,33 +70,33 @@ class StudentRepositoryMock(IStudentRepository):
                         Label(
                             name="Person",
                             coords={
-                                        "Width": 0.9711952805519104,
-                                        "Height": 0.8659809827804565,
-                                        "Left": 0.012313545681536198,
-                                        "Top": 0.11108686774969101
-                                    },
+                                "Width": 0.9711952805519104,
+                                "Height": 0.8659809827804565,
+                                "Left": 0.012313545681536198,
+                                "Top": 0.11108686774969101
+                            },
                             confidence=98.54370880126953,
                             parents=[],
                         ),
                         Label(
                             name="Hat",
                             coords={
-                                        "Width": 0.9711952805519104,
-                                        "Height": 0.8659809827804565,
-                                        "Left": 0.012313545681536198,
-                                        "Top": 0.11108686774969101
-                                    },
+                                "Width": 0.9711952805519104,
+                                "Height": 0.8659809827804565,
+                                "Left": 0.012313545681536198,
+                                "Top": 0.11108686774969101
+                            },
                             confidence=98.54370880126953,
                             parents=[],
                         ),
                         Label(
                             name="Face",
                             coords={
-                                        "Width": 0.9711952805519104,
-                                        "Height": 0.8659809827804565,
-                                        "Left": 0.012313545681536198,
-                                        "Top": 0.11108686774969101
-                                    },
+                                "Width": 0.9711952805519104,
+                                "Height": 0.8659809827804565,
+                                "Left": 0.012313545681536198,
+                                "Top": 0.11108686774969101
+                            },
                             confidence=98.54370880126953,
                             parents=[],
                         ),
@@ -109,8 +109,8 @@ class StudentRepositoryMock(IStudentRepository):
                 dateCreated=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),
                 url="https://i.imgur.com/b9qFYmb.jpg",
                 state=STATE.APPROVED,
-                rejectionReasons = [REJECTION_REASON.NONE],
-                rejectionDescription = "",
+                rejectionReasons=[REJECTION_REASON.NONE],
+                rejectionDescription="",
                 automaticReview=AutomaticReview(
                     automaticallyRejected=False,
                     rejectionReasons=[REJECTION_REASON.NONE],
@@ -118,22 +118,22 @@ class StudentRepositoryMock(IStudentRepository):
                         Label(
                             name="Person",
                             coords={
-                                        "Width": 0.9711952805519104,
-                                        "Height": 0.8659809827804565,
-                                        "Left": 0.012313545681536198,
-                                        "Top": 0.11108686774969101
-                                    },
+                                "Width": 0.9711952805519104,
+                                "Height": 0.8659809827804565,
+                                "Left": 0.012313545681536198,
+                                "Top": 0.11108686774969101
+                            },
                             confidence=98.54370880126953,
                             parents=[],
                         ),
                         Label(
                             name="Face",
                             coords={
-                                        "Width": 0.9711952805519104,
-                                        "Height": 0.8659809827804565,
-                                        "Left": 0.012313545681536198,
-                                        "Top": 0.11108686774969101
-                                    },
+                                "Width": 0.9711952805519104,
+                                "Height": 0.8659809827804565,
+                                "Left": 0.012313545681536198,
+                                "Top": 0.11108686774969101
+                            },
                             confidence=98.54370880126953,
                             parents=[],
                         ),
@@ -146,8 +146,8 @@ class StudentRepositoryMock(IStudentRepository):
                 dateCreated=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),
                 url="https://i.imgur.com/dv7Q5VT.jpg",
                 state=STATE.PENDING_REVIEW,
-                rejectionReasons = [REJECTION_REASON.NONE],
-                rejectionDescription = "",
+                rejectionReasons=[REJECTION_REASON.NONE],
+                rejectionDescription="",
                 automaticReview=AutomaticReview(
                     automaticallyRejected=False,
                     rejectionReasons=[REJECTION_REASON.NONE],
@@ -155,22 +155,22 @@ class StudentRepositoryMock(IStudentRepository):
                         Label(
                             name="Person",
                             coords={
-                                        "Width": 0.9711952805519104,
-                                        "Height": 0.8659809827804565,
-                                        "Left": 0.012313545681536198,
-                                        "Top": 0.11108686774969101
-                                    },
+                                "Width": 0.9711952805519104,
+                                "Height": 0.8659809827804565,
+                                "Left": 0.012313545681536198,
+                                "Top": 0.11108686774969101
+                            },
                             confidence=98.54370880126953,
                             parents=[],
                         ),
                         Label(
                             name="Face",
                             coords={
-                                        "Width": 0.9711952805519104,
-                                        "Height": 0.8659809827804565,
-                                        "Left": 0.012313545681536198,
-                                        "Top": 0.11108686774969101
-                                    },
+                                "Width": 0.9711952805519104,
+                                "Height": 0.8659809827804565,
+                                "Left": 0.012313545681536198,
+                                "Top": 0.11108686774969101
+                            },
                             confidence=98.54370880126953,
                             parents=[],
                         ),
@@ -183,8 +183,8 @@ class StudentRepositoryMock(IStudentRepository):
                 dateCreated=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),
                 url="https://i.imgur.com/6a7qqRg.jpg",
                 state=STATE.APPROVED,
-                rejectionReasons = [REJECTION_REASON.NONE],
-                rejectionDescription = "",
+                rejectionReasons=[REJECTION_REASON.NONE],
+                rejectionDescription="",
                 automaticReview=AutomaticReview(
                     automaticallyRejected=False,
                     rejectionReasons=[REJECTION_REASON.NONE],
@@ -192,11 +192,11 @@ class StudentRepositoryMock(IStudentRepository):
                         Label(
                             name="Person",
                             coords={
-                                        "Width": 0.9711952805519104,
-                                        "Height": 0.8659809827804565,
-                                        "Left": 0.012313545681536198,
-                                        "Top": 0.11108686774969101
-                                    },
+                                "Width": 0.9711952805519104,
+                                "Height": 0.8659809827804565,
+                                "Left": 0.012313545681536198,
+                                "Top": 0.11108686774969101
+                            },
                             confidence=98.54370880126953,
                             parents=[],
                         ),
@@ -215,8 +215,8 @@ class StudentRepositoryMock(IStudentRepository):
                 dateCreated=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),
                 url="https://i.imgur.com/4ewA19S.png",
                 state=STATE.IN_REVIEW,
-                rejectionReasons = [REJECTION_REASON.NONE],
-                rejectionDescription = "",
+                rejectionReasons=[REJECTION_REASON.NONE],
+                rejectionDescription="",
                 automaticReview=AutomaticReview(
                     automaticallyRejected=False,
                     rejectionReasons=[REJECTION_REASON.NONE],
@@ -224,22 +224,22 @@ class StudentRepositoryMock(IStudentRepository):
                         Label(
                             name="Person",
                             coords={
-                                        "Width": 0.9711952805519104,
-                                        "Height": 0.8659809827804565,
-                                        "Left": 0.012313545681536198,
-                                        "Top": 0.11108686774969101
-                                    },
+                                "Width": 0.9711952805519104,
+                                "Height": 0.8659809827804565,
+                                "Left": 0.012313545681536198,
+                                "Top": 0.11108686774969101
+                            },
                             confidence=98.54370880126953,
                             parents=[],
                         ),
                         Label(
                             name="Face",
                             coords={
-                                        "Width": 0.9711952805519104,
-                                        "Height": 0.8659809827804565,
-                                        "Left": 0.012313545681536198,
-                                        "Top": 0.11108686774969101
-                                    },
+                                "Width": 0.9711952805519104,
+                                "Height": 0.8659809827804565,
+                                "Left": 0.012313545681536198,
+                                "Top": 0.11108686774969101
+                            },
                             confidence=99.12312312,
                             parents=[],
                         ),
@@ -252,8 +252,8 @@ class StudentRepositoryMock(IStudentRepository):
                 dateCreated=datetime.datetime(2022, 10, 1, 16, 1, 59, 149927),
                 url="https://i.imgur.com/4ewA19S.png",
                 state=STATE.DECLINED,
-                rejectionReasons = [REJECTION_REASON.COVERED_FACE],
-                rejectionDescription = "Usou chapéu de mexicano que cobriu a cara",
+                rejectionReasons=[REJECTION_REASON.COVERED_FACE],
+                rejectionDescription="Usou chapéu de mexicano que cobriu a cara",
                 automaticReview=AutomaticReview(
                     automaticallyRejected=True,
                     rejectionReasons=[REJECTION_REASON.COVERED_FACE],
@@ -261,33 +261,33 @@ class StudentRepositoryMock(IStudentRepository):
                         Label(
                             name="Portrait",
                             coords={
-                                        "Width": 0.9711952805519104,
-                                        "Height": 0.8659809827804565,
-                                        "Left": 0.012313545681536198,
-                                        "Top": 0.11108686774969101
-                                    },
+                                "Width": 0.9711952805519104,
+                                "Height": 0.8659809827804565,
+                                "Left": 0.012313545681536198,
+                                "Top": 0.11108686774969101
+                            },
                             confidence=100.00,
                             parents=["Face", "Head", "Person", "Photography"],
-                            ),
+                        ),
                         Label(
                             name="Hat",
                             coords={
-                                        "Width": 0.9711952805519104,
-                                        "Height": 0.8659809827804565,
-                                        "Left": 0.012313545681536198,
-                                        "Top": 0.11108686774969101
-                                    },
+                                "Width": 0.9711952805519104,
+                                "Height": 0.8659809827804565,
+                                "Left": 0.012313545681536198,
+                                "Top": 0.11108686774969101
+                            },
                             confidence=98.54370880126953,
                             parents=[],
                         ),
                         Label(
                             name="Human",
                             coords={
-                                        "Width": 0.9711952805519104,
-                                        "Height": 0.8659809827804565,
-                                        "Left": 0.012313545681536198,
-                                        "Top": 0.11108686774969101
-                                    },
+                                "Width": 0.9711952805519104,
+                                "Height": 0.8659809827804565,
+                                "Left": 0.012313545681536198,
+                                "Top": 0.11108686774969101
+                            },
                             confidence=98.54370880126953,
                             parents=[],
                         ),
@@ -300,8 +300,8 @@ class StudentRepositoryMock(IStudentRepository):
                 dateCreated=datetime.datetime(2022, 10, 2, 16, 1, 59, 149927),
                 url="https://i.imgur.com/4ewA19S.png",
                 state=STATE.DECLINED,
-                rejectionReasons = [REJECTION_REASON.NOT_ALLOWED_BACKGROUND],
-                rejectionDescription = "Tirou foto no meio da Rave, enquanto aparecia um brilho forte",
+                rejectionReasons=[REJECTION_REASON.NOT_ALLOWED_BACKGROUND],
+                rejectionDescription="Tirou foto no meio da Rave, enquanto aparecia um brilho forte",
                 automaticReview=AutomaticReview(
                     automaticallyRejected=True,
                     rejectionReasons=[REJECTION_REASON.NOT_ALLOWED_BACKGROUND],
@@ -309,33 +309,33 @@ class StudentRepositoryMock(IStudentRepository):
                         Label(
                             name="Building",
                             coords={
-                                        "Width": 0.9711952805519104,
-                                        "Height": 0.8659809827804565,
-                                        "Left": 0.012313545681536198,
-                                        "Top": 0.11108686774969101
-                                    },
+                                "Width": 0.9711952805519104,
+                                "Height": 0.8659809827804565,
+                                "Left": 0.012313545681536198,
+                                "Top": 0.11108686774969101
+                            },
                             confidence=98.13214,
                             parents=["Architecture"],
-                            ),
+                        ),
                         Label(
                             name="Face",
                             coords={
-                                        "Width": 0.9711952805519104,
-                                        "Height": 0.8659809827804565,
-                                        "Left": 0.012313545681536198,
-                                        "Top": 0.11108686774969101
-                                    },
+                                "Width": 0.9711952805519104,
+                                "Height": 0.8659809827804565,
+                                "Left": 0.012313545681536198,
+                                "Top": 0.11108686774969101
+                            },
                             confidence=98.54370880126953,
                             parents=[],
                         ),
                         Label(
                             name="Person",
                             coords={
-                                        "Width": 0.9711952805519104,
-                                        "Height": 0.8659809827804565,
-                                        "Left": 0.012313545681536198,
-                                        "Top": 0.11108686774969101
-                                    },
+                                "Width": 0.9711952805519104,
+                                "Height": 0.8659809827804565,
+                                "Left": 0.012313545681536198,
+                                "Top": 0.11108686774969101
+                            },
                             confidence=98.54370880126953,
                             parents=[],
                         ),
@@ -348,8 +348,8 @@ class StudentRepositoryMock(IStudentRepository):
                 dateCreated=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),
                 url="https://i.imgur.com/4ewA19S.png",
                 state=STATE.APPROVED,
-                rejectionReasons = [REJECTION_REASON.NONE],
-                rejectionDescription = "",
+                rejectionReasons=[REJECTION_REASON.NONE],
+                rejectionDescription="",
                 automaticReview=AutomaticReview(
                     automaticallyRejected=False,
                     rejectionReasons=[REJECTION_REASON.NONE],
@@ -357,29 +357,28 @@ class StudentRepositoryMock(IStudentRepository):
                         Label(
                             name="Face",
                             coords={
-                                        "Width": 0.9711952805519104,
-                                        "Height": 0.8659809827804565,
-                                        "Left": 0.012313545681536198,
-                                        "Top": 0.11108686774969101
-                                    },
+                                "Width": 0.9711952805519104,
+                                "Height": 0.8659809827804565,
+                                "Left": 0.012313545681536198,
+                                "Top": 0.11108686774969101
+                            },
                             confidence=98.54370880126953,
                             parents=[],
                         ),
                         Label(
                             name="Person",
                             coords={
-                                        "Width": 0.9711952805519104,
-                                        "Height": 0.8659809827804565,
-                                        "Left": 0.012313545681536198,
-                                        "Top": 0.11108686774969101
-                                    },
+                                "Width": 0.9711952805519104,
+                                "Height": 0.8659809827804565,
+                                "Left": 0.012313545681536198,
+                                "Top": 0.11108686774969101
+                            },
                             confidence=98.54370880126953,
                             parents=[],
                         ),
                     ]
                 )
-                
-                
+
             ),
             Selfie(
                 idSelfie=2,
@@ -387,62 +386,60 @@ class StudentRepositoryMock(IStudentRepository):
                 dateCreated=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),
                 url="https://i.imgur.com/4ewA19S.png",
                 state=STATE.APPROVED,
-                rejectionReasons = [REJECTION_REASON.NONE],
-                rejectionDescription = "",
+                rejectionReasons=[REJECTION_REASON.NONE],
+                rejectionDescription="",
                 automaticReview=AutomaticReview(
-                    automaticallyRejected= False,
-                    rejectionReasons= [REJECTION_REASON.NONE],
+                    automaticallyRejected=False,
+                    rejectionReasons=[REJECTION_REASON.NONE],
                     labels=[
                         Label(
                             name="Photography",
                             coords={},
                             confidence=100.00,
                             parents=[],
-                            ),
+                        ),
                         Label(
                             name="Portrait",
                             coords={
-                                        "Width": 0.9711952805519104,
-                                        "Height": 0.8659809827804565,
-                                        "Left": 0.012313545681536198,
-                                        "Top": 0.11108686774969101
-                                    },
+                                "Width": 0.9711952805519104,
+                                "Height": 0.8659809827804565,
+                                "Left": 0.012313545681536198,
+                                "Top": 0.11108686774969101
+                            },
                             confidence=100.00,
                             parents=["Face", "Head", "Person", "Photography"],
-                            ),
+                        ),
                         Label(
                             name="Head",
                             coords={},
                             confidence=100.00,
                             parents=["Person"],
-                            ),
+                        ),
                         Label(
                             name="Face",
                             coords={
-                                        "Width": 0.9711952805519104,
-                                        "Height": 0.8659809827804565,
-                                        "Left": 0.012313545681536198,
-                                        "Top": 0.11108686774969101
-                                    },
+                                "Width": 0.9711952805519104,
+                                "Height": 0.8659809827804565,
+                                "Left": 0.012313545681536198,
+                                "Top": 0.11108686774969101
+                            },
                             confidence=100.00,
                             parents=["Person", "Head"],
-                            ),
+                        ),
                         Label(
                             name="Person",
                             coords={
-                                        "Width": 0.9972279071807861,
-                                        "Height": 0.88490229845047,
-                                        "Left": 0.0026419830974191427,
-                                        "Top": 0.11343356966972351
-                                    },
+                                "Width": 0.9972279071807861,
+                                "Height": 0.88490229845047,
+                                "Left": 0.0026419830974191427,
+                                "Top": 0.11343356966972351
+                            },
                             confidence=99.62065124511719,
                             parents=[],
-                            )
+                        )
                     ]
-            ),
-                
-                
-                
+                ),
+
             ),
             Selfie(
                 idSelfie=0,
@@ -450,67 +447,65 @@ class StudentRepositoryMock(IStudentRepository):
                 dateCreated=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),
                 url="https://i.imgur.com/4ewA19S.png",
                 state=STATE.DECLINED,
-                rejectionReasons = [REJECTION_REASON.NOT_ALLOWED_BACKGROUND],
-                rejectionDescription = "O brilho dos olhos dela é senscaional",
+                rejectionReasons=[REJECTION_REASON.NOT_ALLOWED_BACKGROUND],
+                rejectionDescription="O brilho dos olhos dela é senscaional",
                 automaticReview=AutomaticReview(
-                    automaticallyRejected= False,
-                    rejectionReasons= [REJECTION_REASON.NONE],
+                    automaticallyRejected=False,
+                    rejectionReasons=[REJECTION_REASON.NONE],
                     labels=[
                         Label(
                             name="Photography",
                             coords={},
                             confidence=100.00,
                             parents=[],
-                            ),
+                        ),
                         Label(
                             name="Portrait",
                             coords={
-                                        "Width": 0.9711952805519104,
-                                        "Height": 0.8659809827804565,
-                                        "Left": 0.012313545681536198,
-                                        "Top": 0.11108686774969101
-                                    },
+                                "Width": 0.9711952805519104,
+                                "Height": 0.8659809827804565,
+                                "Left": 0.012313545681536198,
+                                "Top": 0.11108686774969101
+                            },
                             confidence=100.00,
                             parents=["Face", "Head", "Person", "Photography"],
-                            ),
+                        ),
                         Label(
                             name="Head",
                             coords={},
                             confidence=100.00,
                             parents=["Person"],
-                            ),
+                        ),
                         Label(
                             name="Face",
                             coords={
-                                        "Width": 0.9711952805519104,
-                                        "Height": 0.8659809827804565,
-                                        "Left": 0.012313545681536198,
-                                        "Top": 0.11108686774969101
-                                    },
+                                "Width": 0.9711952805519104,
+                                "Height": 0.8659809827804565,
+                                "Left": 0.012313545681536198,
+                                "Top": 0.11108686774969101
+                            },
                             confidence=100.00,
                             parents=["Person", "Head"],
-                            ),
+                        ),
                         Label(
                             name="Person",
                             coords={
-                                        "Width": 0.9972279071807861,
-                                        "Height": 0.88490229845047,
-                                        "Left": 0.0026419830974191427,
-                                        "Top": 0.11343356966972351
-                                    },
+                                "Width": 0.9972279071807861,
+                                "Height": 0.88490229845047,
+                                "Left": 0.0026419830974191427,
+                                "Top": 0.11343356966972351
+                            },
                             confidence=99.62065124511719,
                             parents=[],
-                            )
+                        )
                     ]
-               )
+                )
             )
         ]
 
-
-
     def get_student(self, ra: str) -> Student:
         for student in self.students:
-            if(student.ra == ra):
+            if (student.ra == ra):
                 return student
         return None
 
@@ -518,7 +513,7 @@ class StudentRepositoryMock(IStudentRepository):
         idxStudent = -1
 
         for idx, possible_student in enumerate(self.students):
-            if(possible_student.ra == ra):
+            if (possible_student.ra == ra):
                 student = possible_student
                 idxStudent = idx
                 break
@@ -538,7 +533,7 @@ class StudentRepositoryMock(IStudentRepository):
 
     def delete_student(self, ra: str) -> Student:
         for idx in range(len(self.students)):
-            if(self.students[idx].ra == ra):
+            if (self.students[idx].ra == ra):
                 student = self.students.pop(idx)
                 return student
         raise NoItemsFound("ra")
@@ -547,20 +542,20 @@ class StudentRepositoryMock(IStudentRepository):
         self.students.append(student)
 
         return student
-    
+
     def get_selfies_by_ra(self, ra) -> Tuple[List[Selfie], Student]:
-        
+
         student = self.get_student(ra=ra)
-        
-        if student ==  None:
+
+        if student == None:
             raise NoItemsFound("ra")
-   
+
         selfies = [selfie for selfie in self.selfies if selfie.student.ra == ra]
-        
-        selfies.sort(key=lambda x:x.dateCreated)
+
+        selfies.sort(key=lambda x: x.dateCreated)
 
         return selfies, student
-            
+
     def get_selfie(self, ra: str, idSelfie: int) -> Selfie:
         for selfie in self.selfies:
             if selfie.student.ra == ra and selfie.idSelfie == idSelfie:
@@ -573,50 +568,48 @@ class StudentRepositoryMock(IStudentRepository):
             if selfie.student.ra == ra and selfie.idSelfie == idSelfie:
                 return self.selfies.pop(idx), selfie.student
         return None, None
-    
+
     def create_selfie(self, selfie: Selfie) -> Selfie:
         self.selfies.append(selfie)
-        
+
         return selfie
-        
-    def update_selfie(self, ra: str, idSelfie: int, new_state: STATE = None, new_rejectionReasons: list[REJECTION_REASON] = None, new_rejectionDescription: str = None) -> Selfie:
+
+    def update_selfie(self, ra: str, idSelfie: int, new_state: STATE = None,
+                      new_rejectionReasons: list[REJECTION_REASON] = None,
+                      new_rejectionDescription: str = None) -> Selfie:
         idxSelfie = -1
         for idx in range(len(self.selfies)):
             if self.selfies[idx].student.ra == ra and self.selfies[idx].idSelfie == idSelfie:
-                    idxSelfie = idx
-                    
+                idxSelfie = idx
+
         if idxSelfie == -1:
             raise NoItemsFound("idSelfie")
-        
+
         if new_state != None:
             self.selfies[idxSelfie].state = new_state
-            
+
         if new_rejectionReasons != None:
             self.selfies[idxSelfie].rejectionReasons = new_rejectionReasons
-            
+
         if new_rejectionDescription != None:
             self.selfies[idxSelfie].rejectionDescription = new_rejectionDescription
-            
-        return self.selfies[idxSelfie]   
+
+        return self.selfies[idxSelfie]
 
     def get_all_selfies(self) -> List[Selfie]:
-        return self.selfies    
-    
+        return self.selfies
+
     def check_student_has_approved_selfie(self, ra: str) -> bool:
         selfies, student = self.get_selfies_by_ra(ra=ra)
         for selfie in selfies:
             if selfie.state == STATE.APPROVED:
                 return True
-            
-        return False 
-    
+
+        return False
+
     def get_all_students(self) -> List[Tuple[List[Selfie], Student]]:
         all_students = list()
         for student in self.students:
             all_students.append(self.get_selfies_by_ra(ra=student.ra))
-        
+
         return all_students
-            
-        
-                
-       

@@ -108,7 +108,8 @@ class DynamoDatasource:
                 },
                 UpdateExpression=update_expression,
                 ExpressionAttributeNames=expression_attribute_names,
-                ExpressionAttributeValues=expression_value_names
+                ExpressionAttributeValues=expression_value_names,
+                ReturnValues="ALL_NEW"
             )
             return resp
 
