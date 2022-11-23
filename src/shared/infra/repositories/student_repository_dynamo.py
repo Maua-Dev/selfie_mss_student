@@ -48,8 +48,6 @@ class StudentRepositoryDynamo(IStudentRepository):
             update_item['name'] = new_name
         if new_email:
             update_item['email'] = new_email
-        if ra:
-            update_item['ra'] = ra
         if not update_item:
             raise NoItemsFound("ra")
 
