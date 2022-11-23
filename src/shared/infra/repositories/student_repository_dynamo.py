@@ -53,7 +53,8 @@ class StudentRepositoryDynamo(IStudentRepository):
         if not update_item:
             raise NoItemsFound("ra")
 
-        new_student = self.dynamo.update_item(partition_key=self.partition_key_format(ra), sort_key=ra, update_dict=update_item)
+        new_student = self.dynamo.update_item(partition_key=self.partition_key_format(ra), sort_key=ra,
+                                              update_dict=update_item)
 
         return StudentDynamoDTO.from_dynamo(new_student['Attributes']).to_entity()
 
@@ -69,7 +70,7 @@ class StudentRepositoryDynamo(IStudentRepository):
     def create_student(self, student: Student) -> Student:
         student_dto = StudentDynamoDTO.from_entity(student)
         resp = self.dynamo.put_item(partition_key=self.partition_key_format(student.ra), sort_key=student.ra,
-                             item=student_dto.to_dynamo())
+                                    item=student_dto.to_dynamo())
 
         return student_dto.to_entity()
 
@@ -84,7 +85,8 @@ class StudentRepositoryDynamo(IStudentRepository):
 
         student_data = resp['Items'].pop(0)
         try:
-            student = StudentDynamoDTO.from_dynamo(student_data).to_entity() # the sort key choice makes the student to be the first element
+            student = StudentDynamoDTO.from_dynamo(
+                student_data).to_entity()  # the sort key choice makes the student to be the first element
         except Exception as err:
             raise Exception(f"Error while trying to get student data from dynamo: {err}")
 
@@ -92,8 +94,6 @@ class StudentRepositoryDynamo(IStudentRepository):
             selfies = [SelfieDynamoDTO.from_dynamo(item, student_data).to_entity() for item in resp['Items']]
         except Exception as err:
             raise Exception(f"Error while trying to get selfies data from dynamo: {err}")
-
-
 
         return selfies, student
 
@@ -108,12 +108,13 @@ class StudentRepositoryDynamo(IStudentRepository):
     def delete_selfie(self, ra: str, idSelfie: int) -> Tuple[Selfie, Student]:
 
         resp = self.dynamo.delete_item(partition_key=self.partition_key_format(ra),
-                                sort_key=self.selfie_sort_key_format(ra, idSelfie))
+                                       sort_key=self.selfie_sort_key_format(ra, idSelfie))
 
         if "Attributes" not in resp:
             raise NoItemsFound("ra|idSelfie")
 
-        selfie = SelfieDynamoDTO.from_dynamo(resp['Attributes'], StudentDynamoDTO.from_entity(self.get_student(ra)).to_dynamo()).to_entity()
+        selfie = SelfieDynamoDTO.from_dynamo(resp['Attributes'],
+                                             StudentDynamoDTO.from_entity(self.get_student(ra)).to_dynamo()).to_entity()
 
         return selfie, selfie.student
 
@@ -121,15 +122,31 @@ class StudentRepositoryDynamo(IStudentRepository):
         selfie_dto = SelfieDynamoDTO.from_entity(selfie)
         item = selfie_dto.to_dynamo()
         resp = self.dynamo.put_item(partition_key=self.partition_key_format(selfie.student.ra),
-                             sort_key=self.selfie_sort_key_format(selfie.student.ra, selfie.idSelfie), item=item,
-                             is_decimal=True)
+                                    sort_key=self.selfie_sort_key_format(selfie.student.ra, selfie.idSelfie), item=item,
+                                    is_decimal=True)
 
-        return selfie #todo fix that
-
+        return selfie  # todo fix that
 
     def update_selfie(self, ra: str, idSelfie: int, new_state: STATE = None,
-                      new_rejectionReasons: REJECTION_REASON = None, new_rejectionDescription: str = None) -> Selfie:
-        pass #todo implement and fix interface attributes (list[REJECTION_REASON])])
+                      new_rejectionReasons: list[REJECTION_REASON] = None,
+                      new_rejectionDescription: str = None) -> Selfie:
+        item_to_update = {}
+
+        if new_state:
+            item_to_update['state'] = new_state.value
+        if new_rejectionReasons:
+            item_to_update['rejectionReasons'] = [reason.value for reason in new_rejectionReasons]
+        if new_rejectionDescription:
+            item_to_update['rejectionDescription'] = new_rejectionDescription
+
+        if not item_to_update:
+            raise NoItemsFound("Nothing to update")
+
+        resp = self.dynamo.update_item(partition_key=self.partition_key_format(ra),
+                                       sort_key=self.selfie_sort_key_format(ra, idSelfie), update_dict=item_to_update)
+
+        return SelfieDynamoDTO.from_dynamo(resp['Attributes'],
+                                           StudentDynamoDTO.from_entity(self.get_student(ra)).to_dynamo()).to_entity()
 
     def get_all_selfies(self) -> List[Selfie]:
         all_items = self.dynamo.get_all_items()
@@ -146,11 +163,7 @@ class StudentRepositoryDynamo(IStudentRepository):
             else:
                 raise Exception(f"Unknown entity type: {item['entity']}")
 
-
-
         return selfies
-
-
 
     def check_student_has_approved_selfie(self, ra: str) -> bool:
         selfies, _ = self.get_selfies_by_ra(ra)
@@ -159,7 +172,7 @@ class StudentRepositoryDynamo(IStudentRepository):
                 return True
         return False
 
-    def get_all_students(self)-> List[Tuple[List[Selfie], Student]]:
+    def get_all_students(self) -> List[Tuple[List[Selfie], Student]]:
         all_items = self.dynamo.get_all_items()
         res = {}
 
@@ -175,5 +188,5 @@ class StudentRepositoryDynamo(IStudentRepository):
             else:
                 raise Warning(f"Unknown entity type: {item['entity']}")
 
-
-        return [(list(map(lambda x: SelfieDynamoDTO.from_dynamo(x, student).to_entity(), selfies)), StudentDynamoDTO.from_dynamo(student).to_entity()) for selfies, student in res.values()]
+        return [(list(map(lambda x: SelfieDynamoDTO.from_dynamo(x, student).to_entity(), selfies)),
+                 StudentDynamoDTO.from_dynamo(student).to_entity()) for selfies, student in res.values()]
