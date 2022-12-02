@@ -32,7 +32,7 @@ class Student(abc.ABC):
         if type(ra) != str:
             raise EntityParameterTypeError('ra must be a string')
 
-        return ra.isdecimal() and len(ra) == 8
+        return ra.isdecimal() and (len(ra) == 8 or len(ra) == 5)
 
     @staticmethod
     def validate_email(email) -> bool:
