@@ -723,4 +723,4 @@ class StudentRepositoryMock(IStudentRepository):
         for reviewer in self.reviewers:
             if (reviewer.ra == ra):
                 return reviewer
-        raise NoItemsFound("ra")
+        return None
