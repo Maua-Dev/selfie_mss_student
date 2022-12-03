@@ -1,5 +1,4 @@
 import datetime
-from re import A
 from typing import Dict, List, Tuple
 from src.shared.domain.entities.automatic_review import AutomaticReview
 from src.shared.domain.entities.label import Label
