@@ -1,5 +1,4 @@
 import datetime
-from re import A
 from typing import Dict, List, Tuple
 from src.shared.domain.entities.automatic_review import AutomaticReview
 from src.shared.domain.entities.label import Label
@@ -687,3 +686,28 @@ class StudentRepositoryMock(IStudentRepository):
         self.reviewers.append(reviewer)
 
         return reviewer
+    
+    def update_reviewer(self, ra: str, new_name: str = None, new_email: str = None, new_active: bool = None) -> Reviewer:
+        idxReviewer = -1
+
+        for idx, possible_reviewer in enumerate(self.reviewers):
+            if (possible_reviewer.ra == ra):
+                reviewer = possible_reviewer
+                idxReviewer = idx
+                break
+
+        if idxReviewer == -1:
+            raise NoItemsFound("ra")
+
+        if new_name != None:
+            reviewer.name = new_name
+
+        if new_email != None:
+            reviewer.email = new_email
+
+        if new_active != None:
+            reviewer.active = new_active
+
+        self.reviewers[idxReviewer] = reviewer
+
+        return self.reviewers[idxReviewer]
