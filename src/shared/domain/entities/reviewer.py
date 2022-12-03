@@ -58,3 +58,6 @@ class Reviewer(abc.ABC):
             return False
 
         return True
+        
+    def __repr__(self):
+        return f"Reviewer(ra={self.ra}, name={self.name}, email={self.email}, active={self.active})"
