@@ -6,7 +6,7 @@ import pytest
 from src.shared.domain.entities.automatic_review import AutomaticReview
 from src.shared.domain.entities.label import Label
 from src.shared.domain.entities.review import Review
-from src.shared.domain.entities.reviwer import Reviewer
+from src.shared.domain.entities.reviewer import Reviewer
 from src.shared.domain.entities.selfie import Selfie
 from src.shared.domain.entities.student import Student
 from src.shared.domain.enums.rejection_reason_enum import REJECTION_REASON
@@ -67,7 +67,7 @@ class Test_Review():
 
   def test_review(self):
     review = Review(
-      reviewId=1,
+      idReview=1,
       state=REVIEW_STATE.PENDING_VALIDATION,
       reviewer=Reviewer(ra="03026", name="Mauro Crapino",
                           email="mauro@maua.br", active=True),
@@ -117,7 +117,7 @@ class Test_Review():
     )
 
     assert type(review) == Review
-    assert review.reviewId == 1 
+    assert review.idReview == 1 
     assert review.state == REVIEW_STATE.PENDING_VALIDATION
     assert review.reviewer.ra == "03026"
     assert review.reviewer.name == "Mauro Crapino"
@@ -140,7 +140,7 @@ class Test_Review():
   def test_review_with_no_reviewer(self):
     with pytest.raises(EntityError):
       review = Review(
-        reviewId=1,
+        idReview=1,
         state=REVIEW_STATE.PENDING_VALIDATION,
         reviewer=None,
         selfie=self.SELFIE,
@@ -151,7 +151,7 @@ class Test_Review():
   def test_review_with_no_selfie(self):
     with pytest.raises(EntityError):
       review = Review(
-        reviewId=1,
+        idReview=1,
         state=REVIEW_STATE.PENDING_VALIDATION,
         reviewer=self.REVIEWER,
         selfie=None,
@@ -162,7 +162,7 @@ class Test_Review():
   def test_review_with_no_date_assigned(self):
     with pytest.raises(EntityError):
       review = Review(
-        reviewId=1,
+        idReview=1,
         state=REVIEW_STATE.PENDING_VALIDATION,
         reviewer=self.REVIEWER,
         selfie=self.SELFIE,
@@ -173,7 +173,7 @@ class Test_Review():
   def test_review_with_no_date_reviewed(self):
     with pytest.raises(EntityError):
       review = Review(
-        reviewId=1,
+        idReview=1,
         state=REVIEW_STATE.PENDING_VALIDATION,
         reviewer=self.REVIEWER,
         selfie=self.SELFIE,
@@ -184,7 +184,7 @@ class Test_Review():
   def test_review_with_no_review_id(self):
     with pytest.raises(EntityError):
       review = Review(
-        reviewId=None,
+        idReview=None,
         state=REVIEW_STATE.PENDING_VALIDATION,
         reviewer=self.REVIEWER,
         selfie=self.SELFIE,
@@ -195,7 +195,7 @@ class Test_Review():
   def test_review_with_no_state(self):
     with pytest.raises(EntityError):
       review = Review(
-        reviewId=1,
+        idReview=1,
         state=None,
         reviewer=self.REVIEWER,
         selfie=self.SELFIE,
@@ -206,7 +206,7 @@ class Test_Review():
   def test_review_with_invalid_state(self):
     with pytest.raises(EntityError):
       review = Review(
-        reviewId=1,
+        idReview=1,
         state="INVALID_STATE",
         reviewer=self.REVIEWER,
         selfie=self.SELFIE,
@@ -217,7 +217,7 @@ class Test_Review():
   def test_review_with_invalid_date_assigned(self):
     with pytest.raises(EntityError):
       review = Review(
-        reviewId=1,
+        idReview=1,
         state=REVIEW_STATE.PENDING_VALIDATION,
         reviewer=self.REVIEWER,
         selfie=self.SELFIE,
@@ -228,7 +228,7 @@ class Test_Review():
   def test_review_with_invalid_date_reviewed(self):
     with pytest.raises(EntityError):
       review = Review(
-        reviewId=1,
+        idReview=1,
         state=REVIEW_STATE.PENDING_VALIDATION,
         reviewer=self.REVIEWER,
         selfie=self.SELFIE,
@@ -239,7 +239,7 @@ class Test_Review():
   def test_review_with_invalid_review_id(self):
     with pytest.raises(EntityError):
       review = Review(
-        reviewId="INVALID_ID",
+        idReview="INVALID_ID",
         state=REVIEW_STATE.PENDING_VALIDATION,
         reviewer=self.REVIEWER,
         selfie=self.SELFIE,
@@ -250,7 +250,7 @@ class Test_Review():
   def test_review_with_invalid_reviewer(self):
     with pytest.raises(EntityError):
       review = Review(
-        reviewId=1,
+        idReview=1,
         state=REVIEW_STATE.PENDING_VALIDATION,
         reviewer="INVALID_REVIEWER",
         selfie=self.SELFIE,
@@ -261,7 +261,7 @@ class Test_Review():
   def test_review_with_invalid_selfie(self):
     with pytest.raises(EntityError):
       review = Review(
-        reviewId=1,
+        idReview=1,
         state=REVIEW_STATE.PENDING_VALIDATION,
         reviewer=self.REVIEWER,
         selfie="INVALID_SELFIE",
@@ -272,7 +272,7 @@ class Test_Review():
   def test_review_with_invalid_date_assigned(self):
     with pytest.raises(EntityError):
       review = Review(
-        reviewId=1,
+        idReview=1,
         state=REVIEW_STATE.PENDING_VALIDATION,
         reviewer=self.REVIEWER,
         selfie=self.SELFIE,
@@ -283,7 +283,7 @@ class Test_Review():
   def test_review_with_invalid_date_reviewed(self):
     with pytest.raises(EntityError):
       review = Review(
-        reviewId=1,
+        idReview=1,
         state=REVIEW_STATE.PENDING_VALIDATION,
         reviewer=self.REVIEWER,
         selfie=self.SELFIE,

@@ -1,5 +1,5 @@
 import pytest
-from src.shared.domain.entities.reviwer import Reviewer
+from src.shared.domain.entities.reviewer import Reviewer
 from src.shared.helpers.errors.domain_errors import EntityError, EntityParameterTypeError
 
 

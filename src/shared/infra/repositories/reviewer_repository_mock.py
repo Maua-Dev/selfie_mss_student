@@ -4,7 +4,7 @@ import datetime
 from src.shared.domain.entities.automatic_review import AutomaticReview
 from src.shared.domain.entities.label import Label
 from src.shared.domain.entities.review import Review
-from src.shared.domain.entities.reviwer import Reviewer
+from src.shared.domain.entities.reviewer import Reviewer
 from src.shared.domain.entities.selfie import Selfie
 from src.shared.domain.entities.student import Student
 from src.shared.domain.enums.rejection_reason_enum import REJECTION_REASON
@@ -522,7 +522,7 @@ class ReviwerRepositoryMock(IReviewerRepository):
 
         self.reviews = [
           Review(
-                reviewId = 0,
+                idReview = 0,
                 state=REVIEW_STATE.APPROVED,
                 reviewer=self.reviewers[0],
                 selfie=self.selfies[1],
@@ -530,7 +530,7 @@ class ReviwerRepositoryMock(IReviewerRepository):
                 dateReviewed=datetime.datetime(2022, 12, 2, 16, 5, 59, 149927)
               ),
           Review(
-                reviewId = 0,
+                idReview = 0,
                 state=REVIEW_STATE.APPROVED,
                 reviewer=self.reviewers[1],
                 selfie=self.selfies[2],
@@ -538,7 +538,7 @@ class ReviwerRepositoryMock(IReviewerRepository):
                 dateReviewed=datetime.datetime(2022, 12, 2, 16, 5, 59, 149927)
               ),
           Review(
-                reviewId = 0,
+                idReview = 0,
                 state=REVIEW_STATE.APPROVED,
                 reviewer=self.reviewers[2],
                 selfie=self.selfies[4],
@@ -546,7 +546,7 @@ class ReviwerRepositoryMock(IReviewerRepository):
                 dateReviewed=datetime.datetime(2022, 12, 2, 16, 5, 59, 149927)
               ),
           Review(
-                reviewId = 0,
+                idReview = 0,
                 state=REVIEW_STATE.PENDING_VALIDATION,
                 reviewer=self.reviewers[3],
                 selfie=self.selfies[5],
@@ -554,7 +554,7 @@ class ReviwerRepositoryMock(IReviewerRepository):
                 dateReviewed=datetime.datetime(2022, 12, 2, 16, 5, 59, 149927)
               ),
           Review(
-                reviewId = 1,
+                idReview = 1,
                 state=REVIEW_STATE.DECLINED,
                 reviewer=self.reviewers[3],
                 selfie=self.selfies[7],
@@ -562,7 +562,7 @@ class ReviwerRepositoryMock(IReviewerRepository):
                 dateReviewed=datetime.datetime(2022, 12, 2, 16, 5, 59, 149927)
               ),
           Review(
-                reviewId=2,
+                idReview=2,
                 state=REVIEW_STATE.APPROVED,
                 reviewer=self.reviewers[3],
                 selfie=self.selfies[8],
