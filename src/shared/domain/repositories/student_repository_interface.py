@@ -70,3 +70,7 @@ class IStudentRepository(ABC):
     @abstractmethod
     def update_reviewer(self, ra: str, new_name: str = None, new_email: str = None, new_active: bool = None) -> Reviewer:
         pass
+
+    @abstractmethod
+    def delete(self, ra: str) -> Reviewer:
+        pass

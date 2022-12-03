@@ -711,3 +711,10 @@ class StudentRepositoryMock(IStudentRepository):
         self.reviewers[idxReviewer] = reviewer
 
         return self.reviewers[idxReviewer]
+
+    def delete_reviewer(self, ra: str) -> Reviewer:
+        for idx in range(len(self.reviewers)):
+            if (self.reviewers[idx].ra == ra):
+                reviewer = self.reviewers.pop(idx)
+                return reviewer
+        raise NoItemsFound("ra")
