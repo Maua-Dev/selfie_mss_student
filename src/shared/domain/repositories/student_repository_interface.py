@@ -72,7 +72,7 @@ class IStudentRepository(ABC):
         pass
 
     @abstractmethod
-    def delete(self, ra: str) -> Reviewer:
+    def delete_reviewer(self, ra: str) -> Reviewer:
         pass
 
     @abstractmethod
