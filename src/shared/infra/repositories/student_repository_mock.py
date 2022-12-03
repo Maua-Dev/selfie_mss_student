@@ -681,8 +681,7 @@ class StudentRepositoryMock(IStudentRepository):
 
         return all_students
 
-    def create_reviewer(self, ra: str, name: str, email: str, active: bool) -> Reviewer:
-        reviewer = Reviewer(ra=ra, name=name, email=email, active=active)
+    def create_reviewer(self, reviewer: Reviewer) -> Reviewer:
         self.reviewers.append(reviewer)
 
         return reviewer
