@@ -20,6 +20,6 @@ class GetReviewerUsecase:
       reviewer = self.repo.get_reviewer(ra=ra)
 
       if reviewer == None:
-          raise NoItemsFound("ra")
+          raise NoItemsFound("Reviewer")
 
       return reviewer
