@@ -718,3 +718,9 @@ class StudentRepositoryMock(IStudentRepository):
                 reviewer = self.reviewers.pop(idx)
                 return reviewer
         raise NoItemsFound("ra")
+
+    def get_reviewer(self, ra: str) -> Reviewer:
+        for reviewer in self.reviewers:
+            if (reviewer.ra == ra):
+                return reviewer
+        raise NoItemsFound("ra")
