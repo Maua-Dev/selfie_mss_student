@@ -3,7 +3,10 @@ from re import A
 from typing import Dict, List, Tuple
 from src.shared.domain.entities.automatic_review import AutomaticReview
 from src.shared.domain.entities.label import Label
+from src.shared.domain.entities.review import Review
+from src.shared.domain.entities.reviewer import Reviewer
 from src.shared.domain.entities.selfie import Selfie
+from src.shared.domain.enums.review_state_enum import REVIEW_STATE
 from src.shared.domain.enums.state_enum import STATE
 from src.shared.domain.enums.rejection_reason_enum import REJECTION_REASON
 from src.shared.helpers.errors.usecase_errors import NoItemsFound
@@ -14,6 +17,8 @@ from src.shared.domain.repositories.student_repository_interface import IStudent
 class StudentRepositoryMock(IStudentRepository):
     students: List[Student]
     selfies: List[Selfie]
+    reviewers: List[Reviewer]
+    reviews: List[Review]
 
     def __init__(self):
         self.students = [
@@ -347,7 +352,7 @@ class StudentRepositoryMock(IStudentRepository):
                 student=self.students[5],
                 dateCreated=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),
                 url="https://i.imgur.com/4ewA19S.png",
-                state=STATE.APPROVED,
+                state=STATE.DECLINED,
                 rejectionReasons=[REJECTION_REASON.NONE],
                 rejectionDescription="",
                 automaticReview=AutomaticReview(
@@ -381,7 +386,7 @@ class StudentRepositoryMock(IStudentRepository):
 
             ),
             Selfie(
-                idSelfie=2,
+                idSelfie=3,
                 student=self.students[5],
                 dateCreated=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),
                 url="https://i.imgur.com/4ewA19S.png",
@@ -503,6 +508,69 @@ class StudentRepositoryMock(IStudentRepository):
             )
         ]
 
+        self.reviewers = [
+            Reviewer(ra="03026", name="Mauro Crapino",
+                          email="mauro@maua.br", active=True),
+            Reviewer(ra="04359", name="JOSE FERNANDO XAVIER GONCALES",
+                          email="fernando.goncales@maua.br", active=True),
+            Reviewer(ra="04712", name="Luiz Miguel Rocha Seixeiro",
+                          email="luiz.seixeiro@maua.br", active=True),
+            Reviewer(ra="04618", name="Bruno Cambui Marques",
+                          email="bruno.marques@maua.br", active=True)
+        ]
+
+        self.reviews = [
+          Review(
+                idReview = 0,
+                state=REVIEW_STATE.APPROVED,
+                reviewer=self.reviewers[0],
+                selfie=self.selfies[1],
+                dateAssigned=datetime.datetime(2022, 12, 1, 16, 1, 59, 149927),
+                dateReviewed=datetime.datetime(2022, 12, 2, 16, 5, 59, 149927)
+              ),
+          Review(
+                idReview = 0,
+                state=REVIEW_STATE.APPROVED,
+                reviewer=self.reviewers[1],
+                selfie=self.selfies[2],
+                dateAssigned=datetime.datetime(2022, 11, 30, 16, 1, 59, 149927),
+                dateReviewed=datetime.datetime(2022, 12, 2, 16, 5, 59, 149927)
+              ),
+          Review(
+                idReview = 0,
+                state=REVIEW_STATE.APPROVED,
+                reviewer=self.reviewers[2],
+                selfie=self.selfies[4],
+                dateAssigned=datetime.datetime(2022, 11, 9, 16, 1, 59, 149927),
+                dateReviewed=datetime.datetime(2022, 12, 2, 16, 5, 59, 149927)
+              ),
+          Review(
+                idReview = 0,
+                state=REVIEW_STATE.PENDING_VALIDATION,
+                reviewer=self.reviewers[3],
+                selfie=self.selfies[5],
+                dateAssigned=datetime.datetime(2022, 11, 28, 16, 1, 59, 149927),
+                dateReviewed=datetime.datetime(2022, 12, 2, 16, 5, 59, 149927)
+              ),
+          Review(
+                idReview = 1,
+                state=REVIEW_STATE.DECLINED,
+                reviewer=self.reviewers[3],
+                selfie=self.selfies[7],
+                dateAssigned=datetime.datetime(2022, 11, 1, 16, 1, 59, 149927),
+                dateReviewed=datetime.datetime(2022, 12, 2, 16, 5, 59, 149927)
+              ),
+          Review(
+                idReview=2,
+                state=REVIEW_STATE.APPROVED,
+                reviewer=self.reviewers[3],
+                selfie=self.selfies[8],
+                dateAssigned=datetime.datetime(2022, 11, 2, 16, 1, 59, 149927),
+                dateReviewed=datetime.datetime(2022, 12, 2, 16, 5, 59, 149927)
+              )
+        ]
+
+        
     def get_student(self, ra: str) -> Student:
         for student in self.students:
             if (student.ra == ra):
