@@ -687,3 +687,8 @@ class StudentRepositoryMock(IStudentRepository):
                 return review
             
         return None
+    
+    def create_review(self, review: Review) -> Review:
+        self.reviews.append(review)
+        
+        return review

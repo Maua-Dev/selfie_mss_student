@@ -67,4 +67,7 @@ class IStudentRepository(ABC):
     def get_review(self, reviewerRa: str, idReview: str) -> Review:
         pass
 
+    @abstractmethod    
+    def create_review(self, review: Review) -> Review:
+        pass
     
