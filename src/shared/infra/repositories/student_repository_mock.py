@@ -680,3 +680,10 @@ class StudentRepositoryMock(IStudentRepository):
             all_students.append(self.get_selfies_by_ra(ra=student.ra))
 
         return all_students
+    
+    def get_review(self, reviewerRa: str, idReview: str) -> Review:
+        for review in self.reviews:
+            if review.idReview == idReview and review.reviewer.ra == reviewerRa:
+                return review
+            
+        return None

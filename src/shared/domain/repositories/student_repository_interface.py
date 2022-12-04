@@ -2,6 +2,7 @@ from abc import ABC, abstractmethod
 from typing import Dict, List, Tuple
 from src.shared.domain.entities.student import Student
 from src.shared.domain.entities.selfie import Selfie
+from src.shared.domain.entities.review import Review
 from src.shared.domain.enums.rejection_reason_enum import REJECTION_REASON
 from src.shared.domain.enums.state_enum import STATE
 
@@ -61,3 +62,9 @@ class IStudentRepository(ABC):
     @abstractmethod    
     def get_all_students(self) -> List[Tuple[List[Selfie], Student]]:
         pass
+    
+    @abstractmethod    
+    def get_review(self, reviewerRa: str, idReview: str) -> Review:
+        pass
+
+    
