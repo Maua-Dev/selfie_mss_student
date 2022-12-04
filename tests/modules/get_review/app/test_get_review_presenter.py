@@ -21,7 +21,7 @@ class Test_GetReviewPresenter:
           },
           "queryStringParameters": {
             "reviewerRa": repo.reviews[0].reviewer.ra,
-            "idReview": str(repo.reviews[0].idReview),
+            "fullIdReview": f"{repo.reviews[0].selfie.student.ra}-{repo.reviews[0].selfie.idSelfie}-{repo.reviews[0].idReview}",
             "parameter2": "value"
           },
           "requestContext": {
@@ -123,7 +123,7 @@ class Test_GetReviewPresenter:
         response = lambda_handler(event, None)
         
         assert response["statusCode"] == 400
-        assert json.loads(response["body"]) == "Field idReview is missing"
+        assert json.loads(response["body"]) == "Field fullIdReview is missing"
         
     def test_get_review_presenter_not_found(self):
         repo = StudentRepositoryMock()
@@ -141,8 +141,8 @@ class Test_GetReviewPresenter:
             "header2": "value1,value2"
           },
           "queryStringParameters": {
-            "reviewerRa": repo.reviews[0].reviewer.ra,
-            "idReview": "21",
+            "reviewerRa": "12345",
+            "fullIdReview": f"{repo.reviews[0].selfie.student.ra}-{repo.reviews[0].selfie.idSelfie}-{repo.reviews[0].idReview}",
             "parameter2": "value"
           },
           "requestContext": {
@@ -184,7 +184,7 @@ class Test_GetReviewPresenter:
         response = lambda_handler(event, None)
         
         assert response["statusCode"] == 404
-        assert json.loads(response["body"]) == "No items found for reviewerRa or idReview"
+        assert json.loads(response["body"]) == "No items found for reviewerRa, idReview, idSelfie or studentRa"
         
         
         

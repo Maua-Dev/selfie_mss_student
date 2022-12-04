@@ -9,7 +9,9 @@ class Test_StudentRepositoryMock:
         repo = StudentRepositoryMock()
         assert repo.get_review(
             reviewerRa=repo.reviews[0].reviewer.ra,
-            idReview=repo.reviews[0].idReview
+            idReview=repo.reviews[0].idReview,
+            idSelfie=repo.reviews[0].selfie.idSelfie,
+            studentRa=repo.reviews[0].selfie.student.ra
         ) == repo.reviews[0]
         
     def test_create_review(self):
@@ -26,3 +28,5 @@ class Test_StudentRepositoryMock:
                 dateReviewed=datetime.datetime(2022, 12, 2, 16, 5, 59, 149927)
               )) == repo.reviews[-1]
         assert lenBefore + 1 == len(repo.reviews)
+        
+    

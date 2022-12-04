@@ -13,21 +13,27 @@ class GetReviewController:
         try:
             if request.query_params.get("reviewerRa") == None:
                 raise MissingParameters("reviewerRa")
-            if request.query_params.get("idReview") == None:
-                raise MissingParameters("idReview")
+            if request.query_params.get("fullIdReview") == None:
+                raise MissingParameters("fullIdReview")
         
-            if type(request.query_params.get("idReview")) != str:
-                raise WrongTypeParameter(
-                    fieldName="idReview",
-                    fieldTypeExpected="str",
-                    fieldTypeReceived=request.query_params.get('idReview').__class__.__name__
-                )
-            if not request.query_params.get("idReview").isdecimal():
+            if request.query_params.get("fullIdReview").count("-") != 2 or request.query_params.get("fullIdReview")[8] != '-':
+                raise EntityError("fullIdReview")
+            
+            fullIdReviewParams = request.query_params.get("fullIdReview").split('-') #studentRa-idSelfie-idReview
+            
+            if not fullIdReviewParams[1].isdecimal():
+                raise EntityError("idSelfie")
+            
+            if not fullIdReviewParams[2].isdecimal():
                 raise EntityError("idReview")
+                
+                
             
             review = self.getReviewUsecase(
                 reviewerRa=request.query_params.get("reviewerRa"),
-                idReview=int(request.query_params.get("idReview"))
+                studentRa=fullIdReviewParams[0],
+                idSelfie=int(fullIdReviewParams[1]),
+                idReview=int(fullIdReviewParams[2])
             )
             viewmodel = GetReviewViewModel(review=review)
             return OK(viewmodel.to_dict())

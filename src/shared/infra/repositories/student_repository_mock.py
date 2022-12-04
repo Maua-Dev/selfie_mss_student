@@ -681,14 +681,23 @@ class StudentRepositoryMock(IStudentRepository):
 
         return all_students
     
-    def get_review(self, reviewerRa: str, idReview: str) -> Review:
+    def get_review(self, reviewerRa: str, idReview: int, idSelfie:int, studentRa:str) -> Review:
         for review in self.reviews:
-            if review.idReview == idReview and review.reviewer.ra == reviewerRa:
+            if review.idReview == idReview and review.reviewer.ra == reviewerRa and idSelfie == review.selfie.idSelfie and review.selfie.student.ra == studentRa:
                 return review
             
         return None
     
     def create_review(self, review: Review) -> Review:
         self.reviews.append(review)
+        
+        return review
+    
+    def update_review(self, idReview: int, reviewerRa: str, new_state: REVIEW_STATE = None, new_rejectionReasons: List[REJECTION_REASON] = None, new_rejectionDescription: str = None):
+        
+        review = self.get_review(reviewerRa=reviewerRa, idReview=idReview)
+        if new_state != None:
+            review.state = new_state
+        review.selfie = self.update_selfie(ra=review.selfie.student.ra, idSelfie=review.selfie.idSelfie, new_state={"APPROVED":STATE.APPROVED, "DECLINED":STATE.DECLINED}.get(new_state.value), new_rejectionDescription=new_rejectionDescription, new_rejectionReasons=new_rejectionReasons)
         
         return review

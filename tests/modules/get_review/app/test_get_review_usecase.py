@@ -10,20 +10,36 @@ class Test_GetReviewUsecase:
         usecase = GetReviewUsecase(repo=repo)
         
         review = usecase(
-            reviewerRa="03026",
-            idReview=0
+            reviewerRa=repo.reviews[0].reviewer.ra,
+            idReview=repo.reviews[0].idReview,
+            idSelfie=repo.reviews[0].selfie.idSelfie,
+            studentRa=repo.reviews[0].selfie.student.ra
             )
         
         assert review == repo.reviews[0]
     
-    def test_get_review_invalid_ra(self):
+    def test_get_review_invalid_reviewerRa(self):
         repo = StudentRepositoryMock()
         usecase = GetReviewUsecase(repo=repo)
         
         with pytest.raises(EntityError):
             review = usecase(
                 reviewerRa=30262,
-                idReview=0
+                idReview=0,
+                idSelfie=repo.reviews[0].selfie.idSelfie,
+                studentRa=repo.reviews[0].selfie.student.ra
+            )
+            
+    def test_get_review_invalid_studentRa(self):
+        repo = StudentRepositoryMock()
+        usecase = GetReviewUsecase(repo=repo)
+        
+        with pytest.raises(EntityError):
+            review = usecase(
+                reviewerRa="30262",
+                idReview=0,
+                idSelfie=repo.reviews[0].selfie.idSelfie,
+                studentRa=int(repo.reviews[0].selfie.student.ra)
             )
             
     def test_get_review_no_items_found(self):
@@ -33,5 +49,7 @@ class Test_GetReviewUsecase:
         with pytest.raises(NoItemsFound):
             review = usecase(
                 reviewerRa="30262",
-                idReview=0
+                idReview=repo.reviews[0].idReview,
+                idSelfie=repo.reviews[0].selfie.idSelfie,
+                studentRa=repo.reviews[0].selfie.student.ra
             )
