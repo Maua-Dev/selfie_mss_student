@@ -140,7 +140,8 @@ class GetReviewViewModel:
             "reviewer": self.reviewer.to_dict(),
             "selfie": self.selfie.to_dict(),
             "dateAssigned": self.dateAssigned,
-            "dateReviewed": self.dateReviewed
+            "dateReviewed": self.dateReviewed,
+            "message": "the review was retriven"
         }
         
         
