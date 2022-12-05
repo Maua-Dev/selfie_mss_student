@@ -723,3 +723,15 @@ class StudentRepositoryMock(IStudentRepository):
             if (reviewer.ra == ra):
                 return reviewer
         return None
+
+    def get_reject_selfies_by_reviewer(self, reviewer_ra: str) -> List[Selfie]:
+        selfies = list()
+        reviewer = self.get_reviewer(reviewer_ra)
+        if reviewer == None:
+            raise NoItemsFound("reviewer_ra")
+        
+        for review in self.reviews:
+            if review.reviewer.ra == reviewer_ra and review.state == REVIEW_STATE.REJECTED:
+                selfies.append(review.selfie)
+
+        return selfies  
