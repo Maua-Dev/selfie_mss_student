@@ -724,7 +724,7 @@ class StudentRepositoryMock(IStudentRepository):
                 return reviewer
         return None
 
-    def get_reject_selfies_by_reviewer(self, reviewer_ra: str) -> List[Selfie]:
+    def get_rejected_selfies_by_reviewer(self, reviewer_ra: str) -> List[Selfie]:
         selfies = list()
         reviewer = self.get_reviewer(reviewer_ra)
         if reviewer == None:
