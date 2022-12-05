@@ -1,10 +1,8 @@
-
-
 import pytest
 from src.modules.get_reviewer.app.get_reviewer_usecase import GetReviewerUsecase
 from src.shared.helpers.errors.usecase_errors import NoItemsFound
 from src.shared.infra.repositories.student_repository_mock import StudentRepositoryMock
-
+from src.shared.helpers.errors.domain_errors import EntityError
 
 class Test_get_reviewer_usecase:
     def test_get_reviewer(self):
@@ -25,5 +23,14 @@ class Test_get_reviewer_usecase:
         with pytest.raises(NoItemsFound):
           usecase(
             ra="77777",
+          )
+    def test_get_reviewer_ra_invalid(self):
+        repo = StudentRepositoryMock()
+        usecase = GetReviewerUsecase(repo=repo)
+
+
+        with pytest.raises(EntityError):
+          usecase(
+            ra=77777,
           )
         
