@@ -732,7 +732,7 @@ class StudentRepositoryMock(IStudentRepository):
                 return reviewer
         return None
 
-    def get_rejected_selfies_by_reviewer(self, reviewerRa: str) -> List[Selfie]:
+    def get_rejected_selfies_by_reviewer(self, reviewerRa: str) -> Tuple[Reviewer, List[Selfie]]:
         selfies = list()
         reviewer = self.get_reviewer(reviewerRa)
         if reviewer == None:
@@ -742,4 +742,4 @@ class StudentRepositoryMock(IStudentRepository):
             if review.reviewer.ra == reviewerRa and review.state == REVIEW_STATE.DECLINED:
                 selfies.append(review.selfie)
 
-        return selfies  
+        return reviewer, selfies  

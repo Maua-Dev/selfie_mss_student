@@ -12,28 +12,30 @@ class Test_GetRejectedSelfiesByReviewerUseCase():
         repo = StudentRepositoryMock()
         usecase = GetRejectedSelfiesByReviewerUsecase(repo=repo)
          
-        selfies = usecase(
+        reviewer, selfies = usecase(
             reviewerRa="04618"
          )
          
         assert selfies == [repo.selfies[7], repo.selfies[9]]
+        assert reviewer == repo.reviewers[3]
           
     def test_get_rejected_selfies_by_reviewer_empty_list(self):
         repo = StudentRepositoryMock()
         usecase = GetRejectedSelfiesByReviewerUsecase(repo=repo)
          
-        selfies = usecase(
+        reviewer, selfies = usecase(
             reviewerRa="04359"
          )
          
         assert selfies == []
+        assert reviewer == repo.reviewers[1]
           
     def test_get_rejected_selfies_by_reviewerRa_not_found(self):
         repo = StudentRepositoryMock()
         usecase = GetRejectedSelfiesByReviewerUsecase(repo=repo)
 
         with pytest.raises(NoItemsFound): 
-          selfies = usecase(
+          reviewer, selfies = usecase(
               reviewerRa="77777"
           )
          
@@ -43,7 +45,7 @@ class Test_GetRejectedSelfiesByReviewerUseCase():
         usecase = GetRejectedSelfiesByReviewerUsecase(repo=repo)
 
         with pytest.raises(EntityError): 
-          selfies = usecase(
+          reviewer, selfies = usecase(
               reviewerRa="1234"
           )
          
