@@ -709,4 +709,46 @@ class StudentRepositoryMock(IStudentRepository):
             if review.idReview == idReview and review.reviewer.ra == reviewerRa and idSelfie == review.selfie.idSelfie and review.selfie.student.ra == studentRa:
                 return self.reviews.pop(idx)
         
+
+    def create_reviewer(self, reviewer: Reviewer) -> Reviewer:
+        self.reviewers.append(reviewer)
+
+        return reviewer
+    
+    def update_reviewer(self, ra: str, new_name: str = None, new_email: str = None, new_active: bool = None) -> Reviewer:
+        idxReviewer = -1
+
+        for idx, possible_reviewer in enumerate(self.reviewers):
+            if (possible_reviewer.ra == ra):
+                reviewer = possible_reviewer
+                idxReviewer = idx
+                break
+
+        if idxReviewer == -1:
+            raise NoItemsFound("ra")
+
+        if new_name != None:
+            reviewer.name = new_name
+
+        if new_email != None:
+            reviewer.email = new_email
+
+        if new_active != None:
+            reviewer.active = new_active
+
+        self.reviewers[idxReviewer] = reviewer
+
+        return self.reviewers[idxReviewer]
+
+    def delete_reviewer(self, ra: str) -> Reviewer:
+        for idx in range(len(self.reviewers)):
+            if (self.reviewers[idx].ra == ra):
+                reviewer = self.reviewers.pop(idx)
+                return reviewer
+        raise NoItemsFound("ra")
+
+    def get_reviewer(self, ra: str) -> Reviewer:
+        for reviewer in self.reviewers:
+            if (reviewer.ra == ra):
+                return reviewer
         return None
