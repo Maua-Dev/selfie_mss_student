@@ -72,4 +72,5 @@ class Test_StudentRepositoryMock:
             studentRa=repo.reviews[0].selfie.student.ra
         )
         
+        assert review not in repo.reviews
         assert lenBefore == len(repo.reviews) + 1        
