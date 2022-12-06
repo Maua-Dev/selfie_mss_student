@@ -13,7 +13,7 @@ class Test_GetRejectedSelfiesByReviewerUseCase():
         usecase = GetRejectedSelfiesByReviewerUsecase(repo=repo)
          
         reviewer, selfies = usecase(
-            reviewerRa="04618"
+            reviewerRa= repo.reviewers[3].ra
          )
          
         assert selfies == [repo.selfies[7], repo.selfies[9]]
@@ -24,7 +24,7 @@ class Test_GetRejectedSelfiesByReviewerUseCase():
         usecase = GetRejectedSelfiesByReviewerUsecase(repo=repo)
          
         reviewer, selfies = usecase(
-            reviewerRa="04359"
+            reviewerRa= repo.reviewers[1].ra
          )
          
         assert selfies == []
