@@ -12,10 +12,10 @@ class GetRejectedSelfiesByReviewerUsecase:
     def __init__(self, repo: IStudentRepository):
         self.repo = repo
 
-    def __call__(self, reviewer_ra: str) -> List[Selfie]:
+    def __call__(self, reviewerRa: str) -> List[Selfie]:
 
-        if not Reviewer.validate_ra(reviewer_ra):
+        if not Reviewer.validate_ra(reviewerRa):
             raise EntityError('ra')
         
-        selfies  = self.repo.get_rejected_selfies_by_reviewer(reviewer_ra)
+        selfies  = self.repo.get_rejected_selfies_by_reviewer(reviewerRa)
         return selfies
