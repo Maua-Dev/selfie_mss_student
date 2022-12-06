@@ -566,6 +566,14 @@ class StudentRepositoryMock(IStudentRepository):
                 selfie=self.selfies[8],
                 dateAssigned=datetime.datetime(2022, 11, 2, 16, 1, 59, 149927),
                 dateReviewed=datetime.datetime(2022, 12, 2, 16, 5, 59, 149927)
+              ),
+          Review(
+                idReview = 1,
+                state=REVIEW_STATE.DECLINED,
+                reviewer=self.reviewers[3],
+                selfie=self.selfies[9],
+                dateAssigned=datetime.datetime(2022, 11, 1, 16, 1, 59, 149927),
+                dateReviewed=datetime.datetime(2022, 12, 2, 16, 5, 59, 149927)
               )
         ]
 
@@ -731,7 +739,7 @@ class StudentRepositoryMock(IStudentRepository):
             raise NoItemsFound("reviewer_ra")
         
         for review in self.reviews:
-            if review.reviewer.ra == reviewer_ra and review.state == REVIEW_STATE.REJECTED:
+            if review.reviewer.ra == reviewer_ra and review.state == REVIEW_STATE.DECLINED:
                 selfies.append(review.selfie)
 
         return selfies  
