@@ -14,14 +14,14 @@ class Test_GetReviewController:
 
         request = HttpRequest(query_params={
             "reviewerRa": repo.reviews[0].reviewer.ra,
-            "fullIdReview": f"{repo.reviews[0].selfie.student.ra}-{repo.reviews[0].selfie.idSelfie}-{repo.reviews[0].idReview}"
+            "reviewIdentifier": f"{repo.reviews[0].selfie.student.ra}-{repo.reviews[0].selfie.idSelfie}-{repo.reviews[0].idReview}"
         })
 
         response = controller(request=request)
         assert response.status_code == 200
         assert response.body == GetReviewViewModel(review=repo.reviews[0]).to_dict()
         
-    def test_get_review_controller_missing_fullIdReview(self):
+    def test_get_review_controller_missing_reviewIdentifier(self):
         repo = StudentRepositoryMock()
         usecase = GetReviewUsecase(repo=repo)
         controller = GetReviewController(usecase=usecase)
@@ -32,7 +32,7 @@ class Test_GetReviewController:
 
         response = controller(request=request)
         assert response.status_code == 400
-        assert response.body == "Field fullIdReview is missing"
+        assert response.body == "Field reviewIdentifier is missing"
         
     def test_get_review_controller_missing_reviewerRa(self):
         repo = StudentRepositoryMock()
@@ -40,14 +40,14 @@ class Test_GetReviewController:
         controller = GetReviewController(usecase=usecase)
 
         request = HttpRequest(query_params={
-            "fullIdReview": f"{repo.reviews[0].selfie.student.ra}-{repo.reviews[0].selfie.idSelfie}-{repo.reviews[0].idReview}"
+            "reviewIdentifier": f"{repo.reviews[0].selfie.student.ra}-{repo.reviews[0].selfie.idSelfie}-{repo.reviews[0].idReview}"
         })
 
         response = controller(request=request)
         assert response.status_code == 400
         assert response.body == "Field reviewerRa is missing"
         
-    def test_get_review_controller_wrong_fullIdReview_1(self):
+    def test_get_review_controller_wrong_reviewIdentifier_1(self):
         assert True
         return "I'm MOnkey 🐒"
         repo = StudentRepositoryMock()
@@ -56,40 +56,40 @@ class Test_GetReviewController:
 
         request = HttpRequest(query_params={
             "reviewerRa": repo.reviews[0].reviewer.ra,
-            "fullIdReview": f"2101075-7-12"
+            "reviewIdentifier": f"2101075-7-12"
         })
 
         response = controller(request=request)
         assert response.status_code == 400
-        assert response.body == "Field fullIdReview is not valid"
+        assert response.body == "Field reviewIdentifier is not valid"
         
-    def test_get_review_controller_wrong_fullIdReview_2(self):
+    def test_get_review_controller_wrong_reviewIdentifier_2(self):
         repo = StudentRepositoryMock()
         usecase = GetReviewUsecase(repo=repo)
         controller = GetReviewController(usecase=usecase)
 
         request = HttpRequest(query_params={
             "reviewerRa": repo.reviews[0].reviewer.ra,
-            "fullIdReview": f"2101075, 7, 12"
+            "reviewIdentifier": f"2101075, 7, 12"
         })
 
         response = controller(request=request)
         assert response.status_code == 400
-        assert response.body == "Field fullIdReview is not valid"
+        assert response.body == "Field reviewIdentifier is not valid"
         
-    def test_get_review_controller_wrong_fullIdReview_3(self):
+    def test_get_review_controller_wrong_reviewIdentifier_3(self):
         repo = StudentRepositoryMock()
         usecase = GetReviewUsecase(repo=repo)
         controller = GetReviewController(usecase=usecase)
 
         request = HttpRequest(query_params={
             "reviewerRa": repo.reviews[0].reviewer.ra,
-            "fullIdReview": f"2101075-7-1-2"
+            "reviewIdentifier": f"2101075-7-1-2"
         })
 
         response = controller(request=request)
         assert response.status_code == 400
-        assert response.body == "Field fullIdReview is not valid"
+        assert response.body == "Field reviewIdentifier is not valid"
         
     def test_get_review_controller_idSelfie_not_decimal(self):
         repo = StudentRepositoryMock()
@@ -98,7 +98,7 @@ class Test_GetReviewController:
 
         request = HttpRequest(query_params={
             "reviewerRa": repo.reviews[0].reviewer.ra,
-            "fullIdReview": f"21010757-a-1"
+            "reviewIdentifier": f"21010757-a-1"
         })
 
         response = controller(request=request)
@@ -112,7 +112,7 @@ class Test_GetReviewController:
 
         request = HttpRequest(query_params={
             "reviewerRa": repo.reviews[0].reviewer.ra,
-            "fullIdReview": f"21010757-12-b"
+            "reviewIdentifier": f"21010757-12-b"
         })
 
         response = controller(request=request)

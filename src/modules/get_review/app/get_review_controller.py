@@ -13,28 +13,28 @@ class GetReviewController:
         try:
             if request.query_params.get("reviewerRa") == None:
                 raise MissingParameters("reviewerRa")
-            if request.query_params.get("fullIdReview") == None:
-                raise MissingParameters("fullIdReview")
+            if request.query_params.get("reviewIdentifier") == None:
+                raise MissingParameters("reviewIdentifier")
         
             
-            fullIdReviewParams = request.query_params.get("fullIdReview").split('-') #studentRa-idSelfie-idReview
+            parsedIdReviewParams = request.query_params.get("reviewIdentifier").split('-') #studentRa-idSelfie-idReview
             
-            if len(fullIdReviewParams) != 3:
-                raise EntityError("fullIdReview")
+            if len(parsedIdReviewParams) != 3:
+                raise EntityError("reviewIdentifier")
             
-            if not fullIdReviewParams[1].isdecimal():
+            if not parsedIdReviewParams[1].isdecimal():
                 raise EntityError("idSelfie")
             
-            if not fullIdReviewParams[2].isdecimal():
+            if not parsedIdReviewParams[2].isdecimal():
                 raise EntityError("idReview")
                 
                 
             
             review = self.getReviewUsecase(
                 reviewerRa=request.query_params.get("reviewerRa"),
-                studentRa=fullIdReviewParams[0],
-                idSelfie=int(fullIdReviewParams[1]),
-                idReview=int(fullIdReviewParams[2])
+                studentRa=parsedIdReviewParams[0],
+                idSelfie=int(parsedIdReviewParams[1]),
+                idReview=int(parsedIdReviewParams[2])
             )
             viewmodel = GetReviewViewModel(review=review)
             return OK(viewmodel.to_dict())

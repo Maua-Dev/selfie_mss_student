@@ -21,7 +21,7 @@ class Test_GetReviewPresenter:
           },
           "queryStringParameters": {
             "reviewerRa": repo.reviews[0].reviewer.ra,
-            "fullIdReview": f"{repo.reviews[0].selfie.student.ra}-{repo.reviews[0].selfie.idSelfie}-{repo.reviews[0].idReview}",
+            "reviewIdentifier": f"{repo.reviews[0].selfie.student.ra}-{repo.reviews[0].selfie.idSelfie}-{repo.reviews[0].idReview}",
             "parameter2": "value"
           },
           "requestContext": {
@@ -123,7 +123,7 @@ class Test_GetReviewPresenter:
         response = lambda_handler(event, None)
         
         assert response["statusCode"] == 400
-        assert json.loads(response["body"]) == "Field fullIdReview is missing"
+        assert json.loads(response["body"]) == "Field reviewIdentifier is missing"
         
     def test_get_review_presenter_not_found(self):
         repo = StudentRepositoryMock()
@@ -142,7 +142,7 @@ class Test_GetReviewPresenter:
           },
           "queryStringParameters": {
             "reviewerRa": "12345",
-            "fullIdReview": f"{repo.reviews[0].selfie.student.ra}-{repo.reviews[0].selfie.idSelfie}-{repo.reviews[0].idReview}",
+            "reviewIdentifier": f"{repo.reviews[0].selfie.student.ra}-{repo.reviews[0].selfie.idSelfie}-{repo.reviews[0].idReview}",
             "parameter2": "value"
           },
           "requestContext": {
