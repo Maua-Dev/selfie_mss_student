@@ -732,14 +732,14 @@ class StudentRepositoryMock(IStudentRepository):
                 return reviewer
         return None
 
-    def get_rejected_selfies_by_reviewer(self, reviewerRa: str) -> Tuple[Reviewer, List[Selfie]]:
-        selfies = list()
+    def get_rejected_selfies_by_reviewer(self, reviewerRa: str) -> Tuple[Reviewer, List[Review]]:
+        reviews = list()
         reviewer = self.get_reviewer(reviewerRa)
         if reviewer == None:
             raise NoItemsFound("reviewerRa")
         
         for review in self.reviews:
             if review.reviewer.ra == reviewerRa and review.state == REVIEW_STATE.DECLINED:
-                selfies.append(review.selfie)
+                reviews.append(review.selfie)
 
-        return reviewer, selfies  
+        return reviewer, reviews  

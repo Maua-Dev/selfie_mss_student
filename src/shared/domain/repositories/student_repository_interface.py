@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 from typing import Dict, List, Tuple
+from src.shared.domain.entities.review import Review
 from src.shared.domain.entities.reviewer import Reviewer
 from src.shared.domain.entities.student import Student
 from src.shared.domain.entities.selfie import Selfie
@@ -80,7 +81,7 @@ class IStudentRepository(ABC):
         pass
 
     @abstractmethod
-    def get_rejected_selfies_by_reviewer(self, reviewerRa: str) -> Tuple[Reviewer, List[Selfie]]:
+    def get_rejected_selfies_by_reviewer(self, reviewerRa: str) -> Tuple[Reviewer, List[Review]]:
         """
         If reviewer does not exist, then raise NoItemsFound
         """
