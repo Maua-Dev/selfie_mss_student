@@ -13,7 +13,7 @@ class GetReviewUsecase:
     def __call__(self, reviewerRa: str, idReview: int, idSelfie: int, studentRa: str) -> Review:
         if not Reviewer.validate_ra(ra=reviewerRa):
             raise EntityError("reviewerRa")
-        if not Student.validate_ra(ra=studentRa):
+        if not Student.validate_ra(ra=studentRa) or not Reviewer.validate_ra(ra=studentRa):
             raise EntityError("studentRa")
         
         

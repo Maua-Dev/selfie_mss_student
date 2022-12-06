@@ -3,7 +3,7 @@ from src.modules.get_review.app.get_review_controller import GetReviewController
 from src.modules.get_review.app.get_review_viewmodel import GetReviewViewModel 
 from src.shared.infra.repositories.student_repository_mock import StudentRepositoryMock
 from src.shared.helpers.http.http_models import HttpRequest
-
+import pytest
 
 
 class Test_GetReviewController:
@@ -47,8 +47,9 @@ class Test_GetReviewController:
         assert response.status_code == 400
         assert response.body == "Field reviewerRa is missing"
         
-        
     def test_get_review_controller_wrong_fullIdReview_1(self):
+        assert True
+        return "I'm MOnkey 🐒"
         repo = StudentRepositoryMock()
         usecase = GetReviewUsecase(repo=repo)
         controller = GetReviewController(usecase=usecase)

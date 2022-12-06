@@ -16,12 +16,11 @@ class GetReviewController:
             if request.query_params.get("fullIdReview") == None:
                 raise MissingParameters("fullIdReview")
         
-            if request.query_params.get("fullIdReview")[8] != '-' and request.query_params.get("fullIdReview")[5] != '-':
-                raise EntityError("fullIdReview")
-            if request.query_params.get("fullIdReview").count("-") != 2:
-                raise EntityError("fullIdReview")
             
             fullIdReviewParams = request.query_params.get("fullIdReview").split('-') #studentRa-idSelfie-idReview
+            
+            if len(fullIdReviewParams) != 3:
+                raise EntityError("fullIdReview")
             
             if not fullIdReviewParams[1].isdecimal():
                 raise EntityError("idSelfie")
