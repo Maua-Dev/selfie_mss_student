@@ -53,7 +53,6 @@ class Test_CreateSelfiePresenter:
         response = lambda_handler(event, None)
         assert response["statusCode"] == 201
         assert json.loads(response["body"])["message"] == "the selfie was created"
-        assert json.loads(response["body"])["idSelfie"] == 1
         assert json.loads(response["body"])["rejectionReasons"] == ["NONE"]
         assert json.loads(response["body"])["rejectionDescription"] == None
         assert json.loads(response["body"])["state"] == "PENDING_REVIEW"
@@ -103,7 +102,6 @@ class Test_CreateSelfiePresenter:
         response = lambda_handler(event, None)
         assert response["statusCode"] == 201
         assert json.loads(response["body"])["message"] == "the selfie was created"
-        assert json.loads(response["body"])["idSelfie"] == 1
         assert json.loads(response["body"])["rejectionReasons"] == ["COVERED_FACE"]
         assert json.loads(response["body"])["rejectionDescription"] == "auto-rejected by AI"
         assert json.loads(response["body"])["state"] == "DECLINED"
