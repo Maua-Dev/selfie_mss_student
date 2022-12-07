@@ -33,7 +33,7 @@ class Test_GetRejectedSelfiesByReviewerController:
         response = controller(request=request)
 
         assert response.status_code == 200
-        assert response.body == GetRejectedSelfiesByReviewerViewModel(listRejectedReviews=[], reviewer=repo.reviews[1].reviewer).to_dict()
+        assert response.body == GetRejectedSelfiesByReviewerViewModel(listRejectedReviews=[], reviewer=repo.reviewers[1]).to_dict()
 
     def test_get_review_controller_no_items_found(self):
         repo = StudentRepositoryMock()
