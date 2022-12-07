@@ -86,3 +86,10 @@ class IStudentRepository(ABC):
         If reviewer does not exist, then raise NoItemsFound
         """
         pass
+
+    @abstractmethod
+    def get_approved_selfies_by_reviewer(self, reviewerRa: str) -> Tuple[Reviewer, List[Review]]:
+        """
+        If reviewer does not exist, then raise NoItemsFound
+        """
+        pass

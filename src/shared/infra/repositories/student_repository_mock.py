@@ -743,3 +743,15 @@ class StudentRepositoryMock(IStudentRepository):
                 reviews.append(review)
 
         return reviewer, reviews  
+
+    def get_approved_selfies_by_reviewer(self, reviewerRa: str) -> Tuple[Reviewer, List[Review]]:
+        reviews = list()
+        reviewer = self.get_reviewer(reviewerRa)
+        if reviewer == None:
+            raise NoItemsFound("reviewerRa")
+        
+        for review in self.reviews:
+            if review.reviewer.ra == reviewerRa and review.state == REVIEW_STATE.APPROVED:
+                reviews.append(review)
+
+        return reviewer, reviews
