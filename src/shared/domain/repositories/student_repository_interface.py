@@ -3,9 +3,10 @@ from typing import Dict, List, Tuple
 from src.shared.domain.entities.reviewer import Reviewer
 from src.shared.domain.entities.student import Student
 from src.shared.domain.entities.selfie import Selfie
+from src.shared.domain.entities.review import Review
 from src.shared.domain.enums.rejection_reason_enum import REJECTION_REASON
 from src.shared.domain.enums.state_enum import STATE
-
+from src.shared.domain.enums.review_state_enum import REVIEW_STATE
 class IStudentRepository(ABC):
 
     @abstractmethod
@@ -62,7 +63,23 @@ class IStudentRepository(ABC):
     @abstractmethod    
     def get_all_students(self) -> List[Tuple[List[Selfie], Student]]:
         pass
+    
+    @abstractmethod    
+    def get_review(self, reviewerRa: str, idReview: int, idSelfie:int, studentRa:str) -> Review:
+        pass
 
+    @abstractmethod    
+    def create_review(self, review: Review) -> Review:
+        pass
+    
+    @abstractmethod
+    def update_review(self, reviewerRa: str, idReview: int, idSelfie:int, studentRa:str, new_state: REVIEW_STATE = None, new_rejectionReasons: List[REJECTION_REASON] = None, new_rejectionDescription: str = None) -> Review:
+        pass
+    
+    @abstractmethod
+    def delete_review(self, reviewerRa: str, idReview: int, idSelfie:int, studentRa:str) -> Review:
+        pass
+    
     @abstractmethod
     def create_reviewer(self, reviwer: Reviewer) -> Reviewer:
         pass

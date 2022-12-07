@@ -680,6 +680,35 @@ class StudentRepositoryMock(IStudentRepository):
             all_students.append(self.get_selfies_by_ra(ra=student.ra))
 
         return all_students
+    
+    def get_review(self, reviewerRa: str, idReview: int, idSelfie:int, studentRa:str) -> Review:
+        for review in self.reviews:
+            if review.idReview == idReview and review.reviewer.ra == reviewerRa and idSelfie == review.selfie.idSelfie and review.selfie.student.ra == studentRa:
+                return review
+            
+        return None
+    
+    def create_review(self, review: Review) -> Review:
+        self.reviews.append(review)
+        
+        return review
+    
+    def update_review(self, reviewerRa: str, idReview: int, idSelfie:int, studentRa:str, new_state: REVIEW_STATE = None, new_rejectionReasons: List[REJECTION_REASON] = None, new_rejectionDescription: str = None) -> Review:
+        
+        review = self.get_review(reviewerRa=reviewerRa, idReview=idReview, idSelfie=idSelfie, studentRa=studentRa)
+        if review == None:
+            return None
+        if new_state != None:
+            review.state = new_state
+        review.selfie = self.update_selfie(ra=studentRa, idSelfie=idSelfie, new_state={"APPROVED":STATE.APPROVED, "DECLINED":STATE.DECLINED}.get(new_state.value), new_rejectionDescription=new_rejectionDescription, new_rejectionReasons=new_rejectionReasons)
+        review.dateReviewed = datetime.datetime.now()
+        return review
+    
+    def delete_review(self, reviewerRa: str, idReview: int, idSelfie:int, studentRa:str) -> Review:
+        for idx, review in enumerate(self.reviews):
+            if review.idReview == idReview and review.reviewer.ra == reviewerRa and idSelfie == review.selfie.idSelfie and review.selfie.student.ra == studentRa:
+                return self.reviews.pop(idx)
+        
 
     def create_reviewer(self, reviewer: Reviewer) -> Reviewer:
         self.reviewers.append(reviewer)

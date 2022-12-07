@@ -9,7 +9,7 @@ from .get_selfie_usecase import GetSelfieUsecase
 class GetSelfieController:
     def __init__(self, usecase: GetSelfieUsecase):
         self.getSelfieUsecase = usecase
-
+ 
     def __call__(self, request: HttpRequest) -> HttpResponse:
         try:
             if request.query_params.get('ra') is None:
