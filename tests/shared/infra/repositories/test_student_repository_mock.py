@@ -3,6 +3,7 @@ from src.shared.infra.repositories.student_repository_mock import StudentReposit
 import datetime
 from src.shared.domain.enums.review_state_enum import REVIEW_STATE
 from src.shared.domain.enums.rejection_reason_enum import REJECTION_REASON
+from src.shared.domain.enums.state_enum import STATE
 
 class Test_StudentRepositoryMock:
     def test_get_review(self):
@@ -82,5 +83,18 @@ class Test_StudentRepositoryMock:
         
     def test_get_pending_validation_selfies_assigned_no_selfies(self):
         repo = StudentRepositoryMock()
-        selfies = repo.get_pending_validation_selfies_assigned(repo.reviewers[0].ra)
+        selfies = repo.get_pending_validation_selfies_assigned(reviewerRa=repo.reviewers[0].ra)
         assert len(selfies) == 0
+        
+    def test_assign_selfies(self):
+        repo = StudentRepositoryMock()
+        
+        lenBeforeSelfiesAssigned = len(repo.get_pending_validation_selfies_assigned(reviewerRa=repo.reviewers[0].ra))
+        lenBeforeSelfiesPendingReview = len([selfie for selfie in repo.selfies if selfie.state == STATE.PENDING_REVIEW])
+        selfies = repo.assign_selfies(reviewerRa=repo.reviewers[0].ra, nSelfies=1)
+        
+        new_selfies = [selfie for selfie in repo.selfies if selfie.state == STATE.PENDING_REVIEW]
+        assert len(selfies) == lenBeforeSelfiesAssigned + 1
+        assert lenBeforeSelfiesPendingReview == len(new_selfies) + 1
+        for selfie in selfies:
+            assert selfie not in new_selfies

@@ -779,3 +779,24 @@ class StudentRepositoryMock(IStudentRepository):
     
     def get_pending_validation_selfies_assigned(self, reviewerRa: str) -> List[Selfie]:
         return [review.selfie for review in self.reviews if review.reviewer.ra == reviewerRa and review.state == REVIEW_STATE.PENDING_VALIDATION]            
+    
+    def assign_selfies(self, reviewerRa: str, nSelfies: int) -> List[Selfie]:
+        new_assign_selfies = list()
+        counter = 0
+        
+        for idx, selfie in enumerate(self.selfies):
+            if counter == nSelfies:
+                break
+            if selfie.state == STATE.PENDING_REVIEW:
+                self.selfies[idx].state = STATE.IN_REVIEW
+                review = Review(
+                    selfie=selfie,
+                    dateAssigned=datetime.datetime.now(),
+                    reviewer=self.get_reviewer(ra=reviewerRa),
+                    state=REVIEW_STATE.PENDING_VALIDATION,
+                    idReview=len([review for review in self.reviews if review.selfie.url == selfie.url and review.selfie.student.ra == selfie.student.ra])
+                )
+                new_assign_selfies.append(review.selfie)
+                counter += 1
+                
+        return new_assign_selfies
