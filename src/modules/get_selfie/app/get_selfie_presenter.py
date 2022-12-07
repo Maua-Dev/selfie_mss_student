@@ -4,16 +4,14 @@ from src.shared.helpers.http.http_lambda_requests import LambdaHttpRequest, Lamb
 from .get_selfie_controller import GetSelfieController
 from .get_selfie_usecase import GetSelfieUsecase
 
+repo = Environments.get_student_repo()()
+usecase = GetSelfieUsecase(repo)
+controller = GetSelfieController(usecase)
 
 
 def lambda_handler(event, context):
-    repo = Environments.get_student_repo()()
-    usecase = GetSelfieUsecase(repo)
-    controller = GetSelfieController(usecase)
-
     httpRequest = LambdaHttpRequest(data=event)
     response = controller(httpRequest)
     httpResponse = LambdaHttpResponse(status_code=response.status_code, body=response.body, headers=response.headers)
 
     return httpResponse.toDict()
-
