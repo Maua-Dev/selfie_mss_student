@@ -74,3 +74,13 @@ class Test_StudentRepositoryMock:
         
         assert review not in repo.reviews
         assert lenBefore == len(repo.reviews) + 1        
+
+    def test_get_pending_validation_selfies_assigned_four_selfies(self):
+        repo = StudentRepositoryMock()
+        selfies = repo.get_pending_validation_selfies_assigned(repo.reviewers[3].ra)
+        assert len(selfies) == 4
+        
+    def test_get_pending_validation_selfies_assigned_no_selfies(self):
+        repo = StudentRepositoryMock()
+        selfies = repo.get_pending_validation_selfies_assigned(repo.reviewers[0].ra)
+        assert len(selfies) == 0

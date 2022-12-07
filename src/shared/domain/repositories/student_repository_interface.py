@@ -95,3 +95,11 @@ class IStudentRepository(ABC):
     @abstractmethod
     def get_reviewer(self, ra: str) -> Reviewer:
         pass
+    
+    @abstractmethod
+    def get_pending_validation_selfies_assigned(self, reviewerRa: str) -> List[Selfie]:
+        pass
+    
+    """@abstractmethod
+    def get_selfies_to_review(self, reviewerRa: str, nSelfies: int = 10) -> List[Selfie]:
+        pass"""

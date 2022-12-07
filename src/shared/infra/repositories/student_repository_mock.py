@@ -552,6 +552,30 @@ class StudentRepositoryMock(IStudentRepository):
                 dateReviewed=datetime.datetime(2022, 12, 2, 16, 5, 59, 149927)
               ),
           Review(
+                idReview = 0,
+                state=REVIEW_STATE.PENDING_VALIDATION,
+                reviewer=self.reviewers[3],
+                selfie=self.selfies[9],
+                dateAssigned=datetime.datetime(2022, 11, 28, 16, 1, 59, 149927),
+                dateReviewed=datetime.datetime(2022, 12, 2, 16, 5, 59, 149927)
+              ),
+          Review(
+                idReview = 0,
+                state=REVIEW_STATE.PENDING_VALIDATION,
+                reviewer=self.reviewers[3],
+                selfie=self.selfies[8],
+                dateAssigned=datetime.datetime(2022, 11, 28, 16, 1, 59, 149927),
+                dateReviewed=datetime.datetime(2022, 12, 2, 16, 5, 59, 149927)
+              ),
+          Review(
+                idReview = 0,
+                state=REVIEW_STATE.PENDING_VALIDATION,
+                reviewer=self.reviewers[3],
+                selfie=self.selfies[7],
+                dateAssigned=datetime.datetime(2022, 11, 28, 16, 1, 59, 149927),
+                dateReviewed=datetime.datetime(2022, 12, 2, 16, 5, 59, 149927)
+              ),
+          Review(
                 idReview = 1,
                 state=REVIEW_STATE.DECLINED,
                 reviewer=self.reviewers[3],
@@ -752,3 +776,6 @@ class StudentRepositoryMock(IStudentRepository):
             if (reviewer.ra == ra):
                 return reviewer
         return None
+    
+    def get_pending_validation_selfies_assigned(self, reviewerRa: str) -> List[Selfie]:
+        return [review.selfie for review in self.reviews if review.reviewer.ra == reviewerRa and review.state == REVIEW_STATE.PENDING_VALIDATION]            
