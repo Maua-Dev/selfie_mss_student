@@ -530,7 +530,7 @@ class StudentRepositoryMock(IStudentRepository):
           Review(
                 idReview = 0,
                 state=REVIEW_STATE.APPROVED,
-                reviewer=self.reviewers[1],
+                reviewer=self.reviewers[0],
                 selfie=self.selfies[2],
                 dateAssigned=datetime.datetime(2022, 11, 30, 16, 1, 59, 149927),
                 dateReviewed=datetime.datetime(2022, 12, 2, 16, 5, 59, 149927)
