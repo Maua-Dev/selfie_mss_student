@@ -78,7 +78,7 @@ class Test_StudentRepositoryMock:
 
     def test_get_pending_validation_selfies_assigned_four_selfies(self):
         repo = StudentRepositoryMock()
-        selfies = repo.get_pending_validation_selfies_assigned(repo.reviewers[3].ra)
+        selfies = repo.get_pending_validation_selfies_assigned(reviewerRa=repo.reviewers[3].ra)
         assert len(selfies) == 4
         
     def test_get_pending_validation_selfies_assigned_no_selfies(self):
@@ -98,3 +98,27 @@ class Test_StudentRepositoryMock:
         assert lenBeforeSelfiesPendingReview == len(new_selfies) + 1
         for selfie in selfies:
             assert selfie not in new_selfies
+            
+    def test_selfies_to_review_adding_one_selfie(self):
+        repo = StudentRepositoryMock()
+        len_before_assignment = len(repo.get_pending_validation_selfies_assigned(reviewerRa=repo.reviewers[3].ra))
+        
+        selfies_to_review = repo.get_selfies_to_review(reviewerRa=repo.reviewers[3].ra, nSelfies=5)
+        
+        assert len(selfies_to_review) == len_before_assignment + 1
+            
+    def test_selfies_to_review_adding_one_selfie_but_cannot_complete_seven_selfies(self):
+        repo = StudentRepositoryMock()
+        len_before_assignment = len(repo.get_pending_validation_selfies_assigned(reviewerRa=repo.reviewers[3].ra))
+        
+        selfies_to_review = repo.get_selfies_to_review(reviewerRa=repo.reviewers[3].ra, nSelfies=7)
+        
+        assert len(selfies_to_review) == len_before_assignment + 1
+        
+    def test_selfies_to_review_already_have_four_selfies(self):
+        repo = StudentRepositoryMock()
+        len_before_assignment = len(repo.get_pending_validation_selfies_assigned(reviewerRa=repo.reviewers[3].ra))
+        
+        selfies_to_review = repo.get_selfies_to_review(reviewerRa=repo.reviewers[3].ra, nSelfies=4)
+        
+        assert len(selfies_to_review) == len_before_assignment 

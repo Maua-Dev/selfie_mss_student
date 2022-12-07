@@ -104,8 +104,8 @@ class IStudentRepository(ABC):
     def assign_selfies(self, reviewerRa: str, nSelfies: int) -> List[Selfie]:
         pass
     
+    @abstractmethod
+    def get_selfies_to_review(self, reviewerRa: str, nSelfies: int = 10) -> List[Selfie]:
+        pass
     
     
-    # @abstractmethod
-    # def get_selfies_to_review(self, reviewerRa: str, nSelfies: int = 10) -> List[Selfie]:
-    #     pass

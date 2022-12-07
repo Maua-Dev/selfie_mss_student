@@ -800,3 +800,16 @@ class StudentRepositoryMock(IStudentRepository):
                 counter += 1
                 
         return new_assign_selfies
+    
+    def get_selfies_to_review(self, reviewerRa: str, nSelfies: int = 10) -> List[Selfie]:
+        selfies_to_review = []
+        pending_validation_selfies = self.get_pending_validation_selfies_assigned(reviewerRa=reviewerRa)
+        
+        selfies_to_review.extend(pending_validation_selfies)
+        if len(pending_validation_selfies) < nSelfies:
+            new_assigned_selfies = self.assign_selfies(nSelfies=nSelfies-len(pending_validation_selfies), reviewerRa=reviewerRa)
+            selfies_to_review.extend(new_assigned_selfies)
+        
+            
+        return selfies_to_review
+            
