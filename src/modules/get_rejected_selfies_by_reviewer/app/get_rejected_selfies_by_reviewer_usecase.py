@@ -13,7 +13,7 @@ class GetRejectedSelfiesByReviewerUsecase:
     def __call__(self, reviewerRa: str) -> Tuple[Reviewer, List[Review]]:
 
         if not Reviewer.validate_ra(reviewerRa):
-            raise EntityError('ra')
+            raise EntityError('reviewerRa')
         
         reviewer, reviews  = self.repo.get_rejected_selfies_by_reviewer(reviewerRa)
 
