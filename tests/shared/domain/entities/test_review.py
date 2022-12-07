@@ -169,17 +169,6 @@ class Test_Review():
         dateAssigned=None,
         dateReviewed=datetime.datetime(2022, 12, 2, 16, 5, 59, 149927)
       )
-
-  def test_review_with_no_date_reviewed(self):
-    with pytest.raises(EntityError):
-      review = Review(
-        idReview=1,
-        state=REVIEW_STATE.PENDING_VALIDATION,
-        reviewer=self.REVIEWER,
-        selfie=self.SELFIE,
-        dateAssigned=datetime.datetime(2022, 12, 1, 16, 1, 59, 149927),
-        dateReviewed=None
-      )
     
   def test_review_with_no_review_id(self):
     with pytest.raises(EntityError):
