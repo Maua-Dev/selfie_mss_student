@@ -4,6 +4,11 @@ import datetime
 from src.shared.domain.enums.review_state_enum import REVIEW_STATE
 from src.shared.domain.enums.rejection_reason_enum import REJECTION_REASON
 from src.shared.domain.enums.state_enum import STATE
+from src.shared.domain.entities.automatic_review import AutomaticReview
+from src.shared.domain.entities.label import Label
+from src.shared.domain.entities.selfie import Selfie
+
+
 
 class Test_StudentRepositoryMock:
     def test_get_review(self):
@@ -114,6 +119,53 @@ class Test_StudentRepositoryMock:
         selfies_to_review = repo.get_selfies_to_review(reviewerRa=repo.reviewers[3].ra, nSelfies=7)
         
         assert len(selfies_to_review) == len_before_assignment + 1
+        
+    def test_selfies_to_review_complete_seven_selfies(self):
+        repo = StudentRepositoryMock()
+        len_before_assignment = len(repo.get_pending_validation_selfies_assigned(reviewerRa=repo.reviewers[3].ra))
+        
+        for i in range(4):
+            repo.create_selfie(Selfie(
+                idSelfie=0,
+                student=repo.students[6],
+                dateCreated=datetime.datetime(2022, 10, 1, 16, 1, 59, 149927),
+                url=f"https://i.imgur.com/0K{i}BHTB.jpg",
+                state=STATE.PENDING_REVIEW,
+                rejectionReasons=[],
+                rejectionDescription="",
+                automaticReview=AutomaticReview(
+                    automaticallyRejected=False,
+                    rejectionReasons=[],
+                    labels=[
+                        Label(
+                            name="Person",
+                            coords={
+                                "Width": 0.9711952805519104,
+                                "Height": 0.8659809827804565,
+                                "Left": 0.012313545681536198,
+                                "Top": 0.11108686774969101
+                            },
+                            confidence=98.54370880126953,
+                            parents=[],
+                        ),
+                        Label(
+                            name="Face",
+                            coords={
+                                "Width": 0.9711952805519104,
+                                "Height": 0.8659809827804565,
+                                "Left": 0.012313545681536198,
+                                "Top": 0.11108686774969101
+                            },
+                            confidence=98.54370880126953,
+                            parents=[],
+                        ),
+                    ]
+                )
+            ))
+        
+        selfies_to_review = repo.get_selfies_to_review(reviewerRa=repo.reviewers[3].ra, nSelfies=7)
+        
+        assert len(selfies_to_review) == len_before_assignment + 3
         
     def test_selfies_to_review_already_have_four_selfies(self):
         repo = StudentRepositoryMock()
