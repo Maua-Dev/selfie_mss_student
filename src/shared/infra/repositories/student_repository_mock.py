@@ -740,6 +740,6 @@ class StudentRepositoryMock(IStudentRepository):
         
         for review in self.reviews:
             if review.reviewer.ra == reviewerRa and review.state == REVIEW_STATE.DECLINED:
-                reviews.append(review.selfie)
+                reviews.append(review)
 
         return reviewer, reviews  
