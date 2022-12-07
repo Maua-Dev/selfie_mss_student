@@ -78,7 +78,8 @@ class IStudentRepository(ABC):
     
     @abstractmethod
     def delete_review(self, reviewerRa: str, idReview: int, idSelfie:int, studentRa:str) -> Review:
-
+        pass
+    
     @abstractmethod
     def create_reviewer(self, reviwer: Reviewer) -> Reviewer:
         pass
