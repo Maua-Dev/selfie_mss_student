@@ -105,7 +105,7 @@ class IStudentRepository(ABC):
         pass
     
     @abstractmethod
-    def get_selfies_to_review(self, reviewerRa: str, nSelfies: int = 10) -> List[Selfie]:
+    def get_selfies_to_review(self, reviewerRa: str, nSelfies: int = 10) -> Tuple[List[Selfie], Reviewer]:
         pass
     
     

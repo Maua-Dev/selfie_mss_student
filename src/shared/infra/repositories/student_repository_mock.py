@@ -801,8 +801,10 @@ class StudentRepositoryMock(IStudentRepository):
                 
         return new_assign_reviews
     
-    def get_selfies_to_review(self, reviewerRa: str, nSelfies: int = 10) -> List[Review]:
-        if self.get_reviewer(ra=reviewerRa) == None:
+    def get_selfies_to_review(self, reviewerRa: str, nSelfies: int = 10) -> Tuple[List[Review], Reviewer]:
+        reviewer = self.get_reviewer(ra=reviewerRa)
+        
+        if reviewer == None:
             raise NoItemsFound("reviewerRa")
         
         selfies_to_review = []
@@ -814,5 +816,5 @@ class StudentRepositoryMock(IStudentRepository):
             selfies_to_review.extend(new_assigned_selfies)
         
             
-        return selfies_to_review
+        return selfies_to_review, reviewer
             

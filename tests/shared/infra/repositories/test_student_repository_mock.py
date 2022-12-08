@@ -1,4 +1,5 @@
 from src.shared.domain.entities.review import Review
+from src.shared.domain.entities.reviewer import Reviewer
 from src.shared.infra.repositories.student_repository_mock import StudentRepositoryMock
 import datetime
 from src.shared.domain.enums.review_state_enum import REVIEW_STATE
@@ -109,17 +110,19 @@ class Test_StudentRepositoryMock:
         repo = StudentRepositoryMock()
         len_before_assignment = len(repo.get_pending_validation_selfies_assigned(reviewerRa=repo.reviewers[3].ra))
         
-        selfies_to_review = repo.get_selfies_to_review(reviewerRa=repo.reviewers[3].ra, nSelfies=5)
+        selfies_to_review, reviewer = repo.get_selfies_to_review(reviewerRa=repo.reviewers[3].ra, nSelfies=5)
         
         assert len(selfies_to_review) == len_before_assignment + 1
+        assert type(reviewer) == Reviewer
             
     def test_selfies_to_review_adding_one_selfie_but_cannot_complete_seven_selfies(self):
         repo = StudentRepositoryMock()
         len_before_assignment = len(repo.get_pending_validation_selfies_assigned(reviewerRa=repo.reviewers[3].ra))
         
-        selfies_to_review = repo.get_selfies_to_review(reviewerRa=repo.reviewers[3].ra, nSelfies=7)
+        selfies_to_review, reviewer = repo.get_selfies_to_review(reviewerRa=repo.reviewers[3].ra, nSelfies=7)
         
         assert len(selfies_to_review) == len_before_assignment + 1
+        assert reviewer.ra == repo.reviewers[3].ra
         
     def test_selfies_to_review_complete_seven_selfies(self):
         repo = StudentRepositoryMock()
@@ -164,7 +167,7 @@ class Test_StudentRepositoryMock:
                 )
             ))
         
-        selfies_to_review = repo.get_selfies_to_review(reviewerRa=repo.reviewers[3].ra, nSelfies=7)
+        selfies_to_review, reviewer = repo.get_selfies_to_review(reviewerRa=repo.reviewers[3].ra, nSelfies=7)
         
         assert len(selfies_to_review) == len_before_assignment + 3
         
@@ -172,7 +175,7 @@ class Test_StudentRepositoryMock:
         repo = StudentRepositoryMock()
         len_before_assignment = len(repo.get_pending_validation_selfies_assigned(reviewerRa=repo.reviewers[3].ra))
         
-        selfies_to_review = repo.get_selfies_to_review(reviewerRa=repo.reviewers[3].ra, nSelfies=4)
+        selfies_to_review, reviewer = repo.get_selfies_to_review(reviewerRa=repo.reviewers[3].ra, nSelfies=4)
         
         assert len(selfies_to_review) == len_before_assignment 
         assert type(selfies_to_review[0]) == Review

@@ -22,12 +22,12 @@ class GetSelfiesToReviewController:
                 elif not request.query_params.get('nSelfies').isdecimal():
                     raise EntityError('nSelfies')
 
-            reviews = self.getSelfiesToReviewUsecase(
+            reviews, reviewer = self.getSelfiesToReviewUsecase(
                 nSelfies=int(request.query_params.get('nSelfies')) if request.query_params.get('nSelfies') != None else 10,
                 reviewerRa=request.query_params.get('reviewerRa')    
             )
 
-            viewmodel = GetSelfiesToReviewViewmodel(data=reviews)
+            viewmodel = GetSelfiesToReviewViewmodel(data=reviews, reviewer=reviewer)
             return OK(viewmodel.to_dict())
 
         except NoItemsFound as err:

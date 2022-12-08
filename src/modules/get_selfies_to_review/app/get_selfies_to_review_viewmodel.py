@@ -151,7 +151,7 @@ class GetSelfiesToReviewViewmodel:
 
     def to_dict(self) -> dict:
         return{
-            "reviewer": ReviewerViewModel(reviewer=self.reviewer),
+            "reviewer": ReviewerViewModel(reviewer=self.reviewer).to_dict(),
             "reviews":[ReviewViewModel(review=review).to_dict() for review in self.reviews],
             "message": "the reviews were retriven"
         }
