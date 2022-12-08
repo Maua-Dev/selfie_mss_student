@@ -84,7 +84,7 @@ class ReviewerViewModel:
             "ra": self.ra,
             "name": self.name,
             "email": self.email,
-            "active": self.active
+            "active": str(self.active)
         }
     
 class SelfieViewModel:
@@ -114,7 +114,6 @@ class SelfieViewModel:
             "rejectionReasons": [reason.value for reason in self.rejectionReasons],
             "rejectionDescription": self.rejectionDescription,
             "automaticReview": self.automaticReview.to_dict(),
-            "message": "the selfie was retriven"
         }
         
 class GetReviewViewModel:
