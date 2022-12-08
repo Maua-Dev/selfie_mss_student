@@ -127,7 +127,6 @@ class ReviewViewModel:
     def __init__(self, review:Review):
         self.idReview = review.idReview
         self.state = review.state
-        self.reviewer = ReviewerViewModel(reviewer=review.reviewer)
         self.selfie = SelfieViewModel(selfie=review.selfie)
         self.dateAssigned = review.dateAssigned.isoformat()
         self.dateReviewed = review.dateReviewed.isoformat() if review.dateReviewed != None else None
@@ -136,7 +135,6 @@ class ReviewViewModel:
         return {
             "idReview": self.idReview,
             "state": self.state.value,
-            "reviewer": self.reviewer.to_dict(),
             "selfie": self.selfie.to_dict(),
             "dateAssigned": self.dateAssigned,
             "dateReviewed": self.dateReviewed
@@ -145,12 +143,15 @@ class ReviewViewModel:
 
 class GetSelfiesToReviewViewmodel:
     reviews: list
+    reviewer: Reviewer
 
-    def __init__(self, data: list):
+    def __init__(self, data:list, reviewer:Reviewer):
         self.reviews = data
+        self.reviewer = reviewer
 
     def to_dict(self) -> dict:
         return{
+            "reviewer": ReviewerViewModel(reviewer=self.reviewer),
             "reviews":[ReviewViewModel(review=review).to_dict() for review in self.reviews],
             "message": "the reviews were retriven"
         }
