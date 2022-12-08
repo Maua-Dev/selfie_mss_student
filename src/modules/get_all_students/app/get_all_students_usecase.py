@@ -13,12 +13,14 @@ class GetAllStudentsUsecase:
       def __call__(self) -> List[Dict]:
 
         all_students_list = list()
-        
-        for selfies, student in self.repo.get_all_students():
+         
+        all_students, approved_students = self.repo.get_all_students()
+
+        for selfies, student in all_students:
             student_dict = dict()
             
             if len(selfies) == 0: status = STUDENT_STATE.NO_SELFIE
-            elif self.repo.check_student_has_approved_selfie(ra=student.ra): status = STUDENT_STATE.APPROVED
+            elif student in approved_students: status = STUDENT_STATE.APPROVED
             else:
                 recent_selfie_status = selfies[-1].state 
                 if recent_selfie_status == STATE.DECLINED: status = STUDENT_STATE.SELFIE_REJECTED

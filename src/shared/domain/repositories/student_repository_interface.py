@@ -59,5 +59,5 @@ class IStudentRepository(ABC):
         pass
     
     @abstractmethod    
-    def get_all_students(self) -> List[Tuple[List[Selfie], Student]]:
+    def get_all_students(self) -> Tuple[List[Tuple[List[Selfie], Student]], List[Student]]:
         pass
