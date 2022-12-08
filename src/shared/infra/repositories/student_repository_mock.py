@@ -777,11 +777,11 @@ class StudentRepositoryMock(IStudentRepository):
                 return reviewer
         return None
     
-    def get_pending_validation_selfies_assigned(self, reviewerRa: str) -> List[Selfie]:
-        return [review.selfie for review in self.reviews if review.reviewer.ra == reviewerRa and review.state == REVIEW_STATE.PENDING_VALIDATION]            
+    def get_pending_validation_selfies_assigned(self, reviewerRa: str) -> List[Review]:
+        return [review for review in self.reviews if review.reviewer.ra == reviewerRa and review.state == REVIEW_STATE.PENDING_VALIDATION]            
     
-    def assign_selfies(self, reviewerRa: str, nSelfies: int) -> List[Selfie]:
-        new_assign_selfies = list()
+    def assign_selfies(self, reviewerRa: str, nSelfies: int) -> List[Review]:
+        new_assign_reviews = list()
         counter = 0
         
         for idx, selfie in enumerate(self.selfies):
@@ -796,12 +796,12 @@ class StudentRepositoryMock(IStudentRepository):
                     state=REVIEW_STATE.PENDING_VALIDATION,
                     idReview=len([review for review in self.reviews if review.selfie.url == selfie.url and review.selfie.student.ra == selfie.student.ra])
                 )
-                new_assign_selfies.append(review.selfie)
+                new_assign_reviews.append(review)
                 counter += 1
                 
-        return new_assign_selfies
+        return new_assign_reviews
     
-    def get_selfies_to_review(self, reviewerRa: str, nSelfies: int = 10) -> List[Selfie]:
+    def get_selfies_to_review(self, reviewerRa: str, nSelfies: int = 10) -> List[Review]:
         selfies_to_review = []
         pending_validation_selfies = self.get_pending_validation_selfies_assigned(reviewerRa=reviewerRa)
         

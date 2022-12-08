@@ -9,11 +9,11 @@ class Test_GetSelfiesToReviewUsecase:
         repo = StudentRepositoryMock()
         usecase = GetSelfiesToReviewUsecase(repo=repo)
         
-        selfies = usecase(reviewerRa=repo.reviewers[3].ra, nSelfies=5)
-        len(selfies) == 5
+        reviews = usecase(reviewerRa=repo.reviewers[3].ra, nSelfies=5)
+        len(reviews) == 5
         
     def test_get_selfies_to_review_invalid_reviewerRa(self):
         repo = StudentRepositoryMock()
         usecase = GetSelfiesToReviewUsecase(repo=repo)
         with pytest.raises(EntityError):
-            selfies = usecase(reviewerRa="210202", nSelfies=2022)
+            reviews = usecase(reviewerRa="210202", nSelfies=2022)
