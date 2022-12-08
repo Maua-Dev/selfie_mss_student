@@ -802,6 +802,9 @@ class StudentRepositoryMock(IStudentRepository):
         return new_assign_reviews
     
     def get_selfies_to_review(self, reviewerRa: str, nSelfies: int = 10) -> List[Review]:
+        if self.get_reviewer(ra=reviewerRa) == None:
+            raise NoItemsFound("reviewerRa")
+        
         selfies_to_review = []
         pending_validation_selfies = self.get_pending_validation_selfies_assigned(reviewerRa=reviewerRa)
         
