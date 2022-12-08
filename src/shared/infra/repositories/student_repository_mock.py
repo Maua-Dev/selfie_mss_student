@@ -752,3 +752,20 @@ class StudentRepositoryMock(IStudentRepository):
             if (reviewer.ra == ra):
                 return reviewer
         return None
+    
+    def approve_selfie(self, reviewerRa: str, studentRa: str, idSelfie: int, idReview: int) -> Review:
+        review = self.update_review(reviewerRa=reviewerRa, idReview=idReview, idSelfie=idSelfie, studentRa=studentRa, new_state=REVIEW_STATE.APPROVED)
+        return review
+    
+    def reject_selfie(self, reviewerRa: str, studentRa: str, idSelfie: int, idReview: int, new_rejectionReasons: list[REJECTION_REASON] = None, new_rejectionDescription: str = None) -> Review:
+        review = self.update_review(
+            reviewerRa=reviewerRa,
+            idReview=idReview,
+            idSelfie=idSelfie,
+            studentRa=studentRa,
+            new_state=REVIEW_STATE.DECLINED,
+            new_rejectionDescription=new_rejectionDescription,
+            new_rejectionReasons=new_rejectionReasons
+        )
+        
+        return review

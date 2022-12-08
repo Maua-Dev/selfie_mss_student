@@ -95,3 +95,11 @@ class IStudentRepository(ABC):
     @abstractmethod
     def get_reviewer(self, ra: str) -> Reviewer:
         pass
+    
+    @abstractmethod
+    def approve_selfie(self, reviewerRa: str, studentRa: str, idSelfie: int, idReview: int) -> Review:
+        pass
+    
+    @abstractmethod
+    def reject_selfie(self, reviewerRa: str, studentRa: str, idSelfie: int, idReview: int, new_rejectionReasons: list[REJECTION_REASON] = None, new_rejectionDescription: str = None) -> Review:
+        pass
