@@ -29,3 +29,9 @@ class Test_GetSelfiesToReviewUsecase:
         with pytest.raises(NoItemsFound):
             reviews, reviewer = usecase(reviewerRa="21022", nSelfies=2022)
     
+    def test_get_selfies_to_review_invalid_nSelfies(self):
+        repo = StudentRepositoryMock()
+        usecase = GetSelfiesToReviewUsecase(repo=repo)
+        with pytest.raises(EntityError):
+            reviews, reviewer = usecase(reviewerRa="21022", nSelfies=-2022)
+    

@@ -11,6 +11,10 @@ class GetSelfiesToReviewUsecase:
         self.repo = repo
         
     def __call__(self, reviewerRa: str, nSelfies: int = 10) -> Tuple[List[Review], Reviewer]:
+        if nSelfies <= 0:
+            raise EntityError("nSelfies")
+        
+        
         if not Reviewer.validate_ra(ra=reviewerRa):
             raise EntityError('reviewerRa')
         return self.repo.get_selfies_to_review(reviewerRa=reviewerRa, nSelfies=nSelfies)
