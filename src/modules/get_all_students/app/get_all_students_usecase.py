@@ -14,13 +14,29 @@ class GetAllStudentsUsecase:
 
         all_students_list = list()
          
-        all_students, approved_students = self.repo.get_all_students()
+        all_students = self.repo.get_all_students()
+        all_selfies = self.repo.get_all_selfies()
 
-        for selfies, student in all_students:
+        group_selfies_by_ra = dict()
+
+        for student in all_students:
+            group_selfies_by_ra[student.ra] =  {
+                "selfies": list(),
+                "student": student
+            }
+    
+        for selfie in all_selfies:
+            group_selfies_by_ra[selfie.student.ra]["selfies"].append(selfie)
+
+
+        for raKey in group_selfies_by_ra.keys() :
+            selfies, student = group_selfies_by_ra[raKey]['selfies'], group_selfies_by_ra[raKey]["student"] 
             student_dict = dict()
             
+            selfies.sort(key=lambda x: x.dateCreated)
+
             if len(selfies) == 0: status = STUDENT_STATE.NO_SELFIE
-            elif student in approved_students: status = STUDENT_STATE.APPROVED
+            elif any([selfie.state == STATE.APPROVED for selfie in selfies]): status = STUDENT_STATE.APPROVED
             else:
                 recent_selfie_status = selfies[-1].state 
                 if recent_selfie_status == STATE.DECLINED: status = STUDENT_STATE.SELFIE_REJECTED
