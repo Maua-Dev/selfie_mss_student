@@ -4,9 +4,10 @@ from src.shared.domain.entities.review import Review
 from src.shared.domain.entities.reviewer import Reviewer
 from src.shared.domain.entities.student import Student
 from src.shared.domain.entities.selfie import Selfie
+from src.shared.domain.entities.review import Review
 from src.shared.domain.enums.rejection_reason_enum import REJECTION_REASON
 from src.shared.domain.enums.state_enum import STATE
-
+from src.shared.domain.enums.review_state_enum import REVIEW_STATE
 class IStudentRepository(ABC):
 
     @abstractmethod
@@ -54,6 +55,9 @@ class IStudentRepository(ABC):
        
     @abstractmethod    
     def get_all_selfies(self) -> List[Selfie]:
+        """
+        Sorted by Selfie.dateCreated
+        """
         pass
     
     @abstractmethod    
@@ -63,7 +67,23 @@ class IStudentRepository(ABC):
     @abstractmethod    
     def get_all_students(self) -> List[Tuple[List[Selfie], Student]]:
         pass
+    
+    @abstractmethod    
+    def get_review(self, reviewerRa: str, idReview: int, idSelfie:int, studentRa:str) -> Review:
+        pass
 
+    @abstractmethod    
+    def create_review(self, review: Review) -> Review:
+        pass
+    
+    @abstractmethod
+    def update_review(self, reviewerRa: str, idReview: int, idSelfie:int, studentRa:str, new_state: REVIEW_STATE = None, new_rejectionReasons: List[REJECTION_REASON] = None, new_rejectionDescription: str = None) -> Review:
+        pass
+    
+    @abstractmethod
+    def delete_review(self, reviewerRa: str, idReview: int, idSelfie:int, studentRa:str) -> Review:
+        pass
+    
     @abstractmethod
     def create_reviewer(self, reviwer: Reviewer) -> Reviewer:
         pass
@@ -93,3 +113,23 @@ class IStudentRepository(ABC):
         If reviewer does not exist, then raise NoItemsFound
         """
         pass
+    
+    @abstractmethod
+    def get_pending_validation_selfies_assigned(self, reviewerRa: str) -> List[Review]:
+        pass
+    
+    @abstractmethod
+    def assign_selfies(self, reviewerRa: str, nSelfies: int) -> List[Review]:
+        pass
+    
+    @abstractmethod
+    def get_selfies_to_review(self, reviewerRa: str, nSelfies: int = 10) -> Tuple[List[Selfie], Reviewer]:
+        pass
+    
+    def approve_selfie(self, reviewerRa: str, studentRa: str, idSelfie: int, idReview: int) -> Review:
+        pass
+    
+    @abstractmethod
+    def reject_selfie(self, reviewerRa: str, studentRa: str, idSelfie: int, idReview: int, new_rejectionReasons: list[REJECTION_REASON] = None, new_rejectionDescription: str = None) -> Review:
+        pass
+
