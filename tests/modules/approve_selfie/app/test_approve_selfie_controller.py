@@ -168,8 +168,8 @@ class Test_ApproveController:
         controller = ApproveSelfieController(usecase=usecase)
 
         request = HttpRequest(body={
-            "reviewerRa": repo.reviews[4].reviewer.ra,
-            "reviewIdentifier": f"{repo.reviews[4].selfie.student.ra}-{repo.reviews[4].selfie.idSelfie}-{repo.reviews[4].idReview}"
+            "reviewerRa": repo.reviews[7].reviewer.ra,
+            "reviewIdentifier": f"{repo.reviews[7].selfie.student.ra}-{repo.reviews[7].selfie.idSelfie}-{repo.reviews[7].idReview}"
         })
 
         response = controller(request=request)
