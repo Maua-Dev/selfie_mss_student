@@ -26,13 +26,15 @@ class GetAllStudentsUsecase:
             }
     
         for selfie in all_selfies:
-            group_selfies_by_ra[selfie.student.ra]["selfies"].append(selfie)
-
+            try:
+                group_selfies_by_ra[selfie.student.ra]["selfies"].append(selfie)
+            except:
+                raise EntityParameterError(message=f"student ra {selfie.student.ra} is unknown")
 
         for raKey in group_selfies_by_ra.keys() :
             selfies = group_selfies_by_ra[raKey]['selfies']
             student = group_selfies_by_ra[raKey]["student"]
-            
+
             student_dict = dict()
             
             selfies.sort(key=lambda x: x.dateCreated)
