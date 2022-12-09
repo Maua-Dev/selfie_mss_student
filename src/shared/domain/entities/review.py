@@ -39,4 +39,6 @@ class Review(abc.ABC):
     if (dateReviewed == None and type(dateReviewed) != datetime.datetime):
       raise EntityError('dateReviewed')
     self.dateReviewed = dateReviewed
-    
+
+  def __repr__(self):
+    return f"Review(idReview={self.idReview}, state={self.state}, reviewer={self.reviewer}, selfie={self.selfie}, dateAssigned={self.dateAssigned}, dateReviewed={self.dateReviewed})"
