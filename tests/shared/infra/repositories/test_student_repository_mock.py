@@ -74,3 +74,33 @@ class Test_StudentRepositoryMock:
         
         assert review not in repo.reviews
         assert lenBefore == len(repo.reviews) + 1        
+
+    def test_approve_selfie(self):
+        repo = StudentRepositoryMock()
+        review = repo.approve_selfie(
+            reviewerRa=repo.reviews[3].reviewer.ra,
+            idReview=repo.reviews[3].idReview,
+            idSelfie=repo.reviews[3].selfie.idSelfie,
+            studentRa=repo.reviews[3].selfie.student.ra
+        )
+        
+        assert review.__repr__ == repo.reviews[3].__repr__
+        assert review.state == REVIEW_STATE.APPROVED
+        
+    def test_reject_selfie(self):
+        repo = StudentRepositoryMock()
+        review = repo.reject_selfie(
+            reviewerRa=repo.reviews[3].reviewer.ra,
+            idReview=repo.reviews[3].idReview,
+            idSelfie=repo.reviews[3].selfie.idSelfie,
+            studentRa=repo.reviews[3].selfie.student.ra,
+            new_rejectionDescription="Está com fone de ouvido",
+            new_rejectionReasons=[REJECTION_REASON.COVERED_FACE]
+        )
+        
+        assert review.__repr__ == repo.reviews[3].__repr__
+        assert review.state == REVIEW_STATE.DECLINED
+        assert review.selfie.rejectionReasons == [REJECTION_REASON.COVERED_FACE]
+        assert review.selfie.rejectionDescription == "Está com fone de ouvido"
+        
+ 
