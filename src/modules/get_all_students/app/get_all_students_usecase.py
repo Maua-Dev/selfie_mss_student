@@ -30,7 +30,9 @@ class GetAllStudentsUsecase:
 
 
         for raKey in group_selfies_by_ra.keys() :
-            selfies, student = group_selfies_by_ra[raKey]['selfies'], group_selfies_by_ra[raKey]["student"] 
+            selfies = group_selfies_by_ra[raKey]['selfies']
+            student = group_selfies_by_ra[raKey]["student"]
+            
             student_dict = dict()
             
             selfies.sort(key=lambda x: x.dateCreated)
