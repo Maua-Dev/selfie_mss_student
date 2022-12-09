@@ -15,7 +15,7 @@ class Review(abc.ABC):
   dateReviewed: datetime.datetime
   REVIEW_MAXIMUM_PENDING_DAYS: int = 3 #days
 
-  def __init__(self, idReview: int, state: REVIEW_STATE, reviewer: Reviewer, selfie: Selfie, dateAssigned: datetime.datetime, dateReviewed: datetime.datetime):
+  def __init__(self, idReview: int, state: REVIEW_STATE, reviewer: Reviewer, selfie: Selfie, dateAssigned: datetime.datetime, dateReviewed: datetime.datetime = None):
 
     if (idReview == None or type(idReview) != int):
       raise EntityError('idReview')
@@ -36,7 +36,7 @@ class Review(abc.ABC):
     if (dateAssigned == None and type(dateAssigned) != datetime.datetime):
       raise EntityError('dateAssigned')
     self.dateAssigned = dateAssigned
-    if (dateReviewed == None and type(dateReviewed) != datetime.datetime):
+    if (dateReviewed != None and type(dateReviewed) != datetime.datetime):
       raise EntityError('dateReviewed')
     self.dateReviewed = dateReviewed
 

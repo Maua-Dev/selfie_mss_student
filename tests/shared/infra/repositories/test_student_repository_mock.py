@@ -1,8 +1,15 @@
 from src.shared.domain.entities.review import Review
+from src.shared.domain.entities.reviewer import Reviewer
 from src.shared.infra.repositories.student_repository_mock import StudentRepositoryMock
 import datetime
 from src.shared.domain.enums.review_state_enum import REVIEW_STATE
 from src.shared.domain.enums.rejection_reason_enum import REJECTION_REASON
+from src.shared.domain.enums.state_enum import STATE
+from src.shared.domain.entities.automatic_review import AutomaticReview
+from src.shared.domain.entities.label import Label
+from src.shared.domain.entities.selfie import Selfie
+
+
 
 class Test_StudentRepositoryMock:
     def test_get_review(self):
@@ -75,6 +82,104 @@ class Test_StudentRepositoryMock:
         assert review not in repo.reviews
         assert lenBefore == len(repo.reviews) + 1        
 
+    def test_get_pending_validation_selfies_assigned_four_selfies(self):
+        repo = StudentRepositoryMock()
+        reviews = repo.get_pending_validation_selfies_assigned(reviewerRa=repo.reviewers[3].ra)
+        assert len(reviews) == 4
+        assert type(reviews[0]) == Review
+        
+    def test_get_pending_validation_selfies_assigned_no_selfies(self):
+        repo = StudentRepositoryMock()
+        reviews = repo.get_pending_validation_selfies_assigned(reviewerRa=repo.reviewers[0].ra)
+        assert len(reviews) == 0
+        
+    def test_assign_selfies(self):
+        repo = StudentRepositoryMock()
+        
+        lenBeforeSelfiesAssigned = len(repo.get_pending_validation_selfies_assigned(reviewerRa=repo.reviewers[0].ra))
+        lenBeforeSelfiesPendingReview = len([selfie for selfie in repo.selfies if selfie.state == STATE.PENDING_REVIEW])
+        reviews = repo.assign_selfies(reviewerRa=repo.reviewers[0].ra, nSelfies=1)
+        
+        new_selfies = [selfie for selfie in repo.selfies if selfie.state == STATE.PENDING_REVIEW]
+        assert len(reviews) == lenBeforeSelfiesAssigned + 1
+        assert lenBeforeSelfiesPendingReview == len(new_selfies) + 1
+        for review in reviews:
+            assert review.selfie not in new_selfies
+            
+    def test_selfies_to_review_adding_one_selfie(self):
+        repo = StudentRepositoryMock()
+        len_before_assignment = len(repo.get_pending_validation_selfies_assigned(reviewerRa=repo.reviewers[3].ra))
+        
+        selfies_to_review, reviewer = repo.get_selfies_to_review(reviewerRa=repo.reviewers[3].ra, nSelfies=5)
+        
+        assert len(selfies_to_review) == len_before_assignment + 1
+        assert type(reviewer) == Reviewer
+            
+    def test_selfies_to_review_adding_one_selfie_but_cannot_complete_seven_selfies(self):
+        repo = StudentRepositoryMock()
+        len_before_assignment = len(repo.get_pending_validation_selfies_assigned(reviewerRa=repo.reviewers[3].ra))
+        
+        selfies_to_review, reviewer = repo.get_selfies_to_review(reviewerRa=repo.reviewers[3].ra, nSelfies=7)
+        
+        assert len(selfies_to_review) == len_before_assignment + 1
+        assert reviewer.ra == repo.reviewers[3].ra
+        
+    def test_selfies_to_review_complete_seven_selfies(self):
+        repo = StudentRepositoryMock()
+        len_before_assignment = len(repo.get_pending_validation_selfies_assigned(reviewerRa=repo.reviewers[3].ra))
+        
+        for i in range(4):
+            repo.create_selfie(Selfie(
+                idSelfie=0,
+                student=repo.students[6],
+                dateCreated=datetime.datetime(2022, 10, 1, 16, 1, 59, 149927),
+                url=f"https://i.imgur.com/0K{i}BHTB.jpg",
+                state=STATE.PENDING_REVIEW,
+                rejectionReasons=[],
+                rejectionDescription="",
+                automaticReview=AutomaticReview(
+                    automaticallyRejected=False,
+                    rejectionReasons=[],
+                    labels=[
+                        Label(
+                            name="Person",
+                            coords={
+                                "Width": 0.9711952805519104,
+                                "Height": 0.8659809827804565,
+                                "Left": 0.012313545681536198,
+                                "Top": 0.11108686774969101
+                            },
+                            confidence=98.54370880126953,
+                            parents=[],
+                        ),
+                        Label(
+                            name="Face",
+                            coords={
+                                "Width": 0.9711952805519104,
+                                "Height": 0.8659809827804565,
+                                "Left": 0.012313545681536198,
+                                "Top": 0.11108686774969101
+                            },
+                            confidence=98.54370880126953,
+                            parents=[],
+                        ),
+                    ]
+                )
+            ))
+        
+        selfies_to_review, reviewer = repo.get_selfies_to_review(reviewerRa=repo.reviewers[3].ra, nSelfies=7)
+        
+        assert len(selfies_to_review) == len_before_assignment + 3
+        
+    def test_selfies_to_review_already_have_four_selfies(self):
+        repo = StudentRepositoryMock()
+        len_before_assignment = len(repo.get_pending_validation_selfies_assigned(reviewerRa=repo.reviewers[3].ra))
+        
+        selfies_to_review, reviewer = repo.get_selfies_to_review(reviewerRa=repo.reviewers[3].ra, nSelfies=4)
+        
+        assert len(selfies_to_review) == len_before_assignment 
+        assert type(selfies_to_review[0]) == Review
+
     def test_approve_selfie(self):
         repo = StudentRepositoryMock()
         review = repo.approve_selfie(
@@ -102,5 +207,4 @@ class Test_StudentRepositoryMock:
         assert review.state == REVIEW_STATE.DECLINED
         assert review.selfie.rejectionReasons == [REJECTION_REASON.COVERED_FACE]
         assert review.selfie.rejectionDescription == "Está com fone de ouvido"
-        
- 
+

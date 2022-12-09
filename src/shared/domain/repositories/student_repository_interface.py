@@ -54,6 +54,9 @@ class IStudentRepository(ABC):
        
     @abstractmethod    
     def get_all_selfies(self) -> List[Selfie]:
+        """
+        Sorted by Selfie.dateCreated
+        """
         pass
     
     @abstractmethod    
@@ -97,9 +100,21 @@ class IStudentRepository(ABC):
         pass
     
     @abstractmethod
+    def get_pending_validation_selfies_assigned(self, reviewerRa: str) -> List[Review]:
+        pass
+    
+    @abstractmethod
+    def assign_selfies(self, reviewerRa: str, nSelfies: int) -> List[Review]:
+        pass
+    
+    @abstractmethod
+    def get_selfies_to_review(self, reviewerRa: str, nSelfies: int = 10) -> Tuple[List[Selfie], Reviewer]:
+        pass
+    
     def approve_selfie(self, reviewerRa: str, studentRa: str, idSelfie: int, idReview: int) -> Review:
         pass
     
     @abstractmethod
     def reject_selfie(self, reviewerRa: str, studentRa: str, idSelfie: int, idReview: int, new_rejectionReasons: list[REJECTION_REASON] = None, new_rejectionDescription: str = None) -> Review:
         pass
+
