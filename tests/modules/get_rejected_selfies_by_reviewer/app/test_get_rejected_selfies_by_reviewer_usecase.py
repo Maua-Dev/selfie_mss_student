@@ -16,7 +16,7 @@ class Test_GetRejectedSelfiesByReviewerUseCase():
             reviewerRa= repo.reviewers[3].ra
          )
          
-        assert reviews == [repo.reviews[4], repo.reviews[6]]
+        assert reviews == [repo.reviews[7], repo.reviews[9]]
         assert reviewer == repo.reviewers[3]
           
     def test_get_rejected_selfies_by_reviewer_empty_list(self):
