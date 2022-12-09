@@ -152,7 +152,6 @@ class Test_UpdateSelfieController:
         assert response.status_code == 400
         assert response.body == "Field new_rejectionReasons is not valid"
 
-
     def test_update_selfie_controller_already_approved(self):
         repo = StudentRepositoryMock()
         usecase = UpdateSelfieUsecase(repo=repo)
@@ -169,7 +168,6 @@ class Test_UpdateSelfieController:
 
         assert response.status_code == 403
         assert response.body == "That action is forbidden for this Selfie"
-
         
     def test_update_selfie_controller_already_rejected(self):
         repo = StudentRepositoryMock()

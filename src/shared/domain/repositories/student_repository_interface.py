@@ -111,4 +111,10 @@ class IStudentRepository(ABC):
     def get_selfies_to_review(self, reviewerRa: str, nSelfies: int = 10) -> Tuple[List[Selfie], Reviewer]:
         pass
     
+    def approve_selfie(self, reviewerRa: str, studentRa: str, idSelfie: int, idReview: int) -> Review:
+        pass
     
+    @abstractmethod
+    def reject_selfie(self, reviewerRa: str, studentRa: str, idSelfie: int, idReview: int, new_rejectionReasons: list[REJECTION_REASON] = None, new_rejectionDescription: str = None) -> Review:
+        pass
+
