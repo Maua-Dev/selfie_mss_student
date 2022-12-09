@@ -54,6 +54,9 @@ class IStudentRepository(ABC):
        
     @abstractmethod    
     def get_all_selfies(self) -> List[Selfie]:
+        """
+        Sorted by Selfie.dateCreated
+        """
         pass
     
     @abstractmethod    

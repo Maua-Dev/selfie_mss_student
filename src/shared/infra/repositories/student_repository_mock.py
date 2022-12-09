@@ -688,7 +688,11 @@ class StudentRepositoryMock(IStudentRepository):
         return self.selfies[idxSelfie]
 
     def get_all_selfies(self) -> List[Selfie]:
-        return self.selfies
+        
+        all_selfies = self.selfies
+        all_selfies.sort(key=lambda x: x.dateCreated)
+        
+        return all_selfies
 
     def check_student_has_approved_selfie(self, ra: str) -> bool:
         selfies, student = self.get_selfies_by_ra(ra=ra)
@@ -784,7 +788,7 @@ class StudentRepositoryMock(IStudentRepository):
         new_assign_reviews = list()
         counter = 0
         
-        for idx, selfie in enumerate(self.selfies):
+        for idx, selfie in enumerate(self.get_all_selfies()):
             if counter == nSelfies:
                 break
             if selfie.state == STATE.PENDING_REVIEW:
