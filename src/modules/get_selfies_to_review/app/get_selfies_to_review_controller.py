@@ -22,10 +22,11 @@ class GetSelfiesToReviewController:
                 elif not request.query_params.get('nSelfies').isdecimal():
                     raise EntityError('nSelfies')
 
-            reviews, reviewer = self.getSelfiesToReviewUsecase(
-                nSelfies=int(request.query_params.get('nSelfies')) if request.query_params.get('nSelfies') != None else 10,
-                reviewerRa=request.query_params.get('reviewerRa')    
-            )
+
+            args = (request.query_params.get('reviewerRa'), int(request.query_params.get('nSelfies'))) if request.query_params.get('nSelfies') != None else (request.query_params.get('reviewerRa'),)
+            
+            reviews, reviewer = self.getSelfiesToReviewUsecase(*args)
+                
 
             viewmodel = GetSelfiesToReviewViewmodel(data=reviews, reviewer=reviewer)
             return OK(viewmodel.to_dict())
