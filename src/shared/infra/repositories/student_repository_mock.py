@@ -530,8 +530,8 @@ class StudentRepositoryMock(IStudentRepository):
           Review(
                 idReview = 0,
                 state=REVIEW_STATE.APPROVED,
-                reviewer=self.reviewers[1],
-                selfie=self.selfies[2],
+                reviewer=self.reviewers[0],
+                selfie=self.selfies[3],
                 dateAssigned=datetime.datetime(2022, 11, 30, 16, 1, 59, 149927),
                 dateReviewed=datetime.datetime(2022, 12, 2, 16, 5, 59, 149927)
               ),
@@ -589,6 +589,14 @@ class StudentRepositoryMock(IStudentRepository):
                 reviewer=self.reviewers[3],
                 selfie=self.selfies[8],
                 dateAssigned=datetime.datetime(2022, 11, 2, 16, 1, 59, 149927),
+                dateReviewed=datetime.datetime(2022, 12, 2, 16, 5, 59, 149927)
+              ),
+          Review(
+                idReview = 1,
+                state=REVIEW_STATE.DECLINED,
+                reviewer=self.reviewers[3],
+                selfie=self.selfies[9],
+                dateAssigned=datetime.datetime(2022, 11, 1, 16, 1, 59, 149927),
                 dateReviewed=datetime.datetime(2022, 12, 2, 16, 5, 59, 149927)
               )
         ]
@@ -780,6 +788,30 @@ class StudentRepositoryMock(IStudentRepository):
             if (reviewer.ra == ra):
                 return reviewer
         return None
+
+    def get_rejected_selfies_by_reviewer(self, reviewerRa: str) -> Tuple[Reviewer, List[Review]]:
+        reviews = list()
+        reviewer = self.get_reviewer(reviewerRa)
+        if reviewer == None:
+            raise NoItemsFound("reviewerRa")
+        
+        for review in self.reviews:
+            if review.reviewer.ra == reviewerRa and review.state == REVIEW_STATE.DECLINED:
+                reviews.append(review)
+
+        return reviewer, reviews  
+
+    def get_approved_selfies_by_reviewer(self, reviewerRa: str) -> Tuple[Reviewer, List[Review]]:
+        reviews = list()
+        reviewer = self.get_reviewer(reviewerRa)
+        if reviewer == None:
+            raise NoItemsFound("reviewerRa")
+        
+        for review in self.reviews:
+            if review.reviewer.ra == reviewerRa and review.state == REVIEW_STATE.APPROVED:
+                reviews.append(review)
+
+        return reviewer, reviews
     
     def get_pending_validation_selfies_assigned(self, reviewerRa: str) -> List[Review]:
         return [review for review in self.reviews if review.reviewer.ra == reviewerRa and review.state == REVIEW_STATE.PENDING_VALIDATION]            
