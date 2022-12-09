@@ -84,7 +84,7 @@ class ReviewerViewModel:
             "ra": self.ra,
             "name": self.name,
             "email": self.email,
-            "active": str(self.active)
+            "active": self.active
         }
     
 class SelfieViewModel:
