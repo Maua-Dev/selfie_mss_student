@@ -191,6 +191,7 @@ class Test_StudentRepositoryMock:
         
         assert review.__repr__ == repo.reviews[3].__repr__
         assert review.state == REVIEW_STATE.APPROVED
+        assert review.selfie.state == STATE.APPROVED
         
     def test_reject_selfie(self):
         repo = StudentRepositoryMock()
@@ -207,4 +208,6 @@ class Test_StudentRepositoryMock:
         assert review.state == REVIEW_STATE.DECLINED
         assert review.selfie.rejectionReasons == [REJECTION_REASON.COVERED_FACE]
         assert review.selfie.rejectionDescription == "Está com fone de ouvido"
+        assert review.selfie.state == STATE.DECLINED
+        
 
