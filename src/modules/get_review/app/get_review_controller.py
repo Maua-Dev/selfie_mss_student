@@ -11,8 +11,6 @@ class GetReviewController:
         
     def __call__(self, request: HttpRequest) -> HttpResponse:
         try:
-            if request.query_params.get("reviewerRa") == None:
-                raise MissingParameters("reviewerRa")
             if request.query_params.get("reviewIdentifier") == None:
                 raise MissingParameters("reviewIdentifier")
         
@@ -31,7 +29,6 @@ class GetReviewController:
                 
             
             review = self.getReviewUsecase(
-                reviewerRa=request.query_params.get("reviewerRa"),
                 studentRa=parsedIdReviewParams[0],
                 idSelfie=int(parsedIdReviewParams[1]),
                 idReview=int(parsedIdReviewParams[2])

@@ -10,17 +10,15 @@ class GetReviewUsecase:
     def __init__(self, repo:IStudentRepository):
         self.repo = repo
         
-    def __call__(self, reviewerRa: str, idReview: int, idSelfie: int, studentRa: str) -> Review:
-        if not Reviewer.validate_ra(ra=reviewerRa):
-            raise EntityError("reviewerRa")
+    def __call__(self, idReview: int, idSelfie: int, studentRa: str) -> Review:
         if not Student.validate_ra(ra=studentRa):
             raise EntityError("studentRa")
         
         
-        review = self.repo.get_review(reviewerRa=reviewerRa, idReview=idReview, idSelfie=idSelfie, studentRa=studentRa)
+        review = self.repo.get_review(idReview=idReview, idSelfie=idSelfie, studentRa=studentRa)
         
         if review == None:
-            raise NoItemsFound("reviewerRa, idReview, idSelfie or studentRa")
+            raise NoItemsFound("idReview, idSelfie or studentRa")
         
         return review
         

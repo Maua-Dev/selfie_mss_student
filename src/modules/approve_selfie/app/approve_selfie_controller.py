@@ -12,8 +12,6 @@ class ApproveSelfieController:
         
     def __call__(self, request: HttpRequest) -> HttpResponse:
         try:
-            if request.body.get("reviewerRa") == None:
-                raise MissingParameters("reviewerRa")
             if request.body.get("reviewIdentifier") == None:
                 raise MissingParameters("reviewIdentifier")
         
@@ -32,7 +30,6 @@ class ApproveSelfieController:
                 
             
             review = self.approveSelfieUsecase(
-                reviewerRa=request.body.get("reviewerRa"),
                 studentRa=parsedIdReviewParams[0],
                 idSelfie=int(parsedIdReviewParams[1]),
                 idReview=int(parsedIdReviewParams[2])

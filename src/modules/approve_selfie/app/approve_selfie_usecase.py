@@ -10,19 +10,17 @@ class ApproveSelfieUsecase:
     def __init__(self, repo:IStudentRepository):
         self.repo = repo
         
-    def __call__(self, reviewerRa: str, studentRa: str, idSelfie: int, idReview: int) -> Review:
-        if not Reviewer.validate_ra(ra=reviewerRa):
-            raise EntityError("reviewerRa")
+    def __call__(self, studentRa: str, idSelfie: int, idReview: int) -> Review:
         if not Student.validate_ra(ra=studentRa):
             raise EntityError("studentRa")
         
-        review_before = self.repo.get_review(idReview=idReview, idSelfie=idSelfie, studentRa=studentRa, reviewerRa=reviewerRa)
+        review_before = self.repo.get_review(idReview=idReview, idSelfie=idSelfie, studentRa=studentRa)
         if review_before == None:
-            raise NoItemsFound("reviewerRa, idReview, idSelfie or studentRa")
+            raise NoItemsFound("idReview, idSelfie or studentRa")
         if review_before.state != REVIEW_STATE.PENDING_VALIDATION:
             raise ForbiddenAction("Review")
         
-        review = self.repo.approve_selfie(idReview=idReview, idSelfie=idSelfie, studentRa=studentRa, reviewerRa=reviewerRa)
+        review = self.repo.approve_selfie(idReview=idReview, idSelfie=idSelfie, studentRa=studentRa)
         
         
         

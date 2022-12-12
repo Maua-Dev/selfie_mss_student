@@ -15,7 +15,6 @@ class Test_StudentRepositoryMock:
     def test_get_review(self):
         repo = StudentRepositoryMock()
         assert repo.get_review(
-            reviewerRa=repo.reviews[0].reviewer.ra,
             idReview=repo.reviews[0].idReview,
             idSelfie=repo.reviews[0].selfie.idSelfie,
             studentRa=repo.reviews[0].selfie.student.ra
@@ -39,7 +38,6 @@ class Test_StudentRepositoryMock:
     def test_update_review_1(self):
         repo = StudentRepositoryMock()
         review = repo.update_review(
-            reviewerRa=repo.reviews[3].reviewer.ra,
             idReview=repo.reviews[3].idReview,
             idSelfie=repo.reviews[3].selfie.idSelfie,
             studentRa=repo.reviews[3].selfie.student.ra,
@@ -53,7 +51,6 @@ class Test_StudentRepositoryMock:
     def test_update_review_2(self):
         repo = StudentRepositoryMock()
         review = repo.update_review(
-            reviewerRa=repo.reviews[3].reviewer.ra,
             idReview=repo.reviews[3].idReview,
             idSelfie=repo.reviews[3].selfie.idSelfie,
             studentRa=repo.reviews[3].selfie.student.ra,
@@ -183,7 +180,6 @@ class Test_StudentRepositoryMock:
     def test_approve_selfie(self):
         repo = StudentRepositoryMock()
         review = repo.approve_selfie(
-            reviewerRa=repo.reviews[3].reviewer.ra,
             idReview=repo.reviews[3].idReview,
             idSelfie=repo.reviews[3].selfie.idSelfie,
             studentRa=repo.reviews[3].selfie.student.ra
@@ -196,7 +192,6 @@ class Test_StudentRepositoryMock:
     def test_reject_selfie(self):
         repo = StudentRepositoryMock()
         review = repo.reject_selfie(
-            reviewerRa=repo.reviews[3].reviewer.ra,
             idReview=repo.reviews[3].idReview,
             idSelfie=repo.reviews[3].selfie.idSelfie,
             studentRa=repo.reviews[3].selfie.student.ra,

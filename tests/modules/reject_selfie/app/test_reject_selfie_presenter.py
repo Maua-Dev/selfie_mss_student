@@ -52,7 +52,7 @@ class Test_RejectPresenter:
             "time": "12/Mar/2020:19:03:58 +0000",
             "timeEpoch": 1583348638390
           },
-          "body":'{"reviewerRa":"04618","reviewIdentifier":"15013103-0-0"}',
+          "body":'{"reviewIdentifier":"15013103-0-0"}',
           "pathParameters": None,
           "isBase64Encoded": None,
           "stageVariables": None
@@ -110,7 +110,7 @@ class Test_RejectPresenter:
             "time": "12/Mar/2020:19:03:58 +0000",
             "timeEpoch": 1583348638390
           },
-          "body":'{"reviewerRa":"12313","reviewIdentifier":"15013103-0-0"}',
+          "body":'{"reviewIdentifier":"15013103-19-0"}',
           "pathParameters": None,
           "isBase64Encoded": None,
           "stageVariables": None
@@ -119,7 +119,7 @@ class Test_RejectPresenter:
 
         response = lambda_handler(event, None)
         assert response["statusCode"] == 404
-        assert json.loads(response["body"]) == "No items found for reviewerRa, idReview, idSelfie or studentRa" 
+        assert json.loads(response["body"]) == "No items found for idReview, idSelfie or studentRa" 
 
     def test_approve_selfie_non_valid_ra_dash(self):
         event = {
@@ -168,7 +168,7 @@ class Test_RejectPresenter:
             "time": "12/Mar/2020:19:03:58 +0000",
             "timeEpoch": 1583348638390
           },
-          "body":'{"reviewerRa":"1231123123","reviewIdentifier":"15013103-0-0"}',
+          "body":'{"reviewIdentifier":"1501310-3-0-0"}',
           "pathParameters": None,
           "isBase64Encoded": None,
           "stageVariables": None
@@ -177,4 +177,4 @@ class Test_RejectPresenter:
 
         response = lambda_handler(event, None)
         assert response["statusCode"] == 400
-        assert json.loads(response["body"]) == "Field reviewerRa is not valid" 
+        assert json.loads(response["body"]) == "Field reviewIdentifier is not valid" 

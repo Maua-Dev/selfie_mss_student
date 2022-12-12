@@ -5,13 +5,12 @@ from src.shared.infra.repositories.student_repository_mock import StudentReposit
 from src.modules.reject_selfie.app.reject_selfie_usecase import RejectSelfieUsecase
 import pytest
 
-class Test_RejectSelfie:
+class Test_RejectSelfieUsecase:
     def test_reject_selfie(self):
         repo = StudentRepositoryMock()
         usecase = RejectSelfieUsecase(repo=repo)
         
         review = usecase(
-            reviewerRa=repo.reviews[3].reviewer.ra,
             idReview=repo.reviews[3].idReview,
             idSelfie=repo.reviews[3].selfie.idSelfie,
             studentRa=repo.reviews[3].selfie.student.ra,
@@ -28,23 +27,10 @@ class Test_RejectSelfie:
         
         with pytest.raises(ForbiddenAction):
             review = usecase(
-                reviewerRa=repo.reviews[0].reviewer.ra,
                 idReview=repo.reviews[0].idReview,
                 idSelfie=repo.reviews[0].selfie.idSelfie,
                 studentRa=repo.reviews[0].selfie.student.ra
                 )
-            
-    def test_reject_invalid_reviewerRa(self):
-        repo = StudentRepositoryMock()
-        usecase = RejectSelfieUsecase(repo=repo)
-        
-        with pytest.raises(EntityError):
-            review = usecase(
-                reviewerRa=30262,
-                idReview=0,
-                idSelfie=repo.reviews[0].selfie.idSelfie,
-                studentRa=repo.reviews[0].selfie.student.ra
-            )
             
     def test_reject_invalid_studentRa(self):
         repo = StudentRepositoryMock()
@@ -52,7 +38,6 @@ class Test_RejectSelfie:
         
         with pytest.raises(EntityError):
             review = usecase(
-                reviewerRa="30262",
                 idReview=0,
                 idSelfie=repo.reviews[0].selfie.idSelfie,
                 studentRa=int(repo.reviews[0].selfie.student.ra)
@@ -64,9 +49,8 @@ class Test_RejectSelfie:
         
         with pytest.raises(NoItemsFound):
             review = usecase(
-                reviewerRa="30262",
                 idReview=repo.reviews[0].idReview,
                 idSelfie=repo.reviews[0].selfie.idSelfie,
-                studentRa=repo.reviews[0].selfie.student.ra
+                studentRa="21009317"
             )       
                  

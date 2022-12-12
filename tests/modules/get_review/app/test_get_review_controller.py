@@ -13,7 +13,6 @@ class Test_GetReviewController:
         controller = GetReviewController(usecase=usecase)
 
         request = HttpRequest(query_params={
-            "reviewerRa": repo.reviews[0].reviewer.ra,
             "reviewIdentifier": f"{repo.reviews[0].selfie.student.ra}-{repo.reviews[0].selfie.idSelfie}-{repo.reviews[0].idReview}"
         })
 
@@ -27,25 +26,11 @@ class Test_GetReviewController:
         controller = GetReviewController(usecase=usecase)
 
         request = HttpRequest(query_params={
-            "reviewerRa": repo.reviews[0].reviewer.ra,
         })
 
         response = controller(request=request)
         assert response.status_code == 400
         assert response.body == "Field reviewIdentifier is missing"
-        
-    def test_get_review_controller_missing_reviewerRa(self):
-        repo = StudentRepositoryMock()
-        usecase = GetReviewUsecase(repo=repo)
-        controller = GetReviewController(usecase=usecase)
-
-        request = HttpRequest(query_params={
-            "reviewIdentifier": f"{repo.reviews[0].selfie.student.ra}-{repo.reviews[0].selfie.idSelfie}-{repo.reviews[0].idReview}"
-        })
-
-        response = controller(request=request)
-        assert response.status_code == 400
-        assert response.body == "Field reviewerRa is missing"
         
     def test_get_review_controller_wrong_reviewIdentifier_1(self):
         assert True
@@ -55,7 +40,6 @@ class Test_GetReviewController:
         controller = GetReviewController(usecase=usecase)
 
         request = HttpRequest(query_params={
-            "reviewerRa": repo.reviews[0].reviewer.ra,
             "reviewIdentifier": f"2101075-7-12"
         })
 
@@ -69,7 +53,6 @@ class Test_GetReviewController:
         controller = GetReviewController(usecase=usecase)
 
         request = HttpRequest(query_params={
-            "reviewerRa": repo.reviews[0].reviewer.ra,
             "reviewIdentifier": f"2101075, 7, 12"
         })
 
@@ -83,7 +66,6 @@ class Test_GetReviewController:
         controller = GetReviewController(usecase=usecase)
 
         request = HttpRequest(query_params={
-            "reviewerRa": repo.reviews[0].reviewer.ra,
             "reviewIdentifier": f"2101075-7-1-2"
         })
 
@@ -97,7 +79,6 @@ class Test_GetReviewController:
         controller = GetReviewController(usecase=usecase)
 
         request = HttpRequest(query_params={
-            "reviewerRa": repo.reviews[0].reviewer.ra,
             "reviewIdentifier": f"21010757-a-1"
         })
 
@@ -111,7 +92,6 @@ class Test_GetReviewController:
         controller = GetReviewController(usecase=usecase)
 
         request = HttpRequest(query_params={
-            "reviewerRa": repo.reviews[0].reviewer.ra,
             "reviewIdentifier": f"21010757-12-b"
         })
 

@@ -20,7 +20,6 @@ class Test_GetReviewPresenter:
             "header2": "value1,value2"
           },
           "queryStringParameters": {
-            "reviewerRa": repo.reviews[0].reviewer.ra,
             "reviewIdentifier": f"{repo.reviews[0].selfie.student.ra}-{repo.reviews[0].selfie.idSelfie}-{repo.reviews[0].idReview}",
             "parameter2": "value"
           },
@@ -81,7 +80,6 @@ class Test_GetReviewPresenter:
             "header2": "value1,value2"
           },
           "queryStringParameters": {
-            "reviewerRa": repo.reviews[0].reviewer.ra,
             "parameter2": "value"
           },
           "requestContext": {
@@ -141,8 +139,7 @@ class Test_GetReviewPresenter:
             "header2": "value1,value2"
           },
           "queryStringParameters": {
-            "reviewerRa": "12345",
-            "reviewIdentifier": f"{repo.reviews[0].selfie.student.ra}-{repo.reviews[0].selfie.idSelfie}-{repo.reviews[0].idReview}",
+            "reviewIdentifier": f"21020202-{repo.reviews[0].selfie.idSelfie}-{repo.reviews[0].idReview}",
             "parameter2": "value"
           },
           "requestContext": {
@@ -184,7 +181,7 @@ class Test_GetReviewPresenter:
         response = lambda_handler(event, None)
         
         assert response["statusCode"] == 404
-        assert json.loads(response["body"]) == "No items found for reviewerRa, idReview, idSelfie or studentRa"
+        assert json.loads(response["body"]) == "No items found for idReview, idSelfie or studentRa"
         
         
         

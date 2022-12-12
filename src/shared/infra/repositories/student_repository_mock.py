@@ -717,9 +717,9 @@ class StudentRepositoryMock(IStudentRepository):
 
         return all_students
     
-    def get_review(self, reviewerRa: str, idReview: int, idSelfie:int, studentRa:str) -> Review:
+    def get_review(self, idReview: int, idSelfie:int, studentRa:str) -> Review:
         for review in self.reviews:
-            if review.idReview == idReview and review.reviewer.ra == reviewerRa and idSelfie == review.selfie.idSelfie and review.selfie.student.ra == studentRa:
+            if review.idReview == idReview and idSelfie == review.selfie.idSelfie and review.selfie.student.ra == studentRa:
                 return review
             
         return None
@@ -729,9 +729,9 @@ class StudentRepositoryMock(IStudentRepository):
         
         return review
     
-    def update_review(self, reviewerRa: str, idReview: int, idSelfie:int, studentRa:str, new_state: REVIEW_STATE = None, new_rejectionReasons: List[REJECTION_REASON] = None, new_rejectionDescription: str = None) -> Review:
+    def update_review(self, idReview: int, idSelfie:int, studentRa:str, new_state: REVIEW_STATE = None, new_rejectionReasons: List[REJECTION_REASON] = None, new_rejectionDescription: str = None) -> Review:
         
-        review = self.get_review(reviewerRa=reviewerRa, idReview=idReview, idSelfie=idSelfie, studentRa=studentRa)
+        review = self.get_review(idReview=idReview, idSelfie=idSelfie, studentRa=studentRa)
         if review == None:
             return None
         if new_state != None:
@@ -854,13 +854,12 @@ class StudentRepositoryMock(IStudentRepository):
             
         return selfies_to_review, reviewer
 
-    def approve_selfie(self, reviewerRa: str, studentRa: str, idSelfie: int, idReview: int) -> Review:
-        review = self.update_review(reviewerRa=reviewerRa, idReview=idReview, idSelfie=idSelfie, studentRa=studentRa, new_state=REVIEW_STATE.APPROVED)
+    def approve_selfie(self, studentRa: str, idSelfie: int, idReview: int) -> Review:
+        review = self.update_review(idReview=idReview, idSelfie=idSelfie, studentRa=studentRa, new_state=REVIEW_STATE.APPROVED)
         return review
     
-    def reject_selfie(self, reviewerRa: str, studentRa: str, idSelfie: int, idReview: int, new_rejectionReasons: list[REJECTION_REASON] = None, new_rejectionDescription: str = None) -> Review:
+    def reject_selfie(self, studentRa: str, idSelfie: int, idReview: int, new_rejectionReasons: list[REJECTION_REASON] = None, new_rejectionDescription: str = None) -> Review:
         review = self.update_review(
-            reviewerRa=reviewerRa,
             idReview=idReview,
             idSelfie=idSelfie,
             studentRa=studentRa,

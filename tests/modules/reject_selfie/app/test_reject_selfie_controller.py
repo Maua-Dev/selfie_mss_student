@@ -15,7 +15,6 @@ class Test_RejectController:
         controller = RejectSelfieController(usecase=usecase)
 
         request = HttpRequest(body={
-            "reviewerRa": repo.reviews[3].reviewer.ra,
             "reviewIdentifier": f"{repo.reviews[3].selfie.student.ra}-{repo.reviews[3].selfie.idSelfie}-{repo.reviews[3].idReview}",
             "new_rejectionReasons": ["COVERED_FACE"],
             "new_rejectionDescription": "Tire o chapéu, princesa !"
@@ -32,7 +31,6 @@ class Test_RejectController:
         controller = RejectSelfieController(usecase=usecase)
 
         request = HttpRequest(body={
-            "reviewerRa": repo.reviews[3].reviewer.ra,
         })
 
         response = controller(request=request)
@@ -45,26 +43,12 @@ class Test_RejectController:
         controller = RejectSelfieController(usecase=usecase)
 
         request = HttpRequest(body={
-            "reviewerRa": repo.reviews[0].reviewer.ra,
             "reviewIdentifier": f"{repo.reviews[0].selfie.student.ra}-{repo.reviews[0].selfie.idSelfie}-{repo.reviews[0].idReview}"
         })
 
         response = controller(request=request)
         assert response.status_code == 403
         assert response.body == "That action is forbidden for this Review"
-        
-    def test_reject_selfie_controller_missing_reviewerRa(self):
-        repo = StudentRepositoryMock()
-        usecase = RejectSelfieUsecase(repo=repo)
-        controller = RejectSelfieController(usecase=usecase)
-
-        request = HttpRequest(body={
-            "reviewIdentifier": f"{repo.reviews[0].selfie.student.ra}-{repo.reviews[0].selfie.idSelfie}-{repo.reviews[0].idReview}"
-        })
-
-        response = controller(request=request)
-        assert response.status_code == 400
-        assert response.body == "Field reviewerRa is missing"
         
     def test_reject_selfie_controller_wrong_reviewIdentifier_1(self):
         assert True
@@ -74,7 +58,6 @@ class Test_RejectController:
         controller = RejectSelfieController(usecase=usecase)
 
         request = HttpRequest(body={
-            "reviewerRa": repo.reviews[0].reviewer.ra,
             "reviewIdentifier": f"2101075-7-12"
         })
 
@@ -88,7 +71,6 @@ class Test_RejectController:
         controller = RejectSelfieController(usecase=usecase)
 
         request = HttpRequest(body={
-            "reviewerRa": repo.reviews[0].reviewer.ra,
             "reviewIdentifier": f"2101075, 7, 12"
         })
 
@@ -102,7 +84,6 @@ class Test_RejectController:
         controller = RejectSelfieController(usecase=usecase)
 
         request = HttpRequest(body={
-            "reviewerRa": repo.reviews[0].reviewer.ra,
             "reviewIdentifier": f"2101075-7-1-2"
         })
 
@@ -116,7 +97,6 @@ class Test_RejectController:
         controller = RejectSelfieController(usecase=usecase)
 
         request = HttpRequest(body={
-            "reviewerRa": repo.reviews[0].reviewer.ra,
             "reviewIdentifier": f"21010757-a-1"
         })
 
@@ -130,7 +110,6 @@ class Test_RejectController:
         controller = RejectSelfieController(usecase=usecase)
 
         request = HttpRequest(body={
-            "reviewerRa": repo.reviews[0].reviewer.ra,
             "reviewIdentifier": f"21010757-12-b"
         })
 
@@ -144,13 +123,12 @@ class Test_RejectController:
         controller = RejectSelfieController(usecase=usecase)
 
         request = HttpRequest(body={
-            "reviewerRa": "12312",
-            "reviewIdentifier": f"{repo.reviews[3].selfie.student.ra}-{repo.reviews[3].selfie.idSelfie}-{repo.reviews[3].idReview}"
+            "reviewIdentifier": f"21019920-{repo.reviews[3].selfie.idSelfie}-{repo.reviews[3].idReview}"
         })
 
         response = controller(request=request)
         assert response.status_code == 404
-        assert response.body == "No items found for reviewerRa, idReview, idSelfie or studentRa"
+        assert response.body == "No items found for idReview, idSelfie or studentRa"
         
     def test_reject_selfie_controller_invalid_rejection_reason(self):
         repo = StudentRepositoryMock()
@@ -158,7 +136,6 @@ class Test_RejectController:
         controller = RejectSelfieController(usecase=usecase)
 
         request = HttpRequest(body={
-            "reviewerRa": "12312",
             "reviewIdentifier": f"{repo.reviews[3].selfie.student.ra}-{repo.reviews[3].selfie.idSelfie}-{repo.reviews[3].idReview}",
             "new_rejectionReasons": "COVERED_FACE",
             "new_rejectionDescription": "Tire o chapéu, princesa !"
@@ -174,7 +151,6 @@ class Test_RejectController:
         controller = RejectSelfieController(usecase=usecase)
 
         request = HttpRequest(body={
-            "reviewerRa": repo.reviews[0].reviewer.ra,
             "reviewIdentifier": f"{repo.reviews[0].selfie.student.ra}-{repo.reviews[0].selfie.idSelfie}-{repo.reviews[0].idReview}",
             "new_rejectionReasons": ["COVERED_FACE"],
             "new_rejectionDescription": "Tire o chapéu, princesa !"
@@ -191,7 +167,6 @@ class Test_RejectController:
         controller = RejectSelfieController(usecase=usecase)
 
         request = HttpRequest(body={
-            "reviewerRa": repo.reviews[7].reviewer.ra,
             "reviewIdentifier": f"{repo.reviews[7].selfie.student.ra}-{repo.reviews[7].selfie.idSelfie}-{repo.reviews[7].idReview}",
             "new_rejectionReasons": ["COVERED_FACE"],
             "new_rejectionDescription": "Tire o chapéu, princesa !"
