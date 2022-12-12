@@ -15,6 +15,6 @@ class GetRejectedSelfiesByReviewerUsecase:
         if not Reviewer.validate_ra(reviewerRa):
             raise EntityError('reviewerRa')
         
-        reviewer, reviews  = self.repo.get_rejected_selfies_by_reviewer(reviewerRa)
+        reviewer, reviews  = self.repo.get_rejected_reviews_by_reviewer(reviewerRa)
 
         return reviewer, reviews
