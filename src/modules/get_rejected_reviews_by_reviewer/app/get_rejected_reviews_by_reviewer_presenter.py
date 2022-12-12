@@ -1,5 +1,5 @@
-from .get_rejected_selfies_by_reviewer_usecase import GetRejectedSelfiesByReviewerUsecase
-from .get_rejected_selfies_by_reviewer_controller import GetRejectedSelfiesByReviewerController
+from .get_rejected_reviews_by_reviewer_usecase import GetRejectedSelfiesByReviewerUsecase
+from .get_rejected_reviews_by_reviewer_controller import GetRejectedSelfiesByReviewerController
 from src.shared.environments import Environments
 
 from src.shared.helpers.http.http_lambda_requests import LambdaHttpRequest, LambdaHttpResponse

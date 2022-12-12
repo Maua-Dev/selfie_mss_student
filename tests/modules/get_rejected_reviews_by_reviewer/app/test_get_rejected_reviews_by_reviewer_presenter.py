@@ -1,9 +1,9 @@
 import json
-from src.modules.get_rejected_selfies_by_reviewer.app.get_rejected_selfies_by_reviewer_presenter import lambda_handler
+from src.modules.get_rejected_reviews_by_reviewer.app.get_rejected_reviews_by_reviewer_presenter import lambda_handler
 
 class Test_GetRejectedSelfiesByReviewerPresenter:
 
-    def test_get_rejected_selfies_by_reviewer_presenter(self):
+    def test_get_rejected_reviews_by_reviewer_presenter(self):
         event = {
           "version": "2.0",
           "routeKey": "$default",
@@ -220,7 +220,7 @@ class Test_GetRejectedSelfiesByReviewerPresenter:
         assert json.loads(response["body"]) == expected
 
   
-    def test_get_rejected_selfies_by_reviewer_presenter_empty_list(self):
+    def test_get_rejected_reviews_by_reviewer_presenter_empty_list(self):
         event = {
           "version": "2.0",
           "routeKey": "$default",
@@ -289,7 +289,7 @@ class Test_GetRejectedSelfiesByReviewerPresenter:
         assert json.loads(response["body"]) == expected
 
   
-    def test_get_rejected_selfies_by_reviewer_presenter_no_items_found(self):
+    def test_get_rejected_reviews_by_reviewer_presenter_no_items_found(self):
         event = {
           "version": "2.0",
           "routeKey": "$default",
@@ -348,7 +348,7 @@ class Test_GetRejectedSelfiesByReviewerPresenter:
         assert response["statusCode"] == 404
         assert json.loads(response["body"]) == expected
 
-    def test_get_rejected_selfies_by_reviewer_presenter_no_valid(self):
+    def test_get_rejected_reviews_by_reviewer_presenter_no_valid(self):
         event = {
           "version": "2.0",
           "routeKey": "$default",

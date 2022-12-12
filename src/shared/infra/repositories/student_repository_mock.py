@@ -789,7 +789,7 @@ class StudentRepositoryMock(IStudentRepository):
                 return reviewer
         return None
 
-    def get_rejected_selfies_by_reviewer(self, reviewerRa: str) -> Tuple[Reviewer, List[Review]]:
+    def get_rejected_reviews_by_reviewer(self, reviewerRa: str) -> Tuple[Reviewer, List[Review]]:
         reviews = list()
         reviewer = self.get_reviewer(reviewerRa)
         if reviewer == None:
