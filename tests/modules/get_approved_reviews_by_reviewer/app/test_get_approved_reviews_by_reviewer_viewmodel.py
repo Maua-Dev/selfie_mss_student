@@ -1,4 +1,4 @@
-from src.modules.get_approved_selfies_by_reviewer.app.get_approved_selfies_by_reviewer_viewmodel import GetApprovedSelfiesByReviewerViewModel
+from src.modules.get_approved_reviews_by_reviewer.app.get_approved_reviews_by_reviewer_viewmodel import GetApprovedSelfiesByReviewerViewModel
 from src.shared.infra.repositories.student_repository_mock import StudentRepositoryMock
 
 

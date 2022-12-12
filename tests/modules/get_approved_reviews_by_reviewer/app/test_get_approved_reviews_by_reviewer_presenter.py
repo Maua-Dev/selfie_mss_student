@@ -1,5 +1,5 @@
 import json
-from src.modules.get_approved_selfies_by_reviewer.app.get_approved_selfies_by_reviewer_presenter import lambda_handler
+from src.modules.get_approved_reviews_by_reviewer.app.get_approved_reviews_by_reviewer_presenter import lambda_handler
 
 class Test_GetApprovedSelfiesByReviewerPresenter:
 

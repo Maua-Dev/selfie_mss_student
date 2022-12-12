@@ -1,9 +1,9 @@
-from src.modules.get_rejected_selfies_by_reviewer.app.get_rejected_selfies_by_reviewer_viewmodel import GetRejectedSelfiesByReviewerViewModel
+from src.modules.get_rejected_reviews_by_reviewer.app.get_rejected_reviews_by_reviewer_viewmodel import GetRejectedSelfiesByReviewerViewModel
 from src.shared.infra.repositories.student_repository_mock import StudentRepositoryMock
 
 
 class Test_GetRejectedSelfiesByReviewerViewModel:
-    def test_get_rejected_selfies_by_reviewer__viewmodel(self):
+    def test_get_rejected_reviews_by_reviewer__viewmodel(self):
         repo = StudentRepositoryMock()
         reviews = [repo.reviews[7], repo.reviews[9]] 
         rejectedSelfies = GetRejectedSelfiesByReviewerViewModel(reviews, repo.reviews[9].reviewer).to_dict()

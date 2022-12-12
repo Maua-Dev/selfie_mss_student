@@ -101,7 +101,7 @@ class IStudentRepository(ABC):
         pass
 
     @abstractmethod
-    def get_rejected_selfies_by_reviewer(self, reviewerRa: str) -> Tuple[Reviewer, List[Review]]:
+    def get_rejected_reviews_by_reviewer(self, reviewerRa: str) -> Tuple[Reviewer, List[Review]]:
         """
         If reviewer does not exist, then raise NoItemsFound
         """
