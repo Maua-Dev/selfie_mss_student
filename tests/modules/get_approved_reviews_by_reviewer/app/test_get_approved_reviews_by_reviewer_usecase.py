@@ -1,7 +1,7 @@
 
 
 import pytest
-from src.modules.get_approved_selfies_by_reviewer.app.get_approved_selfies_by_reviewer_usecase import GetApprovedSelfiesByReviewerUsecase
+from src.modules.get_approved_reviews_by_reviewer.app.get_approved_reviews_by_reviewer_usecase import GetApprovedSelfiesByReviewerUsecase
 from src.shared.helpers.errors.domain_errors import EntityError
 from src.shared.helpers.errors.usecase_errors import NoItemsFound
 from src.shared.infra.repositories.student_repository_mock import StudentRepositoryMock

@@ -1,6 +1,6 @@
 
-from .get_approved_selfies_by_reviewer_viewmodel import GetApprovedSelfiesByReviewerViewModel
-from .get_approved_selfies_by_reviewer_usecase import GetApprovedSelfiesByReviewerUsecase
+from .get_approved_reviews_by_reviewer_viewmodel import GetApprovedSelfiesByReviewerViewModel
+from .get_approved_reviews_by_reviewer_usecase import GetApprovedSelfiesByReviewerUsecase
 from src.shared.helpers.errors.usecase_errors import NoItemsFound
 from src.shared.helpers.errors.controller_errors import MissingParameters, WrongTypeParameter
 from src.shared.helpers.http.http_models import OK, BadRequest, HttpRequest, HttpResponse, InternalServerError, NotFound
