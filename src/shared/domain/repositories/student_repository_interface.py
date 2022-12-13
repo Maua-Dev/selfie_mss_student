@@ -122,14 +122,6 @@ class IStudentRepository(ABC):
         pass
     
     @abstractmethod
-    def get_pending_validation_selfies_assigned(self, reviewerRa: str) -> List[Review]:
-        pass
-    
-    @abstractmethod
-    def assign_selfies(self, reviewer: Reviewer, nSelfies: int) -> List[Review]:
-        pass
-    
-    @abstractmethod
     def get_selfies_to_review(self, reviewerRa: str, nSelfies: int = 10) -> Tuple[List[Selfie], Reviewer]:
         pass
     

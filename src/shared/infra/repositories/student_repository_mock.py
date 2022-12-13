@@ -821,7 +821,7 @@ class StudentRepositoryMock(IStudentRepository):
         counter = 0
         
         for idx, selfie in enumerate(self.get_all_selfies()):
-            if counter == nSelfies:
+            if counter >= nSelfies:
                 break
             if selfie.state == STATE.PENDING_REVIEW:
                 self.selfies[idx].state = STATE.IN_REVIEW
