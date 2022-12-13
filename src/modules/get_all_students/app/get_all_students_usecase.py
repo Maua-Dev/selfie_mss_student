@@ -13,12 +13,42 @@ class GetAllStudentsUsecase:
       def __call__(self) -> List[Dict]:
 
         all_students_list = list()
-        
-        for selfies, student in self.repo.get_all_students():
+         
+        all_students = self.repo.get_all_students()
+        all_selfies = self.repo.get_all_selfies()
+
+        group_selfies_by_ra = dict()
+
+        for student in all_students:
+            group_selfies_by_ra[student.ra] =  {
+                "selfies": list(),
+                "student": student
+            }
+
+        group_selfies_by_ra["unknown-ra"] = {"selfies":list()}
+
+        for selfie in all_selfies:
+            if selfie.student.ra in group_selfies_by_ra.keys():
+                group_selfies_by_ra[selfie.student.ra]["selfies"].append(selfie)
+            else:
+                if len(group_selfies_by_ra["unknown-ra"]["selfies"]) == 0:
+                    group_selfies_by_ra["unknown-ra"]["student"] = selfie.student
+
+                group_selfies_by_ra["unknown-ra"]["selfies"].append(selfie)
+                
+        if len(group_selfies_by_ra["unknown-ra"]["selfies"]) == 0:
+            group_selfies_by_ra.pop("unknown-ra")
+
+        for raKey in group_selfies_by_ra.keys() :
+            selfies = group_selfies_by_ra[raKey]['selfies']
+            student = group_selfies_by_ra[raKey]["student"]
+
             student_dict = dict()
             
+            selfies.sort(key=lambda x: x.dateCreated)
+
             if len(selfies) == 0: status = STUDENT_STATE.NO_SELFIE
-            elif self.repo.check_student_has_approved_selfie(ra=student.ra): status = STUDENT_STATE.APPROVED
+            elif any([selfie.state == STATE.APPROVED for selfie in selfies]): status = STUDENT_STATE.APPROVED
             else:
                 recent_selfie_status = selfies[-1].state 
                 if recent_selfie_status == STATE.DECLINED: status = STUDENT_STATE.SELFIE_REJECTED
@@ -26,9 +56,20 @@ class GetAllStudentsUsecase:
                 elif recent_selfie_status == STATE.PENDING_REVIEW: status = STUDENT_STATE.SELFIE_PENDING_REVIEW
                 else: raise EntityParameterError(message=f"state {recent_selfie_status.value} is unknown")
             
-            student_dict["ra"] = student.ra
-            student_dict["name"] = student.name
-            student_dict["email"] = student.email
+            if raKey == "unknown-ra":
+                student_dict = {
+                    "ra": "unknown-ra",
+                    "name": "unknown-name",
+                    "email": "unknown-email"
+                }
+            else: 
+                student_dict = {
+                    "ra": student.ra,
+                    "name": student.name,
+                    "email": student.email
+                }
+
+            
             student_dict["selfies"] = selfies
             student_dict["status"] = status
             

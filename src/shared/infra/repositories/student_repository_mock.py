@@ -607,9 +607,5 @@ class StudentRepositoryMock(IStudentRepository):
 
         return False
 
-    def get_all_students(self) -> List[Tuple[List[Selfie], Student]]:
-        all_students = list()
-        for student in self.students:
-            all_students.append(self.get_selfies_by_ra(ra=student.ra))
-
-        return all_students
+    def get_all_students(self) -> List[Student]:
+        return self.students
