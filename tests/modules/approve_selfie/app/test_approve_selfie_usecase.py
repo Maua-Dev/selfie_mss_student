@@ -1,3 +1,5 @@
+from src.shared.domain.enums.review_state_enum import REVIEW_STATE
+from src.shared.domain.enums.state_enum import STATE
 from src.shared.helpers.errors.domain_errors import EntityError
 from src.shared.helpers.errors.usecase_errors import ForbiddenAction, NoItemsFound
 from src.shared.infra.repositories.student_repository_mock import StudentRepositoryMock
@@ -9,6 +11,7 @@ class Test_ApproveSelfie:
         repo = StudentRepositoryMock()
         usecase = ApproveSelfieUsecase(repo=repo)
         
+        assert repo.selfies[5].state == STATE.DECLINED
         review = usecase(
             idReview=repo.reviews[3].idReview,
             idSelfie=repo.reviews[3].selfie.idSelfie,
@@ -16,6 +19,9 @@ class Test_ApproveSelfie:
             )
         
         assert review == repo.reviews[3]
+        assert review.state == REVIEW_STATE.APPROVED
+        assert review.selfie.state == STATE.APPROVED
+        assert repo.selfies[5].state == STATE.APPROVED
         
     def test_approve_selfie_forbidden_action(self):
         
