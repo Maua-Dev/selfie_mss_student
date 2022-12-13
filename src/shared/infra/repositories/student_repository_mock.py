@@ -843,12 +843,10 @@ class StudentRepositoryMock(IStudentRepository):
         if reviewer == None:
             raise NoItemsFound("reviewerRa")
         
-        selfies_to_review = []
-        pending_validation_selfies = self.get_pending_validation_selfies_assigned(reviewerRa=reviewerRa)
+        selfies_to_review = self.get_pending_validation_selfies_assigned(reviewerRa=reviewerRa)
         
-        selfies_to_review.extend(pending_validation_selfies)
-        if len(pending_validation_selfies) < nSelfies:
-            new_assigned_selfies = self.assign_selfies(nSelfies=nSelfies-len(pending_validation_selfies), reviewer=reviewer)
+        if len(selfies_to_review) < nSelfies:
+            new_assigned_selfies = self.assign_selfies(nSelfies=nSelfies-len(selfies_to_review), reviewer=reviewer)
             selfies_to_review.extend(new_assigned_selfies)
         
     
