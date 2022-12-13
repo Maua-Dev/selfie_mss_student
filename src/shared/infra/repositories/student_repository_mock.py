@@ -851,7 +851,7 @@ class StudentRepositoryMock(IStudentRepository):
             new_assigned_selfies = self.assign_selfies(nSelfies=nSelfies-len(pending_validation_selfies), reviewerRa=reviewerRa)
             selfies_to_review.extend(new_assigned_selfies)
         
-            
+    
         return selfies_to_review, reviewer
 
     def approve_selfie(self, studentRa: str, idSelfie: int, idReview: int) -> Review:
