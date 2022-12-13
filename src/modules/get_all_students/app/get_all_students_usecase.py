@@ -24,12 +24,20 @@ class GetAllStudentsUsecase:
                 "selfies": list(),
                 "student": student
             }
-    
+
+        group_selfies_by_ra["unknown-ra"] = {"selfies":list()}
+
         for selfie in all_selfies:
-            try:
+            if selfie.student.ra in group_selfies_by_ra.keys():
                 group_selfies_by_ra[selfie.student.ra]["selfies"].append(selfie)
-            except:
-                raise EntityParameterError(message=f"student ra {selfie.student.ra} is unknown")
+            else:
+                if len(group_selfies_by_ra["unknown-ra"]["selfies"]) == 0:
+                    group_selfies_by_ra["unknown-ra"]["student"] = selfie.student
+
+                group_selfies_by_ra["unknown-ra"]["selfies"].append(selfie)
+                
+        if len(group_selfies_by_ra["unknown-ra"]["selfies"]) == 0:
+            group_selfies_by_ra.pop("unknown-ra")
 
         for raKey in group_selfies_by_ra.keys() :
             selfies = group_selfies_by_ra[raKey]['selfies']
@@ -48,9 +56,20 @@ class GetAllStudentsUsecase:
                 elif recent_selfie_status == STATE.PENDING_REVIEW: status = STUDENT_STATE.SELFIE_PENDING_REVIEW
                 else: raise EntityParameterError(message=f"state {recent_selfie_status.value} is unknown")
             
-            student_dict["ra"] = student.ra
-            student_dict["name"] = student.name
-            student_dict["email"] = student.email
+            if raKey == "unknown-ra":
+                student_dict = {
+                    "ra": "unknown-ra",
+                    "name": "unknown-name",
+                    "email": "unknown-email"
+                }
+            else: 
+                student_dict = {
+                    "ra": student.ra,
+                    "name": student.name,
+                    "email": student.email
+                }
+
+            
             student_dict["selfies"] = selfies
             student_dict["status"] = status
             
