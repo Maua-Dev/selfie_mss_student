@@ -816,7 +816,7 @@ class StudentRepositoryMock(IStudentRepository):
     def get_pending_validation_selfies_assigned(self, reviewerRa: str) -> List[Review]:
         return [review for review in self.reviews if review.reviewer.ra == reviewerRa and review.state == REVIEW_STATE.PENDING_VALIDATION]            
     
-    def assign_selfies(self, reviewerRa: str, nSelfies: int) -> List[Review]:
+    def assign_selfies(self, reviewer: Reviewer, nSelfies: int) -> List[Review]:
         new_assign_reviews = list()
         counter = 0
         
@@ -828,7 +828,7 @@ class StudentRepositoryMock(IStudentRepository):
                 review = Review(
                     selfie=selfie,
                     dateAssigned=datetime.datetime.now(),
-                    reviewer=self.get_reviewer(ra=reviewerRa),
+                    reviewer=reviewer,
                     state=REVIEW_STATE.PENDING_VALIDATION,
                     idReview=len([review for review in self.reviews if review.selfie.url == selfie.url and review.selfie.student.ra == selfie.student.ra])
                 )
@@ -848,7 +848,7 @@ class StudentRepositoryMock(IStudentRepository):
         
         selfies_to_review.extend(pending_validation_selfies)
         if len(pending_validation_selfies) < nSelfies:
-            new_assigned_selfies = self.assign_selfies(nSelfies=nSelfies-len(pending_validation_selfies), reviewerRa=reviewerRa)
+            new_assigned_selfies = self.assign_selfies(nSelfies=nSelfies-len(pending_validation_selfies), reviewer=reviewer)
             selfies_to_review.extend(new_assigned_selfies)
         
     

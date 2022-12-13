@@ -95,7 +95,7 @@ class Test_StudentRepositoryMock:
         
         lenBeforeSelfiesAssigned = len(repo.get_pending_validation_selfies_assigned(reviewerRa=repo.reviewers[0].ra))
         lenBeforeSelfiesPendingReview = len([selfie for selfie in repo.selfies if selfie.state == STATE.PENDING_REVIEW])
-        reviews = repo.assign_selfies(reviewerRa=repo.reviewers[0].ra, nSelfies=1)
+        reviews = repo.assign_selfies(reviewer=repo.reviewers[0], nSelfies=1)
         
         new_selfies = [selfie for selfie in repo.selfies if selfie.state == STATE.PENDING_REVIEW]
         assert len(reviews) == lenBeforeSelfiesAssigned + 1

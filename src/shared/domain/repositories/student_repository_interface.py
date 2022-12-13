@@ -126,7 +126,7 @@ class IStudentRepository(ABC):
         pass
     
     @abstractmethod
-    def assign_selfies(self, reviewerRa: str, nSelfies: int) -> List[Review]:
+    def assign_selfies(self, reviewer: Reviewer, nSelfies: int) -> List[Review]:
         pass
     
     @abstractmethod
