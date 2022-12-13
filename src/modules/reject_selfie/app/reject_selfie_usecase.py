@@ -19,11 +19,11 @@ class RejectSelfieUsecase:
         review_before = self.repo.get_review(idReview=idReview, idSelfie=idSelfie, studentRa=studentRa)
         if review_before == None:
             raise NoItemsFound("idReview, idSelfie or studentRa")
+        
         if review_before.state != REVIEW_STATE.PENDING_VALIDATION:
             raise ForbiddenAction("Review")
         
         review = self.repo.reject_selfie(idReview=idReview, idSelfie=idSelfie, studentRa=studentRa)
-        
         
         
         

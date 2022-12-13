@@ -1,5 +1,3 @@
-
-
 import pytest
 from src.modules.get_approved_reviews_by_reviewer.app.get_approved_reviews_by_reviewer_usecase import GetApprovedSelfiesByReviewerUsecase
 from src.shared.helpers.errors.domain_errors import EntityError
@@ -14,7 +12,7 @@ class Test_GetApprovedSelfiesByReviewerUseCase():
          
         reviewer, reviews = usecase(
             reviewerRa= repo.reviewers[0].ra
-         )
+        )
          
         assert reviews == [repo.reviews[0], repo.reviews[1]]
         assert reviewer == repo.reviewers[0]

@@ -111,7 +111,7 @@ class SelfieViewModel:
             "dateCreated" : self.dateCreated.isoformat(),
             "url" : self.url,
             "state" : self.state.value,
-            "rejectionReasons": [reason.value for reason in self.rejectionReasons],
+            "rejectionReasons": [reason.value for reason in self.rejectionReasons] if len(self.rejectionReasons) != 0 else [],
             "rejectionDescription": self.rejectionDescription,
             "automaticReview": self.automaticReview.to_dict(),
         }

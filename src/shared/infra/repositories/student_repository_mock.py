@@ -734,8 +734,10 @@ class StudentRepositoryMock(IStudentRepository):
         review = self.get_review(idReview=idReview, idSelfie=idSelfie, studentRa=studentRa)
         if review == None:
             return None
+        
         if new_state != None:
             review.state = new_state
+            
         review.selfie = self.update_selfie(ra=studentRa, idSelfie=idSelfie, new_state={"APPROVED":STATE.APPROVED, "DECLINED":STATE.DECLINED}.get(new_state.value), new_rejectionDescription=new_rejectionDescription, new_rejectionReasons=new_rejectionReasons)
         review.dateReviewed = datetime.datetime.now()
         return review
@@ -855,17 +857,31 @@ class StudentRepositoryMock(IStudentRepository):
         return selfies_to_review, reviewer
 
     def approve_selfie(self, studentRa: str, idSelfie: int, idReview: int) -> Review:
-        review = self.update_review(idReview=idReview, idSelfie=idSelfie, studentRa=studentRa, new_state=REVIEW_STATE.APPROVED)
-        return review
-    
-    def reject_selfie(self, studentRa: str, idSelfie: int, idReview: int, new_rejectionReasons: list[REJECTION_REASON] = None, new_rejectionDescription: str = None) -> Review:
-        review = self.update_review(
-            idReview=idReview,
-            idSelfie=idSelfie,
-            studentRa=studentRa,
-            new_state=REVIEW_STATE.DECLINED,
-            new_rejectionDescription=new_rejectionDescription,
-            new_rejectionReasons=new_rejectionReasons
-        )
+        review = self.get_review(idReview=idReview, idSelfie=idSelfie, studentRa=studentRa)
+        if review == None:
+            return None
+        review.state = REVIEW_STATE.APPROVED
+        review.dateReviewed = datetime.datetime.now()
+        review.selfie.state = STATE.APPROVED
         
+        self.update_selfie(ra=studentRa, idSelfie=idSelfie, new_state=STATE.APPROVED)
         return review
+        
+    def reject_selfie(self, studentRa: str, idSelfie: int, idReview: int, new_rejectionReasons: list[REJECTION_REASON] = None, new_rejectionDescription: str = None) -> Review:
+        review = self.get_review(idReview=idReview, idSelfie=idSelfie, studentRa=studentRa)
+        if review == None:
+            return None
+        
+        review.state = REVIEW_STATE.DECLINED
+        review.selfie.state = STATE.DECLINED
+        
+        if new_rejectionDescription != None:
+            review.selfie.rejectionDescription = new_rejectionDescription
+        
+        if new_rejectionReasons != None:
+            review.selfie.rejectionReasons = new_rejectionReasons
+        review.dateReviewed = datetime.datetime.now()
+                
+        self.update_selfie(ra=studentRa, idSelfie=idSelfie, new_state=STATE.DECLINED)
+        return review
+            
