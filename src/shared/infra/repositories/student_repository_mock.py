@@ -732,8 +732,6 @@ class StudentRepositoryMock(IStudentRepository):
     def update_review(self, idReview: int, idSelfie:int, studentRa:str, new_state: REVIEW_STATE = None, new_rejectionReasons: List[REJECTION_REASON] = None, new_rejectionDescription: str = None) -> Review:
         
         review = self.get_review(idReview=idReview, idSelfie=idSelfie, studentRa=studentRa)
-        if review == None:
-            return None
         
         if new_state != None:
             review.state = new_state
