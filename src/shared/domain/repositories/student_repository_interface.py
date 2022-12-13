@@ -133,6 +133,7 @@ class IStudentRepository(ABC):
     def get_selfies_to_review(self, reviewerRa: str, nSelfies: int = 10) -> Tuple[List[Selfie], Reviewer]:
         pass
     
+    @abstractmethod
     def approve_selfie(self, studentRa: str, idSelfie: int, idReview: int) -> Review:
         """
         1°: Get review with repo.get_review()
