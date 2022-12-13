@@ -845,10 +845,9 @@ class StudentRepositoryMock(IStudentRepository):
         
         selfies_to_review = self.get_pending_validation_selfies_assigned(reviewerRa=reviewerRa)
         
-        if len(selfies_to_review) < nSelfies:
+        if len(selfies_to_review) < nSelfies: 
             new_assigned_selfies = self.assign_selfies(nSelfies=nSelfies-len(selfies_to_review), reviewer=reviewer)
             selfies_to_review.extend(new_assigned_selfies)
-        
     
         return selfies_to_review, reviewer
 
