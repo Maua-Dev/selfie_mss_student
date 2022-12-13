@@ -738,7 +738,7 @@ class StudentRepositoryMock(IStudentRepository):
         if new_state != None:
             review.state = new_state
             
-        review.selfie = self.update_selfie(ra=studentRa, idSelfie=idSelfie, new_state={"APPROVED":STATE.APPROVED, "DECLINED":STATE.DECLINED}.get(new_state.value), new_rejectionDescription=new_rejectionDescription, new_rejectionReasons=new_rejectionReasons)
+        review.selfie = self.update_selfie(ra=studentRa, idSelfie=idSelfie, new_state=STATE[new_state.value], new_rejectionDescription=new_rejectionDescription, new_rejectionReasons=new_rejectionReasons)
         review.dateReviewed = datetime.datetime.now()
         return review
     
