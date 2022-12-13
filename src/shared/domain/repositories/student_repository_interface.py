@@ -79,9 +79,10 @@ class IStudentRepository(ABC):
     @abstractmethod
     def update_review(self, reviewerRa: str, idReview: int, idSelfie:int, studentRa:str, new_state: REVIEW_STATE = None, new_rejectionReasons: List[REJECTION_REASON] = None, new_rejectionDescription: str = None) -> Review:
         """
-        1°: Instanciate review.state with new_state (if new_state != None)
-        2°: Update selfie in repo
-        3°: Instanciate review.dateReviewed with datetime.now()
+        1°: Get review with repo.get_review()
+        2°: Instanciate review.state with new_state (if new_state != None)
+        3°: Update selfie in repo
+        4°: Instanciate review.dateReviewed with datetime.now()
         """
         
         pass
@@ -133,10 +134,23 @@ class IStudentRepository(ABC):
         pass
     
     def approve_selfie(self, studentRa: str, idSelfie: int, idReview: int) -> Review:
-        
+        """
+        1°: Get review with repo.get_review()
+        2°: Instanciate review.state with REVIEW_STATE.APPROVED
+        3°: Instanciate review.dateReviewed with datetime.now()
+        4°: Update selfie in repo
+        """
         pass
     
     @abstractmethod
     def reject_selfie(self, studentRa: str, idSelfie: int, idReview: int, new_rejectionReasons: list[REJECTION_REASON] = None, new_rejectionDescription: str = None) -> Review:
+        """
+        1°: Get review with repo.get_review()
+        2°: Instanciate review.state with REVIEW_STATE.DECLINED
+        3°: Instanciate review.selfie.rejectonReasons with new_rejectionReasons (if new_rejectionReasons != None)
+        4°: Instanciate review.selfie.rejectionDescription with new_rejectionDescription (if new_rejectionDescriptin != None) 
+        5°: Update selfie in repo
+        6°: Instanciate review.dateReviewed with datetime.now()
+        """
         pass
 

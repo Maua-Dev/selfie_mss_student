@@ -858,9 +858,8 @@ class StudentRepositoryMock(IStudentRepository):
         review = self.get_review(idReview=idReview, idSelfie=idSelfie, studentRa=studentRa)
         review.state = REVIEW_STATE.APPROVED
         review.dateReviewed = datetime.datetime.now()
-        review.selfie.state = STATE.APPROVED
         
-        self.update_selfie(ra=studentRa, idSelfie=idSelfie, new_state=STATE.APPROVED)
+        review.selfie = self.update_selfie(ra=studentRa, idSelfie=idSelfie, new_state=STATE.APPROVED)
         return review
         
     def reject_selfie(self, studentRa: str, idSelfie: int, idReview: int, new_rejectionReasons: list[REJECTION_REASON] = None, new_rejectionDescription: str = None) -> Review:
