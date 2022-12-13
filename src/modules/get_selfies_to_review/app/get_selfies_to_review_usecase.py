@@ -7,13 +7,18 @@ from src.shared.helpers.errors.domain_errors import EntityError
 from src.shared.domain.entities.reviewer import Reviewer
 
 class GetSelfiesToReviewUsecase:
+    
+    DEFAULT_AMOUNT_OF_SELFIES_TO_REVIEW = 10
+    
     def __init__(self, repo:IStudentRepository):
         self.repo = repo
         
-    def __call__(self, reviewerRa: str, nSelfies: int = 10) -> Tuple[List[Review], Reviewer]:
+    def __call__(self, reviewerRa: str, nSelfies: int) -> Tuple[List[Review], Reviewer]:
+        
+        if nSelfies is None:
+            nSelfies = self.DEFAULT_AMOUNT_OF_SELFIES_TO_REVIEW
         if nSelfies <= 0:
             raise EntityError("nSelfies")
-        
         
         if not Reviewer.validate_ra(ra=reviewerRa):
             raise EntityError('reviewerRa')
