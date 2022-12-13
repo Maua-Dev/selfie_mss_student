@@ -78,6 +78,12 @@ class IStudentRepository(ABC):
     
     @abstractmethod
     def update_review(self, reviewerRa: str, idReview: int, idSelfie:int, studentRa:str, new_state: REVIEW_STATE = None, new_rejectionReasons: List[REJECTION_REASON] = None, new_rejectionDescription: str = None) -> Review:
+        """
+        1°: Instanciate review.state with new_state (if new_state != None)
+        2°: Update selfie in repo
+        3°: Instanciate review.dateReviewed with datetime.now()
+        """
+        
         pass
     
     @abstractmethod
@@ -127,6 +133,7 @@ class IStudentRepository(ABC):
         pass
     
     def approve_selfie(self, studentRa: str, idSelfie: int, idReview: int) -> Review:
+        
         pass
     
     @abstractmethod

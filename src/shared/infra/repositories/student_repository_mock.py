@@ -856,8 +856,6 @@ class StudentRepositoryMock(IStudentRepository):
 
     def approve_selfie(self, studentRa: str, idSelfie: int, idReview: int) -> Review:
         review = self.get_review(idReview=idReview, idSelfie=idSelfie, studentRa=studentRa)
-        if review == None:
-            return None
         review.state = REVIEW_STATE.APPROVED
         review.dateReviewed = datetime.datetime.now()
         review.selfie.state = STATE.APPROVED
@@ -867,8 +865,6 @@ class StudentRepositoryMock(IStudentRepository):
         
     def reject_selfie(self, studentRa: str, idSelfie: int, idReview: int, new_rejectionReasons: list[REJECTION_REASON] = None, new_rejectionDescription: str = None) -> Review:
         review = self.get_review(idReview=idReview, idSelfie=idSelfie, studentRa=studentRa)
-        if review == None:
-            return None
         
         review.state = REVIEW_STATE.DECLINED
         review.selfie.state = STATE.DECLINED
