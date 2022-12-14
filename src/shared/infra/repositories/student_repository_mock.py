@@ -830,7 +830,7 @@ class StudentRepositoryMock(IStudentRepository):
                     dateAssigned=datetime.datetime.now(),
                     reviewer=reviewer,
                     state=REVIEW_STATE.PENDING_VALIDATION,
-                    idReview=len([review for review in self.reviews if review.selfie.url == selfie.url and review.selfie.student.ra == selfie.student.ra])
+                    idReview=len([review for review in self.reviews if review.selfie.idSelfie == selfie.idSelfie and review.selfie.student.ra == selfie.student.ra])
                 )
                 new_assign_reviews.append(review)
                 counter += 1
