@@ -55,6 +55,11 @@ class StudentRepositoryMock(IStudentRepository):
                 ra="21002088",
                 name="Maluzinha",
                 email="mvergani.enactusmaua@gmail.com"
+            ),
+            Student(
+                ra="21012345",
+                name="Hater de Regra de Negocio",
+                email="buisinnes.rules@must.die.com"
             )
         ]
 
@@ -504,7 +509,68 @@ class StudentRepositoryMock(IStudentRepository):
                         )
                     ]
                 )
+            ),
+            Selfie(
+                idSelfie=0,
+                student=self.students[7],
+                dateCreated=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),
+                url="https://i.imgur.com/41wA18S.png",
+                state=STATE.IN_REVIEW,
+                rejectionReasons=[],
+                rejectionDescription="",
+                automaticReview=AutomaticReview(
+                    automaticallyRejected=False,
+                    rejectionReasons=[REJECTION_REASON.NONE],
+                    labels=[
+                        Label(
+                            name="Photography",
+                            coords={},
+                            confidence=100.00,
+                            parents=[],
+                        ),
+                        Label(
+                            name="Portrait",
+                            coords={
+                                "Width": 0.9711952805519104,
+                                "Height": 0.8659809827804565,
+                                "Left": 0.012313545681536198,
+                                "Top": 0.11108686774969101
+                            },
+                            confidence=100.00,
+                            parents=["Face", "Head", "Person", "Photography"],
+                        ),
+                        Label(
+                            name="Head",
+                            coords={},
+                            confidence=100.00,
+                            parents=["Person"],
+                        ),
+                        Label(
+                            name="Face",
+                            coords={
+                                "Width": 0.9711952805519104,
+                                "Height": 0.8659809827804565,
+                                "Left": 0.012313545681536198,
+                                "Top": 0.11108686774969101
+                            },
+                            confidence=100.00,
+                            parents=["Person", "Head"],
+                        ),
+                        Label(
+                            name="Person",
+                            coords={
+                                "Width": 0.9972279071807861,
+                                "Height": 0.88490229845047,
+                                "Left": 0.0026419830974191427,
+                                "Top": 0.11343356966972351
+                            },
+                            confidence=99.62065124511719,
+                            parents=[],
+                        )
+                    ]
+                )
             )
+        
         ]
 
         self.reviewers = [
@@ -517,7 +583,7 @@ class StudentRepositoryMock(IStudentRepository):
             Reviewer(ra="04618", name="Bruno Cambui Marques",
                           email="bruno.marques@maua.br", active=True)
         ]
-
+        # ODEIO REGRA DE NEGÓCIO !!!
         self.reviews = [
           Review(
                 idReview = 0,
