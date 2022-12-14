@@ -19,7 +19,7 @@ class Test_GetSelfiesToReviewController:
 
         assert response.status_code == 200
         assert response.body["message"] == "the reviews were retriven"
-        assert len(response.body["reviews"]) == 5
+        assert len(response.body["reviews"]) == 3
 
     def test_get_selfies_to_review_controller_none_nSelfies(self):
         repo = StudentRepositoryMock()

@@ -79,10 +79,10 @@ class Test_StudentRepositoryMock:
         assert review not in repo.reviews
         assert lenBefore == len(repo.reviews) + 1        
 
-    def test_get_pending_validation_selfies_assigned_four_selfies(self):
+    def test_get_pending_validation_selfies_assigned_one(self):
         repo = StudentRepositoryMock()
         reviews = repo.get_pending_validation_selfies_assigned(reviewerRa=repo.reviewers[3].ra)
-        assert len(reviews) == 4
+        assert len(reviews) == 2
         assert type(reviews[0]) == Review
         
     def test_get_pending_validation_selfies_assigned_no_selfies(self):
@@ -124,8 +124,8 @@ class Test_StudentRepositoryMock:
     def test_selfies_to_review_complete_seven_selfies(self):
         repo = StudentRepositoryMock()
         len_before_assignment = len(repo.get_pending_validation_selfies_assigned(reviewerRa=repo.reviewers[3].ra))
-        
-        for i in range(4):
+        len_selfies_created_pending_review = 4
+        for i in range(len_selfies_created_pending_review):
             repo.create_selfie(Selfie(
                 idSelfie=0,
                 student=repo.students[6],
@@ -165,14 +165,14 @@ class Test_StudentRepositoryMock:
             ))
         
         selfies_to_review, reviewer = repo.get_selfies_to_review(reviewerRa=repo.reviewers[3].ra, nSelfies=7)
+        len_selfies_pending_review_in_mock = 1
+        assert len(selfies_to_review) == len_before_assignment + len_selfies_created_pending_review + len_selfies_pending_review_in_mock
         
-        assert len(selfies_to_review) == len_before_assignment + 3
-        
-    def test_selfies_to_review_already_have_four_selfies(self):
+    def test_selfies_to_review_already_have_two_selfies(self):
         repo = StudentRepositoryMock()
         len_before_assignment = len(repo.get_pending_validation_selfies_assigned(reviewerRa=repo.reviewers[3].ra))
         
-        selfies_to_review, reviewer = repo.get_selfies_to_review(reviewerRa=repo.reviewers[3].ra, nSelfies=4)
+        selfies_to_review, reviewer = repo.get_selfies_to_review(reviewerRa=repo.reviewers[3].ra, nSelfies=2)
         
         assert len(selfies_to_review) == len_before_assignment 
         assert type(selfies_to_review[0]) == Review

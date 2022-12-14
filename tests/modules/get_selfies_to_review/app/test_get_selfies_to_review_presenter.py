@@ -65,7 +65,7 @@ class Test_GetSelfiesToReviewPresenter:
         
         response = lambda_handler(event, None)
         assert response["statusCode"] == 200
-        assert len(json.loads(response["body"])["reviews"]) == 5
+        assert len(json.loads(response["body"])["reviews"]) == 3
         assert json.loads(response["body"])["message"] == "the reviews were retriven"
 
     def test_get_selfies_to_review_presenter_bad_request(self):

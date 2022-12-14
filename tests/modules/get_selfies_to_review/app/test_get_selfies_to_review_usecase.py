@@ -13,7 +13,7 @@ class Test_GetSelfiesToReviewUsecase:
         usecase = GetSelfiesToReviewUsecase(repo=repo)
         
         reviews, reviewer = usecase(reviewerRa=repo.reviewers[3].ra, nSelfies=5)
-        assert len(reviews) == 5
+        assert len(reviews) == 3
         assert type(reviewer) == Reviewer
         assert reviewer.__repr__ == repo.reviewers[3].__repr__
         

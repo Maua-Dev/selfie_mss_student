@@ -11,7 +11,7 @@ class Test_ApproveSelfie:
         repo = StudentRepositoryMock()
         usecase = ApproveSelfieUsecase(repo=repo)
         
-        assert repo.selfies[5].state == STATE.DECLINED
+        assert repo.selfies[10].state == STATE.IN_REVIEW
         review = usecase(
             idReview=repo.reviews[3].idReview,
             idSelfie=repo.reviews[3].selfie.idSelfie,
@@ -21,7 +21,7 @@ class Test_ApproveSelfie:
         assert review == repo.reviews[3]
         assert review.state == REVIEW_STATE.APPROVED
         assert review.selfie.state == STATE.APPROVED
-        assert repo.selfies[5].state == STATE.APPROVED
+        assert repo.selfies[10].state == STATE.APPROVED
         
     def test_approve_selfie_forbidden_action(self):
         

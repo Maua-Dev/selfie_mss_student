@@ -583,6 +583,7 @@ class StudentRepositoryMock(IStudentRepository):
             Reviewer(ra="04618", name="Bruno Cambui Marques",
                           email="bruno.marques@maua.br", active=True)
         ]
+        
         # ODEIO REGRA DE NEGÓCIO !!!
         self.reviews = [
           Review(
@@ -603,8 +604,8 @@ class StudentRepositoryMock(IStudentRepository):
               ),
           Review(
                 idReview = 0,
-                state=REVIEW_STATE.APPROVED,
-                reviewer=self.reviewers[2],
+                state=REVIEW_STATE.PENDING_VALIDATION,
+                reviewer=self.reviewers[3],
                 selfie=self.selfies[4],
                 dateAssigned=datetime.datetime(2022, 11, 9, 16, 1, 59, 149927),
                 dateReviewed=datetime.datetime(2022, 12, 2, 16, 5, 59, 149927)
@@ -613,13 +614,13 @@ class StudentRepositoryMock(IStudentRepository):
                 idReview = 0,
                 state=REVIEW_STATE.PENDING_VALIDATION,
                 reviewer=self.reviewers[3],
-                selfie=self.selfies[5],
+                selfie=self.selfies[10],
                 dateAssigned=datetime.datetime(2022, 11, 28, 16, 1, 59, 149927),
                 dateReviewed=datetime.datetime(2022, 12, 2, 16, 5, 59, 149927)
               ),
           Review(
                 idReview = 0,
-                state=REVIEW_STATE.PENDING_VALIDATION,
+                state=REVIEW_STATE.DECLINED,
                 reviewer=self.reviewers[3],
                 selfie=self.selfies[9],
                 dateAssigned=datetime.datetime(2022, 11, 28, 16, 1, 59, 149927),
@@ -627,7 +628,7 @@ class StudentRepositoryMock(IStudentRepository):
               ),
           Review(
                 idReview = 0,
-                state=REVIEW_STATE.PENDING_VALIDATION,
+                state=REVIEW_STATE.APPROVED,
                 reviewer=self.reviewers[3],
                 selfie=self.selfies[8],
                 dateAssigned=datetime.datetime(2022, 11, 28, 16, 1, 59, 149927),
@@ -635,7 +636,7 @@ class StudentRepositoryMock(IStudentRepository):
               ),
           Review(
                 idReview = 0,
-                state=REVIEW_STATE.PENDING_VALIDATION,
+                state=REVIEW_STATE.DECLINED,
                 reviewer=self.reviewers[3],
                 selfie=self.selfies[7],
                 dateAssigned=datetime.datetime(2022, 11, 28, 16, 1, 59, 149927),
