@@ -23,8 +23,6 @@ class GetSelfiesToReviewController:
                     raise EntityError('nSelfies')
 
 
-            args = (request.query_params.get('reviewerRa'), int(request.query_params.get('nSelfies'))) if request.query_params.get('nSelfies') != None else (request.query_params.get('reviewerRa'),)
-            
             reviews, reviewer = self.getSelfiesToReviewUsecase(
                 request.query_params.get('reviewerRa'),
                 int(request.query_params.get('nSelfies')) if request.query_params.get('nSelfies') != None else None
