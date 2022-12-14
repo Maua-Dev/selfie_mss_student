@@ -837,7 +837,7 @@ class StudentRepositoryMock(IStudentRepository):
                 
         return new_assign_reviews
     
-    def get_selfies_to_review(self, reviewerRa: str, nSelfies: int = 10) -> Tuple[List[Review], Reviewer]:
+    def get_selfies_to_review(self, reviewerRa: str, nSelfies: int) -> Tuple[List[Review], Reviewer]:
         reviewer = self.get_reviewer(ra=reviewerRa)
         
         if reviewer == None:
