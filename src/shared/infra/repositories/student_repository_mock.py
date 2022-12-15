@@ -776,13 +776,6 @@ class StudentRepositoryMock(IStudentRepository):
                 return True
 
         return False
-
-    def get_all_students(self) -> List[Tuple[List[Selfie], Student]]:
-        all_students = list()
-        for student in self.students:
-            all_students.append(self.get_selfies_by_ra(ra=student.ra))
-
-        return all_students
     
     def get_review(self, idReview: int, idSelfie:int, studentRa:str) -> Review:
         for review in self.reviews:
@@ -942,3 +935,5 @@ class StudentRepositoryMock(IStudentRepository):
         self.update_selfie(ra=studentRa, idSelfie=idSelfie, new_state=STATE.DECLINED)
         return review
             
+    def get_all_students(self) -> List[Student]:
+        return self.students

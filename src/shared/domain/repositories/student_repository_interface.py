@@ -65,9 +65,7 @@ class IStudentRepository(ABC):
         pass
     
     @abstractmethod    
-    def get_all_students(self) -> List[Tuple[List[Selfie], Student]]:
-        pass
-    
+
     @abstractmethod    
     def get_review(self, idReview: int, idSelfie:int, studentRa:str) -> Review:
         pass
@@ -146,4 +144,7 @@ class IStudentRepository(ABC):
         6°: Instanciate review.dateReviewed with datetime.now()
         """
         pass
-
+    
+    @abstractmethod
+    def get_all_students(self) -> List[Student]:
+        pass

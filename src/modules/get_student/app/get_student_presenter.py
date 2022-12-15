@@ -4,16 +4,14 @@ from src.shared.infra.repositories.student_repository_mock import StudentReposit
 from .get_student_controller import GetStudentController
 from src.shared.helpers.http.http_lambda_requests import LambdaHttpRequest, LambdaHttpResponse
 
+repo = Environments.get_student_repo()()
+usecase = GetStudentUsecase(repo)
+controller = GetStudentController(usecase)
 
 
 def lambda_handler(event, context):
-    repo = Environments.get_student_repo()()
-    usecase = GetStudentUsecase(repo)
-    controller = GetStudentController(usecase)
-
     httpRequest = LambdaHttpRequest(data=event)
     response = controller(httpRequest)
     httpResponse = LambdaHttpResponse(status_code=response.status_code, body=response.body, headers=response.headers)
 
     return httpResponse.toDict()
-
