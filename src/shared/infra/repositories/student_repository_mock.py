@@ -1,9 +1,11 @@
 import datetime
-from re import A
 from typing import Dict, List, Tuple
 from src.shared.domain.entities.automatic_review import AutomaticReview
 from src.shared.domain.entities.label import Label
+from src.shared.domain.entities.review import Review
+from src.shared.domain.entities.reviewer import Reviewer
 from src.shared.domain.entities.selfie import Selfie
+from src.shared.domain.enums.review_state_enum import REVIEW_STATE
 from src.shared.domain.enums.state_enum import STATE
 from src.shared.domain.enums.rejection_reason_enum import REJECTION_REASON
 from src.shared.helpers.errors.usecase_errors import NoItemsFound
@@ -14,6 +16,8 @@ from src.shared.domain.repositories.student_repository_interface import IStudent
 class StudentRepositoryMock(IStudentRepository):
     students: List[Student]
     selfies: List[Selfie]
+    reviewers: List[Reviewer]
+    reviews: List[Review]
 
     def __init__(self):
         self.students = [
@@ -51,6 +55,11 @@ class StudentRepositoryMock(IStudentRepository):
                 ra="21002088",
                 name="Maluzinha",
                 email="mvergani.enactusmaua@gmail.com"
+            ),
+            Student(
+                ra="21012345",
+                name="Hater de Regra de Negocio",
+                email="buisinnes.rules@must.die.com"
             )
         ]
 
@@ -347,7 +356,7 @@ class StudentRepositoryMock(IStudentRepository):
                 student=self.students[5],
                 dateCreated=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),
                 url="https://i.imgur.com/4ewA19S.png",
-                state=STATE.APPROVED,
+                state=STATE.DECLINED,
                 rejectionReasons=[REJECTION_REASON.NONE],
                 rejectionDescription="",
                 automaticReview=AutomaticReview(
@@ -381,7 +390,7 @@ class StudentRepositoryMock(IStudentRepository):
 
             ),
             Selfie(
-                idSelfie=2,
+                idSelfie=3,
                 student=self.students[5],
                 dateCreated=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),
                 url="https://i.imgur.com/4ewA19S.png",
@@ -500,9 +509,166 @@ class StudentRepositoryMock(IStudentRepository):
                         )
                     ]
                 )
+            ),
+            Selfie(
+                idSelfie=0,
+                student=self.students[7],
+                dateCreated=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),
+                url="https://i.imgur.com/41wA18S.png",
+                state=STATE.IN_REVIEW,
+                rejectionReasons=[],
+                rejectionDescription="",
+                automaticReview=AutomaticReview(
+                    automaticallyRejected=False,
+                    rejectionReasons=[REJECTION_REASON.NONE],
+                    labels=[
+                        Label(
+                            name="Photography",
+                            coords={},
+                            confidence=100.00,
+                            parents=[],
+                        ),
+                        Label(
+                            name="Portrait",
+                            coords={
+                                "Width": 0.9711952805519104,
+                                "Height": 0.8659809827804565,
+                                "Left": 0.012313545681536198,
+                                "Top": 0.11108686774969101
+                            },
+                            confidence=100.00,
+                            parents=["Face", "Head", "Person", "Photography"],
+                        ),
+                        Label(
+                            name="Head",
+                            coords={},
+                            confidence=100.00,
+                            parents=["Person"],
+                        ),
+                        Label(
+                            name="Face",
+                            coords={
+                                "Width": 0.9711952805519104,
+                                "Height": 0.8659809827804565,
+                                "Left": 0.012313545681536198,
+                                "Top": 0.11108686774969101
+                            },
+                            confidence=100.00,
+                            parents=["Person", "Head"],
+                        ),
+                        Label(
+                            name="Person",
+                            coords={
+                                "Width": 0.9972279071807861,
+                                "Height": 0.88490229845047,
+                                "Left": 0.0026419830974191427,
+                                "Top": 0.11343356966972351
+                            },
+                            confidence=99.62065124511719,
+                            parents=[],
+                        )
+                    ]
+                )
             )
+        
         ]
 
+        self.reviewers = [
+            Reviewer(ra="03026", name="Mauro Crapino",
+                          email="mauro@maua.br", active=True),
+            Reviewer(ra="04359", name="JOSE FERNANDO XAVIER GONCALES",
+                          email="fernando.goncales@maua.br", active=True),
+            Reviewer(ra="04712", name="Luiz Miguel Rocha Seixeiro",
+                          email="luiz.seixeiro@maua.br", active=True),
+            Reviewer(ra="04618", name="Bruno Cambui Marques",
+                          email="bruno.marques@maua.br", active=True)
+        ]
+        
+        # ODEIO REGRA DE NEGÓCIO !!!
+        self.reviews = [
+          Review(
+                idReview = 0,
+                state=REVIEW_STATE.APPROVED,
+                reviewer=self.reviewers[0],
+                selfie=self.selfies[1],
+                dateAssigned=datetime.datetime(2022, 12, 1, 16, 1, 59, 149927),
+                dateReviewed=datetime.datetime(2022, 12, 2, 16, 5, 59, 149927)
+              ),
+          Review(
+                idReview = 0,
+                state=REVIEW_STATE.APPROVED,
+                reviewer=self.reviewers[0],
+                selfie=self.selfies[3],
+                dateAssigned=datetime.datetime(2022, 11, 30, 16, 1, 59, 149927),
+                dateReviewed=datetime.datetime(2022, 12, 2, 16, 5, 59, 149927)
+              ),
+          Review(
+                idReview = 0,
+                state=REVIEW_STATE.PENDING_VALIDATION,
+                reviewer=self.reviewers[3],
+                selfie=self.selfies[4],
+                dateAssigned=datetime.datetime(2022, 11, 9, 16, 1, 59, 149927),
+                dateReviewed=datetime.datetime(2022, 12, 2, 16, 5, 59, 149927)
+              ),
+          Review(
+                idReview = 0,
+                state=REVIEW_STATE.PENDING_VALIDATION,
+                reviewer=self.reviewers[3],
+                selfie=self.selfies[10],
+                dateAssigned=datetime.datetime(2022, 11, 28, 16, 1, 59, 149927),
+                dateReviewed=datetime.datetime(2022, 12, 2, 16, 5, 59, 149927)
+              ),
+          Review(
+                idReview = 0,
+                state=REVIEW_STATE.DECLINED,
+                reviewer=self.reviewers[3],
+                selfie=self.selfies[9],
+                dateAssigned=datetime.datetime(2022, 11, 28, 16, 1, 59, 149927),
+                dateReviewed=datetime.datetime(2022, 12, 2, 16, 5, 59, 149927)
+              ),
+          Review(
+                idReview = 0,
+                state=REVIEW_STATE.APPROVED,
+                reviewer=self.reviewers[3],
+                selfie=self.selfies[8],
+                dateAssigned=datetime.datetime(2022, 11, 28, 16, 1, 59, 149927),
+                dateReviewed=datetime.datetime(2022, 12, 2, 16, 5, 59, 149927)
+              ),
+          Review(
+                idReview = 0,
+                state=REVIEW_STATE.DECLINED,
+                reviewer=self.reviewers[3],
+                selfie=self.selfies[7],
+                dateAssigned=datetime.datetime(2022, 11, 28, 16, 1, 59, 149927),
+                dateReviewed=datetime.datetime(2022, 12, 2, 16, 5, 59, 149927)
+              ),
+          Review(
+                idReview = 1,
+                state=REVIEW_STATE.DECLINED,
+                reviewer=self.reviewers[3],
+                selfie=self.selfies[7],
+                dateAssigned=datetime.datetime(2022, 11, 1, 16, 1, 59, 149927),
+                dateReviewed=datetime.datetime(2022, 12, 2, 16, 5, 59, 149927)
+              ),
+          Review(
+                idReview=2,
+                state=REVIEW_STATE.APPROVED,
+                reviewer=self.reviewers[3],
+                selfie=self.selfies[8],
+                dateAssigned=datetime.datetime(2022, 11, 2, 16, 1, 59, 149927),
+                dateReviewed=datetime.datetime(2022, 12, 2, 16, 5, 59, 149927)
+              ),
+          Review(
+                idReview = 1,
+                state=REVIEW_STATE.DECLINED,
+                reviewer=self.reviewers[3],
+                selfie=self.selfies[9],
+                dateAssigned=datetime.datetime(2022, 11, 1, 16, 1, 59, 149927),
+                dateReviewed=datetime.datetime(2022, 12, 2, 16, 5, 59, 149927)
+              )
+        ]
+
+        
     def get_student(self, ra: str) -> Student:
         for student in self.students:
             if (student.ra == ra):
@@ -597,7 +763,11 @@ class StudentRepositoryMock(IStudentRepository):
         return self.selfies[idxSelfie]
 
     def get_all_selfies(self) -> List[Selfie]:
-        return self.selfies
+        
+        all_selfies = self.selfies
+        all_selfies.sort(key=lambda x: x.dateCreated)
+        
+        return all_selfies
 
     def check_student_has_approved_selfie(self, ra: str) -> bool:
         selfies, student = self.get_selfies_by_ra(ra=ra)
@@ -606,6 +776,164 @@ class StudentRepositoryMock(IStudentRepository):
                 return True
 
         return False
+    
+    def get_review(self, idReview: int, idSelfie:int, studentRa:str) -> Review:
+        for review in self.reviews:
+            if review.idReview == idReview and idSelfie == review.selfie.idSelfie and review.selfie.student.ra == studentRa:
+                return review
+            
+        return None
+    
+    def create_review(self, review: Review) -> Review:
+        self.reviews.append(review)
+        
+        return review
+    
+    def update_review(self, idReview: int, idSelfie:int, studentRa:str, new_state: REVIEW_STATE = None, new_rejectionReasons: List[REJECTION_REASON] = None, new_rejectionDescription: str = None) -> Review:
+        
+        review = self.get_review(idReview=idReview, idSelfie=idSelfie, studentRa=studentRa)
+        
+        if new_state != None:
+            review.state = new_state
+            
+        review.selfie = self.update_selfie(ra=studentRa, idSelfie=idSelfie, new_state=STATE[new_state.value], new_rejectionDescription=new_rejectionDescription, new_rejectionReasons=new_rejectionReasons)
+        review.dateReviewed = datetime.datetime.now()
+        return review
+    
+    def delete_review(self, reviewerRa: str, idReview: int, idSelfie:int, studentRa:str) -> Review:
+        for idx, review in enumerate(self.reviews):
+            if review.idReview == idReview and review.reviewer.ra == reviewerRa and idSelfie == review.selfie.idSelfie and review.selfie.student.ra == studentRa:
+                return self.reviews.pop(idx)
+        
 
+    def create_reviewer(self, reviewer: Reviewer) -> Reviewer:
+        self.reviewers.append(reviewer)
+
+        return reviewer
+    
+    def update_reviewer(self, ra: str, new_name: str = None, new_email: str = None, new_active: bool = None) -> Reviewer:
+        idxReviewer = -1
+
+        for idx, possible_reviewer in enumerate(self.reviewers):
+            if (possible_reviewer.ra == ra):
+                reviewer = possible_reviewer
+                idxReviewer = idx
+                break
+
+        if idxReviewer == -1:
+            raise NoItemsFound("ra")
+
+        if new_name != None:
+            reviewer.name = new_name
+
+        if new_email != None:
+            reviewer.email = new_email
+
+        if new_active != None:
+            reviewer.active = new_active
+
+        self.reviewers[idxReviewer] = reviewer
+
+        return self.reviewers[idxReviewer]
+
+    def delete_reviewer(self, ra: str) -> Reviewer:
+        for idx in range(len(self.reviewers)):
+            if (self.reviewers[idx].ra == ra):
+                reviewer = self.reviewers.pop(idx)
+                return reviewer
+        raise NoItemsFound("ra")
+
+    def get_reviewer(self, ra: str) -> Reviewer:
+        for reviewer in self.reviewers:
+            if (reviewer.ra == ra):
+                return reviewer
+        return None
+
+    def get_rejected_reviews_by_reviewer(self, reviewerRa: str) -> Tuple[Reviewer, List[Review]]:
+        reviews = list()
+        reviewer = self.get_reviewer(reviewerRa)
+        if reviewer == None:
+            raise NoItemsFound("reviewerRa")
+        
+        for review in self.reviews:
+            if review.reviewer.ra == reviewerRa and review.state == REVIEW_STATE.DECLINED:
+                reviews.append(review)
+
+        return reviewer, reviews  
+
+    def get_approved_selfies_by_reviewer(self, reviewerRa: str) -> Tuple[Reviewer, List[Review]]:
+        reviews = list()
+        reviewer = self.get_reviewer(reviewerRa)
+        if reviewer == None:
+            raise NoItemsFound("reviewerRa")
+        
+        for review in self.reviews:
+            if review.reviewer.ra == reviewerRa and review.state == REVIEW_STATE.APPROVED:
+                reviews.append(review)
+
+        return reviewer, reviews
+    
+    def get_pending_validation_selfies_assigned(self, reviewerRa: str) -> List[Review]:
+        return [review for review in self.reviews if review.reviewer.ra == reviewerRa and review.state == REVIEW_STATE.PENDING_VALIDATION]            
+    
+    def assign_selfies(self, reviewer: Reviewer, nSelfies: int) -> List[Review]:
+        new_assign_reviews = list()
+        counter = 0
+        
+        for idx, selfie in enumerate(self.get_all_selfies()):
+            if counter >= nSelfies:
+                break
+            if selfie.state == STATE.PENDING_REVIEW:
+                self.selfies[idx].state = STATE.IN_REVIEW
+                review = Review(
+                    selfie=selfie,
+                    dateAssigned=datetime.datetime.now(),
+                    reviewer=reviewer,
+                    state=REVIEW_STATE.PENDING_VALIDATION,
+                    idReview=len([review for review in self.reviews if review.selfie.idSelfie == selfie.idSelfie and review.selfie.student.ra == selfie.student.ra])
+                )
+                new_assign_reviews.append(review)
+                counter += 1
+                
+        return new_assign_reviews
+    
+    def get_selfies_to_review(self, reviewerRa: str, nSelfies: int) -> Tuple[List[Review], Reviewer]:
+        reviewer = self.get_reviewer(ra=reviewerRa)
+        
+        if reviewer == None:
+            raise NoItemsFound("reviewerRa")
+        
+        selfies_to_review = self.get_pending_validation_selfies_assigned(reviewerRa=reviewerRa)
+        
+        if len(selfies_to_review) < nSelfies: 
+            new_assigned_selfies = self.assign_selfies(nSelfies=nSelfies-len(selfies_to_review), reviewer=reviewer)
+            selfies_to_review.extend(new_assigned_selfies)
+    
+        return selfies_to_review, reviewer
+
+    def approve_selfie(self, studentRa: str, idSelfie: int, idReview: int) -> Review:
+        review = self.get_review(idReview=idReview, idSelfie=idSelfie, studentRa=studentRa)
+        review.state = REVIEW_STATE.APPROVED
+        review.dateReviewed = datetime.datetime.now()
+        
+        review.selfie = self.update_selfie(ra=studentRa, idSelfie=idSelfie, new_state=STATE.APPROVED)
+        return review
+        
+    def reject_selfie(self, studentRa: str, idSelfie: int, idReview: int, new_rejectionReasons: list[REJECTION_REASON] = None, new_rejectionDescription: str = None) -> Review:
+        review = self.get_review(idReview=idReview, idSelfie=idSelfie, studentRa=studentRa)
+        
+        review.state = REVIEW_STATE.DECLINED
+        review.selfie.state = STATE.DECLINED
+        
+        if new_rejectionDescription != None:
+            review.selfie.rejectionDescription = new_rejectionDescription
+        
+        if new_rejectionReasons != None:
+            review.selfie.rejectionReasons = new_rejectionReasons
+        review.dateReviewed = datetime.datetime.now()
+                
+        self.update_selfie(ra=studentRa, idSelfie=idSelfie, new_state=STATE.DECLINED)
+        return review
+            
     def get_all_students(self) -> List[Student]:
         return self.students

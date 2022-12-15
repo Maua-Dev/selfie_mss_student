@@ -3,7 +3,7 @@ from src.modules.get_selfie.app.get_selfie_viewmodel import GetSelfieViewModel
 
 from src.shared.domain.entities.student import Student
 
-
+ 
 class Test_GetSelfieViewModel:
     def test_get_selfie_view_model(self):
         repo = StudentRepositoryMock()

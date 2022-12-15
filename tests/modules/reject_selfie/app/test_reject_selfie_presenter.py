@@ -1,0 +1,180 @@
+import json
+from src.modules.reject_selfie.app.reject_selfie_presenter import lambda_handler
+from src.shared.infra.repositories.student_repository_mock import StudentRepositoryMock
+
+
+class Test_RejectPresenter:
+
+    def test_reject_selfie(self):
+        event = {
+          "version": "2.0",
+          "routeKey": "$default",
+          "rawPath": "/my/path",
+          "rawQueryString": "parameter1=value1&parameter1=value2&parameter2=value",
+          "cookies": [
+            "cookie1",
+            "cookie2"
+          ],
+          "headers": {
+            "header1": "value1",
+            "header2": "value1,value2"
+          },
+          "queryStringParameters": {
+            "parameter2": "value"
+          },
+          "requestContext": {
+            "accountId": "123456789012",
+            "apiId": "<urlid>",
+            "authentication": None,
+            "authorizer": {
+                "iam": {
+                        "accessKey": "AKIA...",
+                        "accountId": "111122223333",
+                        "callerId": "AIDA...",
+                        "cognitoIdentity": None,
+                        "principalOrgId": None,
+                        "userArn": "arn:aws:iam::111122223333:user/example-user",
+                        "userId": "AIDA..."
+                }
+            },
+            "domainName": "<url-id>.lambda-url.us-west-2.on.aws",
+            "domainPrefix": "<url-id>",
+            "http": {
+              "method": "POST",
+              "path": "/my/path",
+              "protocol": "HTTP/1.1",
+              "sourceIp": "123.123.123.123",
+              "userAgent": "agent"
+            },
+            "requestId": "id",
+            "routeKey": "$default",
+            "stage": "$default",
+            "time": "12/Mar/2020:19:03:58 +0000",
+            "timeEpoch": 1583348638390
+          },
+          "body":'{"reviewIdentifier":"21012345-0-0"}',
+          "pathParameters": None,
+          "isBase64Encoded": None,
+          "stageVariables": None
+        }
+        
+
+        response = lambda_handler(event, None)
+        assert json.loads(response["body"])["message"] == "the review was rejected" 
+        assert response["statusCode"] == 200
+
+    def test_approve_selfie_non_existent(self):
+        event = {
+          "version": "2.0",
+          "routeKey": "$default",
+          "rawPath": "/my/path",
+          "rawQueryString": "parameter1=value1&parameter1=value2&parameter2=value",
+          "cookies": [
+            "cookie1",
+            "cookie2"
+          ],
+          "headers": {
+            "header1": "value1",
+            "header2": "value1,value2"
+          },
+          "queryStringParameters": {
+            "parameter2": "value"
+          },
+          "requestContext": {
+            "accountId": "123456789012",
+            "apiId": "<urlid>",
+            "authentication": None,
+            "authorizer": {
+                "iam": {
+                        "accessKey": "AKIA...",
+                        "accountId": "111122223333",
+                        "callerId": "AIDA...",
+                        "cognitoIdentity": None,
+                        "principalOrgId": None,
+                        "userArn": "arn:aws:iam::111122223333:user/example-user",
+                        "userId": "AIDA..."
+                }
+            },
+            "domainName": "<url-id>.lambda-url.us-west-2.on.aws",
+            "domainPrefix": "<url-id>",
+            "http": {
+              "method": "POST",
+              "path": "/my/path",
+              "protocol": "HTTP/1.1",
+              "sourceIp": "123.123.123.123",
+              "userAgent": "agent"
+            },
+            "requestId": "id",
+            "routeKey": "$default",
+            "stage": "$default",
+            "time": "12/Mar/2020:19:03:58 +0000",
+            "timeEpoch": 1583348638390
+          },
+          "body":'{"reviewIdentifier":"15013103-19-0"}',
+          "pathParameters": None,
+          "isBase64Encoded": None,
+          "stageVariables": None
+        }
+        
+
+        response = lambda_handler(event, None)
+        assert response["statusCode"] == 404
+        assert json.loads(response["body"]) == "No items found for idReview, idSelfie or studentRa" 
+
+    def test_approve_selfie_non_valid_ra_dash(self):
+        event = {
+          "version": "2.0",
+          "routeKey": "$default",
+          "rawPath": "/my/path",
+          "rawQueryString": "parameter1=value1&parameter1=value2&parameter2=value",
+          "cookies": [
+            "cookie1",
+            "cookie2"
+          ],
+          "headers": {
+            "header1": "value1",
+            "header2": "value1,value2"
+          },
+          "queryStringParameters": {
+            "parameter2": "value"
+          },
+          "requestContext": {
+            "accountId": "123456789012",
+            "apiId": "<urlid>",
+            "authentication": None,
+            "authorizer": {
+                "iam": {
+                        "accessKey": "AKIA...",
+                        "accountId": "111122223333",
+                        "callerId": "AIDA...",
+                        "cognitoIdentity": None,
+                        "principalOrgId": None,
+                        "userArn": "arn:aws:iam::111122223333:user/example-user",
+                        "userId": "AIDA..."
+                }
+            },
+            "domainName": "<url-id>.lambda-url.us-west-2.on.aws",
+            "domainPrefix": "<url-id>",
+            "http": {
+              "method": "POST",
+              "path": "/my/path",
+              "protocol": "HTTP/1.1",
+              "sourceIp": "123.123.123.123",
+              "userAgent": "agent"
+            },
+            "requestId": "id",
+            "routeKey": "$default",
+            "stage": "$default",
+            "time": "12/Mar/2020:19:03:58 +0000",
+            "timeEpoch": 1583348638390
+          },
+          "body":'{"reviewIdentifier":"1501310-3-0-0"}',
+          "pathParameters": None,
+          "isBase64Encoded": None,
+          "stageVariables": None
+        }
+        
+
+        response = lambda_handler(event, None)
+        assert response["statusCode"] == 400
+        assert json.loads(response["body"]) == "Field reviewIdentifier is not valid" 
