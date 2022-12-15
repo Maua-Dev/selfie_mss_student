@@ -32,10 +32,37 @@ def setup_dynamo_table():
                 {
                     'AttributeName': 'SK',
                     'AttributeType': 'S'
+                },
+                {
+                    'AttributeName': 'GSI1-PK',
+                    'AttributeType': 'S'
+                },
+                {
+                    'AttributeName': 'GSI1-SK',
+                    'AttributeType': 'S'
                 }
             ],
-            BillingMode='PAY_PER_REQUEST'
+            BillingMode='PAY_PER_REQUEST',
+            GlobalSecondaryIndexes=[
+                {
+                    'IndexName': 'GSI1',
+                    'KeySchema': [
+                        {
+                            'AttributeName': 'GSI1-PK',
+                            'KeyType': 'HASH'
+                        },
+                        {
+                            'AttributeName': 'GSI1-SK',
+                            'KeyType': 'RANGE'
+                        }
+                    ],
+                    'Projection': {
+                        'ProjectionType': 'ALL'
+                    }
+                }
+            ]
         )
+
         print('Table "selfie_mss_student-table" created!\n')
     else:
         print('Table already exists!\n')

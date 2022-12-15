@@ -22,3 +22,5 @@ class DynamoStack(Construct):
                                            billing_mode=dynamodb.BillingMode.PAY_PER_REQUEST,
                                            removal_policy=RemovalPolicy.DESTROY
                                            )
+
+

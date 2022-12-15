@@ -126,7 +126,9 @@ class SelfieDynamoDTO:
                     'name': i.name,
                     'parents': i.parents} for i in self.automaticReview.labels],
                 "rejectionReasons": [reason.value for reason in self.automaticReview.rejectionReasons],
-            }
+            },
+            "GSI1-SK": f"selfie#{self.student.ra}#{self.idSelfie}",
+            "GSI1-PK": f"{self.state.value}",
         }
 
 

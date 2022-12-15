@@ -2,9 +2,12 @@ from typing import List, Tuple
 
 from boto3.dynamodb.conditions import Key, Attr
 
+from src.shared.domain.entities.review import Review
+from src.shared.domain.entities.reviewer import Reviewer
 from src.shared.domain.entities.selfie import Selfie
 from src.shared.domain.entities.student import Student
 from src.shared.domain.enums.rejection_reason_enum import REJECTION_REASON
+from src.shared.domain.enums.review_state_enum import REVIEW_STATE
 from src.shared.domain.enums.state_enum import STATE
 from src.shared.domain.repositories.student_repository_interface import IStudentRepository
 from src.shared.environments import Environments
@@ -15,6 +18,50 @@ from src.shared.infra.external.dynamo.datasources.dynamo_datasource import Dynam
 
 
 class StudentRepositoryDynamo(IStudentRepository):
+    def get_review(self, idReview: int, idSelfie: int, studentRa: str) -> Review:
+        pass
+
+    def create_review(self, review: Review) -> Review:
+        pass
+
+    def update_review(self, reviewerRa: str, idReview: int, idSelfie: int, studentRa: str,
+                      new_state: REVIEW_STATE = None, new_rejectionReasons: List[REJECTION_REASON] = None,
+                      new_rejectionDescription: str = None) -> Review:
+        pass
+
+    def delete_review(self, reviewerRa: str, idReview: int, idSelfie: int, studentRa: str) -> Review:
+        pass
+
+    def create_reviewer(self, reviwer: Reviewer) -> Reviewer:
+        pass
+
+    def update_reviewer(self, ra: str, new_name: str = None, new_email: str = None,
+                        new_active: bool = None) -> Reviewer:
+        pass
+
+    def delete_reviewer(self, ra: str) -> Reviewer:
+        pass
+
+    def get_reviewer(self, ra: str) -> Reviewer:
+        pass
+
+    def get_rejected_reviews_by_reviewer(self, reviewerRa: str) -> Tuple[Reviewer, List[Review]]:
+        pass
+
+    def get_approved_selfies_by_reviewer(self, reviewerRa: str) -> Tuple[Reviewer, List[Review]]:
+        pass
+
+    def get_selfies_to_review(self, reviewerRa: str, nSelfies: int) -> Tuple[List[Selfie], Reviewer]:
+        pass
+
+    def approve_selfie(self, studentRa: str, idSelfie: int, idReview: int) -> Review:
+        pass
+
+    def reject_selfie(self, studentRa: str, idSelfie: int, idReview: int,
+                      new_rejectionReasons: list[REJECTION_REASON] = None,
+                      new_rejectionDescription: str = None) -> Review:
+        pass
+
     dynamo: DynamoDatasource
 
     @staticmethod
