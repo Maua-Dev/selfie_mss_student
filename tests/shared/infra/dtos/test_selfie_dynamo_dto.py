@@ -280,9 +280,12 @@ class Test_SelfieDynamoDTO:
             'rejectionReasons': ['COVERED_FACE'],
             'state': 'DECLINED',
             'url': 'https://i.imgur.com/0KFBHTB.jpg',
-            'entity': 'selfie'
+            'entity': 'selfie',
+            'GSI1-SK': f"selfie#{entity.student.ra}#{entity.idSelfie}",
+            "GSI1-PK": f"{entity.state.value}"
 
         }
+        
 
         dynamo_item_from_dto = SelfieDynamoDTO.from_entity(entity).to_dynamo()
 
