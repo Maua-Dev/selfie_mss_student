@@ -254,8 +254,11 @@ class StudentRepositoryDynamo(IStudentRepository):
         return reviewer
 
     def get_reviewer(self, ra: str) -> Reviewer:
-        pass
+        resp = self.dynamo.get_item(partition_key=self.reviewer_partition_key_format(ra=ra),
+                                               sort_key=self.reviewer_sort_key_format(ra=ra))
 
+        return ReviewerDynamoDTO.from_dynamo(reviewer_data=resp["Item"]).to_entity() 
+    
     def get_rejected_reviews_by_reviewer(self, reviewerRa: str) -> Tuple[Reviewer, List[Review]]:
         pass
 
