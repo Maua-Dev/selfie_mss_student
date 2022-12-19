@@ -241,11 +241,17 @@ class StudentRepositoryDynamo(IStudentRepository):
                                        sort_key=self.reviewer_sort_key_format(ra=ra), update_dict=item_to_update)
 
         return ReviewerDynamoDTO.from_dynamo(reviewer_data=resp['Attributes']).to_entity()
-                                           
-
-
+                                        
     def delete_reviewer(self, ra: str) -> Reviewer:
-        pass
+        resp = self.dynamo.delete_item(partition_key=self.reviewer_partition_key_format(ra=ra),
+                                       sort_key=self.reviewer_sort_key_format(ra=ra))
+
+        if "Attributes" not in resp:
+            raise NoItemsFound("ra")
+
+        reviewer = ReviewerDynamoDTO.from_dynamo(resp['Attributes']).to_entity()
+
+        return reviewer
 
     def get_reviewer(self, ra: str) -> Reviewer:
         pass
