@@ -153,5 +153,14 @@ class Test_StudentRepositoryDynamo:
 
         assert resp.__repr__ == repo_mock.reviewers[0].__repr__
 
+    @pytest.mark.skip(reason="Needs dynamoDB")
+    def test_update_reviewer(self):
+        os.environ["STAGE"] = "TEST"
+
+        repo_dynamo = StudentRepositoryDynamo()
+        resp = repo_dynamo.update_reviewer(ra="03026", new_active=False)
+
+        assert resp.active == False
+        assert resp.name == "Mauro Crapino"
 
 

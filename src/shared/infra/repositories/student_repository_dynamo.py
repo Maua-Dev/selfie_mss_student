@@ -225,7 +225,24 @@ class StudentRepositoryDynamo(IStudentRepository):
 
     def update_reviewer(self, ra: str, new_name: str = None, new_email: str = None,
                         new_active: bool = None) -> Reviewer:
-        pass
+        item_to_update = {}
+
+        if new_name != None:
+            item_to_update['state'] = new_name.value
+        if new_email != None:
+            item_to_update['email'] = new_email
+        if new_active != None:
+            item_to_update['active'] = new_active
+
+        if not item_to_update:
+            raise NoItemsFound("Nothing to update")
+
+        resp = self.dynamo.update_item(partition_key=self.reviewer_partition_key_format(ra=ra),
+                                       sort_key=self.reviewer_sort_key_format(ra=ra), update_dict=item_to_update)
+
+        return ReviewerDynamoDTO.from_dynamo(reviewer_data=resp['Attributes']).to_entity()
+                                           
+
 
     def delete_reviewer(self, ra: str) -> Reviewer:
         pass
