@@ -12,56 +12,13 @@ from src.shared.domain.enums.state_enum import STATE
 from src.shared.domain.repositories.student_repository_interface import IStudentRepository
 from src.shared.environments import Environments
 from src.shared.helpers.errors.usecase_errors import NoItemsFound
+from src.shared.infra.dtos.reviewer_dynamo_dto import ReviewerDynamoDTO
 from src.shared.infra.dtos.selfie_dynamo_dto import SelfieDynamoDTO
 from src.shared.infra.dtos.student_dynamo_dto import StudentDynamoDTO
 from src.shared.infra.external.dynamo.datasources.dynamo_datasource import DynamoDatasource
 
 
 class StudentRepositoryDynamo(IStudentRepository):
-    def get_review(self, idReview: int, idSelfie: int, studentRa: str) -> Review:
-        pass
-
-    def create_review(self, review: Review) -> Review:
-        pass
-
-    def update_review(self, reviewerRa: str, idReview: int, idSelfie: int, studentRa: str,
-                      new_state: REVIEW_STATE = None, new_rejectionReasons: List[REJECTION_REASON] = None,
-                      new_rejectionDescription: str = None) -> Review:
-        pass
-
-    def delete_review(self, reviewerRa: str, idReview: int, idSelfie: int, studentRa: str) -> Review:
-        pass
-
-    def create_reviewer(self, reviwer: Reviewer) -> Reviewer:
-        pass
-
-    def update_reviewer(self, ra: str, new_name: str = None, new_email: str = None,
-                        new_active: bool = None) -> Reviewer:
-        pass
-
-    def delete_reviewer(self, ra: str) -> Reviewer:
-        pass
-
-    def get_reviewer(self, ra: str) -> Reviewer:
-        pass
-
-    def get_rejected_reviews_by_reviewer(self, reviewerRa: str) -> Tuple[Reviewer, List[Review]]:
-        pass
-
-    def get_approved_selfies_by_reviewer(self, reviewerRa: str) -> Tuple[Reviewer, List[Review]]:
-        pass
-
-    def get_selfies_to_review(self, reviewerRa: str, nSelfies: int) -> Tuple[List[Selfie], Reviewer]:
-        pass
-
-    def approve_selfie(self, studentRa: str, idSelfie: int, idReview: int) -> Review:
-        pass
-
-    def reject_selfie(self, studentRa: str, idSelfie: int, idReview: int,
-                      new_rejectionReasons: list[REJECTION_REASON] = None,
-                      new_rejectionDescription: str = None) -> Review:
-        pass
-
     dynamo: DynamoDatasource
 
     @staticmethod
@@ -71,7 +28,17 @@ class StudentRepositoryDynamo(IStudentRepository):
     @staticmethod
     def selfie_sort_key_format(ra, idSelfie):
         return f"selfie#{ra}#{idSelfie}"
+    
+    @staticmethod
+    def reviewer_partition_key_format(ra):
+        return f"reviewer#{ra}"
 
+    @staticmethod
+    def reviewer_sort_key_format(ra):
+        return ra
+    
+    
+    
     def __init__(self):
         self.dynamo = DynamoDatasource(endpoint_url=Environments.get_envs().endpoint_url,
                                        dynamo_table_name=Environments.get_envs().dynamo_table_name,
@@ -235,3 +202,76 @@ class StudentRepositoryDynamo(IStudentRepository):
 
         return [(list(map(lambda x: SelfieDynamoDTO.from_dynamo(x, student).to_entity(), selfies)),
                  StudentDynamoDTO.from_dynamo(student).to_entity()) for selfies, student in res.values()]
+
+    def get_review(self, idReview: int, idSelfie: int, studentRa: str) -> Review:
+        pass
+
+    def create_review(self, review: Review) -> Review:
+        pass
+
+    def update_review(self, reviewerRa: str, idReview: int, idSelfie: int, studentRa: str,
+                      new_state: REVIEW_STATE = None, new_rejectionReasons: List[REJECTION_REASON] = None,
+                      new_rejectionDescription: str = None) -> Review:
+        pass
+
+    def delete_review(self, reviewerRa: str, idReview: int, idSelfie: int, studentRa: str) -> Review:
+        pass
+
+    def create_reviewer(self, reviewer: Reviewer) -> Reviewer:
+        item = ReviewerDynamoDTO.from_entity(reviewer=reviewer).to_dynamo()
+        resp = self.dynamo.put_item(item=item, partition_key=self.reviewer_partition_key_format(ra=reviewer.ra), sort_key=self.reviewer_sort_key_format(ra=reviewer.ra))
+        
+        return reviewer
+
+    def update_reviewer(self, ra: str, new_name: str = None, new_email: str = None,
+                        new_active: bool = None) -> Reviewer:
+        item_to_update = {}
+
+        if new_name != None:
+            item_to_update['state'] = new_name.value
+        if new_email != None:
+            item_to_update['email'] = new_email
+        if new_active != None:
+            item_to_update['active'] = new_active
+
+        if not item_to_update:
+            raise NoItemsFound("Nothing to update")
+
+        resp = self.dynamo.update_item(partition_key=self.reviewer_partition_key_format(ra=ra),
+                                       sort_key=self.reviewer_sort_key_format(ra=ra), update_dict=item_to_update)
+
+        return ReviewerDynamoDTO.from_dynamo(reviewer_data=resp['Attributes']).to_entity()
+                                        
+    def delete_reviewer(self, ra: str) -> Reviewer:
+        resp = self.dynamo.delete_item(partition_key=self.reviewer_partition_key_format(ra=ra),
+                                       sort_key=self.reviewer_sort_key_format(ra=ra))
+
+        if "Attributes" not in resp:
+            raise NoItemsFound("ra")
+
+        reviewer = ReviewerDynamoDTO.from_dynamo(resp['Attributes']).to_entity()
+
+        return reviewer
+
+    def get_reviewer(self, ra: str) -> Reviewer:
+        resp = self.dynamo.get_item(partition_key=self.reviewer_partition_key_format(ra=ra),
+                                               sort_key=self.reviewer_sort_key_format(ra=ra))
+
+        return ReviewerDynamoDTO.from_dynamo(reviewer_data=resp["Item"]).to_entity() 
+    
+    def get_rejected_reviews_by_reviewer(self, reviewerRa: str) -> Tuple[Reviewer, List[Review]]:
+        pass
+
+    def get_approved_selfies_by_reviewer(self, reviewerRa: str) -> Tuple[Reviewer, List[Review]]:
+        pass
+
+    def get_selfies_to_review(self, reviewerRa: str, nSelfies: int) -> Tuple[List[Selfie], Reviewer]:
+        pass
+
+    def approve_selfie(self, studentRa: str, idSelfie: int, idReview: int) -> Review:
+        pass
+
+    def reject_selfie(self, studentRa: str, idSelfie: int, idReview: int,
+                      new_rejectionReasons: list[REJECTION_REASON] = None,
+                      new_rejectionDescription: str = None) -> Review:
+        pass

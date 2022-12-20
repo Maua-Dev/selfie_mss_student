@@ -143,5 +143,44 @@ class Test_StudentRepositoryDynamo:
 
         assert len(resp) == len(student_repository_mock.students)
 
+    @pytest.mark.skip(reason="Needs dynamoDB")
+    def test_create_reviewer(self):
+        os.environ["STAGE"] = "TEST"
+
+        repo_dynamo = StudentRepositoryDynamo()
+        repo_mock = StudentRepositoryMock()
+        resp = repo_dynamo.create_reviewer(reviewer=repo_mock.reviewers[0])
+
+        assert resp.__repr__ == repo_mock.reviewers[0].__repr__
+
+    @pytest.mark.skip(reason="Needs dynamoDB")
+    def test_update_reviewer(self):
+        os.environ["STAGE"] = "TEST"
+
+        repo_dynamo = StudentRepositoryDynamo()
+        resp = repo_dynamo.update_reviewer(ra="03026", new_active=False)
+
+        assert resp.active == False
+        assert resp.name == "Mauro Crapino"
+
+    @pytest.mark.skip(reason="Needs dynamoDB")
+    def test_delete_reviewer(self):
+        os.environ["STAGE"] = "TEST"
+
+        repo_dynamo = StudentRepositoryDynamo()
+        repo_mock = StudentRepositoryMock()
+        resp = repo_dynamo.delete_reviewer(ra="03026")
 
 
+        assert resp.__dict__ == repo_mock.reviewers[0].__dict__
+
+    @pytest.mark.skip(reason="Needs dynamoDB")
+    def test_get_reviewer(self):
+        os.environ["STAGE"] = "TEST"
+
+        repo_dynamo = StudentRepositoryDynamo()
+        repo_mock = StudentRepositoryMock()
+        resp = repo_dynamo.get_reviewer(ra="03026")
+
+
+        assert resp.__dict__ == repo_mock.reviewers[0].__dict__

@@ -1,3 +1,4 @@
+
 from src.shared.environments import Environments
 from src.shared.infra.repositories.student_repository_dynamo import StudentRepositoryDynamo
 from src.shared.infra.repositories.student_repository_mock import StudentRepositoryMock
@@ -95,6 +96,14 @@ def load_mock_to_local_dynamo():
         dynamo_repo.create_selfie(selfie)
         count += 1
     print(f'{count} selfies loaded!\n')
+    
+    print('\nLoading Reviewers...')
+    count = 0
+    for reviewer in mock_repo.reviewers:
+        print(f'Loading reviewer {reviewer.ra} | {reviewer.name}...')
+        dynamo_repo.create_reviewer(reviewer)
+        count += 1
+    print(f'{count} reviewers loaded!\n')
 
     print('Done!')
 

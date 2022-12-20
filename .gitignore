@@ -21,3 +21,4 @@ venv/
 .coverage
 
 template.yml
+iac/local/docker/dynamodb/shared-local-instance.db
