@@ -33,8 +33,8 @@ class StudentRepositoryMock(IStudentRepository):
             ),
             Student(
                 ra="22011020",
-                name="Guirão",
-                email="acreditaquesousollertambem@yahoo.com"
+                name="Luigi Trevisan",
+                email="22.01102-0@maua.br"
             ),
             Student(
                 ra="21014440",

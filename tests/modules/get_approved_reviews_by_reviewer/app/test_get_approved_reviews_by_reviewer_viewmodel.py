@@ -116,8 +116,8 @@ class Test_GetApprovedSelfiesByReviewerViewModel:
                   },
                   "student":{
                     "ra":"22011020",
-                    "name":"Guirão",
-                    "email":"acreditaquesousollertambem@yahoo.com"
+                    "name":"Luigi Trevisan",
+                    "email":"22.01102-0@maua.br"
                   }
               },
               "dateAssigned":"2022-11-30T16:01:59.149927",
