@@ -87,12 +87,12 @@ class LambdaStack(Construct):
             mss_student_api_resource=mss_student_api_resource,
             environment_variables=environment_variables
         )
-        self.update_selfie_function = self.createLambdaApiGatewayIntegration(
-            module_name="update_selfie",
-            method="POST",
-            mss_student_api_resource=mss_student_api_resource,
-            environment_variables=environment_variables
-        )
+        # self.update_selfie_function = self.createLambdaApiGatewayIntegration(
+        #     module_name="update_selfie",
+        #     method="POST",
+        #     mss_student_api_resource=mss_student_api_resource,
+        #     environment_variables=environment_variables
+        # )
         # self.delete_selfie_function = self.createLambdaApiGatewayIntegration(
         #     module_name="delete_selfie",
         #     method="POST",
@@ -155,15 +155,15 @@ class LambdaStack(Construct):
 
         self.functions_that_need_dynamo_permissions = [
             self.get_student_function,
-            self.create_student_function,
-            self.update_student_function,
-            self.delete_student_function,
+            # self.create_student_function,
+            # self.update_student_function,
+            # self.delete_student_function,
             self.get_selfie_function,
             self.get_selfies_by_ra_function,
             self.create_selfie_function,
             self.validate_selfie_function,
-            self.update_selfie_function,
-            self.delete_selfie_function,
+            # self.update_selfie_function,
+            # self.delete_selfie_function,
             self.get_all_selfies_function,
             self.get_all_students_function,
             self.request_upload_selfie_function
