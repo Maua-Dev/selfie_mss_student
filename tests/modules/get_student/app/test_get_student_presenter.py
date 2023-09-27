@@ -19,7 +19,7 @@ class Test_GetStudentPresenter:
             "header2": "value1,value2"
           },
           "queryStringParameters": {
-            "ra":"21014440",
+            "ra":"19003315",
             "parameter2": "value"
           },
           "requestContext": {
@@ -58,9 +58,9 @@ class Test_GetStudentPresenter:
           "stageVariables": None
         }
         expected = {
-            "ra":"21014440",
-            "name":"Eh o Vilas do Mockas",
-            "email":"eusouoawsboy@amazon.com",
+            "ra":"19003315",
+            "name":"Burno Vilardi Bueno",
+            "email":"19.00331-5@maua.br",
             "status":"SELFIE_IN_REVIEW"
         }
 

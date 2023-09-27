@@ -37,9 +37,9 @@ class StudentRepositoryMock(IStudentRepository):
                 email="22.01102-0@maua.br"
             ),
             Student(
-                ra="21014440",
-                name="Eh o Vilas do Mockas",
-                email="eusouoawsboy@amazon.com"
+                ra="19003315",
+                name="Burno Vilardi Bueno",
+                email="19.00331-5@maua.br"
             ),
             Student(
                 ra="17090212",
