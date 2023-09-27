@@ -11,11 +11,11 @@ class Test_RequestUploadSelfieUsecase:
         repoStudent = StudentRepositoryMock()
         usecase = RequestUploadSelfieUsecase(repoSelfie=repoSelfie, repoStudent=repoStudent)
        
-        presignedPost = usecase(ra="21002088", name="MARIA LUIZA VERNASQUI VERGANI", email="21.00208-8@maua.br")
+        presignedPost = usecase(ra="22016244", name="MARIA LUIZA VERNASQUI VERGANI", email="21.00208-8@maua.br")
        
 
         assert presignedPost['url'] == "https://test-selfie-bucket.s3.amazonaws.com/"
-        assert presignedPost['metadata']['ra'] == "21002088"
+        assert presignedPost['metadata']['ra'] == "22016244"
         assert presignedPost['metadata']['name'] == "MARIA LUIZA VERNASQUI VERGANI"
         assert presignedPost['metadata']['email'] == "21.00208-8@maua.br"
 
@@ -34,7 +34,7 @@ class Test_RequestUploadSelfieUsecase:
         usecase = RequestUploadSelfieUsecase(repoSelfie=repoSelfie, repoStudent=repoStudent)
        
         with pytest.raises(EntityError):
-            presignedPost = usecase(ra="21002088", name="MARIA LUIZA VERNASQUI VERGANI", email="21.00208-8maua.br")
+            presignedPost = usecase(ra="22016244", name="MARIA LUIZA VERNASQUI VERGANI", email="21.00208-8maua.br")
 
         
     def test_request_upload_selfie_error_name(self):
@@ -43,7 +43,7 @@ class Test_RequestUploadSelfieUsecase:
         usecase = RequestUploadSelfieUsecase(repoSelfie=repoSelfie, repoStudent=repoStudent)
        
         with pytest.raises(EntityError):
-            presignedPost = usecase(ra="21002088", name="M", email="21.00208-8@maua.br")
+            presignedPost = usecase(ra="22016244", name="M", email="21.00208-8@maua.br")
 
 
         

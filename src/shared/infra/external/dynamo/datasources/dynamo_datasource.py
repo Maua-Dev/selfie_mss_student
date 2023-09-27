@@ -200,7 +200,3 @@ if __name__ == '__main__':
     dynamo = DynamoDatasource(endpoint_url="http://localhost:8000",
                               dynamo_table_name="selfie_mss_student-table", region="foobar",
                               partition_key="PK", sort_key="SK")
-
-    print(dynamo.get_item("student#21002088", "21002088"))
-
-    dynamo.update_item("student#21002088", "21002088", {"name": "Maluzinha", "ra": "21002088"})

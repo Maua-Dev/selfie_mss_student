@@ -52,9 +52,9 @@ class StudentRepositoryMock(IStudentRepository):
                 email="15.01310-3@maua.br"
             ),
             Student(
-                ra="21002088",
-                name="Maluzinha",
-                email="mvergani.enactusmaua@gmail.com"
+                ra="22016244",
+                name="Isabela Pizi",
+                email="22.01624-4@maua.br"
             ),
             Student(
                 ra="21012345",
