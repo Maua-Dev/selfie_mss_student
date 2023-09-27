@@ -163,7 +163,7 @@ class Test_GetApprovedSelfiesByReviewerPresenter:
                ]
             },
             "student":{
-               "ra":"21014443",
+               "ra":"22011020",
                "name":"Guirão",
                "email":"acreditaquesousollertambem@yahoo.com"
             }

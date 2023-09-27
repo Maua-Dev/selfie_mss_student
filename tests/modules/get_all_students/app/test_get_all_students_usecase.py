@@ -35,7 +35,7 @@ class Test_GetAllStudentsUsecase:
                 student=Student(
                     email="21.01444-2@maua.br",
                     name="LUIGI GUIMARES TREVISAN",
-                    ra="22011020"
+                    ra="22011021"
                 ),
                 dateCreated=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),
                 url="https://i.imgur.com/4ewA19S.png",

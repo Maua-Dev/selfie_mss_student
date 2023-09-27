@@ -247,14 +247,14 @@ class Test_ValidateSelfieController:
         }
 
         http_request = HttpRequest(body={
-            "ra": "21014443",
+            "ra": "22011020",
             "rekognitionResult": rekognitionResult,
             "url": "https://www.youtube.com/watch?v=5IpYOF4Hi6Q"
         })
         response = controller(request=http_request)
 
 
-        assert response['ra'] == "21014443"
+        assert response['ra'] == "22011020"
         assert response['url']== "https://www.youtube.com/watch?v=5IpYOF4Hi6Q"
         assert response["automaticReview"]["automaticallyRejected"] == False
         assert response["automaticReview"]["labels"][0]["confidence"] == 100.0
@@ -750,7 +750,7 @@ class Test_ValidateSelfieController:
 
         
         http_request = HttpRequest(body={
-            "ra": "21014443",
+            "ra": "22011020",
             "rekognitionResult": rekognitionResult,
             "url": "http://www.youtube.com/watch?v=5IpYOF4Hi6Q"
         })
@@ -763,7 +763,7 @@ class Test_ValidateSelfieController:
         controller = ValidateSelfieController(usecase=usecase)
         
         http_request = HttpRequest(body={
-            "ra": "21014443",
+            "ra": "22011020",
             "rekognitionResult": 'rekognitionResult',
             "url": "http://www.youtube.com/watch?v=5IpYOF4Hi6Q"
         })
@@ -1264,7 +1264,7 @@ class Test_ValidateSelfieController:
 
 
         http_request = HttpRequest(body={
-            "ra": "21014443",
+            "ra": "22011020",
             "rekognitionResult": rekognitionResult,
             "url": None
         })
@@ -1279,7 +1279,7 @@ class Test_ValidateSelfieController:
         controller = ValidateSelfieController(usecase=usecase)
         
         http_request = HttpRequest(body={
-            "ra": "21014443",
+            "ra": "22011020",
             "rekognitionResult": None,
             "url": "https://www.youtube.com/watch?v=5IpYOF4Hi6Q"
         })
