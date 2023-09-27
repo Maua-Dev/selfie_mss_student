@@ -56,24 +56,24 @@ class LambdaStack(Construct):
             mss_student_api_resource=mss_student_api_resource,
             environment_variables=environment_variables
         )
-        self.create_student_function = self.createLambdaApiGatewayIntegration(
-            module_name="create_student",
-            method="POST",
-            mss_student_api_resource=mss_student_api_resource,
-            environment_variables=environment_variables
-        )
-        self.update_student_function = self.createLambdaApiGatewayIntegration(
-            module_name="update_student",
-            method="POST",
-            mss_student_api_resource=mss_student_api_resource,
-            environment_variables=environment_variables
-        )
-        self.delete_student_function = self.createLambdaApiGatewayIntegration(
-            module_name="delete_student",
-            method="POST",
-            mss_student_api_resource=mss_student_api_resource,
-            environment_variables=environment_variables
-        )
+        # self.create_student_function = self.createLambdaApiGatewayIntegration(
+        #     module_name="create_student",
+        #     method="POST",
+        #     mss_student_api_resource=mss_student_api_resource,
+        #     environment_variables=environment_variables
+        # )
+        # self.update_student_function = self.createLambdaApiGatewayIntegration(
+        #     module_name="update_student",
+        #     method="POST",
+        #     mss_student_api_resource=mss_student_api_resource,
+        #     environment_variables=environment_variables
+        # )
+        # self.delete_student_function = self.createLambdaApiGatewayIntegration(
+        #     module_name="delete_student",
+        #     method="POST",
+        #     mss_student_api_resource=mss_student_api_resource,
+        #     environment_variables=environment_variables
+        # )
 
         self.get_selfie_function = self.createLambdaApiGatewayIntegration(
             module_name="get_selfie",
@@ -93,12 +93,12 @@ class LambdaStack(Construct):
             mss_student_api_resource=mss_student_api_resource,
             environment_variables=environment_variables
         )
-        self.delete_selfie_function = self.createLambdaApiGatewayIntegration(
-            module_name="delete_selfie",
-            method="POST",
-            mss_student_api_resource=mss_student_api_resource,
-            environment_variables=environment_variables
-        )
+        # self.delete_selfie_function = self.createLambdaApiGatewayIntegration(
+        #     module_name="delete_selfie",
+        #     method="POST",
+        #     mss_student_api_resource=mss_student_api_resource,
+        #     environment_variables=environment_variables
+        # )
         self.get_all_selfies_function = self.createLambdaApiGatewayIntegration(
             module_name="get_all_selfies",
             method="GET",
@@ -118,6 +118,19 @@ class LambdaStack(Construct):
             environment_variables=environment_variables
         )
 
+        self.reject_selfie_function = self.createLambdaApiGatewayIntegration(
+            module_name="reject_selfie",
+            method="POST",
+            mss_student_api_resource=mss_student_api_resource,
+            environment_variables=environment_variables
+        )
+
+        self.approve_selfie_function = self.createLambdaApiGatewayIntegration(
+            module_name="approve_selfie",
+            method="POST",
+            mss_student_api_resource=mss_student_api_resource,
+            environment_variables=environment_variables
+        )
 
         self.create_selfie_function = lambda_.Function(
             self, "create_selfie",
