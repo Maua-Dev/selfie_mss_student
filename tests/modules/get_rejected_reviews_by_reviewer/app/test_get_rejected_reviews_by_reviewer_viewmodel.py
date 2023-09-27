@@ -64,8 +64,8 @@ class Test_GetRejectedSelfiesByReviewerViewModel:
             },
             "student":{
                "ra":"15013103",
-               "name":"Little Ronald",
-               "email":"iamronald@mageofprogramming.com.br"
+               "name":"Hector Guerrini",
+               "email":"15.01310-3@maua.br"
             }
          },
          "dateAssigned":"2022-11-01T16:01:59.149927",
