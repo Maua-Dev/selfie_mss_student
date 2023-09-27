@@ -43,8 +43,8 @@ class StudentRepositoryMock(IStudentRepository):
             ),
             Student(
                 ra="17090212",
-                name="Monkey Guy",
-                email="uuaa@floresta.com"
+                name="Paulo Matos",
+                email="17.09021-2@maua.br"
             ),
             Student(
                 ra="15013103",

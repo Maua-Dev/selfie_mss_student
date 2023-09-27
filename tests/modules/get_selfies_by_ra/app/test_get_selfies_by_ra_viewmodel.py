@@ -78,16 +78,16 @@ class Test_GetSelfiesByRaViewModel:
         selfiesViewModel = GetSelfiesByRaViewModel(selfies, 
                                                     Student(
                                                             ra="17090212",
-                                                            name="Monkey Guy",
-                                                            email="uuaa@floresta.com"
+                                                            name="Paulo Matos",
+                                                            email="17.09021-2@maua.br"
                                                         )
                                                     ).to_dict()
 
         expected = {
         'message': 'the selfies were retriven',
         'selfies': [],
-        'student': {'email': 'uuaa@floresta.com',
-                    'name': 'Monkey Guy',
+        'student': {'email': '17.09021-2@maua.br',
+                    'name': 'Paulo Matos',
                     'ra': '17090212'},
         }
         

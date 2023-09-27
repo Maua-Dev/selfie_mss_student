@@ -128,7 +128,7 @@ class Test_GetSelfiesByRaPresenter:
         response = lambda_handler(event, None)
         assert response["statusCode"] == 200
         assert len(json.loads(response["body"])["selfies"]) == 0
-        assert json.loads(response["body"])['student']['name'] == "Monkey Guy"
+        assert json.loads(response["body"])['student']['name'] == "Paulo Matos"
         assert json.loads(response["body"])['message'] == "the selfies were retriven"
   
     def test_get_selfies_by_ra_non_valid_ra_dash(self):
