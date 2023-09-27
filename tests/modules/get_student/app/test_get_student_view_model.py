@@ -9,7 +9,7 @@ class Test_GetStudentViewModel:
         result = {
             "ra":"21010757",
             "name":'João Vitor Choueri Branco',
-            "email":"eusousoller@gmail.com",
+            "email":"21.01075-7@gmail.com",
             "status": "APPROVED"
         }
         

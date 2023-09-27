@@ -221,7 +221,7 @@ class Test_SelfieDynamoDTO:
           'state': 'DECLINED',
           'url': 'https://i.imgur.com/0KFBHTB.jpg'}
 
-        entity = SelfieDynamoDTO.from_dynamo(dynamo_item, {"ra": "21010757", "name": "João Vitor Choueri Branco", "email": "eusousoller@gmail.com"}).to_entity()
+        entity = SelfieDynamoDTO.from_dynamo(dynamo_item, {"ra": "21010757", "name": "João Vitor Choueri Branco", "email": "21.01075-7@gmail.com"}).to_entity()
 
         assert entity.idSelfie == repo.selfies[0].idSelfie
         assert entity.student.ra == repo.selfies[0].student.ra

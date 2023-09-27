@@ -22,7 +22,7 @@ class Test_Review():
                   student= Student(
                   ra="21010757",
                   name="João Vitor Choueri Branco",
-                  email="eusousoller@gmail.com"
+                  email="21.01075-7@gmail.com"
                   ),
                 dateCreated=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),
                 url="https://i.imgur.com/4ewA19S.png",
@@ -62,7 +62,7 @@ class Test_Review():
   REVIEWER = Student(
                   ra="21010757",
                   name="João Vitor Choueri Branco",
-                  email="eusousoller@gmail.com"
+                  email="21.01075-7@gmail.com"
                   )
 
   def test_review(self):
@@ -76,7 +76,7 @@ class Test_Review():
                    student= Student(
                   ra="21010757",
                   name="João Vitor Choueri Branco",
-                  email="eusousoller@gmail.com"
+                  email="21.01075-7@gmail.com"
                   ),
                 dateCreated=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),
                 url="https://i.imgur.com/4ewA19S.png",

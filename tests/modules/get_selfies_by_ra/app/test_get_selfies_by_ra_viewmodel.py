@@ -64,7 +64,7 @@ class Test_GetSelfiesByRaViewModel:
                         'rejectionReasons': ['NONE'],
                         'state': 'APPROVED',
                         'url': 'https://i.imgur.com/b9qFYmb.jpg'}],
-           'student': {'email': 'eusousoller@gmail.com',
+           'student': {'email': '21.01075-7@gmail.com',
                        'name': 'João Vitor Choueri Branco',
                        'ra': '21010757'},
            }
