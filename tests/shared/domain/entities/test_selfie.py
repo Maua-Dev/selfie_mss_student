@@ -16,8 +16,8 @@ class Test_Selfie():
         
         student = Student(
                 ra="17090212",
-                name="Monkey Guy",
-                email="uuaa@floresta.com"
+                name="Paulo Matos",
+                email="17.09021-2@maua.br"
                 
             )        
         
@@ -77,8 +77,8 @@ class Test_Selfie():
         
         student = Student(
                 ra="17090212",
-                name="Monkey Guy",
-                email="uuaa@floresta.com"
+                name="Paulo Matos",
+                email="17.09021-2@maua.br"
                 
             )        
         
@@ -139,8 +139,8 @@ class Test_Selfie():
         selfie = Selfie(
                 student= Student(
                                 ra="17.090212",
-                                name="Monkey Guy",
-                                email="uuaa@floresta.com"
+                                name="Paulo Matos",
+                                email="17.09021-2@maua.br"
                                 )  ,
                 dateCreated= datetime.datetime.now(),
                 url= "www.maua.br",
@@ -188,8 +188,8 @@ class Test_Selfie():
         selfie = Selfie(
                 student= Student(
                                 ra=17090212,
-                                name="Monkey Guy",
-                                email="uuaa@floresta.com"
+                                name="Paulo Matos",
+                                email="17.09021-2@maua.br"
                                 )  ,
                 dateCreated= datetime.datetime.now(),
                 url= "www.maua.br",
@@ -236,8 +236,8 @@ class Test_Selfie():
         selfie = Selfie(
                 student= Student(
                                 ra="17090212",
-                                name="Monkey Guy",
-                                email="uuaa@floresta.com"
+                                name="Paulo Matos",
+                                email="17.09021-2@maua.br"
                                 )  ,
                 dateCreated= datetime.datetime.now(),
                 url= None,
@@ -284,8 +284,8 @@ class Test_Selfie():
         selfie = Selfie(
                 student= Student(
                                 ra="17090212",
-                                name="Monkey Guy",
-                                email="uuaa@floresta.com"
+                                name="Paulo Matos",
+                                email="17.09021-2@maua.br"
                                 ),
                 dateCreated= datetime.datetime.now(),
                 url= "www.maua.br",
@@ -332,8 +332,8 @@ class Test_Selfie():
         selfie = Selfie(
                 student= Student(
                                 ra="17090212",
-                                name="Monkey Guy",
-                                email="uuaa@floresta.com"
+                                name="Paulo Matos",
+                                email="17.09021-2@maua.br"
                                 ),
                 dateCreated= datetime.datetime.now(),
                 url= "www.maua.br",
@@ -380,8 +380,8 @@ class Test_Selfie():
         selfie = Selfie(
                 student= Student(
                                 ra="17090212",
-                                name="Monkey Guy",
-                                email="uuaa@floresta.com"
+                                name="Paulo Matos",
+                                email="17.09021-2@maua.br"
                                 ),
                 dateCreated= datetime.datetime.now(),
                 url= "www.maua.br",
@@ -428,8 +428,8 @@ class Test_Selfie():
         selfie = Selfie(
                 student= Student(
                                 ra="17090212",
-                                name="Monkey Guy",
-                                email="uuaa@floresta.com"
+                                name="Paulo Matos",
+                                email="17.09021-2@maua.br"
                                 ),
                 dateCreated= datetime.datetime.now(),
                 url= "www.maua.br",
@@ -476,8 +476,8 @@ class Test_Selfie():
           selfie = Selfie(
                   student= Student(
                                   ra="17090212",
-                                  name="Monkey Guy",
-                                  email="uuaa@floresta.com"
+                                  name="Paulo Matos",
+                                  email="17.09021-2@maua.br"
                                   ),
                   dateCreated= datetime.datetime.now(),
                   url= "www.maua.br",
@@ -524,8 +524,8 @@ class Test_Selfie():
         selfie = Selfie(
                 student= Student(
                                 ra="17090212",
-                                name="Monkey Guy",
-                                email="uuaa@floresta.com"
+                                name="Paulo Matos",
+                                email="17.09021-2@maua.br"
                                 ),
                 dateCreated= datetime.datetime.now(),
                 url= "www.maua.br",
@@ -572,8 +572,8 @@ class Test_Selfie():
         selfie = Selfie(
                 student= Student(
                                 ra="17090212",
-                                name="Monkey Guy",
-                                email="uuaa@floresta.com"
+                                name="Paulo Matos",
+                                email="17.09021-2@maua.br"
                                 ),
                 dateCreated= datetime.datetime.now(),
                 url= "www.maua.br",

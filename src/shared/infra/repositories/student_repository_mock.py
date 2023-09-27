@@ -23,43 +23,43 @@ class StudentRepositoryMock(IStudentRepository):
         self.students = [
             Student(
                 ra="21010757",
-                name="Victor",
-                email="eusousoller@gmail.com"
+                name="João Vitor Choueri Branco",
+                email="21.01075-7@gmail.com"
             ),
             Student(
                 ra="21014442",
-                name="Soller",
-                email="eutambemsousoler@outlook.com"
+                name="Vitor Guirão Soller",
+                email="21.01444-2@outlook.com"
             ),
             Student(
-                ra="21014443",
-                name="Guirão",
-                email="acreditaquesousollertambem@yahoo.com"
+                ra="22011020",
+                name="Luigi Trevisan",
+                email="22.01102-0@maua.br"
             ),
             Student(
-                ra="21014440",
-                name="Eh o Vilas do Mockas",
-                email="eusouoawsboy@amazon.com"
+                ra="19003315",
+                name="Burno Vilardi Bueno",
+                email="19.00331-5@maua.br"
             ),
             Student(
                 ra="17090212",
-                name="Monkey Guy",
-                email="uuaa@floresta.com"
+                name="Paulo Matos",
+                email="17.09021-2@maua.br"
             ),
             Student(
                 ra="15013103",
-                name="Little Ronald",
-                email="iamronald@mageofprogramming.com.br"
+                name="Hector Guerrini",
+                email="15.01310-3@maua.br"
             ),
             Student(
-                ra="21002088",
-                name="Maluzinha",
-                email="mvergani.enactusmaua@gmail.com"
+                ra="22016244",
+                name="Isabela Pizi",
+                email="22.01624-4@maua.br"
             ),
             Student(
-                ra="21012345",
-                name="Hater de Regra de Negocio",
-                email="buisinnes.rules@must.die.com"
+                ra="21003068",
+                name="Lucas Duez",
+                email="21.00306-8@maua.br"
             )
         ]
 

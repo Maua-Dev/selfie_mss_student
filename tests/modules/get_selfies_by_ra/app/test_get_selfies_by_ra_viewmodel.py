@@ -64,8 +64,8 @@ class Test_GetSelfiesByRaViewModel:
                         'rejectionReasons': ['NONE'],
                         'state': 'APPROVED',
                         'url': 'https://i.imgur.com/b9qFYmb.jpg'}],
-           'student': {'email': 'eusousoller@gmail.com',
-                       'name': 'Victor',
+           'student': {'email': '21.01075-7@gmail.com',
+                       'name': 'João Vitor Choueri Branco',
                        'ra': '21010757'},
            }
         
@@ -78,16 +78,16 @@ class Test_GetSelfiesByRaViewModel:
         selfiesViewModel = GetSelfiesByRaViewModel(selfies, 
                                                     Student(
                                                             ra="17090212",
-                                                            name="Monkey Guy",
-                                                            email="uuaa@floresta.com"
+                                                            name="Paulo Matos",
+                                                            email="17.09021-2@maua.br"
                                                         )
                                                     ).to_dict()
 
         expected = {
         'message': 'the selfies were retriven',
         'selfies': [],
-        'student': {'email': 'uuaa@floresta.com',
-                    'name': 'Monkey Guy',
+        'student': {'email': '17.09021-2@maua.br',
+                    'name': 'Paulo Matos',
                     'ra': '17090212'},
         }
         

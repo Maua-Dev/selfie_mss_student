@@ -151,7 +151,7 @@ class Test_CreateSelfieController:
         controller = CreateSelfieController(usecase=usecase)
 
         request = {
-            "ra": 21002088,
+            "ra": 22016244,
             "url": "https://www.youtube.com/watch?v=5IpYOF4Hi6Q",
             "automaticReview": AUTOMATIC_REVIEW_DICT
         }

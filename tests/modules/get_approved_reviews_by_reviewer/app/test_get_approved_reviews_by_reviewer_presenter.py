@@ -112,8 +112,8 @@ class Test_GetApprovedSelfiesByReviewerPresenter:
             },
             "student":{
                "ra":"21010757",
-               "name":"Victor",
-               "email":"eusousoller@gmail.com"
+               "name":"João Vitor Choueri Branco",
+               "email":"21.01075-7@gmail.com"
             }
          },
          "dateAssigned":"2022-12-01T16:01:59.149927",
@@ -163,9 +163,9 @@ class Test_GetApprovedSelfiesByReviewerPresenter:
                ]
             },
             "student":{
-               "ra":"21014443",
-               "name":"Guirão",
-               "email":"acreditaquesousollertambem@yahoo.com"
+               "ra":"22011020",
+               "name":"Luigi Trevisan",
+               "email":"22.01102-0@maua.br"
             }
          },
          "dateAssigned":"2022-11-30T16:01:59.149927",

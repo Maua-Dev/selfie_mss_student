@@ -64,8 +64,8 @@ class Test_GetRejectedSelfiesByReviewerViewModel:
             },
             "student":{
                "ra":"15013103",
-               "name":"Little Ronald",
-               "email":"iamronald@mageofprogramming.com.br"
+               "name":"Hector Guerrini",
+               "email":"15.01310-3@maua.br"
             }
          },
          "dateAssigned":"2022-11-01T16:01:59.149927",
@@ -155,9 +155,9 @@ class Test_GetRejectedSelfiesByReviewerViewModel:
                ]
             },
             "student":{
-               "ra":"21002088",
-               "name":"Maluzinha",
-               "email":"mvergani.enactusmaua@gmail.com"
+               "ra":"22016244",
+               "name":"Isabela Pizi",
+               "email":"22.01624-4@maua.br"
             }
          },
          "dateAssigned":"2022-11-01T16:01:59.149927",

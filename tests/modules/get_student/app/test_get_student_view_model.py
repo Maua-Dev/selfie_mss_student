@@ -8,8 +8,8 @@ class Test_GetStudentViewModel:
         student = repo.students[0]
         result = {
             "ra":"21010757",
-            "name":"Victor",
-            "email":"eusousoller@gmail.com",
+            "name":'João Vitor Choueri Branco',
+            "email":"21.01075-7@gmail.com",
             "status": "APPROVED"
         }
         

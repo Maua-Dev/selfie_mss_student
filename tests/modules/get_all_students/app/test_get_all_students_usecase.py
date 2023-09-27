@@ -18,7 +18,7 @@ class Test_GetAllStudentsUsecase:
         all_students = usecase()
        
         assert len(all_students) == len(repo.students) 
-        assert all_students[0]["name"] == "Victor"
+        assert all_students[0]["name"] == "João Vitor Choueri Branco"
         assert all_students[0]["status"] == STUDENT_STATE.APPROVED
         assert len(all_students[0]["selfies"]) == 2
         assert all_students[1]["status"] == STUDENT_STATE.SELFIE_PENDING_REVIEW
@@ -35,7 +35,7 @@ class Test_GetAllStudentsUsecase:
                 student=Student(
                     email="21.01444-2@maua.br",
                     name="LUIGI GUIMARES TREVISAN",
-                    ra="22011020"
+                    ra="22011021"
                 ),
                 dateCreated=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),
                 url="https://i.imgur.com/4ewA19S.png",
