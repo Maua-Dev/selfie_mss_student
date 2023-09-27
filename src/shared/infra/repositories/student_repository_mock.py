@@ -57,9 +57,9 @@ class StudentRepositoryMock(IStudentRepository):
                 email="22.01624-4@maua.br"
             ),
             Student(
-                ra="21012345",
-                name="Hater de Regra de Negocio",
-                email="buisinnes.rules@must.die.com"
+                ra="21003068",
+                name="Lucas Duez",
+                email="21.00306-8@maua.br"
             )
         ]
 
