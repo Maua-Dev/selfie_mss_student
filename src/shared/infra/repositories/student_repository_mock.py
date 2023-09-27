@@ -23,7 +23,7 @@ class StudentRepositoryMock(IStudentRepository):
         self.students = [
             Student(
                 ra="21010757",
-                name="Victor",
+                name="João Vitor Choueri Branco",
                 email="eusousoller@gmail.com"
             ),
             Student(

@@ -65,7 +65,7 @@ class Test_GetSelfiesByRaPresenter:
         assert json.loads(response["body"])["selfies"][0]["rejectionDescription"] == "Balaclava"
         assert json.loads(response["body"])["selfies"][0]["url"] == "https://i.imgur.com/0KFBHTB.jpg"
         assert json.loads(response["body"])["selfies"][1]["rejectionDescription"] == ""
-        assert json.loads(response["body"])['student']['name'] == "Victor"
+        assert json.loads(response["body"])['student']['name'] == "João Vitor Choueri Branco"
         assert json.loads(response["body"])['message'] == "the selfies were retriven"
         assert json.loads(response["body"])["selfies"][1]["automaticReview"]["automaticallyRejected"] ==  False
 

@@ -65,7 +65,7 @@ class Test_GetSelfiesByRaViewModel:
                         'state': 'APPROVED',
                         'url': 'https://i.imgur.com/b9qFYmb.jpg'}],
            'student': {'email': 'eusousoller@gmail.com',
-                       'name': 'Victor',
+                       'name': 'João Vitor Choueri Branco',
                        'ra': '21010757'},
            }
         

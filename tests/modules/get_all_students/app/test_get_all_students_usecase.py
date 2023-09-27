@@ -18,7 +18,7 @@ class Test_GetAllStudentsUsecase:
         all_students = usecase()
        
         assert len(all_students) == len(repo.students) 
-        assert all_students[0]["name"] == "Victor"
+        assert all_students[0]["name"] == "João Vitor Choueri Branco"
         assert all_students[0]["status"] == STUDENT_STATE.APPROVED
         assert len(all_students[0]["selfies"]) == 2
         assert all_students[1]["status"] == STUDENT_STATE.SELFIE_PENDING_REVIEW

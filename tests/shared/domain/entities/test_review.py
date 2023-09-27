@@ -21,7 +21,7 @@ class Test_Review():
                 idSelfie=0,
                   student= Student(
                   ra="21010757",
-                  name="Victor",
+                  name="João Vitor Choueri Branco",
                   email="eusousoller@gmail.com"
                   ),
                 dateCreated=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),
@@ -61,7 +61,7 @@ class Test_Review():
       
   REVIEWER = Student(
                   ra="21010757",
-                  name="Victor",
+                  name="João Vitor Choueri Branco",
                   email="eusousoller@gmail.com"
                   )
 
@@ -75,7 +75,7 @@ class Test_Review():
                 idSelfie=0,
                    student= Student(
                   ra="21010757",
-                  name="Victor",
+                  name="João Vitor Choueri Branco",
                   email="eusousoller@gmail.com"
                   ),
                 dateCreated=datetime.datetime(2022, 10, 12, 16, 1, 59, 149927),
@@ -125,7 +125,7 @@ class Test_Review():
     assert review.reviewer.active == True
     assert review.selfie.idSelfie == 0
     assert review.selfie.student.ra == "21010757"
-    assert review.selfie.student.name == "Victor"
+    assert review.selfie.student.name == "João Vitor Choueri Branco"
     assert review.selfie.dateCreated == datetime.datetime(2022, 10, 12, 16, 1, 59, 149927)
     assert review.selfie.url == "https://i.imgur.com/4ewA19S.png"
     assert review.selfie.state == STATE.IN_REVIEW

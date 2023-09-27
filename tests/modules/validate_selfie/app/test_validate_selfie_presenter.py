@@ -42,7 +42,7 @@ class Test_ValidadeSelfiePresenter:
          "ETag":"\"4ce0ae3aadd8c651e8113d96285ce212\"",
          "LastModified":"2022-11-20T15:35:39Z",
          "Metadata":{
-            "name":"Victor",
+            "name":"João Vitor Choueri Branco",
             "email":"eusousoller@gmail.com",
             "ra":"21010757"
          },
@@ -564,7 +564,7 @@ class Test_ValidadeSelfiePresenter:
          "ETag":"\"4ce0ae3aadd8c651e8113d96285ce212\"",
          "LastModified":"2022-11-20T15:35:39Z",
          "Metadata":{
-            "name":"Victor",
+            "name":"João Vitor Choueri Branco",
             "email":"eusousoller@gmail.com",
             "ra":"2100757"
          },
@@ -613,7 +613,7 @@ class Test_ValidadeSelfiePresenter:
          "ETag":"\"4ce0ae3aadd8c651e8113d96285ce212\"",
          "LastModified":"2022-11-20T15:35:39Z",
          "Metadata":{
-            "name":"Victor",
+            "name":"João Vitor Choueri Branco",
             "email":"eusousoller@gmail.com",
             "ra":"21010757"
          },
