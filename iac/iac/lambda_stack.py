@@ -19,7 +19,7 @@ class LambdaStack(Construct):
             code=lambda_.Code.from_asset(f"../src/modules/{module_name}"),
             handler=f"app.{module_name}_presenter.lambda_handler",
             runtime=lambda_.Runtime.PYTHON_3_9,
-            layers=self.layers,
+            layers=self.lambda_layer,
             environment=environment_variables,
             timeout=Duration.seconds(15),
             tracing=lambda_.Tracing.ACTIVE
@@ -124,7 +124,7 @@ class LambdaStack(Construct):
             code=lambda_.Code.from_asset(f"../src/modules/create_selfie"),
             handler=f"app.create_selfie_presenter.lambda_handler",
             runtime=lambda_.Runtime.PYTHON_3_9,
-            layers=self.layers,
+            layers=self.lambda_layer,
             environment=environment_variables,
             timeout=Duration.seconds(15),
             tracing=lambda_.Tracing.ACTIVE
@@ -134,7 +134,7 @@ class LambdaStack(Construct):
             code=lambda_.Code.from_asset(f"../src/modules/validate_selfie"),
             handler=f"app.validate_selfie_presenter.lambda_handler",
             runtime=lambda_.Runtime.PYTHON_3_9,
-            layers=self.layers,
+            layers=self.lambda_layer,
             environment=environment_variables,
             timeout=Duration.seconds(15),
             tracing=lambda_.Tracing.ACTIVE
