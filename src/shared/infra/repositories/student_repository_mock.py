@@ -28,7 +28,7 @@ class StudentRepositoryMock(IStudentRepository):
             ),
             Student(
                 ra="21014442",
-                name="Soller",
+                name="Vitor Guirão Soller",
                 email="eutambemsousoler@outlook.com"
             ),
             Student(
